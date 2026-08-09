@@ -1,7 +1,6 @@
-# Self-contained: the build context is apps/site, not the repository root.
-# This app is a leaf in a Rust workspace and shares no lockfile or tsconfig with
-# anything above it, so nothing outside this directory needs to be copied in —
-# and the Rust sources never enter the image or its build cache.
+# Self-contained: the build context is this repository. It shares no lockfile,
+# tsconfig, or package with anything else, which is the whole point of it being
+# its own repository rather than a Node leaf inside a Rust workspace.
 FROM node:22-alpine AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./

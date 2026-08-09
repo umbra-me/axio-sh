@@ -1,15 +1,19 @@
-# apps/site
+# axio-sh-web
 
 The axio.sh website, and the install scripts it serves. Next.js 16, App Router,
 one page.
 
 ```sh
-cd apps/site
 npm install
 npm run dev        # http://localhost:3311
 npm run build      # production build
 npm run typecheck
 ```
+
+This was `apps/site` inside `umbra-me/axio` until ADR 0013 split it out. It is
+the `axio/site` component of the `axio` workspace; the agent is `axio/core`. The
+two share a product and nothing else — different language, different release
+cadence, and a website deploy should not appear in the agent's history.
 
 Port 3311 is the host port the deployed container maps to. It sits between 3310
 and 3312, which the retired Axio cloud used and which are now free.
