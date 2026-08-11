@@ -1,4 +1,4 @@
-# axio-sh-web
+# axio-sh
 
 The axio.sh website, and the install scripts it serves. Next.js 16, App Router,
 one page.
