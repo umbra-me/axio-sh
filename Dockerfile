@@ -15,6 +15,10 @@ ENV NODE_ENV=production
 RUN npm run build
 
 FROM node:22-alpine AS runner
+# Provenance: the control plane passes this checkout's commit at build time
+# so a running container can be compared with the workspace lock.
+ARG GIT_REVISION=unknown
+LABEL org.opencontainers.image.revision="${GIT_REVISION}"
 WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
