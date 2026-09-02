@@ -1,32 +1,33 @@
 import { ImageResponse } from "next/og";
 import {
   ACCENT,
+  AMBER,
   BG,
-  CLAUDE,
-  CODEX,
+  CYAN,
   FG,
   MARK_INK,
+  MINT,
   MUTED,
-  PI,
   SLATE,
-  WARN,
+  VIOLET,
   geistMono,
   geistSans,
 } from "./brand";
 
-// The card a pasted link unfurls into. It carries the same three things the
-// hero does — the mark, the headline, the command — because someone who sees
-// this and never clicks should still know what axio is and how it is installed.
-//
-// The fourth thing is the agent palette, as four dots on the install slab. It
-// is the one part of the identity that cannot be said in a sentence at this
-// size, and it is what makes the card recognisably this product rather than
-// another dark card with a monospaced headline.
-export const alt = "axio — a local-first AI coding agent in Rust";
+// The card a pasted link unfurls into. It carries the same things the hero
+// does: the mark, the headline, the install command, and the four product
+// colours, which are the part of the identity a sentence cannot deliver at
+// this size.
+export const alt = "Axio — developer tools that stay on your machine";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const DOTS = [ACCENT, CLAUDE, CODEX, PI];
+const PRODUCTS = [
+  ["Agent", ACCENT],
+  ["Capture", MINT],
+  ["Analyst", VIOLET],
+  ["Deck", AMBER],
+] as const;
 
 export default function OpengraphImage() {
   return new ImageResponse(
@@ -39,10 +40,7 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           background: BG,
-          // The hero's single cold field, flattened to one radial stop. satori
-          // has no filter: blur(), so the softness lives in the gradient.
-          backgroundImage:
-            "radial-gradient(920px 520px at 88% -18%, rgba(123,160,255,0.20), rgba(5,7,10,0) 64%)",
+          backgroundImage: `radial-gradient(900px 520px at 20% -10%, rgba(123,160,255,0.22), rgba(5,7,10,0) 64%), radial-gradient(700px 400px at 85% 0%, rgba(99,203,220,0.12), rgba(5,7,10,0) 64%)`,
           padding: 72,
           fontFamily: "Geist",
           color: FG,
@@ -79,28 +77,35 @@ export default function OpengraphImage() {
             >
               axio
             </div>
+            <div style={{ marginLeft: 18, fontSize: 22, color: MUTED }}>by Umbra</div>
           </div>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              border: "1px solid rgba(255,255,255,0.10)",
-              borderRadius: 999,
-              padding: "10px 22px",
-              fontSize: 20,
-              color: MUTED,
-            }}
-          >
-            <div
-              style={{
-                width: 8,
-                height: 8,
-                borderRadius: 999,
-                background: WARN,
-                marginRight: 11,
-              }}
-            />
-            Pre-release · nothing tagged
+          <div style={{ display: "flex", gap: 10 }}>
+            {PRODUCTS.map(([name, color]) => (
+              <div
+                key={name}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  border: `1px solid ${color}55`,
+                  background: `${color}1a`,
+                  borderRadius: 999,
+                  padding: "8px 16px",
+                  fontSize: 18,
+                  color: FG,
+                }}
+              >
+                <div
+                  style={{
+                    width: 8,
+                    height: 8,
+                    borderRadius: 999,
+                    background: color,
+                    marginRight: 10,
+                  }}
+                />
+                {name}
+              </div>
+            ))}
           </div>
         </div>
 
@@ -109,23 +114,27 @@ export default function OpengraphImage() {
             style={{
               display: "flex",
               flexDirection: "column",
-              // `.hero h1` in globals.css, at the top of its clamp: Geist Mono
-              // at 600, -0.035em over 1.06. The card is the page's opening line,
-              // so it is set the way the page sets it rather than approximately.
-              fontFamily: "Geist Mono",
-              fontSize: 72,
-              fontWeight: 600,
+              fontSize: 78,
+              fontWeight: 700,
               letterSpacing: "-0.035em",
-              lineHeight: 1.06,
+              lineHeight: 1.04,
             }}
           >
-            <div style={{ display: "flex" }}>Many agents.</div>
-            <div style={{ display: "flex", color: ACCENT }}>One queue.</div>
+            <div style={{ display: "flex" }}>Developer tools that</div>
+            <div
+              style={{
+                display: "flex",
+                backgroundImage: `linear-gradient(92deg, ${ACCENT}, ${CYAN})`,
+                backgroundClip: "text",
+                color: "transparent",
+              }}
+            >
+              stay on your machine.
+            </div>
           </div>
-          <div style={{ marginTop: 28, fontSize: 27, color: MUTED, lineHeight: 1.45, maxWidth: 830 }}>
-            A local-first coding agent in Rust. Every supervised session gets its
-            own git worktree and branch, and every approval they need arrives in
-            one place.
+          <div style={{ marginTop: 26, fontSize: 27, color: MUTED, lineHeight: 1.45, maxWidth: 900 }}>
+            A coding agent, a screenshot tool, an analyst for Binary Ninja and a
+            Windows control surface. No accounts, no hosted backend, no telemetry.
           </div>
         </div>
 
@@ -142,23 +151,10 @@ export default function OpengraphImage() {
               fontSize: 24,
             }}
           >
-            <div style={{ display: "flex", marginRight: 20 }}>
-              {DOTS.map((color) => (
-                <div
-                  key={color}
-                  style={{
-                    width: 9,
-                    height: 9,
-                    borderRadius: 999,
-                    background: color,
-                    marginRight: 7,
-                  }}
-                />
-              ))}
-            </div>
+            <div style={{ display: "flex", color: MUTED, marginRight: 14 }}>$</div>
             curl -fsSL https://axio.sh/install | sh
           </div>
-          <div style={{ fontSize: 21, color: MUTED }}>Apache-2.0 · a product of Umbra</div>
+          <div style={{ fontSize: 21, color: MUTED }}>axio.sh</div>
         </div>
       </div>
     ),
@@ -166,7 +162,7 @@ export default function OpengraphImage() {
       ...size,
       fonts: [
         { name: "Geist", data: geistSans("Regular"), weight: 400, style: "normal" },
-        { name: "Geist", data: geistSans("SemiBold"), weight: 600, style: "normal" },
+        { name: "Geist", data: geistSans("Bold"), weight: 700, style: "normal" },
         { name: "Geist Mono", data: geistMono("Regular"), weight: 400, style: "normal" },
         { name: "Geist Mono", data: geistMono("SemiBold"), weight: 600, style: "normal" },
         { name: "Geist Mono", data: geistMono("Bold"), weight: 700, style: "normal" },

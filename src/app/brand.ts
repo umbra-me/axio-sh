@@ -1,20 +1,18 @@
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 
-// The canonical origin. Every absolute URL the metadata emits derives from this
-// one, so a move needs one edit rather than a grep.
-export const SITE = "https://axio.sh";
+// The canonical origin lives in lib/site.ts; re-exported so the generated
+// images and the pages read one value.
+export { SITE } from "@/lib/site";
 
 // The same values globals.css declares as custom properties. Generated images
 // are rendered by satori, which never sees the stylesheet, so the tokens have to
 // exist here too. Keep them in step by hand — nothing checks it, which is the
 // same trade the site already makes against web-stack's Tailwind config.
 //
-// They are the desktop application's, from crates/axio-app/ui/src/styles/
-// tokens.css, rather than the house palette this site opened with. One product
-// with two surfaces cannot credibly wear two identities, and the application is
-// the one with a stated visual thesis to inherit: the chrome is glass and the
-// content is slate.
+// They are the coding agent's own tokens, which the site adopted as its brand
+// palette: cold near-black ground, periwinkle for axio, and one colour per
+// product.
 export const BG = "#05070a";
 export const SLATE = "#0a0d13";
 export const LINE = "rgba(255,255,255,0.10)";
@@ -23,15 +21,14 @@ export const TEXT_2 = "#bfc3cb";
 export const MUTED = "#8f939d";
 export const FAINT = "#63666f";
 
-/** axio's own. Focus rings, the mark, anything belonging to the application. */
+/** axio's own. The mark, the site accent, and the agent product's colour. */
 export const ACCENT = "#7ba0ff";
-/** The hosted agents, each with its own. A session never borrows the chrome's. */
-export const CLAUDE = "#b492fd";
-export const CODEX = "#55dcb0";
-export const PI = "#63cbdc";
+export const CYAN = "#63cbdc";
+/** The other three product colours, as globals.css declares --p-*. */
+export const MINT = "#55dcb0";
+export const VIOLET = "#b492fd";
+export const AMBER = "#e2c67e";
 
-export const OK = "#55dcb0";
-export const WARN = "#e2c67e";
 
 /** The wordmark's letter sits on the accent, so it is the ground rather than light. */
 export const MARK_INK = "#05070a";

@@ -48,7 +48,7 @@ const PROJECTS: { name: string; sessions: Session[] }[] = [
     ],
   },
   {
-    name: "web-stack",
+    name: "axio-sh",
     sessions: [
       { label: "bump next 16", agent: "codex", state: "running", age: "11m" },
       { label: "dep audit", agent: "pi", state: "idle", age: "1h" },
@@ -141,7 +141,7 @@ export default function Surface({ className }: { className?: string }) {
           </div>
 
           <div className="surface__pane">
-            <div className="crumbs">
+            <div className="surface__crumbs">
               axio
               <span className="sep">/</span>
               <span className="here">pty exit codes</span>

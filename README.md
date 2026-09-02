@@ -1,13 +1,14 @@
 # axio-sh
 
 The axio.sh website, and the install scripts it serves. Next.js 16, App Router,
-one page.
+plain CSS, no runtime dependencies beyond React and the Geist fonts.
 
 ```sh
 npm install
 npm run dev        # http://localhost:3311
 npm run build      # production build
 npm run typecheck
+npm test           # the Product Admin adapter's unit tests
 ```
 
 This was `apps/site` inside `umbra-me/axio` until ADR 0013 split it out. It is
@@ -24,95 +25,107 @@ read-only Product Admin adapter that reports the current local-first product and
 website boundary. It does not revive hosted accounts or the retired Axio cloud,
 and there is no standalone Axio admin site.
 
-## A Node app inside a Rust workspace
+## What the site is
 
-This directory is a leaf. It shares no lockfile, tsconfig or build with the
-crates above it, and it is not a Cargo workspace member — `scripts/limits.sh`
-counts members and Rust lines under `crates/`, so it does not see anything here.
-`scripts/firewall.sh` greps the whole tracked tree, so everything here,
-`package-lock.json` included, is subject to it like any other file.
+The brand site for the Axio family, not the agent's page alone. Since the
+2026-09-03 redesign it has these routes:
 
-Two consequences worth knowing:
+| Route | Is |
+| --- | --- |
+| `/` | The landing page: hero, the four products, the agent's drawn surface, the rules every product keeps, and the Umbra attribution |
+| `/products` | The product index and a status table |
+| `/products/agent`, `/products/capture`, `/products/analyst`, `/products/deck` | One page per product: drawn interface, behaviours, verification ledger, install or download |
+| `/download` | Every product's install route on one page |
+| `/about` | What the brand is, the rules, licensing, how the site is operated, who builds it |
+| `/legal/privacy`, `/legal/terms`, `/legal/security`, `/legal/licenses` | The legal pages, written for what the products actually do |
+| `/install`, `/install.ps1` | The install scripts, as `text/plain` |
+| `/admin/v1/…` | The read-only Product Admin adapter |
 
-- `next.config.ts` pins `outputFileTracingRoot` and the turbopack root to this
-  directory. Without it Next walks up looking for a lockfile, finds the one
-  beside `Cargo.lock`, and traces the whole repository into the build.
-- `Dockerfile` takes `apps/site` as its build context, not the repository root,
-  so the crates never enter the image or its layer cache.
+`src/lib/products.ts` is the product registry — name, status, licence,
+platforms, colour, features, download assets — and every page reads it, so a
+release bumps one file. `src/lib/site.ts` holds the site-wide facts: origin,
+company, contact addresses, the legal pages' last-updated date, and the
+navigation.
 
 ## Design
 
-The desktop application's visual system, ported rather than paraphrased.
-`crates/axio-app/ui/src/styles/tokens.css` states the thesis — **the chrome is
-glass and the content is slate** — and this page is built on it. The header,
-the section labels and the panel the headline sits in are translucent and
-float; the parts you actually read — a transcript, the verification ledger, an
-install command — are dense near-opaque slabs sitting on top of the page rather
-than in it.
+Dark, one palette, no light variant. The ground is cold near-black (`#05070a`)
+rather than neutral, because the accents are blue-leaning and a neutral ground
+behind them reads as a colour cast. The layout language is the one the
+umbra.me landing pages use — centred section heads under a tracked mono
+eyebrow, a stats strip under the hero, product cards with a colour each and a
+status badge, a four-column footer — without being a copy of it: the site keeps
+its own palette, its own type and its own illustrations.
 
-In the application the glass is translucent to your desktop. A web page has no
-wallpaper, so the hero supplies its own: `Surface.tsx` draws a slab of the
-application's own surface — four sessions across two repositories, each wearing
-its agent's colour, one of them holding a question nobody has answered yet —
-and the headline sits in a glass panel lapping over its left edge.
+**Every product owns a colour**, declared once as `--p-agent`, `--p-capture`,
+`--p-analyst` and `--p-deck` in `globals.css` and threaded through as `--pc` on
+whatever subtree belongs to that product: its badge, its icon tile, its card's
+tagline and bullets, its page's primary button and headline accent. Chrome
+never borrows a product colour. The site's own accent is the agent's periwinkle
+(`#7ba0ff`), and the one gradient on the site (`.grad`, periwinkle to cyan) is
+spent on one phrase per page, never on chrome.
 
-**The lap is 1rem, and that is a ceiling rather than a taste call.** The rail
-begins at the slab's left edge and the first session dot sits about 28px in, so
-a larger lap hides the four agent colours — the one thing in the hero that
-cannot afford to be behind anything. An earlier 128px lap buried three of them.
-Depth is carried by the panel's drop shadow and by the slab running off the
-right edge of the frame instead.
+**Type.** Geist Sans carries the display type at 700 with tight tracking; Geist
+Mono carries labels, artifacts and anything a product actually prints. Both are
+self-hosted through `next/font`; the page makes no external request. The
+earlier site set its headline in Geist Mono, and it paid for it in characters.
 
-The palette is the application's rather than the house one this site opened
-with: `#05070a` ground, `#0a0d13` slabs, `#7ba0ff` for axio itself, and one
-colour for each agent it can host — claude violet, codex green, pi cyan. That
-is a system rather than an accent, and it is what keeps "this belongs to an
-agent" and "this belongs to axio" different questions on the page, as they are
-in the window. The amber and its gradient are gone: one product with two
-surfaces cannot credibly wear two identities, and the application has no
-gradient anywhere.
+**Nothing is a screenshot.** Every product interface on the site is drawn:
+`Surface.tsx` for the agent's window, `CaptureMock.tsx`, `AnalystMock.tsx` and
+`DeckMock.tsx` for the others. A screenshot is one size, one theme, one moment,
+and these have to reflow into a phone and sit behind text. They are
+`aria-hidden`; every fact in them is stated in words beside them. The icons are
+drawn too, on a 24-unit grid at a 1.6 stroke, in `Icons.tsx`. No icon library
+and no stock imagery.
 
-The display face is Geist Mono, not Geist Sans. The usual pairing runs a sans
-display over mono captions; this product's entire material is monospaced
-output, and the application's UI face deliberately stops at 30px because it is
-a tool rather than a poster. The cost is real and the headline pays it: Geist
-Mono's advance is roughly twice Geist Sans's, so a display line here buys about
-twelve characters.
+**Cards** carry a lit top edge and a pointer-tracked spotlight. `SpotlightGrid`
+sets `--mx`/`--my` on each `.card` as the pointer moves and does nothing else;
+without it, or without a fine pointer, the cards still hover. The background is
+a fixed engineering grid that fades out toward the edges under two cold glows —
+CSS only. The particle and matrix-rain canvases umbra.me runs were considered
+and left out: on a site whose argument is restraint they would have argued the
+other way.
 
-Structure carries content rather than decorating it. The strip under the hero
-is the application's status bar — the count is the fact and the noun beside it
-is the caption, so they are not the same colour, and the one figure that is not
-neutral does not read as neutral. Each behaviour card is marked by a string the
-product actually prints (`exit 5`, `--probe`, `~/.axio`) rather than by a
-tinted square with a glyph in it, which would have meant nothing.
+**Motion.** One curve, `cubic-bezier(0.16, 1, 0.3, 1)`. Sections rise in as
+they enter the viewport through `animation-timeline: view()`, which costs no
+script and falls back to static content where unsupported. The agent's surface
+keeps its two authored moments — the selected session's accent wipes down its
+edge, a running session's dot breathes — and the released badge breathes the
+same way. Everything honours `prefers-reduced-motion`, through the `--fast`,
+`--base` and `--slow` custom properties collapsing to `1ms` plus explicit
+`animation: none` on the loops.
 
-Geist is self-hosted through `next/font`. The page makes no external request.
+**Selectors are scoped to what they style.** Two alignment bugs in review came
+from rules that matched more than they meant to: `.split__text ul` turned the
+product hero's one-line facts row into a stacked list, and `.menu-item span`
+matched the products menu's icon tile and replaced its grid with a block,
+which pushed the glyph into the tile's corner. Both are now scoped
+(`.phero .phero__facts`, `.menu-item__text`), and icons inside `.card__icon`
+and `.menu-item__icon` are pinned to `display: block` so no later rule can
+knock them off centre. Inline `<svg>` elsewhere stays inline so an arrow after
+a link sits on the link's line.
 
-Two affordances rather than decoration. Each install block carries a copy button
-in its terminal bar — in the bar so it never covers the command it copies and
-needs no hover to be found. It renders only after mount and only where the
-Clipboard API exists, because that API is absent on plain http and in older
-browsers and a button that silently does nothing is worse than none; the command
-is still there to select. A skip link precedes the header, and its target takes
-`tabindex="-1"` so focus actually moves rather than the page merely scrolling.
+**No script where none is needed.** The header's products menu opens on hover
+and on `:focus-within`, centred under its trigger and opaque, because the
+header's own `backdrop-filter` makes it a backdrop root and a translucent panel
+below it cannot blur what is behind it. The mobile menu is a `<details>`; its only script closes
+it after a navigation and on a click outside. The copy buttons render only
+after mount and only where the Clipboard API exists. A skip link precedes the
+header and its target takes `tabindex="-1"` so focus actually moves.
 
-Motion is one curve — the application's `cubic-bezier(0.16, 1, 0.3, 1)` — and
-very little uses it. The authored moment is ported from the application
-unchanged: the selected session's accent wipes down its leading edge as the
-page settles, and a running session's dot breathes. Nothing else animates
-position or glow, and the drifting scrollback the hero used to carry is gone —
-with a real slab behind the glass there was already material back there, and
-two ambient textures competed for the same space.
+### A trap in JSX text
 
-Motion is opt-out throughout, through one mechanism rather than a habit each
-rule has to remember: `--fast`, `--base` and `--slow` collapse to `1ms` under
-`prefers-reduced-motion: reduce`, the wipe and the breathing stop outright, the
-caret hides, and `HeroTranscript` checks the same query in JS and jumps
-straight to its settled state.
+SWC drops the leading space of a JSX text node whose text contains an HTML
+entity such as `&apos;`. `<strong>Local-first.</strong> Every product …` renders
+as `Local-first.Every` if the sentence later contains `Umbra&apos;s`. The site
+therefore uses real typographic characters (`’`, `“`, `”`) in JSX text rather
+than entities, and the 2026-09-03 build was checked by grepping the rendered
+HTML for `</strong>[A-Za-z]` and friends. Keep doing that after editing prose.
 
 ## Metadata and generated images
 
-`layout.tsx` sets `metadataBase`, a canonical URL, Open Graph and card metadata.
+`layout.tsx` sets `metadataBase`, a title template, Open Graph and card
+metadata; each page sets its own title, description and canonical.
 `metadataBase` is the load-bearing one: without it Next emits `og:image` as a
 relative path, every scraper resolves that against its own host, and the unfurl
 arrives with no image and nothing anywhere to say why.
@@ -124,53 +137,37 @@ lives in this repository and no dependency was added for them.
 | --- | --- | --- |
 | `icon.tsx` | `/icon` | 32×32 tab icon |
 | `apple-icon.tsx` | `/apple-icon` | 180×180 home-screen icon, on the ground rather than bleeding to the edge |
-| `opengraph-image.tsx` | `/opengraph-image` | the 1200×630 card, reused for `twitter:image` |
+| `opengraph-image.tsx` | `/opengraph-image` | the 1200×630 card, reused for `twitter:image` and by every page |
 | `robots.ts`, `sitemap.ts` | `/robots.txt`, `/sitemap.xml` | — |
 
 The mark is Geist Mono's `a` on the accent. It is drawn rather than
 hand-authored as an SVG path because an SVG favicon would have to name a font
 the browser has no reason to have, and would fall back to whatever the platform
-calls monospace.
+calls monospace. The header wordmark is the application's own mark instead — a
+small filled square at the accent with a short bloom, the same primitive the
+running-session dot uses — because a letterless square is right beside the word
+`axio` and wrong in a 32×32 tab.
 
-The header wordmark is **not** the same object any more. It is the
-application's own mark — a small filled square at the accent with a short
-bloom, the same primitive its running-session dot uses, so one shape does
-identity and state. A letterless square is right beside the word `axio` and
-wrong in a 32×32 tab, which is why the icons keep the glyph.
-
-`brand.ts` holds the tokens and loads the fonts. Three things there are easy to
-get wrong:
+`brand.ts` holds the tokens the image renderer needs and loads the fonts. Three
+things there are easy to get wrong:
 
 - **The renderer never sees the stylesheet.** The tokens are restated in
-  `brand.ts`, and nothing checks that they still match `globals.css`. This is the
-  same trade the site already makes against web-stack's Tailwind config, and it
-  drifts the same way.
+  `brand.ts`, and nothing checks that they still match `globals.css`.
 - **woff2 is unreadable to the image renderer**, and geist ships both formats.
-  `brand.ts` loads the `.ttf` twins of the faces `next/font` serves the browser,
-  so the images render in the same typeface the page does rather than a fallback.
+  `brand.ts` loads the `.ttf` twins of the faces `next/font` serves the browser.
 - **The fonts are found by walking up for `node_modules/geist/dist/fonts`, not
-  by resolving the package.** geist's `exports` map publishes only `./font/*`, so
-  neither the `.ttf` files nor its own `package.json` can be resolved by
-  specifier — and a `require.resolve` here is rewritten by webpack into one of
-  its own numeric module ids, which fails the build with a type error rather than
-  a missing file. Walking up also survives a hoisted install.
+  by resolving the package.** geist's `exports` map publishes only `./font/*`,
+  and a `require.resolve` here is rewritten by webpack into one of its own
+  numeric module ids, which fails the build with a type error rather than a
+  missing file.
 
-`robots.ts` disallows `/install` and `/install.ps1`. They stay reachable — a
-shell still fetches them — but a crawler that indexes them turns a search result
-into a page whose entire content is a script.
+`robots.ts` disallows `/install`, `/install.ps1` and `/admin/`. The scripts stay
+reachable — a shell still fetches them — but a crawler that indexes them turns a
+search result into a page whose entire content is a script.
 
-The card repeats the mark, the headline and the install command, so someone who
-sees it and never clicks still knows what axio is and how to install it. Its
-headline is set the way `.hero h1` sets it — Geist Mono at 600, `-0.035em` over
-1.06 — rather than approximately, and its second line takes the accent as the
-page's does. It carries one thing the page states in words instead: the four
-agent colours, as dots on the install slab. At this size that palette is the
-part of the identity a sentence cannot deliver, and it is what makes the card
-recognisably this product rather than another dark card with a monospaced
-headline.
-
-If the headline or its treatment changes, change it in both places — the card
-is meant to match the page, not improve on it.
+The card carries the headline, the install command and the four product
+colours as pills. At that size the palette is the part of the identity a
+sentence cannot deliver. If the headline changes, change it in both places.
 
 ## Install scripts
 
@@ -199,15 +196,24 @@ Two things in them are easy to get wrong and expensive to find later:
 
 ## Content rule
 
-Every claim on the page is either in the repository README or in the code. Where
-the two disagreed, the code won — `crates/axio-core/src/auth.rs` declares four
-providers, and the README said three until it was corrected.
+Every claim on the site is in the product's README, `SECURITY.md` or code.
+Where the two disagreed, the code won. The legal pages follow the same rule:
+the privacy policy's per-product tables were written from each product's
+dependencies and source (no telemetry anywhere; the agent talks only to the
+provider you configure; Capture's only outbound call is its signed updater;
+Analyst goes through the CLI you chose plus one catalogue call to ollama.com;
+Deck makes no network requests of its own), and a change to any of that has to
+reach `legal/privacy/page.tsx` in the same change.
 
-The verification table is the part most likely to go stale, because it records
-what has been run against a live endpoint rather than what exists. Update it when
-a transport meets its endpoint or a release is cut. A page claiming a path is
-unverified after it has been verified is a smaller problem than the reverse, but
-both are wrong.
+The verification tables are the parts most likely to go stale, because they
+record what has been run rather than what exists. Update them when a transport
+meets its endpoint, a platform is exercised, or a release is cut. A page
+claiming a path is unverified after it has been verified is a smaller problem
+than the reverse, but both are wrong.
+
+The contact addresses in `site.ts` (`privacy@`, `legal@`, `security@umbra.me`)
+are the ones umbra.me publishes. The legal pages' date lives in `LEGAL_UPDATED`
+and must move when their text does.
 
 ## Deployment
 

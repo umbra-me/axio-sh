@@ -1,12 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
-import { BG, SITE } from "./brand";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import { DESCRIPTION, SITE, SITE_NAME, TAGLINE } from "@/lib/site";
+import { BG } from "./brand";
 import "./globals.css";
-
-const TITLE = "axio — a local-first AI coding agent in Rust";
-const DESCRIPTION =
-  "Run many coding sessions at once, each in its own git worktree, and answer every question they raise from one queue. A one-shot CLI, an inline terminal interface and a desktop window. Pre-release, Apache-2.0.";
 
 // Geist is the Umbra house face. next/font self-hosts it, so the page still
 // makes no external request.
@@ -17,28 +16,35 @@ const DESCRIPTION =
 // anywhere to say why.
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
-  title: TITLE,
+  title: {
+    default: `${SITE_NAME} — ${TAGLINE}`,
+    template: `%s · ${SITE_NAME}`,
+  },
   description: DESCRIPTION,
-  applicationName: "axio",
+  applicationName: SITE_NAME,
   authors: [{ name: "Umbra", url: "https://umbra.me" }],
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: SITE,
-    siteName: "axio",
-    title: TITLE,
+    siteName: SITE_NAME,
+    title: `${SITE_NAME} — ${TAGLINE}`,
     description: DESCRIPTION,
     locale: "en_US",
   },
   // The card and its alt text come from opengraph-image.tsx by file
   // convention; Next reuses them here, so naming the image twice would only
   // create somewhere for the two to disagree.
-  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE_NAME} — ${TAGLINE}`,
+    description: DESCRIPTION,
+  },
 };
 
 // The site has one palette and no light variant. Declaring that stops the
 // browser rendering scrollbars, form controls and the address bar in light
-// chrome around a page that is the application's cold near-black throughout.
+// chrome around a page that is cold near-black throughout.
 export const viewport: Viewport = {
   themeColor: BG,
   colorScheme: "dark",
@@ -50,12 +56,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${GeistSans.variable} ${GeistMono.variable}`}
-    >
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <body>
-        {children}
+        {/* Hidden until focused, first in the tab order. */}
+        <a className="skip-link" href="#content">
+          Skip to content
+        </a>
+        <div className="bg" aria-hidden="true" />
+        <Header />
+        {/* tabIndex -1 so the skip link actually moves focus here rather than
+            only scrolling. */}
+        <main id="content" tabIndex={-1}>
+          {children}
+        </main>
+        <Footer />
+        {/* Umbra's own collector: page loads and presses on marked links as
+            hourly totals, no cookie, no identifier, honours Do Not Track. The
+            privacy policy describes it; keep the two in step. */}
         <script
           defer
           src={

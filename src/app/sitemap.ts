@@ -1,9 +1,23 @@
 import type { MetadataRoute } from "next";
-import { SITE } from "./brand";
+import { PRODUCT_LIST, productHref } from "@/lib/products";
+import { NAV, SITE } from "@/lib/site";
 
-// One page. A sitemap for a single URL earns nothing on its own — it is here so
-// that the file exists and grows with the site rather than being remembered
-// later, and so robots.txt points at something real.
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [{ url: SITE, changeFrequency: "weekly", priority: 1 }];
+  const pages: MetadataRoute.Sitemap = [
+    { url: SITE, changeFrequency: "weekly", priority: 1 },
+    { url: `${SITE}/products`, changeFrequency: "weekly", priority: 0.9 },
+    ...PRODUCT_LIST.map((p) => ({
+      url: `${SITE}${productHref(p.id)}`,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })),
+    { url: `${SITE}/download`, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${SITE}/about`, changeFrequency: "monthly", priority: 0.5 },
+    ...NAV.legal.map((item) => ({
+      url: `${SITE}${item.href}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.3,
+    })),
+  ];
+  return pages;
 }
