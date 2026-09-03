@@ -110,10 +110,7 @@ export default function TermsPage() {
       <h2 id="use">4. Acceptable use of the site</h2>
       <p>You agree not to:</p>
       <ul>
-        <li>
-          attempt to access the site’s administrative endpoint, or any
-          system behind it, without authorisation;
-        </li>
+        <li>attempt to access systems behind the site without authorisation;</li>
         <li>
           interfere with the site’s operation, or place load on it that is
           disproportionate to reading it;

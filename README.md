@@ -8,7 +8,7 @@ npm install
 npm run dev        # http://localhost:3311
 npm run build      # production build
 npm run typecheck
-npm test           # the Product Admin adapter's unit tests
+npm test
 ```
 
 This was `apps/site` inside `umbra-me/axio` until ADR 0013 split it out. It is
@@ -20,10 +20,9 @@ Port 3311 is the host port the deployed container maps to. It sits between 3310
 and 3312, which the retired Axio cloud used and which are now free.
 
 Umbra manages this website's portfolio record, health, analytics identity, and
-public configuration through `admin.umbra.me`. The site also exposes a scoped,
-read-only Product Admin adapter that reports the current local-first product and
-website boundary. It does not revive hosted accounts or the retired Axio cloud,
-and there is no standalone Axio admin site.
+public configuration through `admin.umbra.me`. The site exposes no Admin API,
+receives no Admin credential, does not revive hosted accounts or the retired
+Axio cloud, and has no standalone Admin site.
 
 ## What the site is
 
@@ -39,7 +38,6 @@ The brand site for the Axio family, not the agent's page alone. Since the
 | `/about` | What the brand is, the rules, licensing, how the site is operated, who builds it |
 | `/legal/privacy`, `/legal/terms`, `/legal/security`, `/legal/licenses` | The legal pages, written for what the products actually do |
 | `/install`, `/install.ps1` | The install scripts, as `text/plain` |
-| `/admin/v1/…` | The read-only Product Admin adapter |
 
 `src/lib/products.ts` is the product registry — name, status, licence,
 platforms, colour, features, download assets — and every page reads it, so a

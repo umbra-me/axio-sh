@@ -86,9 +86,8 @@ export default function AboutPage() {
           <p>
             Umbra operates this website and the product record centrally
             through its own administration console. The site itself is a static
-            Next.js build with no database and no user accounts; it exposes one
-            authenticated, read-only endpoint that reports the site’s own
-            status to that console. The tools never talk to it.
+            Next.js build with no database, user accounts, or administrative
+            endpoint. The tools never talk to it.
           </p>
           <p>
             The site counts page loads and presses on a few marked links as

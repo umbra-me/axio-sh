@@ -253,11 +253,7 @@ export default function SecurityPage() {
           <code>nosniff</code>, so a browser shows the source instead of
           running or downloading it. Read them before piping them to a shell.
         </li>
-        <li>
-          The administrative endpoint requires a short-lived signed token issued
-          by Umbra’s console, verified with a constant-time comparison,
-          and is read-only.
-        </li>
+        <li>The site exposes no product-owned administrative endpoint.</li>
         <li>
           The container image is labelled with the exact commit it was built
           from, and the control plane compares that label with the recorded

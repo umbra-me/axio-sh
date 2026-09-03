@@ -107,12 +107,11 @@ export default function PrivacyPage() {
         themselves build the agent from source on your machine using your own
         toolchain; they send nothing back to us.
       </p>
-      <h3>Administrative endpoint</h3>
+      <h3>Administration</h3>
       <p>
-        The site exposes one authenticated, read-only endpoint used by{" "}
-        {COMPANY.name}’s own administration console to read the site’s
-        status. It reports facts about the site, not about visitors, and rejects
-        any request without a valid short-lived token.
+        {COMPANY.name} manages this static site from its central control plane.
+        The site exposes no administrative endpoint and stores no operator or
+        visitor records.
       </p>
 
       <h2 id="software">4. The software</h2>
