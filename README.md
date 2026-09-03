@@ -75,7 +75,9 @@ earlier site set its headline in Geist Mono, and it paid for it in characters.
 `DeckMock.tsx` for the others. A screenshot is one size, one theme, one moment,
 and these have to reflow into a phone and sit behind text. They are
 `aria-hidden`; every fact in them is stated in words beside them. The icons are
-drawn too, on a 24-unit grid at a 1.6 stroke, in `Icons.tsx`. No icon library
+drawn too, on a 24-unit grid at a 1.6 stroke, in `Icons.tsx`, and the four
+product glyphs there are the same shapes the products' app icons carry; the
+Analyst glyph is the split diamond the plugin itself paints. No icon library
 and no stock imagery.
 
 **Cards** carry a lit top edge and a pointer-tracked spotlight. `SpotlightGrid`
@@ -140,13 +142,16 @@ lives in this repository and no dependency was added for them.
 | `opengraph-image.tsx` | `/opengraph-image` | the 1200×630 card, reused for `twitter:image` and by every page |
 | `robots.ts`, `sitemap.ts` | `/robots.txt`, `/sitemap.xml` | — |
 
-The mark is Geist Mono's `a` on the accent. It is drawn rather than
-hand-authored as an SVG path because an SVG favicon would have to name a font
-the browser has no reason to have, and would fall back to whatever the platform
-calls monospace. The header wordmark is the application's own mark instead — a
-small filled square at the accent with a short bloom, the same primitive the
-running-session dot uses — because a letterless square is right beside the word
-`axio` and wrong in a 32×32 tab.
+The mark is the Axio family's: the slate tile with a geometric single-storey
+`a` in the accent, whose source of truth is `tools/brand/marks/axio.svg` in
+the Axio workspace, the same file the desktop apps' icons are generated from.
+The site carries it twice, and both are copies of that file: `src/lib/mark.ts`
+holds the SVG as a string for the generated images, which satori loads from a
+data URI, and `src/components/Mark.tsx` draws the same geometry in JSX for the
+header and footer. The tab and home-screen icons bleed the tile to the edge
+because they have no room for the margin the app icons keep; the social card
+sets it beside the wordmark. Change the mark in the workspace first, then both
+copies here.
 
 `brand.ts` holds the tokens the image renderer needs and loads the fonts. Three
 things there are easy to get wrong:
@@ -165,9 +170,9 @@ things there are easy to get wrong:
 reachable — a shell still fetches them — but a crawler that indexes them turns a
 search result into a page whose entire content is a script.
 
-The card carries the headline, the install command and the four product
-colours as pills. At that size the palette is the part of the identity a
-sentence cannot deliver. If the headline changes, change it in both places.
+The card carries the mark, the headline, the install command and the four
+product colours as pills. At that size the palette is the part of the identity
+a sentence cannot deliver. If the headline changes, change it in both places.
 
 ## Install scripts
 

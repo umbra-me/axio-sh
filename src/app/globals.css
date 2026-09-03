@@ -483,14 +483,9 @@ main:focus {
   color: var(--text);
 }
 
-/* The application's own mark: a filled square at the accent with a short
-   bloom, the same primitive its running-session dot uses. */
-.wordmark i {
-  width: 10px;
-  height: 10px;
-  border-radius: 2.5px;
-  background: var(--accent);
-  box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 60%, transparent);
+/* The mark beside the word: the family's tile with the "a", drawn by Mark.tsx. */
+.wordmark svg {
+  filter: drop-shadow(0 0 10px color-mix(in srgb, var(--accent) 35%, transparent));
 }
 
 .wordmark small {

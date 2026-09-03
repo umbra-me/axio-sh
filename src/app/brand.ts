@@ -30,9 +30,6 @@ export const VIOLET = "#b492fd";
 export const AMBER = "#e2c67e";
 
 
-/** The wordmark's letter sits on the accent, so it is the ground rather than light. */
-export const MARK_INK = "#05070a";
-
 // satori cannot read woff2, and geist ships both — these are the .ttf twins of
 // the faces next/font serves to the browser, so the generated images render in
 // the same typeface the page does rather than in a fallback.

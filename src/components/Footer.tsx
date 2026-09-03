@@ -1,6 +1,7 @@
 import { PRODUCT_LIST, productHref } from "@/lib/products";
 import { COMPANY, NAV, ORG, UMBRA } from "@/lib/site";
 import { IconGitHub } from "./Icons";
+import Mark from "./Mark";
 
 const AGENT = "https://github.com/umbra-me/axio";
 
@@ -11,7 +12,7 @@ export default function Footer() {
         <div className="footer__grid">
           <div className="footer__brand">
             <a className="wordmark" href="/">
-              <i aria-hidden="true" />
+              <Mark size={22} />
               axio
             </a>
             <p>

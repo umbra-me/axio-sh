@@ -38,12 +38,14 @@ export function IconCapture() {
   );
 }
 
+// The plugin's own mark: a split diamond, one bounded context read two ways,
+// solid on the right and stroked on the left. Same shape as ui/branding.py in
+// umbra-me/axio-analyst.
 export function IconAnalyst() {
   return (
     <svg {...base}>
-      <path d="M12 3l7 4.5v9L12 21l-7-4.5v-9L12 3Z" />
-      <path d="M12 3v18" />
-      <path d="M5 7.5l7 4.5 7-4.5" />
+      <path d="M12 3l9 9-9 9-9-9 9-9Z" />
+      <path d="M12 3l9 9-9 9V3Z" fill="currentColor" />
     </svg>
   );
 }

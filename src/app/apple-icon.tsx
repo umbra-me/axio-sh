@@ -1,45 +1,24 @@
 import { ImageResponse } from "next/og";
-import { ACCENT, BG, MARK_INK, geistMono } from "./brand";
+import { markDataUri } from "@/lib/mark";
 
-// Home-screen icons are composited onto whatever wallpaper is behind them, and
-// iOS applies its own mask, so this one keeps the ground rather than bleeding
-// the gradient to the edge: the mark stays a mark instead of becoming the tile.
+// Home-screen icon. iOS applies its own mask, so the tile fills the canvas
+// rather than sitting inside a margin, the same way the apps' icon.png is
+// masked by macOS.
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
 export default function AppleIcon() {
   return new ImageResponse(
     (
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: BG,
-        }}
-      >
-        <div
-          style={{
-            width: 124,
-            height: 124,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            background: ACCENT,
-            borderRadius: 30,
-            color: MARK_INK,
-            fontFamily: "Geist Mono",
-            fontSize: 78,
-            fontWeight: 700,
-            paddingLeft: 4,
-          }}
-        >
-          a
-        </div>
+      <div style={{ width: "100%", height: "100%", display: "flex" }}>
+        <img
+          src={markDataUri()}
+          width={size.width * (1024 / 896)}
+          height={size.height * (1024 / 896)}
+          style={{ marginLeft: -size.width * (64 / 896), marginTop: -size.height * (64 / 896) }}
+        />
       </div>
     ),
-    { ...size, fonts: [{ name: "Geist Mono", data: geistMono("Bold"), weight: 700, style: "normal" }] },
+    size,
   );
 }

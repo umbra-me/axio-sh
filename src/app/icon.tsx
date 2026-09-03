@@ -1,37 +1,27 @@
 import { ImageResponse } from "next/og";
-import { ACCENT, MARK_INK, geistMono } from "./brand";
+import { markDataUri } from "@/lib/mark";
 
-// The header wordmark's mark, rendered at build time so the tab shows the same
-// object the page opens with. Drawn rather than hand-authored as an SVG path
-// because the glyph is Geist Mono's `a` — an SVG favicon would have to name a
-// font the browser has no reason to have, and would fall back to whatever the
-// platform calls monospace.
+// The tab icon: the Axio mark, rendered at build time from the same SVG the
+// desktop apps' icons are generated from, so the tab shows the object the
+// dock does. The tile bleeds to the edge here because a 32px tab icon has no
+// room for the margin the app icons keep.
 export const size = { width: 32, height: 32 };
 export const contentType = "image/png";
 
 export default function Icon() {
   return new ImageResponse(
     (
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: ACCENT,
-          borderRadius: 7,
-          color: MARK_INK,
-          fontFamily: "Geist Mono",
-          fontSize: 21,
-          fontWeight: 700,
-          // The glyph's own sidebearing sits it left of centre at this size.
-          paddingLeft: 1,
-        }}
-      >
-        a
+      <div style={{ width: "100%", height: "100%", display: "flex" }}>
+        {/* The mark's own canvas keeps a 64px margin on 1024; oversize and
+            offset it so the tile fills the icon. */}
+        <img
+          src={markDataUri()}
+          width={size.width * (1024 / 896)}
+          height={size.height * (1024 / 896)}
+          style={{ marginLeft: -size.width * (64 / 896), marginTop: -size.height * (64 / 896) }}
+        />
       </div>
     ),
-    { ...size, fonts: [{ name: "Geist Mono", data: geistMono("Bold"), weight: 700, style: "normal" }] },
+    size,
   );
 }

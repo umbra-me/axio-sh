@@ -5,7 +5,6 @@ import {
   BG,
   CYAN,
   FG,
-  MARK_INK,
   MINT,
   MUTED,
   SLATE,
@@ -13,6 +12,7 @@ import {
   geistMono,
   geistSans,
 } from "./brand";
+import { markDataUri } from "@/lib/mark";
 
 // The card a pasted link unfurls into. It carries the same things the hero
 // does: the mark, the headline, the install command, and the four product
@@ -48,27 +48,10 @@ export default function OpengraphImage() {
       >
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <div style={{ display: "flex", alignItems: "center" }}>
+            <img src={markDataUri()} width={56} height={56} style={{ marginLeft: -4 }} />
             <div
               style={{
-                width: 46,
-                height: 46,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                background: ACCENT,
-                borderRadius: 11,
-                color: MARK_INK,
-                fontFamily: "Geist Mono",
-                fontSize: 27,
-                fontWeight: 700,
-                paddingLeft: 2,
-              }}
-            >
-              a
-            </div>
-            <div
-              style={{
-                marginLeft: 18,
+                marginLeft: 14,
                 fontFamily: "Geist Mono",
                 fontSize: 32,
                 fontWeight: 600,

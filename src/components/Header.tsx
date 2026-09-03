@@ -7,6 +7,7 @@ import {
   IconGitHub,
   PRODUCT_ICONS,
 } from "./Icons";
+import Mark from "./Mark";
 import MobileMenu from "./MobileMenu";
 
 // The header is a server component. The products menu opens on hover and on
@@ -17,7 +18,7 @@ export default function Header() {
     <header className="header">
       <div className="container header__row">
         <a className="wordmark" href="/">
-          <i aria-hidden="true" />
+          <Mark size={22} />
           axio
           <small>by Umbra</small>
         </a>
