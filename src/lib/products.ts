@@ -115,7 +115,7 @@ export const PRODUCTS: Record<ProductId, Product> = {
     short: "Deck",
     tagline: "A control surface for a Windows workstation",
     description:
-      "Draws its own status bar on every monitor, owns its own global keybinds, drives komorebi tiling, and ships a debloat catalogue with an undo that restores the exact previous state. Private while it is being built.",
+      "Draws its own status bar on every monitor, owns its own global keybinds, drives komorebi tiling, manages packages across seven managers, and ships a debloat catalogue with an undo that restores the exact previous state. Private while it is being built.",
     status: "private",
     statusLabel: "Private, in development",
     repo: null,

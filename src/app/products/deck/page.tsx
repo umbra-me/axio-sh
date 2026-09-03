@@ -178,10 +178,10 @@ export default function DeckPage() {
             <div className="card card--static">
               <h3>What is live today</h3>
               <p>
-                Six of the eight sections: Overview, Tiling, Bar, System,
-                Drives and Keys. Packages and Theme are scaffolds, and each
-                opens with a banner saying so and naming what would make it
-                real. A mock that reads as shipped is worse than no mock.
+                Seven of the eight sections: Overview, Packages, Tiling, Bar,
+                System, Drives and Keys. Theme is a scaffold, and opens with a
+                banner saying so and naming what would make it real. A mock
+                that reads as shipped is worse than no mock.
               </p>
             </div>
           </div>

@@ -3,7 +3,7 @@
 // snapshot-first undo. The eight sections and their states are the README's.
 const SECTIONS: [string, string][] = [
   ["Overview", "live"],
-  ["Packages", "scaffold"],
+  ["Packages", "live"],
   ["Tiling", "live"],
   ["Bar", "live"],
   ["Theme", "scaffold"],
