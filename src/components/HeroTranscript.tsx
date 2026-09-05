@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 
 // A turn, played the way the real one runs: invoked, the prompt already sent,
 // the status line thinking, tool calls landing as they finish, the answer
@@ -38,19 +38,28 @@ type Phase = "thinking" | "streaming" | "done";
 // hero now has a slab of the desktop surface behind its glass, and two ambient
 // textures competing for the same space is one more than the page can spend.
 
+const motionQuery = "(prefers-reduced-motion: reduce)";
+const reducedMotion = () => window.matchMedia(motionQuery).matches;
+const serverMotion = () => false;
+const subscribeMotion = (notify: () => void) => {
+  const media = window.matchMedia(motionQuery);
+  media.addEventListener("change", notify);
+  return () => media.removeEventListener("change", notify);
+};
+
 export default function HeroTranscript() {
-  const [tools, setTools] = useState(0);
-  const [typed, setTyped] = useState(0);
-  const [phase, setPhase] = useState<Phase>("thinking");
+  const reduce = useSyncExternalStore(subscribeMotion, reducedMotion, serverMotion);
+  const [animatedTools, setTools] = useState(0);
+  const [animatedTyped, setTyped] = useState(0);
+  const [animatedPhase, setPhase] = useState<Phase>("thinking");
   const timers = useRef<number[]>([]);
 
+  const tools = reduce ? TOOL_LINES.length : animatedTools;
+  const typed = reduce ? ANSWER.length : animatedTyped;
+  const phase = reduce ? "done" : animatedPhase;
+
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setTools(TOOL_LINES.length);
-      setTyped(ANSWER.length);
-      setPhase("done");
-      return;
-    }
+    if (reduce) return;
 
     const at = (ms: number, fn: () => void) => {
       timers.current.push(window.setTimeout(fn, ms));
@@ -66,7 +75,7 @@ export default function HeroTranscript() {
 
     const scheduled = timers.current;
     return () => scheduled.forEach(clearTimeout);
-  }, []);
+  }, [reduce]);
 
   // Both strings are ones the product actually shows. An earlier version had
   // the settled line read "ready", which axio does not say — inventing UI copy

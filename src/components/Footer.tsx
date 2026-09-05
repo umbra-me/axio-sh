@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { PRODUCT_LIST, productHref } from "@/lib/products";
 import { COMPANY, NAV, ORG, UMBRA } from "@/lib/site";
 import { IconGitHub } from "./Icons";
@@ -11,10 +12,10 @@ export default function Footer() {
       <div className="container">
         <div className="footer__grid">
           <div className="footer__brand">
-            <a className="wordmark" href="/">
+            <Link className="wordmark" href="/">
               <Mark size={22} />
               axio
-            </a>
+            </Link>
             <p>
               Developer tools that stay on your machine. A coding agent, a
               screenshot tool, an analyst for Binary Ninja and a Windows control

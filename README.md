@@ -236,3 +236,5 @@ the advertised release asset URLs. They do not assert external assets exist or
 replace browser/runtime acceptance. A missing suite fails instead of reporting
 zero tests as success. The component owns its npm lockfile and needs no family
 pnpm root.
+
+Frontend lint and standalone typecheck commands: [September 5 verification](docs/lint-verification-2026-09-05.md).

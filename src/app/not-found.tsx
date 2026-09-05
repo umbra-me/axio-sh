@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { IconArrowRight } from "@/components/Icons";
 
 export default function NotFound() {
@@ -14,10 +15,10 @@ export default function NotFound() {
           away.
         </p>
         <div className="hero__actions">
-          <a className="btn btn--primary" href="/">
+          <Link className="btn btn--primary" href="/">
             Home
             <IconArrowRight />
-          </a>
+          </Link>
           <a className="btn btn--ghost" href="/products">
             Products
           </a>

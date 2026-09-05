@@ -14,7 +14,7 @@ export default function Icon() {
       <div style={{ width: "100%", height: "100%", display: "flex" }}>
         {/* The mark's own canvas keeps a 64px margin on 1024; oversize and
             offset it so the tile fills the icon. */}
-        <img
+        <img alt=""
           src={markDataUri()}
           width={size.width * (1024 / 896)}
           height={size.height * (1024 / 896)}

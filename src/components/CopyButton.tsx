@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 
 /**
  * Copies one command to the clipboard.
@@ -11,13 +11,16 @@ import { useEffect, useRef, useState } from "react";
  * JavaScript to work, and this keeps that true — the command is still there to
  * select by hand.
  */
+const subscribe = () => () => {};
+const clipboardAvailable = () => !!navigator.clipboard;
+const serverUnavailable = () => false;
+
 export default function CopyButton({ text, what }: { text: string; what: string }) {
-  const [ready, setReady] = useState(false);
+  const ready = useSyncExternalStore(subscribe, clipboardAvailable, serverUnavailable);
   const [copied, setCopied] = useState(false);
   const timer = useRef<number | undefined>(undefined);
 
   useEffect(() => {
-    setReady(typeof navigator !== "undefined" && !!navigator.clipboard);
     return () => window.clearTimeout(timer.current);
   }, []);
 

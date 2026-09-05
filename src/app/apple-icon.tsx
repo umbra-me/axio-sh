@@ -11,7 +11,7 @@ export default function AppleIcon() {
   return new ImageResponse(
     (
       <div style={{ width: "100%", height: "100%", display: "flex" }}>
-        <img
+        <img alt=""
           src={markDataUri()}
           width={size.width * (1024 / 896)}
           height={size.height * (1024 / 896)}

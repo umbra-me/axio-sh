@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { CSSProperties } from "react";
 import { PRODUCT_LIST, productHref } from "@/lib/products";
 import { NAV, ORG } from "@/lib/site";
@@ -17,11 +18,11 @@ export default function Header() {
   return (
     <header className="header">
       <div className="container header__row">
-        <a className="wordmark" href="/">
+        <Link className="wordmark" href="/">
           <Mark size={22} />
           axio
           <small>by Umbra</small>
-        </a>
+        </Link>
 
         <nav className="nav" aria-label="Primary">
           <div className="nav__item">

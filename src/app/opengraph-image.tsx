@@ -48,7 +48,7 @@ export default function OpengraphImage() {
       >
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <div style={{ display: "flex", alignItems: "center" }}>
-            <img src={markDataUri()} width={56} height={56} style={{ marginLeft: -4 }} />
+            <img alt="" src={markDataUri()} width={56} height={56} style={{ marginLeft: -4 }} />
             <div
               style={{
                 marginLeft: 14,
