@@ -6,7 +6,7 @@ The axio.sh website, and the install scripts it serves. Next.js 16, App Router,
 plain CSS, no runtime dependencies beyond React and the Geist fonts.
 
 ```sh
-npm install
+npm ci
 npm run dev        # http://localhost:3311
 npm run build      # production build
 npm run typecheck
@@ -226,3 +226,13 @@ Deployed by the Umbra control plane as the `axio-site` stack:
 `infra/deploy/axio-site.yaml`, compose project `site-axio-site`, container
 `umbra-axio-site`, host port 3311. It builds to `output: "standalone"` and runs
 `node server.js` on port 3000 inside the container.
+
+
+## Test coverage
+
+`npm test` explicitly runs the product/download contract tests. They evaluate the
+real TypeScript registry and ensure product routes are unique and downloads use
+the advertised release asset URLs. They do not assert external assets exist or
+replace browser/runtime acceptance. A missing suite fails instead of reporting
+zero tests as success. The component owns its npm lockfile and needs no family
+pnpm root.
