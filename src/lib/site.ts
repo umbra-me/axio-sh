@@ -25,7 +25,7 @@ export const CONTACT = {
 };
 
 /** Shown on every legal page. Change it when the policy text changes. */
-export const LEGAL_UPDATED = "3 September 2026";
+export const LEGAL_UPDATED = "2026-09-05";
 
 export const NAV = {
   main: [

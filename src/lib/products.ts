@@ -7,7 +7,7 @@
 
 export type ProductStatus = "released" | "prerelease" | "private";
 
-export type ProductId = "agent" | "capture" | "analyst" | "deck";
+export type ProductId = "agent" | "capture" | "analyst" | "deck" | "local";
 
 export interface Product {
   id: ProductId;
@@ -109,6 +109,17 @@ export const PRODUCTS: Record<ProductId, Product> = {
     network:
       "Sends the snapshot you previewed through the provider CLI you selected. Never reads that CLI's credentials.",
   },
+  local: {
+    id: "local", name: "Axio Local", short: "Local",
+    tagline: "Your coding agent, your local models",
+    description: "Launch Claude Code, Codex, OpenCode, Pi or Axio against a model server on your machine or its host, with an isolated configuration home and verified recovery of protected configuration files.",
+    status: "prerelease", statusLabel: "Pre-release",
+    repo: "https://github.com/umbra-me/axio-local", license: "Apache-2.0",
+    platforms: ["macOS", "Linux", "WSL"], stack: "Rust",
+    features: ["Five supported coding agents", "Separate orchestrator and worker models", "Isolated agent configuration", "Configuration snapshots and verified recovery"],
+    color: "var(--p-local)",
+    network: "Connects to the model server you configure. Launched agents retain their own network behaviour and tool permissions; configuration isolation is not a network sandbox.",
+  },
   deck: {
     id: "deck",
     name: "Axio Deck",
@@ -138,6 +149,7 @@ export const PRODUCT_LIST: Product[] = [
   PRODUCTS.capture,
   PRODUCTS.analyst,
   PRODUCTS.deck,
+  PRODUCTS.local,
 ];
 
 export const productHref = (id: ProductId) => `/products/${id}`;

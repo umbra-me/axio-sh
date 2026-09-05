@@ -39,7 +39,7 @@ export default function AboutPage() {
           <p>
             The name came from the agent, which is why the agent’s binary is
             simply <code>axio</code>{" "}and this domain serves its install script.
-            The other three arrived later and took the family name in front of
+            The other products arrived later and took the family name in front of
             their own.
           </p>
 

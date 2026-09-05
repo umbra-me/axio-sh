@@ -4,7 +4,7 @@
  * neutral: the accents are blue-leaning and a neutral ground behind them reads
  * as a colour cast.
  *
- * The site is the brand's, and the brand has four products. Each owns a colour
+ * The site is the brand's, and the brand has five products. Each owns a colour
  * (--p-*), used for its badge, its icon tile and the one line of its card that
  * names it. Chrome never borrows a product colour; axio's own periwinkle is the
  * accent for everything that belongs to the site rather than to a product.
@@ -46,6 +46,7 @@
   --p-agent: var(--accent);
   --p-capture: var(--mint);
   --p-analyst: var(--violet);
+  --p-local: #7ed7b5;
   --p-deck: var(--amber);
 
   /* The hosted agents the coding agent can run, for its drawn surface. */

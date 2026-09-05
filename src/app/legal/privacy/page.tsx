@@ -122,6 +122,17 @@ export default function PrivacyPage() {
         source is what runs; tell us and we will correct the page.
       </p>
 
+      <h3>Axio Local and capture attachments</h3>
+      <p>
+        Local contacts the HTTP model server you configure and writes isolated
+        agent configuration plus protected configuration backups on your machine.
+        Launched agents retain their own network behaviour and tool permissions.
+        Capture attachment exports stay on disk. Importing one into the desktop
+        copies it into app storage; sending the first Codex prompt supplies the
+        image to the configured provider. Optional Analyst transcripts and exports
+        include unverified findings with bounded context excerpts and provenance.
+      </p>
+
       <h3>Axio, the coding agent</h3>
       <table>
         <tbody>

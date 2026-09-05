@@ -28,7 +28,7 @@ const PRINCIPLES = [
   {
     icon: IconEye,
     title: "No telemetry, anywhere",
-    body: "None of the four products reports usage. What leaves your machine is what you pointed it at: a model provider you configured, or a signed update check.",
+    body: "None of the products reports usage. What leaves your machine is what you pointed it at: a model provider you configured, or a signed update check.",
   },
   {
     icon: IconOpen,
@@ -62,7 +62,7 @@ export default function Page() {
             <span className="grad">stay on your machine.</span>
           </h1>
           <p className="lede">
-            Axio is a family of four: a coding agent that runs many sessions at
+            Axio Local brings your existing agents to local models. Axio is a family of five: a coding agent that runs many sessions at
             once, a screenshot tool with a real editor, an analyst for Binary
             Ninja, and a control surface for Windows. No accounts. No hosted
             backend. No telemetry.
@@ -106,7 +106,7 @@ export default function Page() {
         <div className="container">
           <div className="section__head section__head--center">
             <p className="eyebrow">Products</p>
-            <h2 className="display display--lg">Four tools. One set of rules.</h2>
+            <h2 className="display display--lg">Five tools. One set of rules.</h2>
             <p>
               Each one has its own repository, its own release, and its own
               colour. What they share is how they behave.

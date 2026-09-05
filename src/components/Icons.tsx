@@ -1,6 +1,6 @@
 import type { ProductId } from "@/lib/products";
 
-// Every icon is drawn on a 24-unit grid at a 1.6 stroke, so the four product
+// Every icon is drawn on a 24-unit grid at a 1.6 stroke, so the product
 // marks and the few interface glyphs read as one set. No icon library: the
 // page ships nothing it does not draw.
 
@@ -66,6 +66,7 @@ export const PRODUCT_ICONS: Record<ProductId, () => React.JSX.Element> = {
   capture: IconCapture,
   analyst: IconAnalyst,
   deck: IconDeck,
+  local: IconHome,
 };
 
 export function IconArrowUpRight() {

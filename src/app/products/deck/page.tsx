@@ -187,6 +187,9 @@ export default function DeckPage() {
           </div>
         </div>
       </section>
+      <p className="note">App removal has no automatic undo: it requires confirmation,
+        cannot run through the unattended service, and needs manual reinstall.
+        Stored package inventories do not restore the original payload or data.</p>
     </div>
   );
 }

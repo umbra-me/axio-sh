@@ -260,6 +260,9 @@ export default function SecurityPage() {
           pin after every deploy.
         </li>
       </ul>
+      <p className="note">App removal has no automatic undo: it requires confirmation,
+        cannot run through the unattended service, and needs manual reinstall.
+        Stored package inventories do not restore the original payload or data.</p>
     </LegalPage>
   );
 }

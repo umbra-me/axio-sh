@@ -1,5 +1,7 @@
 # axio-sh
 
+Current source changes and verification gates: [September 5 change set](docs/change-set-2026-09-05.md).
+
 The axio.sh website, and the install scripts it serves. Next.js 16, App Router,
 plain CSS, no runtime dependencies beyond React and the Geist fonts.
 
@@ -31,9 +33,9 @@ The brand site for the Axio family, not the agent's page alone. Since the
 
 | Route | Is |
 | --- | --- |
-| `/` | The landing page: hero, the four products, the agent's drawn surface, the rules every product keeps, and the Umbra attribution |
+| `/` | The landing page: hero, the five products, the agent's drawn surface, the rules every product keeps, and the Umbra attribution |
 | `/products` | The product index and a status table |
-| `/products/agent`, `/products/capture`, `/products/analyst`, `/products/deck` | One page per product: drawn interface, behaviours, verification ledger, install or download |
+| `/products/agent`, `/products/capture`, `/products/analyst`, `/products/deck`, `/products/local` | One page per product: drawn interface, behaviours, verification ledger, install or download |
 | `/download` | Every product's install route on one page |
 | `/about` | What the brand is, the rules, licensing, how the site is operated, who builds it |
 | `/legal/privacy`, `/legal/terms`, `/legal/security`, `/legal/licenses` | The legal pages, written for what the products actually do |
@@ -56,7 +58,7 @@ status badge, a four-column footer — without being a copy of it: the site keep
 its own palette, its own type and its own illustrations.
 
 **Every product owns a colour**, declared once as `--p-agent`, `--p-capture`,
-`--p-analyst` and `--p-deck` in `globals.css` and threaded through as `--pc` on
+`--p-analyst`, `--p-deck` and `--p-local` in `globals.css` and threaded through as `--pc` on
 whatever subtree belongs to that product: its badge, its icon tile, its card's
 tagline and bullets, its page's primary button and headline accent. Chrome
 never borrows a product colour. The site's own accent is the agent's periwinkle
@@ -73,8 +75,8 @@ earlier site set its headline in Geist Mono, and it paid for it in characters.
 `DeckMock.tsx` for the others. A screenshot is one size, one theme, one moment,
 and these have to reflow into a phone and sit behind text. They are
 `aria-hidden`; every fact in them is stated in words beside them. The icons are
-drawn too, on a 24-unit grid at a 1.6 stroke, in `Icons.tsx`, and the four
-product glyphs there are the same shapes the products' app icons carry; the
+drawn too, on a 24-unit grid at a 1.6 stroke, in `Icons.tsx`, and the product
+glyphs there are the same shapes the products' app icons carry; the
 Analyst glyph is the split diamond the plugin itself paints. No icon library
 and no stock imagery.
 

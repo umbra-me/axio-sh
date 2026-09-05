@@ -13,7 +13,7 @@ import {
 export const metadata: Metadata = {
   title: "Download",
   description:
-    "Install the Axio coding agent, download Axio Capture, and add Axio Analyst to Binary Ninja.",
+    "Install the Axio coding agent, download Axio Capture, add Axio Analyst to Binary Ninja, and run local models with Axio Local.",
   alternates: { canonical: "/download" },
 };
 
@@ -30,7 +30,7 @@ export default function DownloadPage() {
           <p className="eyebrow">Download</p>
           <h1 className="display display--lg">Every Axio tool, one page.</h1>
           <p>
-            Three are available today. Read an install script before you pipe
+            Four are available today. Read an install script before you pipe
             it into a shell; the ones served here are plain text so that you
             can.
           </p>
@@ -141,6 +141,15 @@ git clone ${analyst.repo}.git "$env:APPDATA\\Binary Ninja\\plugins\\axio_analyst
           <p className="note">
             <a href="/products/analyst">about Axio Analyst</a>
           </p>
+        </div>
+      </section>
+
+      <section className="section--tight reveal" id="local" style={{ "--pc": PRODUCTS.local.color } as CSSProperties}>
+        <div className="container">
+          <div className="section__head"><h2 className="display display--md">Axio Local</h2><StatusBadge product={PRODUCTS.local} />
+            <p>Use your existing coding agent with a local model server. Source install for macOS, Linux and WSL; requires Rust 1.88 or newer.</p></div>
+          <Term label="macOS · Linux · WSL" wrap copy="Axio Local install">{`cargo install --git https://github.com/umbra-me/axio-local --locked`}</Term>
+          <p className="note"><a href="/products/local">Setup and model selection</a></p>
         </div>
       </section>
 
