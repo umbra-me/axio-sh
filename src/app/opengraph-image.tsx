@@ -15,7 +15,7 @@ import {
 import { markDataUri } from "@/lib/mark";
 
 // The card a pasted link unfurls into. It carries the same things the hero
-// does: the mark, the headline, the install command, and the four product
+// does: the mark, the headline, the install command, and representative product
 // colours, which are the part of the identity a sentence cannot deliver at
 // this size.
 export const alt = "Axio — developer tools that stay on your machine";
@@ -116,8 +116,8 @@ export default function OpengraphImage() {
             </div>
           </div>
           <div style={{ marginTop: 26, fontSize: 27, color: MUTED, lineHeight: 1.45, maxWidth: 900 }}>
-            A coding agent, a screenshot tool, an analyst for Binary Ninja and a
-            Windows control surface. No accounts, no hosted backend, no telemetry.
+            Local-first coding, capture, analysis and workstation tools for
+            macOS, Windows and Linux. No product telemetry.
           </div>
         </div>
 

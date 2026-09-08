@@ -11,6 +11,14 @@ test('product navigation uses unique named product paths', () => {
     if (product.status === 'private') assert.equal(product.repo, null);
   }
 });
+test('Polaris is listed without a public source or download claim', () => {
+  const polaris = PRODUCT_LIST.find(product => product.id === 'polaris');
+  assert.ok(polaris);
+  assert.equal(polaris.status, 'private');
+  assert.equal(polaris.repo, null);
+  assert.equal(polaris.license, null);
+  assert.match(polaris.platforms.join(' '), /macOS 15\+/);
+});
 test('Capture download links target named assets from the advertised release', () => {
   assert.ok(CAPTURE_DOWNLOADS.length > 0);
   for (const download of CAPTURE_DOWNLOADS) {

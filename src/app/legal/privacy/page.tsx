@@ -62,10 +62,10 @@ export default function PrivacyPage() {
       <p>
         It covers two things: this website, and the Axio software products
         described on it. The products are installed on and run from your own
-        machine. {COMPANY.name} runs no server that the products depend on, holds
-        no account for you, and cannot see what you do with them. Where a
-        product sends data somewhere, it is to a service you chose and
-        configured, and this policy says so below.
+        machine. {COMPANY.name} holds no Axio account for you and cannot see what
+        you do with the tools. Where a product sends data somewhere, whether for
+        a service you requested, licensing or an update, this policy says so
+        below.
       </p>
 
       <h2 id="site">3. This website</h2>
@@ -295,13 +295,50 @@ export default function PrivacyPage() {
         </tbody>
       </table>
 
+      <h3>Axio Polaris</h3>
+      <table>
+        <tbody>
+          <tr>
+            <th scope="row">Utility data</th>
+            <td>
+              Notes, to-dos, clipboard history, shelf items, focus rules,
+              session history and user-selected audio stay on the Mac. Polaris
+              uses system stores such as Calendar and Reminders only for the
+              features and permissions you enable.
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Browser companion</th>
+            <td>
+              Blocklists, visits, budgets and optional daily usage totals stay
+              in Chromium’s local extension storage. Session transfer from the
+              Mac is an explicit file export and import, not live sync.
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Network</th>
+            <td>
+              Core utility and focus features require no backend. Requested
+              online features, licensing and a future update channel can make
+              network requests. The current development build is not a public
+              customer release and the Chromium companion is not packaged.
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Distribution</th>
+            <td>Polaris is private and not offered for download at this time.</td>
+          </tr>
+        </tbody>
+      </table>
+
       <h2 id="third">5. Third parties</h2>
       <p>
         We do not sell, rent or trade any data, because we hold none about you.
         We do not run advertising. The third parties named above, model
-        providers, GitHub, crates.io and ollama.com, receive requests from
-        software running on your machine at your instruction, under their own
-        privacy policies, and we are not a party to those requests.
+        providers, GitHub, crates.io, ollama.com, and any licensing or update
+        provider named by a product receive requests from software running on
+        your machine at your instruction, under their own privacy policies, and
+        we are not a party to those requests.
       </p>
       <p>
         If you email us, we keep the correspondence for as long as it is needed

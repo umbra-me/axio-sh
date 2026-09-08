@@ -4,7 +4,7 @@ export const SITE = "https://axio.sh";
 export const SITE_NAME = "Axio";
 export const TAGLINE = "Developer tools that stay on your machine.";
 export const DESCRIPTION =
-  "Axio is Umbra's developer-tools family: a local-first coding agent, a screenshot tool with a real editor, an analyst for Binary Ninja, and a control surface for Windows. No accounts, no hosted backend, no telemetry.";
+  "Axio is Umbra's family of local-first coding, capture, analysis and workstation tools for macOS, Windows and Linux. No product telemetry.";
 
 export const ORG = "https://github.com/umbra-me";
 export const UMBRA = "https://umbra.me";
@@ -25,7 +25,7 @@ export const CONTACT = {
 };
 
 /** Shown on every legal page. Change it when the policy text changes. */
-export const LEGAL_UPDATED = "2026-09-05";
+export const LEGAL_UPDATED = "2026-09-09";
 
 export const NAV = {
   main: [

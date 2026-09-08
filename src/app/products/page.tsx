@@ -6,7 +6,7 @@ import { PRODUCT_LIST } from "@/lib/products";
 export const metadata: Metadata = {
   title: "Products",
   description:
-    "The five Axio tools: a local-first coding agent, Axio Capture, Axio Analyst for Binary Ninja, Axio Deck for Windows workstations, and Axio Local for local models.",
+    "The six Axio tools: a coding agent, Capture, Analyst, Deck, Local and the native Mac utility Axio Polaris.",
   alternates: { canonical: "/products" },
 };
 
@@ -18,9 +18,8 @@ export default function ProductsPage() {
           <p className="eyebrow">Products</p>
           <h1 className="display display--lg">Everything Axio makes.</h1>
           <p>
-            Five tools, each with its own repository and release. Four are
-            public and open source today; Deck is private while it is
-            built.
+            Six tools, each with its own repository and release path. Four are
+            public today; Deck and Polaris remain private while they are built.
           </p>
         </div>
       </section>

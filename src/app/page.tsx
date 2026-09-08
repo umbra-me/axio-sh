@@ -18,7 +18,7 @@ const PRINCIPLES = [
   {
     icon: IconHome,
     title: "Local-first, by construction",
-    body: "Every product runs on your machine. There is no hosted backend to sign in to, no account to create, and no server of ours holding your work.",
+    body: "Every product runs on your machine. Core workflows keep their state there, and each product page says when a requested feature, provider or update uses the network.",
   },
   {
     icon: IconShield,
@@ -28,12 +28,12 @@ const PRINCIPLES = [
   {
     icon: IconEye,
     title: "No telemetry, anywhere",
-    body: "None of the products reports usage. What leaves your machine is what you pointed it at: a model provider you configured, or a signed update check.",
+    body: "None of the products reports usage. What leaves your machine is what you pointed it at: a model provider, an online feature, licensing, or an update check.",
   },
   {
     icon: IconOpen,
     title: "Open where it ships",
-    body: "The agent and Capture are Apache-2.0, Analyst is MIT, and every claim on this site is in a README you can read. Deck stays private until it is ready to be judged.",
+    body: "The agent and Capture are Apache-2.0 and Analyst is MIT. Deck and Polaris stay private until they are ready to ship, with their current limits stated here.",
   },
   {
     icon: IconCheck,
@@ -62,10 +62,10 @@ export default function Page() {
             <span className="grad">stay on your machine.</span>
           </h1>
           <p className="lede">
-            Axio Local brings your existing agents to local models. Axio is a family of five: a coding agent that runs many sessions at
-            once, a screenshot tool with a real editor, an analyst for Binary
-            Ninja, and a control surface for Windows. No accounts. No hosted
-            backend. No telemetry.
+            Axio is a family of six: coding agents, capture and analysis tools,
+            a Windows control surface, and Polaris, a native Mac utility for
+            the rest of your day. Local work stays local, and there is no
+            product telemetry.
           </p>
           <div className="hero__actions">
             <a className="btn btn--primary" href="/download">
@@ -83,7 +83,7 @@ export default function Page() {
 
           <dl className="stats">
             <div>
-              <dt>4</dt>
+              <dt>{PRODUCT_LIST.length}</dt>
               <dd>products</dd>
             </div>
             <div>
@@ -106,7 +106,7 @@ export default function Page() {
         <div className="container">
           <div className="section__head section__head--center">
             <p className="eyebrow">Products</p>
-            <h2 className="display display--lg">Five tools. One set of rules.</h2>
+            <h2 className="display display--lg">Six tools. One set of rules.</h2>
             <p>
               Each one has its own repository, its own release, and its own
               colour. What they share is how they behave.

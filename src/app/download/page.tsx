@@ -13,7 +13,7 @@ import {
 export const metadata: Metadata = {
   title: "Download",
   description:
-    "Install the Axio coding agent, download Axio Capture, add Axio Analyst to Binary Ninja, and run local models with Axio Local.",
+    "Install the public Axio tools and see the availability of Axio Deck and Axio Polaris.",
   alternates: { canonical: "/download" },
 };
 
@@ -22,6 +22,7 @@ export default function DownloadPage() {
   const capture = PRODUCTS.capture;
   const analyst = PRODUCTS.analyst;
   const deck = PRODUCTS.deck;
+  const polaris = PRODUCTS.polaris;
 
   return (
     <>
@@ -169,6 +170,30 @@ git clone ${analyst.repo}.git "$env:APPDATA\\Binary Ninja\\plugins\\axio_analyst
               installer to link and no licence chosen yet.{" "}
               <a href="/products/deck">
                 Read why
+                <IconArrowUpRight />
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        className="section--tight reveal"
+        id="polaris"
+        style={{ "--pc": polaris.color } as CSSProperties}
+      >
+        <div className="container">
+          <div className="section__head">
+            <div className="phero__meta">
+              <h2 className="display display--md">{polaris.name}</h2>
+              <StatusBadge product={polaris} />
+            </div>
+            <p>
+              Polaris is in private development for Apple Silicon Macs running
+              macOS 15 or newer. There is no public download or notarised
+              customer release.{" "}
+              <a href="/products/polaris">
+                See what is ready
                 <IconArrowUpRight />
               </a>
             </p>

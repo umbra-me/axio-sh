@@ -7,7 +7,13 @@
 
 export type ProductStatus = "released" | "prerelease" | "private";
 
-export type ProductId = "agent" | "capture" | "analyst" | "deck" | "local";
+export type ProductId =
+  | "agent"
+  | "capture"
+  | "analyst"
+  | "deck"
+  | "local"
+  | "polaris";
 
 export interface Product {
   id: ProductId;
@@ -142,6 +148,29 @@ export const PRODUCTS: Record<ProductId, Product> = {
     color: "var(--p-deck)",
     network: "Makes no network requests of its own.",
   },
+  polaris: {
+    id: "polaris",
+    name: "Axio Polaris",
+    short: "Polaris",
+    tagline: "A native Mac utility for the rest of your day",
+    description:
+      "Open tools from one launcher, keep useful things at the notch, and run local focus sessions that can hide selected apps. Polaris brings the small utilities around a Mac into one native place.",
+    status: "private",
+    statusLabel: "Private development build",
+    repo: null,
+    license: null,
+    platforms: ["macOS 15+ on Apple Silicon"],
+    stack: "Swift, SwiftUI and AppKit",
+    features: [
+      "Launcher, notch, shelf and quick notes",
+      "Music, timers, calendar and to-dos",
+      "Clipboard history and screen capture",
+      "Local focus sessions, blocklists and breaks",
+    ],
+    color: "var(--p-polaris)",
+    network:
+      "Core utility and focus state stays local. Requested online features, licensing and future updates may use the network; the current Chromium companion stores its rules and usage only in the browser.",
+  },
 };
 
 export const PRODUCT_LIST: Product[] = [
@@ -150,6 +179,7 @@ export const PRODUCT_LIST: Product[] = [
   PRODUCTS.analyst,
   PRODUCTS.deck,
   PRODUCTS.local,
+  PRODUCTS.polaris,
 ];
 
 export const productHref = (id: ProductId) => `/products/${id}`;

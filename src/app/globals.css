@@ -4,7 +4,7 @@
  * neutral: the accents are blue-leaning and a neutral ground behind them reads
  * as a colour cast.
  *
- * The site is the brand's, and the brand has five products. Each owns a colour
+ * The site is the brand's, and the brand has six products. Each owns a colour
  * (--p-*), used for its badge, its icon tile and the one line of its card that
  * names it. Chrome never borrows a product colour; axio's own periwinkle is the
  * accent for everything that belongs to the site rather than to a product.
@@ -48,6 +48,7 @@
   --p-analyst: var(--violet);
   --p-local: #7ed7b5;
   --p-deck: var(--amber);
+  --p-polaris: #7fb9f5;
 
   /* The hosted agents the coding agent can run, for its drawn surface. */
   --agent-claude: #b492fd;
@@ -919,8 +920,7 @@ main:focus {
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
 }
 
-/* The four products, two by two. auto-fit would put three on the first row
-   and orphan the fourth. */
+/* Product cards settle into pairs on wider screens. */
 .grid--products {
   grid-template-columns: 1fr;
 }
@@ -1817,6 +1817,14 @@ main:focus {
   color: var(--muted);
 }
 
+.mock-caption {
+  margin: 0.65rem 0 0;
+  color: var(--faint);
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  text-align: center;
+}
+
 /* Capture: a toolbar, a canvas holding a "screenshot", and annotations on it. */
 .cap {
   display: grid;
@@ -2289,6 +2297,142 @@ main:focus {
   color: var(--muted);
 }
 
+/* Polaris: a quiet Mac desktop with its notch, launcher and shelf. */
+.polaris__desktop {
+  position: relative;
+  min-height: 23rem;
+  padding: 3.2rem 1.4rem 1.4rem;
+  background:
+    radial-gradient(22rem 14rem at 70% 25%, color-mix(in srgb, var(--pc) 12%, transparent), transparent 72%),
+    linear-gradient(155deg, #0d1520, #070a10 72%);
+}
+
+.polaris__notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  display: grid;
+  grid-template-columns: auto auto 0.5rem;
+  align-items: center;
+  gap: 0.55rem;
+  width: 12rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: 0 0 1rem 1rem;
+  background: #020305;
+  transform: translateX(-50%);
+  color: var(--muted);
+}
+
+.polaris__notch b {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.polaris__notch i {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--pc);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--pc) 70%, transparent);
+}
+
+.polaris__launcher {
+  max-width: 25rem;
+  margin: 1rem auto 0;
+  padding: 0.65rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 1rem;
+  background: rgba(8, 11, 17, 0.9);
+  box-shadow: var(--shadow-3), inset 0 1px 0 var(--lit);
+}
+
+.polaris__search {
+  padding: 0.65rem 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--pc) 32%, var(--line));
+  border-radius: var(--r-2);
+  background: var(--slate-deep);
+  color: var(--muted);
+}
+
+.polaris__session {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.65rem;
+  padding: 0.8rem;
+  border-radius: var(--r-2);
+  background: color-mix(in srgb, var(--pc) 8%, var(--slate));
+}
+
+.polaris__session div {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.polaris__session .artifact {
+  width: fit-content;
+  margin: 0 0 0.2rem;
+  font-size: 0.5625rem;
+}
+
+.polaris__session strong {
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 0.875rem;
+}
+
+.polaris__session small {
+  color: var(--muted);
+}
+
+.polaris__clock {
+  color: var(--pc);
+  font-size: 1.15rem;
+}
+
+.polaris__actions {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.65rem;
+}
+
+.polaris__actions span {
+  padding: 0.35rem 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-1);
+  color: var(--muted);
+}
+
+.polaris__actions span:first-child {
+  border-color: color-mix(in srgb, var(--pc) 35%, transparent);
+  color: var(--pc);
+}
+
+.polaris__shelf {
+  position: absolute;
+  left: 50%;
+  bottom: 1.25rem;
+  display: flex;
+  gap: 0.35rem;
+  padding: 0.4rem;
+  border: 1px solid var(--line);
+  border-radius: 0.85rem;
+  background: rgba(8, 11, 17, 0.88);
+  transform: translateX(-50%);
+  box-shadow: var(--shadow-2);
+}
+
+.polaris__shelf span {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.55rem;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-2);
+}
+
 @media (max-width: 40rem) {
   .ana {
     grid-template-columns: minmax(0, 1fr);
@@ -2303,6 +2447,13 @@ main:focus {
     display: none;
   }
   .deck__bar .mods {
+    display: none;
+  }
+  .polaris__desktop {
+    min-height: 21rem;
+    padding-inline: 0.75rem;
+  }
+  .polaris__actions span:last-child {
     display: none;
   }
 }

@@ -33,9 +33,9 @@ The brand site for the Axio family, not the agent's page alone. Since the
 
 | Route | Is |
 | --- | --- |
-| `/` | The landing page: hero, the five products, the agent's drawn surface, the rules every product keeps, and the Umbra attribution |
+| `/` | The landing page: hero, the six products, the agent's drawn surface, the rules every product keeps, and the Umbra attribution |
 | `/products` | The product index and a status table |
-| `/products/agent`, `/products/capture`, `/products/analyst`, `/products/deck`, `/products/local` | One page per product: drawn interface, behaviours, verification ledger, install or download |
+| `/products/agent`, `/products/capture`, `/products/analyst`, `/products/deck`, `/products/local`, `/products/polaris` | One page per product: drawn interface, behaviours, verification ledger, install, download or private-development status |
 | `/download` | Every product's install route on one page |
 | `/about` | What the brand is, the rules, licensing, how the site is operated, who builds it |
 | `/legal/privacy`, `/legal/terms`, `/legal/security`, `/legal/licenses` | The legal pages, written for what the products actually do |
@@ -58,7 +58,7 @@ status badge, a four-column footer — without being a copy of it: the site keep
 its own palette, its own type and its own illustrations.
 
 **Every product owns a colour**, declared once as `--p-agent`, `--p-capture`,
-`--p-analyst`, `--p-deck` and `--p-local` in `globals.css` and threaded through as `--pc` on
+`--p-analyst`, `--p-deck`, `--p-local` and `--p-polaris` in `globals.css` and threaded through as `--pc` on
 whatever subtree belongs to that product: its badge, its icon tile, its card's
 tagline and bullets, its page's primary button and headline accent. Chrome
 never borrows a product colour. The site's own accent is the agent's periwinkle
@@ -71,8 +71,8 @@ self-hosted through `next/font`; the page makes no external request. The
 earlier site set its headline in Geist Mono, and it paid for it in characters.
 
 **Nothing is a screenshot.** Every product interface on the site is drawn:
-`Surface.tsx` for the agent's window, `CaptureMock.tsx`, `AnalystMock.tsx` and
-`DeckMock.tsx` for the others. A screenshot is one size, one theme, one moment,
+`Surface.tsx` for the agent's window, plus `CaptureMock.tsx`, `AnalystMock.tsx`,
+`DeckMock.tsx` and `PolarisMock.tsx` for the others. A screenshot is one size, one theme, one moment,
 and these have to reflow into a phone and sit behind text. They are
 `aria-hidden`; every fact in them is stated in words beside them. The icons are
 drawn too, on a 24-unit grid at a 1.6 stroke, in `Icons.tsx`, and the product
@@ -170,7 +170,7 @@ things there are easy to get wrong:
 reachable — a shell still fetches them — but a crawler that indexes them turns a
 search result into a page whose entire content is a script.
 
-The card carries the mark, the headline, the install command and the four
+The card carries the mark, the headline, the install command and representative
 product colours as pills. At that size the palette is the part of the identity
 a sentence cannot deliver. If the headline changes, change it in both places.
 
@@ -207,7 +207,9 @@ the privacy policy's per-product tables were written from each product's
 dependencies and source (no telemetry anywhere; the agent talks only to the
 provider you configure; Capture's only outbound call is its signed updater;
 Analyst goes through the CLI you chose plus one catalogue call to ollama.com;
-Deck makes no network requests of its own), and a change to any of that has to
+Deck makes no network requests of its own; Polaris keeps core utility and focus
+state local while requested online features, licensing and future updates may
+use the network), and a change to any of that has to
 reach `legal/privacy/page.tsx` in the same change.
 
 The verification tables are the parts most likely to go stale, because they

@@ -32,8 +32,9 @@ export default function AboutPage() {
           <p>
             Each product has its own repository, its own toolchain and its own
             release cadence. The coding agent is Rust across nine crates. Axio
-            Capture and Axio Deck are Rust behind Tauri. Axio Analyst is Python
-            inside Binary Ninja. Nothing is shared at runtime; what is shared is
+            Capture and Deck are Rust behind Tauri. Analyst is Python inside
+            Binary Ninja. Polaris is native Swift for macOS. Nothing is shared
+            at runtime; what is shared is
             a set of rules about behaviour, and the name.
           </p>
           <p>
@@ -47,8 +48,8 @@ export default function AboutPage() {
           <ul>
             <li>
               <strong>Local-first.</strong>{" "}Every product runs on the machine it
-              is installed on. There are no accounts, no hosted backend, and no
-              server of Umbra’s in the path of your work.
+              is installed on. Axio holds no product account for you, and core
+              workflows do not depend on an Axio-hosted backend.
             </li>
             <li>
               <strong>Ask before acting.</strong>{" "}Anything that changes state
@@ -75,7 +76,7 @@ export default function AboutPage() {
           <h2>How it is licensed</h2>
           <p>
             The agent and Axio Capture are Apache-2.0. Axio Analyst is MIT. Axio
-            Deck is private and has no published licence yet. The{" "}
+            Deck and Polaris are private and have no published licence yet. The{" "}
             <a href="/legal/licenses">licences page</a>{" "}lists each one with the
             third-party attributions the products carry, and the trademark
             position: the open-source licences cover the code, not the Axio and
