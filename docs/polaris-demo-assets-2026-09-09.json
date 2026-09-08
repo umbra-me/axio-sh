@@ -1,0 +1,45 @@
+{
+  "captured": "2026-09-09",
+  "app": "Axio Polaris",
+  "build": "0.2.0 (84)",
+  "environment": "Lodestar UX Lab macOS VM",
+  "capture": "Unretouched UTM window JPEG captures, 1182x768; sample data only.",
+  "video": "55 captured frames at 5fps, 11 seconds H.264. Edited countdown/pause/resume segments; gaps between capture segments omitted. No audio.",
+  "assets": [
+    {
+      "file": "calculator.jpg",
+      "sha256": "20436a216e17c5ccf9f999274c507e39171ab10dc8fee29da58275417cb2189a",
+      "bytes": 192997
+    },
+    {
+      "file": "focus-blocklist.jpg",
+      "sha256": "eb04da663418c971e489066df9f02c1810384334a96165d85d6393c35d517900",
+      "bytes": 175390
+    },
+    {
+      "file": "focus-overview.jpg",
+      "sha256": "fe5d2977867e7a030b54b4ceee4fcf37b6d01e32b094ee0f00e57fa086809c60",
+      "bytes": 190931
+    },
+    {
+      "file": "notch-notes.jpg",
+      "sha256": "e68f30dede04d1902f838b5d7906a88251a57fec1f0c52b153c33865597ab942",
+      "bytes": 213033
+    },
+    {
+      "file": "notch-timer.jpg",
+      "sha256": "313b15712ed252020ef4501652d661913e4e76e6a1f1dbd703dae286e4db9e2e",
+      "bytes": 219284
+    },
+    {
+      "file": "timer-create.jpg",
+      "sha256": "6e43b6ef0deac71fd91eb12e40c64727b779b9609f0abaf4e9d421c23387cd70",
+      "bytes": 193673
+    },
+    {
+      "file": "timer-pause-resume.mp4",
+      "sha256": "0fe0f7f6d3e9d2e94a22f8798715c608ea5f4f641d308c16efdecf69b590172c",
+      "bytes": 261685
+    }
+  ]
+}

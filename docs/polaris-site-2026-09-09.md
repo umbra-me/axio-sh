@@ -7,7 +7,9 @@ cards, desktop and mobile navigation, footer links, the product ledger and the
 sitemap include `/products/polaris` automatically.
 
 The product page presents the native launcher, notch, shelf, utilities and local
-Focus sessions, with a drawn interface rather than a product screenshot. It also
+Focus sessions, initially with a drawn interface. The subsequent detailed walkthrough replaces
+that illustration with six real app screenshots and a timer clip; see
+`polaris-real-demos-2026-09-09.md`. It also
 states the practical boundaries of cooperative app hiding and the local Chromium
 companion. The download page says no public download or notarised customer
 release exists. No pricing, waitlist or public source call to action was added.

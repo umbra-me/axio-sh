@@ -2458,6 +2458,401 @@ main:focus {
   }
 }
 
+/* Polaris product walkthrough: real development-build media and long-form detail. */
+.section--polaris-media {
+  border-block: 1px solid var(--line-soft);
+  background:
+    radial-gradient(48rem 28rem at 75% 15%, color-mix(in srgb, var(--pc) 8%, transparent), transparent 72%),
+    var(--slate-deep);
+}
+
+.polaris-demo-note {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: -1.25rem 0 1.5rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-2);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.polaris-demo-note .artifact {
+  flex: none;
+  margin: 0;
+}
+
+.polaris-demo-note p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+.polaris-gallery {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 54rem) {
+  .polaris-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .polaris-gallery > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
+.polaris-media {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--r-4);
+  background: var(--slate);
+  box-shadow: var(--shadow-2);
+  overflow: hidden;
+}
+
+.polaris-media__viewport {
+  position: relative;
+  aspect-ratio: 1182 / 768;
+  overflow: hidden;
+  background: #070a0f;
+}
+
+.polaris-media__asset {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.polaris-media__image-link {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.polaris-media__image-link:focus-visible {
+  outline: 2px solid var(--pc);
+  outline-offset: -3px;
+}
+
+.polaris-media figcaption {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1rem 1.1rem 1.15rem;
+  border-top: 1px solid var(--line-soft);
+}
+
+.polaris-media figcaption .artifact {
+  width: fit-content;
+  margin: 0 0 0.15rem;
+}
+
+.polaris-media figcaption strong {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.polaris-media figcaption p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+.polaris-media--hero figcaption {
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: 0.75rem;
+  padding: 0.75rem 0.9rem;
+}
+
+.polaris-media--hero figcaption .artifact {
+  grid-row: 1 / 3;
+}
+
+.polaris-media--hero figcaption strong {
+  font-size: 0.8125rem;
+}
+
+.polaris-media--hero figcaption p {
+  font-size: 0.6875rem;
+}
+
+.polaris-chapter {
+  display: grid;
+  gap: 2.5rem;
+}
+
+@media (min-width: 64rem) {
+  .polaris-chapter {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+    gap: 5rem;
+  }
+}
+
+.polaris-chapter__intro .lede {
+  font-size: 1.0625rem;
+}
+
+.polaris-detail-grid {
+  display: grid;
+  border-top: 1px solid var(--line);
+}
+
+.polaris-detail-grid article {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.polaris-detail-grid__index {
+  grid-row: 1 / 3;
+  padding-top: 0.15rem;
+  color: var(--pc);
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+}
+
+.polaris-detail-grid h3,
+.polaris-workflows h3,
+.polaris-focus-flow h3,
+.polaris-boundary-card h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.polaris-detail-grid p {
+  margin: 0.5rem 0 0;
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+.polaris-list-mark {
+  flex: none;
+  color: var(--pc);
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  line-height: 1.8;
+}
+
+.polaris-module-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  padding: 1px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-4);
+  background: var(--line);
+  box-shadow: var(--shadow-2);
+  overflow: hidden;
+}
+
+.polaris-module-list span {
+  display: flex;
+  align-items: flex-end;
+  min-height: 5rem;
+  padding: 1rem;
+  background:
+    radial-gradient(8rem 6rem at 100% 0, color-mix(in srgb, var(--pc) 9%, transparent), transparent 75%),
+    var(--slate);
+  color: var(--text-2);
+  font-size: 0.875rem;
+  font-weight: 550;
+}
+
+.polaris-workflows {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 54rem) {
+  .polaris-workflows {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.polaris-workflows article {
+  display: flex;
+  flex-direction: column;
+  min-height: 19rem;
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  background: var(--slate);
+}
+
+.polaris-workflows .artifact {
+  width: fit-content;
+  margin-bottom: 2.5rem;
+}
+
+.polaris-workflows p {
+  margin: 0.65rem 0 1.5rem;
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+.polaris-workflows small {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line-soft);
+  color: var(--faint);
+  font-size: 0.75rem;
+}
+
+.polaris-focus-flow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1px;
+  margin: 0;
+  padding: 1px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-4);
+  background: var(--line);
+  list-style: none;
+  overflow: hidden;
+}
+
+@media (min-width: 60rem) {
+  .polaris-focus-flow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.polaris-focus-flow li {
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr);
+  gap: 0.75rem;
+  padding: 1.5rem;
+  background: var(--slate);
+}
+
+.polaris-focus-flow li > span {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid color-mix(in srgb, var(--pc) 35%, var(--line));
+  border-radius: 50%;
+  color: var(--pc);
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+}
+
+.polaris-focus-flow p {
+  margin: 0.55rem 0 0;
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+.polaris-boundary-card {
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border: 1px solid var(--line);
+  border-radius: var(--r-4);
+  background:
+    radial-gradient(20rem 14rem at 100% 0, color-mix(in srgb, var(--pc) 10%, transparent), transparent 75%),
+    var(--slate);
+  box-shadow: var(--shadow-2);
+}
+
+.polaris-boundary-card .artifact {
+  margin-bottom: 1.5rem;
+}
+
+.polaris-boundary-card p {
+  margin: 0.6rem 0 0;
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+.polaris-boundary-card hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 1.5rem 0;
+}
+
+.polaris-boundary-card small {
+  display: block;
+  margin-top: 1.5rem;
+  color: var(--faint);
+  font-size: 0.75rem;
+}
+
+.polaris-faq {
+  border-top: 1px solid var(--line);
+}
+
+.polaris-faq details {
+  border-bottom: 1px solid var(--line);
+}
+
+.polaris-faq summary {
+  position: relative;
+  padding: 1.35rem 3rem 1.35rem 0;
+  cursor: pointer;
+  list-style: none;
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 550;
+}
+
+.polaris-faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.polaris-faq summary::after {
+  content: "+";
+  position: absolute;
+  top: 1.2rem;
+  right: 0;
+  color: var(--pc);
+  font-family: var(--mono);
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+.polaris-faq details[open] summary::after {
+  content: "−";
+}
+
+.polaris-faq details p {
+  max-width: 46rem;
+  margin: -0.35rem 0 1.35rem;
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+@media (max-width: 40rem) {
+  .polaris-demo-note {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .polaris-media--hero figcaption {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .polaris-media--hero figcaption .artifact {
+    grid-row: auto;
+  }
+
+  .polaris-module-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .polaris-module-list span {
+    min-height: 3.75rem;
+  }
+
+  .polaris-workflows article {
+    min-height: 0;
+  }
+}
+
 /* ---- ledger -------------------------------------------------------------- */
 
 .ledger-card {
