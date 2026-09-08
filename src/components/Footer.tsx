@@ -17,9 +17,8 @@ export default function Footer() {
               axio
             </Link>
             <p>
-              Developer tools that stay on your machine. A coding agent, a
-              screenshot tool, an analyst for Binary Ninja and a Windows control
-              surface, built by Umbra.
+              Local-first coding, capture, analysis and workstation tools for
+              macOS, Windows and Linux, built by Umbra.
             </p>
             <a
               className="icon-btn"
