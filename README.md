@@ -249,3 +249,8 @@ demo, and detailed native/browser workflows. Assets live in
 `public/demos/polaris/`; [capture provenance](docs/polaris-real-demos-2026-09-09.md)
 and the adjacent hash manifest record the sample-data VM capture and editing.
 These are current development-app demonstrations, not public-release evidence.
+
+The runtime Docker image copies `public/` alongside Next.js standalone output.
+After deployment, verify `/products/polaris` and the images and video under
+`/demos/polaris/`: a successful page response alone does not prove the demo
+assets were packaged.
