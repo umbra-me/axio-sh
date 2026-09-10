@@ -20,20 +20,13 @@ const HERO_MEDIA: PolarisMediaItem = {
 
 const WALKTHROUGH_MEDIA: PolarisMediaItem[] = [
   {
-    src: "/demos/polaris/timer-create.jpg",
-    kind: "image",
-    alt: "Axio Polaris New Timer panel with a two minute timer named tea",
-    eyebrow: "new timer",
-    title: "Describe the timer you want.",
-    description: "A two-minute timer named Tea, parsed inside the development app.",
-  },
-  {
-    src: "/demos/polaris/notch-timer.jpg",
-    kind: "image",
-    alt: "Axio Polaris expanded notch showing an active countdown timer",
-    eyebrow: "notch · timer",
-    title: "Keep the countdown in reach.",
-    description: "The same running timer in the expanded notch on the VM desktop.",
+    src: "/demos/polaris/timer-pause-resume.mp4",
+    kind: "video",
+    poster: "/demos/polaris/notch-timer.jpg",
+    alt: "Screen recording of an Axio Polaris timer counting down, pausing and resuming",
+    eyebrow: "11 second demo",
+    title: "Pause and resume without leaving the notch.",
+    description: "A short edited recording of a timer counting down, pausing and resuming.",
   },
   {
     src: "/demos/polaris/notch-notes.jpg",
@@ -41,32 +34,7 @@ const WALKTHROUGH_MEDIA: PolarisMediaItem[] = [
     alt: "Axio Polaris expanded notch showing the Notes tab and a sample Inbox entry",
     eyebrow: "notch · notes",
     title: "Capture a thought at the top of the screen.",
-    description: "The real Notes module with a sample Inbox line in the isolated VM.",
-  },
-  {
-    src: "/demos/polaris/timer-pause-resume.mp4",
-    kind: "video",
-    poster: "/demos/polaris/notch-timer.jpg",
-    alt: "Screen recording of an Axio Polaris timer counting down, pausing and resuming",
-    eyebrow: "11 second demo",
-    title: "Pause and resume without leaving the notch.",
-    description: "Recorded from development build 84 at five frames per second; time gaps between edited segments are intentional.",
-  },
-  {
-    src: "/demos/polaris/focus-overview.jpg",
-    kind: "image",
-    alt: "Axio Polaris Focus settings enabled with a Deep Work blocklist",
-    eyebrow: "focus · overview",
-    title: "Keep the session controls and limits visible.",
-    description: "Real development settings with sample data; this capture is a walkthrough, not full feature acceptance.",
-  },
-  {
-    src: "/demos/polaris/focus-blocklist.jpg",
-    kind: "image",
-    alt: "Axio Polaris blocklist editor containing sample website rules and an allowed domain",
-    eyebrow: "focus · blocklist",
-    title: "Name the boundary once, then reuse it.",
-    description: "A sample Deep Work list with domain rules and an exception in the real blocklist editor.",
+    description: "An inbox for the thought you want to keep, right where you are.",
   },
 ];
 
@@ -78,17 +46,18 @@ export const metadata: Metadata = {
 
 export default function PolarisPage() {
   return (
-    <div style={{ "--pc": P.color } as CSSProperties}>
+    <div className="polaris-page" style={{ "--pc": P.color } as CSSProperties}>
       <ProductHero
         product={P}
+        facts={["14-day free trial", "Apple Silicon · macOS 15+", "No subscription"]}
         headline={
           <>
-            Your Mac, gathered.
+            Your Mac,
             <br />
-            <em>Your attention, yours.</em>
+            <em>a little calmer.</em>
           </>
         }
-        lede="Polaris brings the tools that usually scatter across a Mac into one native utility: a launcher for doing, a notch for what is happening now, local notes and tasks, and Focus sessions with explicit recovery controls."
+        lede="Launch an app. Catch a thought. Make room to focus. Your everyday Mac tools, together in one native app."
         actions={
           <>
             <a className="btn btn--product" href="/downloads/polaris/Axio-Polaris-0.2.3.dmg">
@@ -111,7 +80,7 @@ export default function PolarisPage() {
           <div className="section__head">
             <p className="eyebrow">One place to reach for</p>
             <h2 className="display display--md">
-              Open it, handle the small thing, and return to your work.
+              Small tasks. Less switching.
             </h2>
             <p>
               Polaris lives in the menu bar and opens with a global launcher.
@@ -152,7 +121,7 @@ export default function PolarisPage() {
               <span className="artifact">focus</span>
               <h3>Decide the boundary before you begin.</h3>
               <p>
-                Combine reusable app and domain lists, start now or later, add a
+                Choose the apps to set aside, start now or later, add a
                 recurring schedule, choose whether controls are locked, and keep
                 deliberate break and early-exit paths available.
               </p>
@@ -175,142 +144,10 @@ export default function PolarisPage() {
           <div className="polaris-demo-note">
             <span className="artifact">development build 84</span>
             <p>
-              These unretouched captures show the full VM window with sample data
-              in development build 84. They are a product walkthrough,
-              not complete coverage of every feature; labels and spacing may
-              change in later versions.
+              Real app captures with sample data from development build 84. The current release may look slightly different.
             </p>
           </div>
           <PolarisMediaGallery items={WALKTHROUGH_MEDIA} />
-        </div>
-      </section>
-
-      <section className="section reveal">
-        <div className="container">
-          <div className="polaris-chapter">
-            <div className="polaris-chapter__intro">
-              <p className="eyebrow">Launcher and utilities</p>
-              <h2 className="display display--md">A command bar that finishes the job.</h2>
-              <p className="lede">
-                Search ranks apps, windows and commands together. Many results
-                work in place: a calculation can be copied, a timer can start,
-                and a task can be parsed without opening a separate application.
-              </p>
-            </div>
-            <div className="polaris-detail-grid">
-              <article>
-                <span className="polaris-detail-grid__index">01</span>
-                <h3>Type what you mean</h3>
-                <p>
-                  Try a calculation, a colour, a unit conversion, a duration such
-                  as <code>timer 25m</code>, or a to-do with a due date, priority,
-                  tag and project. Results appear while you type.
-                </p>
-              </article>
-              <article>
-                <span className="polaris-detail-grid__index">02</span>
-                <h3>Go deeper when needed</h3>
-                <p>
-                  Commands open focused screens for timers, tasks, notes, the
-                  Daily Brief, clipboard history, downloads and developer tools.
-                  Keyboard actions keep copy, paste and navigation close.
-                </p>
-              </article>
-              <article>
-                <span className="polaris-detail-grid__index">03</span>
-                <h3>Make frequent actions immediate</h3>
-                <p>
-                  Assign a global shortcut to a launcher command. Capture modes,
-                  notch access and the commands you use most can then run without
-                  searching for them again.
-                </p>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section reveal">
-        <div className="container">
-          <div className="split split--reverse">
-            <div className="split__text">
-              <p className="eyebrow">Notch, timers and shelf</p>
-              <h2 className="display display--md">What is active stays glanceable.</h2>
-              <p className="lede">
-                The notch is a compact home for ongoing work, with modules inside
-                the island and activity pills beside it. You choose what appears,
-                where it sits and how much detail it shows.
-              </p>
-              <ul>
-                <li>
-                  <span className="polaris-list-mark">01</span>
-                  <span><b>Run time visibly.</b> Countdowns, stopwatch laps and Pomodoro phases use the same timer engine as the launcher and continue across an ordinary quit and relaunch.</span>
-                </li>
-                <li>
-                  <span className="polaris-list-mark">02</span>
-                  <span><b>Control what is playing.</b> See artwork and track details, scrub, play, pause, skip, shuffle, repeat and adjust volume for supported players.</span>
-                </li>
-                <li>
-                  <span className="polaris-list-mark">03</span>
-                  <span><b>Carry files between apps.</b> Drop files, text, images or links onto the shelf, pin what should survive a restart, use Quick Look, then drag items back out.</span>
-                </li>
-                <li>
-                  <span className="polaris-list-mark">04</span>
-                  <span><b>Use the space your way.</b> Reorder tabs, place them on either side, tune the island width, choose activity priority and respect the system Reduce Motion setting.</span>
-                </li>
-              </ul>
-            </div>
-            <div className="polaris-module-list" aria-label="Available notch modules">
-              <span>Music</span><span>Timers</span><span>Calendar</span><span>Shelf</span><span>Notes</span>
-              <span>To-dos</span><span>Clipboard</span><span>Mirror</span><span>Shortcuts</span><span>Apps</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section reveal">
-        <div className="container">
-          <div className="section__head">
-            <p className="eyebrow">Notes, to-dos and clipboard</p>
-            <h2 className="display display--md">A small system for the things between projects.</h2>
-            <p>
-              These tools are deliberately lightweight. They handle the fragment
-              you need to keep, then let you return to the application where the
-              deeper work belongs.
-            </p>
-          </div>
-          <div className="polaris-workflows">
-            <article>
-              <span className="artifact">jot remember the API edge case</span>
-              <h3>Append a thought to your inbox.</h3>
-              <p>
-                Quick Capture adds a timestamped line to <code>Inbox.md</code>.
-                Notes are ordinary Markdown files, searchable by title and body,
-                and the folder can be changed to an existing notes directory.
-              </p>
-              <small>Today&apos;s Note creates or opens the file for the date.</small>
-            </article>
-            <article>
-              <span className="artifact">todo send draft tomorrow 5pm !high</span>
-              <h3>Turn natural language into a task.</h3>
-              <p>
-                Polaris understands dates, times, priorities, tags and projects,
-                then sorts work into Overdue, Today, Upcoming and No date. Tasks
-                can be completed, edited, snoozed, reopened or given a note.
-              </p>
-              <small>The notch and launcher read the same local task store.</small>
-            </article>
-            <article>
-              <span className="artifact">clipboard history</span>
-              <h3>Recover, pin, copy or paste.</h3>
-              <p>
-                Search recent clipboard items, keep important ones pinned and
-                paste an item back into the app you came from. Clipboard capture
-                can be paused and sensitive applications can be excluded.
-              </p>
-              <small>Pasting into another app requires Accessibility access.</small>
-            </article>
-          </div>
         </div>
       </section>
 
@@ -320,14 +157,13 @@ export default function PolarisPage() {
             <p className="eyebrow">Focus sessions</p>
             <h2 className="display display--md">Choose the rules while the choice is easy.</h2>
             <p>
-              Focus is a local coordinator for timed sessions. It combines named
-              blocklists, selected Mac applications and optional website rules
-              into an immutable session snapshot, so editing a list later does
-              not quietly change a session already in progress.
+              Choose the apps to set aside and how long you want to focus.
+              Save your lists for next time, or build a recurring routine.
+              Changes to a saved list won’t alter a session already in progress.
             </p>
           </div>
           <ol className="polaris-focus-flow">
-            <li><span>1</span><div><h3>Build reusable lists</h3><p>Name a list, choose running or installed Mac apps, add public domains and exceptions, or express an intent to block all sites when the session is imported into the browser companion.</p></div></li>
+            <li><span>1</span><div><h3>Build reusable lists</h3><p>Name a list and choose the Mac apps you want to set aside during a session. Website blocking is not included in this release.</p></div></li>
             <li><span>2</span><div><h3>Start now, later or on a schedule</h3><p>Sessions last from one minute to 24 hours. Recurring schedules choose weekdays, a start time, duration and named time zone; overlapping sessions combine their restrictions.</p></div></li>
             <li><span>3</span><div><h3>Let Polaris hold the line</h3><p>While a session is active, selected regular Mac apps are hidden and hidden again if reopened. Polaris records which apps it hid so it can restore only those apps at a break, expiry or relaunch.</p></div></li>
             <li><span>4</span><div><h3>Keep recovery deliberate</h3><p>Locked controls allow a one-minute correction window after starting. After that, optional recovery allows one five-minute break each local day and an early exit once every seven days; an unlocked session can be ended normally.</p></div></li>
@@ -342,45 +178,6 @@ export default function PolarisPage() {
               Polaris is forcibly stopped and never reopened, an app it hid may
               remain hidden until opened again or restored manually.
             </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="section reveal">
-        <div className="container">
-          <div className="split">
-            <div className="split__text">
-              <p className="eyebrow">Chromium companion</p>
-              <h2 className="display display--md">Website rules cross over as a snapshot.</h2>
-              <p className="lede">
-                The Mac app does not filter websites. To apply a Focus session in
-                Chrome, Edge, Brave or another Chromium browser, export that
-                session to JSON and import it into the separate local extension.
-              </p>
-              <ul>
-                <li><span className="polaris-list-mark">1</span>Export an active or upcoming session from Polaris.</li>
-                <li><span className="polaris-list-mark">2</span>Import the JSON file into the unpacked browser companion.</li>
-                <li><span className="polaris-list-mark">3</span>The extension applies top-level HTTP and HTTPS navigation rules and keeps its own session clock locally.</li>
-              </ul>
-            </div>
-            <div className="polaris-boundary-card">
-              <span className="artifact">manual snapshot</span>
-              <h3>What does not cross over</h3>
-              <p>
-                The export omits notes, ratings, selected Mac apps, audio paths
-                and activity data. Changes made on the Mac after export do not
-                update the browser, and ending or taking a break from the Mac
-                session does not alter the imported browser session.
-              </p>
-              <hr />
-              <h3>What the companion can do</h3>
-              <p>
-                Alongside imported sessions, it supports local timed and recurring
-                sessions, visit delays, per-domain daily budgets and optional
-                approximate foreground-use totals for the current day.
-              </p>
-              <small>It can be disabled or removed with normal browser controls and is not yet packaged for public distribution.</small>
-            </div>
           </div>
         </div>
       </section>
@@ -405,7 +202,6 @@ export default function PolarisPage() {
                 <tr><th scope="row">Screen Recording</th><td className="state state--none">capture only</td><td>Capture screenshots or screen recordings when you ask.</td></tr>
                 <tr><th scope="row">Camera</th><td className="state state--none">mirror only</td><td>Show the notch Mirror preview while that tab is open.</td></tr>
                 <tr><th scope="row">Input Monitoring</th><td className="state state--none">optional controls</td><td>Replace selected hardware-key HUDs and route media keys.</td></tr>
-                <tr><th scope="row">Browser companion</th><td className="state state--none">browser local</td><td>Keep rules, sessions, budgets and optional usage in Chromium extension storage; it has no Polaris cloud backend.</td></tr>
               </tbody>
             </table>
           </div>
@@ -424,19 +220,22 @@ export default function PolarisPage() {
             <p className="eyebrow">Availability</p>
             <h2 className="display display--md">Try Polaris free for 14 days.</h2>
             <p>
-              Download signed and notarised version 0.2.3 (103) for Apple Silicon
-              Macs running macOS 15 or newer. Start your 14-day trial explicitly
-              in the app; no payment card is needed and it never charges automatically.
-              The personal licence is A$59 once, tax included, for two Macs, with no
-              subscription. Your licence key arrives by email after purchase.
+              A signed and notarised Mac app. Try it in your own routine, then buy a personal licence when you’re ready.
             </p>
           </div>
-          <div className="ledger-card">
-            <table className="ledger"><tbody>
-              <tr><th scope="row">Mac app</th><td className="state state--met">implemented</td><td>Native launcher, notch, shelf, productivity tools, capture and local Focus sessions are included in the Mac download.</td></tr>
-              <tr><th scope="row">Browser companion</th><td className="state state--unmet">development source</td><td>The local Chromium extension and policy tests exist, but an installed-browser acceptance run and packaged distribution are still outstanding.</td></tr>
-              <tr><th scope="row">Other platforms</th><td className="state state--none">not built</td><td>There is no iPhone, iPad, Windows or Linux client, cloud sync, cross-device control or web dashboard.</td></tr>
-            </tbody></table>
+          <div className="polaris-pricing">
+            <div>
+              <p className="eyebrow">Yours for two Macs</p>
+              <p className="polaris-pricing__price">A$59 <span>once</span></p>
+              <p>Tax included. No subscription. Licence delivered by email.</p>
+              <a className="btn btn--product" href="https://buy.stripe.com/dRm8wQ6GA7MWfcF4V73gk00">Buy Polaris</a>
+            </div>
+            <div className="polaris-pricing__trial">
+              <h3>Make yourself at home first.</h3>
+              <p>Start your 14-day trial in the app. No card needed, and no automatic charge when it ends.</p>
+              <a className="btn btn--ghost" href="/downloads/polaris/Axio-Polaris-0.2.3.dmg">Download free trial</a>
+              <small>Version 0.2.3 · Apple Silicon · macOS 15+</small>
+            </div>
           </div>
         </div>
       </section>
@@ -451,7 +250,7 @@ export default function PolarisPage() {
             <details><summary>Can I download Polaris today?</summary><p>Yes. Download the signed and notarised Mac app above, open the disk image and drag Axio Polaris to Applications. The 14-day trial starts only when you choose Start Trial. You can buy a personal licence using the Buy once link above.</p></details>
             <details><summary>How do licensing and support work?</summary><p>The A$59 one-time personal licence covers two Macs. Initial activation needs internet; activated copies can work offline for up to 30 days after verification. Purchase and licence recovery use your checkout email. For product help, email <a href="mailto:support@umbra.me">support@umbra.me</a>.</p></details>
             <details><summary>Where are the licence and refund details?</summary><p>Read the <a href="/products/polaris/licence">personal licence, delivery and refund information</a> and <a href="/legal/privacy#polaris">Polaris privacy details</a>. Billing receipts and transaction support are provided through Stripe Managed Payments and Link.</p></details>
-            <details><summary>Does Polaris block websites across my Mac?</summary><p>No. The Mac app stores domain intent and exports a session snapshot. Website blocking is performed only by the separate Chromium companion in the browser where it is installed.</p></details>
+            <details><summary>Does Polaris block websites across my Mac?</summary><p>No. The Mac app stores domain intent and exports a session snapshot. The separate Chromium companion is still in development and is not included in this download. Polaris does not currently provide website blocking.</p></details>
             <details><summary>Can I get out of a locked Focus session?</summary><p>There is a one-minute correction window after starting. After that, optional recovery can allow one five-minute break per local day and one early exit every seven days. Locked controls prevent normal in-app exits, but they are not tamper-proof and cannot stop force quit, uninstall or administrative access.</p></details>
             <details><summary>Does Polaris upload my notes, tasks or clipboard?</summary><p>The core stores are local files. There is no Polaris cloud sync. Individual online features send only what their action requires; configured AI actions, for example, send the selected request to the provider you chose.</p></details>
             <details><summary>Will it work on an Intel Mac or older macOS?</summary><p>The Mac download requires Apple Silicon with macOS 15 or newer. Other Mac configurations are not currently offered.</p></details>

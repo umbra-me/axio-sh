@@ -3418,3 +3418,27 @@ main:focus {
 .nf .label {
   color: var(--faint);
 }
+
+/* Polaris customer page */
+.polaris-page .phero {
+  background: radial-gradient(ellipse at 80% 35%, #7fb9f512, transparent 60%);
+}
+.polaris-page .phero .display { font-size: clamp(2.8rem, 4.6vw, 4.5rem); line-height: 1.08; letter-spacing: -.045em; }
+.polaris-page .phero .lede { max-width: 31rem; font-size: 1.125rem; }
+.polaris-page .section__head { max-width: 48rem; }
+.polaris-page .features .feature { border-radius: 1rem; }
+.polaris-page .polaris-demo-note { margin-top: 0; border: 0; padding-left: 0; background: none; }
+.polaris-pricing { display: grid; gap: 2.5rem; padding: clamp(1.5rem, 4vw, 3rem); border: 1px solid #7fb9f54d; border-radius: 1.5rem; background: linear-gradient(125deg, #7fb9f512, transparent); }
+.polaris-pricing__price { margin: .5rem 0; font-size: clamp(3rem, 6vw, 4.5rem); line-height: 1.1; letter-spacing: -.05em; color: var(--text); }
+.polaris-pricing__price span { font-size: 1rem; letter-spacing: 0; color: var(--muted); }
+.polaris-pricing p:not(.polaris-pricing__price):not(.eyebrow) { color: var(--muted); max-width: 30rem; }
+.polaris-pricing .btn { margin-top: 1rem; }
+.polaris-pricing__trial small { display: block; margin-top: 1rem; color: var(--muted); }
+@media (min-width: 54rem) {
+  .polaris-pricing { grid-template-columns: 1fr 1fr; align-items: center; }
+  .polaris-pricing__trial { border-left: 1px solid var(--line); padding-left: 2.5rem; }
+}
+@media (max-width: 40rem) {
+  .polaris-page .polaris-demo-note { align-items: flex-start; flex-direction: column; gap: .5rem; }
+  .polaris-page .phero__actions .btn { flex: 1 1 auto; justify-content: center; }
+}

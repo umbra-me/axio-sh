@@ -12,12 +12,14 @@ export default function ProductHero({
   lede,
   actions,
   visual,
+  facts,
 }: {
   product: Product;
   headline: ReactNode;
   lede: ReactNode;
   actions: ReactNode;
   visual: ReactNode;
+  facts?: string[];
 }) {
   const Icon = PRODUCT_ICONS[product.id];
   return (
@@ -41,11 +43,13 @@ export default function ProductHero({
             <p className="lede">{lede}</p>
             <div className="phero__actions">{actions}</div>
             <ul className="phero__facts">
-              <li>
-                <b>{product.stack}</b>
-              </li>
-              <li>{product.platforms.join(" · ")}</li>
-              <li>{product.license ?? "not yet distributed"}</li>
+              {facts ? facts.map((fact) => <li key={fact}>{fact}</li>) : (
+                <>
+                  <li><b>{product.stack}</b></li>
+                  <li>{product.platforms.join(" · ")}</li>
+                  <li>{product.license ?? "not yet distributed"}</li>
+                </>
+              )}
             </ul>
           </div>
           <div>{visual}</div>
