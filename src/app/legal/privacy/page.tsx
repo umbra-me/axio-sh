@@ -13,7 +13,7 @@ export default function PrivacyPage() {
   return (
     <LegalPage
       title="Privacy policy"
-      summary="This site keeps no personal data about you. The tools run on your machine and send only what you point them at. This page says exactly what that means, product by product."
+      summary="The tools keep their core data on your machine. Purchases, licence activation and support use the limited personal information described below."
       current="/legal/privacy"
     >
       <div className="toc">
@@ -295,7 +295,7 @@ export default function PrivacyPage() {
         </tbody>
       </table>
 
-      <h3>Axio Polaris</h3>
+      <h3 id="polaris">Axio Polaris</h3>
       <table>
         <tbody>
           <tr>
@@ -319,21 +319,41 @@ export default function PrivacyPage() {
             <th scope="row">Network</th>
             <td>
               Core utility and focus features require no backend. Requested
-              online features, licensing and a future update channel can make
-              network requests. The current development build is not a public
-              customer release and the Chromium companion is not packaged.
+              online features, licence activation and verification, and signed
+              update checks make network requests. The Chromium companion is
+              not included in the Mac download.
             </td>
           </tr>
           <tr>
             <th scope="row">Distribution</th>
-            <td>Polaris is private and not offered for download at this time.</td>
+            <td>The signed Mac application is publicly downloadable; its source is private.</td>
           </tr>
         </tbody>
       </table>
 
+      <h3>Polaris purchases and licensing</h3>
+      <p>
+        Stripe Managed Payments and Link handle payment details, receipts and
+        transaction support under <a href="https://stripe.com/privacy">Stripe’s privacy policy</a>.
+        We do not receive or store your full card number. Our licence service in
+        Singapore stores your purchase email, Stripe order and payment identifiers,
+        licence-key hash, activation identifiers, activation status, and fulfilment
+        and refund records. These records issue and recover your key, enforce the
+        two-Mac limit and apply refunds. They do not contain your notes, clipboard
+        history or screen recordings.
+      </p>
+      <p>
+        Licence emails pass through our transactional mail service to your email
+        provider. The service processes network addresses for abuse prevention.
+        Licensing records and encrypted backups persist to support your perpetual
+        licence; they do not expire automatically. Contact
+        <a href={`mailto:${CONTACT.privacy}`}> {CONTACT.privacy}</a> for access,
+        correction or deletion requests. We will explain any records that must be
+        retained and how deletion affects activation or recovery.
+      </p>
       <h2 id="third">5. Third parties</h2>
       <p>
-        We do not sell, rent or trade any data, because we hold none about you.
+        We do not sell, rent or trade personal data.
         We do not run advertising. The third parties named above, model
         providers, GitHub, crates.io, ollama.com, and any licensing or update
         provider named by a product receive requests from software running on

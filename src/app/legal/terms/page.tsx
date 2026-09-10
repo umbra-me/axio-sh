@@ -13,7 +13,7 @@ export default function TermsPage() {
   return (
     <LegalPage
       title="Terms of use"
-      summary="These terms cover this website and the scripts it serves. The software itself is licensed separately, under the open-source licence each product ships with."
+      summary="These terms cover this website and the scripts it serves. Each product has its own software licence; Polaris uses a personal commercial licence."
       current="/legal/terms"
     >
       <div className="toc">
@@ -85,6 +85,10 @@ export default function TermsPage() {
         </li>
         <li>
           <strong>Axio Deck:</strong>{" "}not distributed; no licence is granted.
+        </li>
+        <li>
+          <strong>Axio Polaris:</strong>{" "}<a href="/products/polaris/licence">personal commercial licence</a>;
+          third-party and previously MIT-licensed components retain their own terms.
         </li>
       </ul>
       <p>

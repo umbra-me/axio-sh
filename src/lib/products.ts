@@ -158,7 +158,7 @@ export const PRODUCTS: Record<ProductId, Product> = {
     status: "prerelease",
     statusLabel: "Mac trial available",
     repo: null,
-    license: null,
+    license: "Personal commercial licence",
     platforms: ["macOS 15+ on Apple Silicon"],
     stack: "Swift, SwiftUI and AppKit",
     features: [

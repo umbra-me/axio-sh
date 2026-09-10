@@ -16,7 +16,7 @@ test('Polaris trial is listed while source remains private', () => {
   assert.ok(polaris);
   assert.equal(polaris.status, 'prerelease');
   assert.equal(polaris.repo, null);
-  assert.equal(polaris.license, null);
+  assert.equal(polaris.license, 'Personal commercial licence');
   assert.match(polaris.platforms.join(' '), /macOS 15\+/);
 });
 test('Capture download links target named assets from the advertised release', () => {

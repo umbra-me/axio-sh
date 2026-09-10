@@ -91,7 +91,7 @@ export default function PolarisPage() {
         lede="Polaris brings the tools that usually scatter across a Mac into one native utility: a launcher for doing, a notch for what is happening now, local notes and tasks, and Focus sessions with explicit recovery controls."
         actions={
           <>
-            <a className="btn btn--product" href="/downloads/polaris/Axio-Polaris-0.2.0.dmg">
+            <a className="btn btn--product" href="/downloads/polaris/Axio-Polaris-0.2.3.dmg">
               Download for Mac
             </a>
             <a className="btn btn--ghost" href="#status">
@@ -424,7 +424,7 @@ export default function PolarisPage() {
             <p className="eyebrow">Availability</p>
             <h2 className="display display--md">Try Polaris free for 14 days.</h2>
             <p>
-              Download signed and notarised version 0.2.0 (100) for Apple Silicon
+              Download signed and notarised version 0.2.3 (103) for Apple Silicon
               Macs running macOS 15 or newer. Start your 14-day trial explicitly
               in the app; no payment card is needed and it never charges automatically.
               The planned personal licence is A$59 once for two Macs, with no
@@ -450,6 +450,7 @@ export default function PolarisPage() {
           <div className="polaris-faq">
             <details><summary>Can I download Polaris today?</summary><p>Yes. Download the signed and notarised Mac app above, open the disk image and drag Axio Polaris to Applications. The 14-day trial starts only when you choose Start Trial. Paid checkout is not open yet.</p></details>
             <details><summary>How do licensing and support work?</summary><p>The planned A$59 one-time personal licence covers two Macs. Initial activation needs internet; activated copies can work offline for up to 30 days after verification. Purchase and licence recovery use your checkout email. For product help, email <a href="mailto:support@umbra.me">support@umbra.me</a>.</p></details>
+            <details><summary>Where are the licence and refund details?</summary><p>Read the <a href="/products/polaris/licence">personal licence, delivery and refund information</a> and <a href="/legal/privacy#polaris">Polaris privacy details</a>. Billing receipts and transaction support are provided through Stripe Managed Payments and Link.</p></details>
             <details><summary>Does Polaris block websites across my Mac?</summary><p>No. The Mac app stores domain intent and exports a session snapshot. Website blocking is performed only by the separate Chromium companion in the browser where it is installed.</p></details>
             <details><summary>Can I get out of a locked Focus session?</summary><p>There is a one-minute correction window after starting. After that, optional recovery can allow one five-minute break per local day and one early exit every seven days. Locked controls prevent normal in-app exits, but they are not tamper-proof and cannot stop force quit, uninstall or administrative access.</p></details>
             <details><summary>Does Polaris upload my notes, tasks or clipboard?</summary><p>The core stores are local files. There is no Polaris cloud sync. Individual online features send only what their action requires; configured AI actions, for example, send the selected request to the provider you chose.</p></details>
