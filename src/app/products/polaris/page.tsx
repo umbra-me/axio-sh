@@ -91,11 +91,11 @@ export default function PolarisPage() {
         lede="Polaris brings the tools that usually scatter across a Mac into one native utility: a launcher for doing, a notch for what is happening now, local notes and tasks, and Focus sessions with explicit recovery controls."
         actions={
           <>
-            <a className="btn btn--product" href="#walkthrough">
-              See Polaris at work
+            <a className="btn btn--product" href="/downloads/polaris/Axio-Polaris-0.2.0.dmg">
+              Download for Mac
             </a>
             <a className="btn btn--ghost" href="#status">
-              Development status
+              Trial and pricing
             </a>
           </>
         }
@@ -176,7 +176,7 @@ export default function PolarisPage() {
             <span className="artifact">development build 84</span>
             <p>
               These unretouched captures show the full VM window with sample data
-              in the current private Mac build. They are a product walkthrough,
+              in development build 84. They are a product walkthrough,
               not complete feature or release acceptance; labels and spacing may
               change before a public release.
             </p>
@@ -412,7 +412,7 @@ export default function PolarisPage() {
           <p className="note" style={{ marginTop: "1rem" }}>
             Requested online features can still use the network. Examples include
             an enabled lyrics lookup, a public-IP request, configured AI providers,
-            licensing and a future update channel. Polaris does not claim that
+            licensing and signed update checks. Polaris does not claim that
             every optional tool is offline.
           </p>
         </div>
@@ -422,17 +422,18 @@ export default function PolarisPage() {
         <div className="container">
           <div className="section__head">
             <p className="eyebrow">Availability</p>
-            <h2 className="display display--md">A private Mac build, not a public release.</h2>
+            <h2 className="display display--md">Try Polaris free for 14 days.</h2>
             <p>
-              The current installed development build is 0.2.0 (84), for Apple
-              Silicon Macs running macOS 15 or newer. There is no public download,
-              public repository, notarised customer release or customer update
-              channel yet.
+              Download signed and notarised version 0.2.0 (100) for Apple Silicon
+              Macs running macOS 15 or newer. Start your 14-day trial explicitly
+              in the app; no payment card is needed and it never charges automatically.
+              The planned personal licence is A$59 once for two Macs, with no
+              subscription. Paid sales open after final release verification.
             </p>
           </div>
           <div className="ledger-card">
             <table className="ledger"><tbody>
-              <tr><th scope="row">Mac app</th><td className="state state--met">implemented</td><td>Native launcher, notch, shelf, productivity tools, capture and local Focus sessions are present in the private build.</td></tr>
+              <tr><th scope="row">Mac app</th><td className="state state--met">implemented</td><td>Native launcher, notch, shelf, productivity tools, capture and local Focus sessions are included in the Mac download.</td></tr>
               <tr><th scope="row">Browser companion</th><td className="state state--unmet">development source</td><td>The local Chromium extension and policy tests exist, but an installed-browser acceptance run and packaged distribution are still outstanding.</td></tr>
               <tr><th scope="row">Other platforms</th><td className="state state--none">not built</td><td>There is no iPhone, iPad, Windows or Linux client, cloud sync, cross-device control or web dashboard.</td></tr>
             </tbody></table>
@@ -444,14 +445,15 @@ export default function PolarisPage() {
         <div className="container">
           <div className="section__head">
             <p className="eyebrow">Questions</p>
-            <h2 className="display display--md">What to know before Polaris ships.</h2>
+            <h2 className="display display--md">Before you start.</h2>
           </div>
           <div className="polaris-faq">
-            <details><summary>Can I download Polaris today?</summary><p>No. Build 84 is a private development build. A public download, notarised release and customer update channel do not exist yet.</p></details>
+            <details><summary>Can I download Polaris today?</summary><p>Yes. Download the signed and notarised Mac app above, open the disk image and drag Axio Polaris to Applications. The 14-day trial starts only when you choose Start Trial. Paid checkout is not open yet.</p></details>
+            <details><summary>How do licensing and support work?</summary><p>The planned A$59 one-time personal licence covers two Macs. Initial activation needs internet; activated copies can work offline for up to 30 days after verification. Purchase and licence recovery use your checkout email. For product help, email <a href="mailto:support@umbra.me">support@umbra.me</a>.</p></details>
             <details><summary>Does Polaris block websites across my Mac?</summary><p>No. The Mac app stores domain intent and exports a session snapshot. Website blocking is performed only by the separate Chromium companion in the browser where it is installed.</p></details>
             <details><summary>Can I get out of a locked Focus session?</summary><p>There is a one-minute correction window after starting. After that, optional recovery can allow one five-minute break per local day and one early exit every seven days. Locked controls prevent normal in-app exits, but they are not tamper-proof and cannot stop force quit, uninstall or administrative access.</p></details>
             <details><summary>Does Polaris upload my notes, tasks or clipboard?</summary><p>The core stores are local files. There is no Polaris cloud sync. Individual online features send only what their action requires; configured AI actions, for example, send the selected request to the provider you chose.</p></details>
-            <details><summary>Will it work on an Intel Mac or older macOS?</summary><p>The current development target is Apple Silicon with macOS 15 or newer. Other Mac configurations are not currently offered.</p></details>
+            <details><summary>Will it work on an Intel Mac or older macOS?</summary><p>The Mac download requires Apple Silicon with macOS 15 or newer. Other Mac configurations are not currently offered.</p></details>
             <details><summary>Is Focus the same as Pomodoro?</summary><p>They are separate tools. Pomodoro alternates timed work and break phases and tracks daily minutes. Focus sessions apply selected app restrictions and exportable website rules for a defined interval.</p></details>
           </div>
         </div>

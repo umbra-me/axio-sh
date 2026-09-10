@@ -155,8 +155,8 @@ export const PRODUCTS: Record<ProductId, Product> = {
     tagline: "A native Mac utility for the rest of your day",
     description:
       "Open tools from one launcher, keep useful things at the notch, and run local focus sessions that can hide selected apps. Polaris brings the small utilities around a Mac into one native place.",
-    status: "private",
-    statusLabel: "Private development build",
+    status: "prerelease",
+    statusLabel: "Mac trial available",
     repo: null,
     license: null,
     platforms: ["macOS 15+ on Apple Silicon"],
@@ -169,7 +169,7 @@ export const PRODUCTS: Record<ProductId, Product> = {
     ],
     color: "var(--p-polaris)",
     network:
-      "Core utility and focus state stays local. Requested online features, licensing and future updates may use the network; the current Chromium companion stores its rules and usage only in the browser.",
+      "Core utility and focus state stays local. Requested online features, licensing and update checks use the network; the current Chromium companion stores its rules and usage only in the browser.",
   },
 };
 
