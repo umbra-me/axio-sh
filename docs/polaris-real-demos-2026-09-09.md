@@ -1,5 +1,9 @@
 # Polaris real demos — 9 September 2026
 
+> Historical September 9 record. The current public page and media are described
+> in [the September 10 redesign](polaris-page-redesign-2026-09-10.md).
+
+
 The product page now uses real app captures instead of the drawn Polaris mock.
 Six JPEG screenshots and an 11-second H.264 clip show signed development build
 0.2.0 (84) running in the isolated Lodestar UX Lab macOS VM. All visible content
@@ -38,3 +42,9 @@ build passed. The local production preview loaded the real assets; video reached
 11 seconds and ended without an error, the Pomodoro FAQ opened, and DOM bounds
 showed no horizontal overflow at 816 px and 390 px. No console errors were
 captured. These checks do not claim exhaustive browser/device coverage.
+
+Production acceptance later on September 9 deployed site `d62aac3`: all six
+JPEGs and the MP4 returned 200 with the expected types and source hashes.
+The runtime image was checked for those same hashes before deployment. The
+Dockerfile must copy `public/` explicitly because Next.js standalone output
+omits it. This is site delivery evidence; native customer-release gates remain.

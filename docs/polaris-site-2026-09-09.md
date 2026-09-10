@@ -1,5 +1,9 @@
 # Polaris product page — 2026-09-09
 
+> Historical September 9 record. The current public page and media are described
+> in [the September 10 redesign](polaris-page-redesign-2026-09-10.md).
+
+
 Axio Polaris is now the sixth product in the site registry. The registry marks
 it private, gives it no public repository or licence link, and describes its
 current platform as Apple Silicon Macs on macOS 15 or newer. Registry-driven
@@ -31,4 +35,8 @@ publication and a production deployment are separate actions.
 - Local browser preview returned HTTP 200, rendered the product hero, followed
   the Development status anchor, and showed no horizontal overflow at 816 px or
   captured console errors. The generated sitemap includes the Polaris URL.
-- A production deployment has not been performed.
+- Subsequent production acceptance on September 9: site `d62aac3`, workspace
+  `34af015`, control plane `4a7e0a4d`. The page and all seven demo assets returned
+  200; media hashes matched source. The initial runtime image omitted `public/`;
+  the Dockerfile repair was rebuilt and verified before final deployment.
+  Umbra’s `docs/production-operator-rollout-2026-09-09.md` records the rollout.

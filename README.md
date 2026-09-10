@@ -70,11 +70,12 @@ Mono carries labels, artifacts and anything a product actually prints. Both are
 self-hosted through `next/font`; the page makes no external request. The
 earlier site set its headline in Geist Mono, and it paid for it in characters.
 
-**Nothing is a screenshot.** Every product interface on the site is drawn:
-`Surface.tsx` for the agent's window, plus `CaptureMock.tsx`, `AnalystMock.tsx`,
-`DeckMock.tsx` and `PolarisMock.tsx` for the others. A screenshot is one size, one theme, one moment,
-and these have to reflow into a phone and sit behind text. They are
-`aria-hidden`; every fact in them is stated in words beside them. The icons are
+**Product visuals.** The agent, Capture, Analyst and Deck use responsive drawn
+interfaces (`Surface.tsx` and their `*Mock.tsx` components). These illustrations
+are `aria-hidden`; their facts are stated in adjacent text. Polaris uses four real-app demos with separate landscape and portrait edits,
+click-to-play controls, static posters and adjacent descriptions. Its compass
+icon also appears in the native 0.2.4 release and video cards.
+The icons are
 drawn too, on a 24-unit grid at a 1.6 stroke, in `Icons.tsx`, and the product
 glyphs there are the same shapes the products' app icons carry; the
 Analyst glyph is the split diamond the plugin itself paints. No icon library
@@ -242,15 +243,20 @@ pnpm root.
 Frontend lint and standalone typecheck commands: [September 5 verification](docs/lint-verification-2026-09-05.md).
 
 
-## Polaris product walkthrough
+## Polaris customer page and demos
 
-`/products/polaris` includes six real screenshots, a controlled-playback timer
-demo, and detailed native/browser workflows. Assets live in
-`public/demos/polaris/`; [capture provenance](docs/polaris-real-demos-2026-09-09.md)
-and the adjacent hash manifest record the sample-data VM capture and editing.
-These are current development-app demonstrations, not public-release evidence.
+The [product page](https://axio.sh/products/polaris) advertises the notarized
+0.2.4 (104) Mac release, an explicit 14-day trial and A$59 once for two Macs.
+Stripe checkout is live. The page leads with the introduction, then timer,
+notes and launcher examples, local-data/permission details, pricing and FAQ.
 
-The runtime Docker image copies `public/` alongside Next.js standalone output.
-After deployment, verify `/products/polaris` and the images and video under
-`/demos/polaris/`: a successful page response alone does not prove the demo
-assets were packaged.
+Eight silent H.264 edits and their posters live under `public/demos/polaris/launch`.
+Real sample-data footage comes from customer build 103 in the isolated macOS VM;
+the edit cards use the new 104 compass icon. `PolarisVideo.tsx` requests media
+only after Play and selects portrait edits on phones. The social preview and
+vector icon are alongside the demo directory. No synthetic app UI is used.
+
+The Docker image must copy `public/` alongside Next.js standalone output.
+Verify the page and media separately after deployment. See
+[the redesign record](docs/polaris-page-redesign-2026-09-10.md) for current checks;
+[September 9 capture evidence](docs/polaris-real-demos-2026-09-09.md) is historical.
