@@ -94,8 +94,8 @@ export default function PolarisPage() {
             <a className="btn btn--product" href="/downloads/polaris/Axio-Polaris-0.2.3.dmg">
               Download for Mac
             </a>
-            <a className="btn btn--ghost" href="#status">
-              Trial and pricing
+            <a className="btn btn--ghost" href="https://buy.stripe.com/dRm8wQ6GA7MWfcF4V73gk00">
+              Buy once — A$59
             </a>
           </>
         }
@@ -177,8 +177,8 @@ export default function PolarisPage() {
             <p>
               These unretouched captures show the full VM window with sample data
               in development build 84. They are a product walkthrough,
-              not complete feature or release acceptance; labels and spacing may
-              change before a public release.
+              not complete coverage of every feature; labels and spacing may
+              change in later versions.
             </p>
           </div>
           <PolarisMediaGallery items={WALKTHROUGH_MEDIA} />
@@ -427,8 +427,8 @@ export default function PolarisPage() {
               Download signed and notarised version 0.2.3 (103) for Apple Silicon
               Macs running macOS 15 or newer. Start your 14-day trial explicitly
               in the app; no payment card is needed and it never charges automatically.
-              The planned personal licence is A$59 once for two Macs, with no
-              subscription. Paid sales open after final release verification.
+              The personal licence is A$59 once, tax included, for two Macs, with no
+              subscription. Your licence key arrives by email after purchase.
             </p>
           </div>
           <div className="ledger-card">
@@ -448,8 +448,8 @@ export default function PolarisPage() {
             <h2 className="display display--md">Before you start.</h2>
           </div>
           <div className="polaris-faq">
-            <details><summary>Can I download Polaris today?</summary><p>Yes. Download the signed and notarised Mac app above, open the disk image and drag Axio Polaris to Applications. The 14-day trial starts only when you choose Start Trial. Paid checkout is not open yet.</p></details>
-            <details><summary>How do licensing and support work?</summary><p>The planned A$59 one-time personal licence covers two Macs. Initial activation needs internet; activated copies can work offline for up to 30 days after verification. Purchase and licence recovery use your checkout email. For product help, email <a href="mailto:support@umbra.me">support@umbra.me</a>.</p></details>
+            <details><summary>Can I download Polaris today?</summary><p>Yes. Download the signed and notarised Mac app above, open the disk image and drag Axio Polaris to Applications. The 14-day trial starts only when you choose Start Trial. You can buy a personal licence using the Buy once link above.</p></details>
+            <details><summary>How do licensing and support work?</summary><p>The A$59 one-time personal licence covers two Macs. Initial activation needs internet; activated copies can work offline for up to 30 days after verification. Purchase and licence recovery use your checkout email. For product help, email <a href="mailto:support@umbra.me">support@umbra.me</a>.</p></details>
             <details><summary>Where are the licence and refund details?</summary><p>Read the <a href="/products/polaris/licence">personal licence, delivery and refund information</a> and <a href="/legal/privacy#polaris">Polaris privacy details</a>. Billing receipts and transaction support are provided through Stripe Managed Payments and Link.</p></details>
             <details><summary>Does Polaris block websites across my Mac?</summary><p>No. The Mac app stores domain intent and exports a session snapshot. Website blocking is performed only by the separate Chromium companion in the browser where it is installed.</p></details>
             <details><summary>Can I get out of a locked Focus session?</summary><p>There is a one-minute correction window after starting. After that, optional recovery can allow one five-minute break per local day and one early exit every seven days. Locked controls prevent normal in-app exits, but they are not tamper-proof and cannot stop force quit, uninstall or administrative access.</p></details>

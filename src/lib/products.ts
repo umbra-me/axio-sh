@@ -155,8 +155,8 @@ export const PRODUCTS: Record<ProductId, Product> = {
     tagline: "A native Mac utility for the rest of your day",
     description:
       "Open tools from one launcher, keep useful things at the notch, and run local focus sessions that can hide selected apps. Polaris brings the small utilities around a Mac into one native place.",
-    status: "prerelease",
-    statusLabel: "Mac trial available",
+    status: "released",
+    statusLabel: "0.2.3 released",
     repo: null,
     license: "Personal commercial licence",
     platforms: ["macOS 15+ on Apple Silicon"],

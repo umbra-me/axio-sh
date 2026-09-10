@@ -11,10 +11,10 @@ test('product navigation uses unique named product paths', () => {
     if (product.status === 'private') assert.equal(product.repo, null);
   }
 });
-test('Polaris trial is listed while source remains private', () => {
+test('Polaris customer release is listed while source remains private', () => {
   const polaris = PRODUCT_LIST.find(product => product.id === 'polaris');
   assert.ok(polaris);
-  assert.equal(polaris.status, 'prerelease');
+  assert.equal(polaris.status, 'released');
   assert.equal(polaris.repo, null);
   assert.equal(polaris.license, 'Personal commercial licence');
   assert.match(polaris.platforms.join(' '), /macOS 15\+/);
