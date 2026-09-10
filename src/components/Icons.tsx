@@ -64,8 +64,8 @@ export function IconDeck() {
 export function IconPolaris() {
   return (
     <svg {...base}>
-      <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z" />
-      <path d="M18.5 15.5l.7 2.1 2.1.7-2.1.7-.7 2.1-.7-2.1-2.1-.7 2.1-.7.7-2.1Z" />
+      <path d="M12 3 5 21l7-4 7 4L12 3Z" />
+      <path d="M12 3v14" />
     </svg>
   );
 }
