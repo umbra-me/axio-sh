@@ -1,19 +1,24 @@
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
-import { IconArrowUpRight, IconDownload } from "@/components/Icons";
+import { IconDownload } from "@/components/Icons";
 import StatusBadge from "@/components/StatusBadge";
 import Term from "@/components/Term";
 import {
+  AVAILABLE,
   CAPTURE_DOWNLOADS,
   CAPTURE_RELEASE,
   CAPTURE_VERSION,
+  POLARIS_DOWNLOAD,
+  POLARIS_VERSION,
+  PRIVATE,
   PRODUCTS,
+  listNames,
 } from "@/lib/products";
 
 export const metadata: Metadata = {
   title: "Download",
   description:
-    "Install the public Axio tools and see the availability of Axio Deck and Axio Polaris.",
+    "Install the Axio tools: the agent, Capture, Analyst, Local and Polaris, and where Deck stands.",
   alternates: { canonical: "/download" },
 };
 
@@ -21,6 +26,7 @@ export default function DownloadPage() {
   const agent = PRODUCTS.agent;
   const capture = PRODUCTS.capture;
   const analyst = PRODUCTS.analyst;
+  const local = PRODUCTS.local;
   const deck = PRODUCTS.deck;
   const polaris = PRODUCTS.polaris;
 
@@ -28,18 +34,18 @@ export default function DownloadPage() {
     <>
       <section className="page-head">
         <div className="container">
-          <p className="eyebrow">Download</p>
           <h1 className="display display--lg">Every Axio tool, one page.</h1>
           <p>
-            Four are available today. Read an install script before you pipe
-            it into a shell; the ones served here are plain text so that you
-            can.
+            {AVAILABLE.length} of the six can be installed today;{" "}
+            {listNames(PRIVATE)} has no installer while it is built. Read an
+            install script before you pipe it into a shell; the ones served
+            here are plain text so that you can.
           </p>
         </div>
       </section>
 
       <section
-        className="section--tight reveal"
+        className="section--tight"
         id="agent"
         style={{ "--pc": agent.color } as CSSProperties}
       >
@@ -73,7 +79,7 @@ cargo install --git ${agent.repo} --locked axio
       </section>
 
       <section
-        className="section--tight reveal"
+        className="section--tight"
         id="capture"
         style={{ "--pc": capture.color } as CSSProperties}
       >
@@ -113,7 +119,7 @@ cargo install --git ${agent.repo} --locked axio
       </section>
 
       <section
-        className="section--tight reveal"
+        className="section--tight"
         id="analyst"
         style={{ "--pc": analyst.color } as CSSProperties}
       >
@@ -145,17 +151,70 @@ git clone ${analyst.repo}.git "$env:APPDATA\\Binary Ninja\\plugins\\axio_analyst
         </div>
       </section>
 
-      <section className="section--tight reveal" id="local" style={{ "--pc": PRODUCTS.local.color } as CSSProperties}>
+      <section
+        className="section--tight"
+        id="local"
+        style={{ "--pc": local.color } as CSSProperties}
+      >
         <div className="container">
-          <div className="section__head"><h2 className="display display--md">Axio Local</h2><StatusBadge product={PRODUCTS.local} />
-            <p>Use your existing coding agent with a local model server. Source install for macOS, Linux and WSL; requires Rust 1.88 or newer.</p></div>
-          <Term label="macOS · Linux · WSL" wrap copy="Axio Local install">{`cargo install --git https://github.com/umbra-me/axio-local --locked`}</Term>
-          <p className="note"><a href="/products/local">Setup and model selection</a></p>
+          <div className="section__head">
+            <div className="phero__meta">
+              <h2 className="display display--md">{local.name}</h2>
+              <StatusBadge product={local} />
+            </div>
+            <p>
+              Use your existing coding agent with a local model server. Source
+              install for macOS, Linux and WSL; needs Rust 1.88 or newer.
+            </p>
+          </div>
+          <Term label="macOS · Linux · WSL" wrap copy="Axio Local install">{`
+cargo install --git ${local.repo} --locked
+`}</Term>
+          <p className="note">
+            <a href="/products/local">setup and model selection</a>
+          </p>
         </div>
       </section>
 
       <section
-        className="section--tight reveal"
+        className="section--tight"
+        id="polaris"
+        style={{ "--pc": polaris.color } as CSSProperties}
+      >
+        <div className="container">
+          <div className="section__head">
+            <div className="phero__meta">
+              <h2 className="display display--md">
+                {polaris.name} {POLARIS_VERSION}
+              </h2>
+              <StatusBadge product={polaris} />
+            </div>
+            <p>
+              A signed, notarised Mac app for Apple Silicon on macOS 15 or
+              newer. The 14-day trial starts when you choose Start Trial and
+              needs no card; a personal licence is A$59 once, for two Macs.
+            </p>
+          </div>
+          <div className="dl">
+            <a className="dl__row" href={POLARIS_DOWNLOAD}>
+              <b>
+                macOS
+                <small>Apple Silicon</small>
+              </b>
+              <code>{POLARIS_DOWNLOAD.split("/").pop()}</code>
+              <IconDownload />
+            </a>
+          </div>
+          <p className="note">
+            <a href="/products/polaris">about Axio Polaris</a> ·{" "}
+            <a href="/products/polaris#pricing">buy a licence</a> ·{" "}
+            <a href="/products/polaris/licence">licence and refund details</a>
+          </p>
+        </div>
+      </section>
+
+      <section
+        className="section--tight"
         id="deck"
         style={{ "--pc": deck.color } as CSSProperties}
       >
@@ -168,34 +227,7 @@ git clone ${analyst.repo}.git "$env:APPDATA\\Binary Ninja\\plugins\\axio_analyst
             <p>
               Not offered for download while it is being built. There is no
               installer to link and no licence chosen yet.{" "}
-              <a href="/products/deck">
-                Read why
-                <IconArrowUpRight />
-              </a>
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section
-        className="section--tight reveal"
-        id="polaris"
-        style={{ "--pc": polaris.color } as CSSProperties}
-      >
-        <div className="container">
-          <div className="section__head">
-            <div className="phero__meta">
-              <h2 className="display display--md">{polaris.name}</h2>
-              <StatusBadge product={polaris} />
-            </div>
-            <p>
-              Polaris is in private development for Apple Silicon Macs running
-              macOS 15 or newer. There is no public download or notarised
-              customer release.{" "}
-              <a href="/products/polaris">
-                See what is ready
-                <IconArrowUpRight />
-              </a>
+              <a href="/products/deck#status">Read why</a>.
             </p>
           </div>
         </div>

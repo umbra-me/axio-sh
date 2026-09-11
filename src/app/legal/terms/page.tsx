@@ -81,6 +81,9 @@ export default function TermsPage() {
           <strong>Axio Capture:</strong>{" "}Apache License, Version 2.0.
         </li>
         <li>
+          <strong>Axio Local:</strong>{" "}Apache License, Version 2.0.
+        </li>
+        <li>
           <strong>Axio Analyst:</strong>{" "}MIT License.
         </li>
         <li>
@@ -137,10 +140,13 @@ export default function TermsPage() {
       <h2 id="ai">5. Software that acts on your behalf</h2>
       <p>
         The coding agent executes code and commands written by a language model
-        against your files, with your approval. Axio Analyst sends analysis
-        context to a model provider you chose and returns that provider’s
-        output. Axio Deck makes changes to a Windows machine at your direction.
-        In each case <strong>you decide what to approve and where to run it</strong>
+        against your files, with your approval. Axio Local launches a coding
+        agent you already have against a model server you chose, and that agent
+        acts under its own permissions. Axio Analyst sends analysis context to
+        a model provider you chose and returns that provider’s output. Axio
+        Deck makes changes to a Windows machine at your direction. Polaris
+        sends a request to an online provider only for an action you configured
+        to use one. In each case <strong>you decide what to approve and where to run it</strong>
         . Model output can be wrong. The products show you what they are about
         to do so that you can judge it; the judgement is yours, and so is the
         responsibility for what you approve.

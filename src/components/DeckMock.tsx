@@ -50,7 +50,7 @@ export default function DeckMock() {
           ))}
         </div>
         <div className="deck__pane">
-          <h4>System · debloat catalogue</h4>
+          <span className="deck__title">System · debloat catalogue</span>
           <div className="deck__items">
             <div className="deck__item">
               <i className="on" />

@@ -44,6 +44,13 @@ export interface Product {
 
 export const CAPTURE_VERSION = "0.1.0";
 export const ANALYST_VERSION = "0.9.0";
+export const POLARIS_VERSION = "0.2.5";
+
+/** The notarised Mac build, served by the deployment (404 under `next dev`). */
+export const POLARIS_DOWNLOAD = `/downloads/polaris/Axio-Polaris-${POLARIS_VERSION}.dmg`;
+/** Stripe checkout for the personal licence. Price and terms: /products/polaris/licence. */
+export const POLARIS_BUY = "https://buy.stripe.com/dRm8wQ6GA7MWfcF4V73gk00";
+export const POLARIS_PRICE = "A$59";
 
 export const PRODUCTS: Record<ProductId, Product> = {
   agent: {
@@ -156,7 +163,7 @@ export const PRODUCTS: Record<ProductId, Product> = {
     description:
       "Open tools from one launcher, keep useful things at the notch, and run local focus sessions that can hide selected apps. Polaris brings the small utilities around a Mac into one native place.",
     status: "released",
-    statusLabel: "0.2.5 released",
+    statusLabel: `${POLARIS_VERSION} released`,
     repo: null,
     license: "Personal commercial licence",
     platforms: ["macOS 15+ on Apple Silicon"],
@@ -183,6 +190,22 @@ export const PRODUCT_LIST: Product[] = [
 ];
 
 export const productHref = (id: ProductId) => `/products/${id}`;
+
+/**
+ * The products a visitor can obtain today, and the ones still private. Pages
+ * that state availability derive the sentence from these rather than writing
+ * it out: the written version said "Deck and Polaris remain private" for two
+ * weeks after Polaris went on sale.
+ */
+export const AVAILABLE: Product[] = PRODUCT_LIST.filter((p) => p.status !== "private");
+export const PRIVATE: Product[] = PRODUCT_LIST.filter((p) => p.status === "private");
+
+/** "Axio Deck", "Axio Deck and Axio Polaris", … for a sentence. */
+export const listNames = (products: Product[]) =>
+  products.map((p) => p.name).reduce((sentence, name, i, all) => {
+    if (i === 0) return name;
+    return i === all.length - 1 ? `${sentence} and ${name}` : `${sentence}, ${name}`;
+  }, "");
 
 /** Download assets for the current Capture release, by platform. */
 export const CAPTURE_RELEASE = `https://github.com/umbra-me/axio-capture/releases/tag/v${CAPTURE_VERSION}`;

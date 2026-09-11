@@ -27,3 +27,12 @@ test('Capture download links target named assets from the advertised release', (
     assert.equal(decodeURIComponent(url.pathname), `/umbra-me/axio-capture/releases/download/v${CAPTURE_VERSION}/${download.file}`);
   }
 });
+test('availability is derived from the registry, so the pages cannot go stale', () => {
+  const { AVAILABLE, PRIVATE, listNames } = loadSource(new URL('../src/lib/products.ts', import.meta.url));
+  assert.equal(AVAILABLE.length + PRIVATE.length, PRODUCT_LIST.length);
+  assert.ok(AVAILABLE.some(product => product.id === 'polaris'), 'Polaris is on sale and must count as available');
+  assert.deepEqual(PRIVATE.map(product => product.id), ['deck']);
+  assert.equal(listNames(PRIVATE), 'Axio Deck');
+  assert.equal(listNames(AVAILABLE.slice(0, 3)), 'Axio, Axio Capture and Axio Analyst');
+  assert.equal(listNames([]), '');
+});

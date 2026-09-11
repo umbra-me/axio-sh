@@ -40,6 +40,9 @@ export default function SecurityPage() {
             <a href="#deck">Axio Deck</a>
           </li>
           <li>
+            <a href="#polaris">Axio Polaris</a>
+          </li>
+          <li>
             <a href="#site">This website</a>
           </li>
         </ol>
@@ -97,8 +100,21 @@ export default function SecurityPage() {
             </td>
           </tr>
           <tr>
+            <th scope="row">Axio Local</th>
+            <td>
+              Pre-release; the latest <code>main</code>, installed from source.
+            </td>
+          </tr>
+          <tr>
             <th scope="row">Axio Deck</th>
             <td>Private and not distributed.</td>
+          </tr>
+          <tr>
+            <th scope="row">Axio Polaris</th>
+            <td>
+              The latest notarised release. Installed copies update themselves
+              from signed builds.
+            </td>
           </tr>
         </tbody>
       </table>
@@ -240,9 +256,38 @@ export default function SecurityPage() {
           Undo is snapshot-first and the snapshot is written once, so applying
           twice cannot record the modified state as the original.
         </li>
+        <li>
+          App removal has no automatic undo: it requires confirmation, cannot
+          run through the unattended service, and needs a manual reinstall.
+          Stored package inventories do not restore the original payload or
+          data.
+        </li>
       </ul>
 
-      <h2 id="site">7. This website</h2>
+      <h2 id="polaris">7. Axio Polaris</h2>
+      <ul>
+        <li>
+          The Mac app is signed and notarised, and updates are signed builds
+          checked before they are installed.
+        </li>
+        <li>
+          Notes, tasks and clipboard history are local files. The licence
+          service receives a purchase email, a key hash and activation
+          identifiers, and never the content of those stores.
+        </li>
+        <li>
+          Locked Focus sessions are a self-imposed control, not a security
+          boundary: they cannot stop force quit, uninstall or an administrator.
+          The product page says so where the feature is described.
+        </li>
+        <li>
+          A licence key is a credential. Seat release and key recovery are
+          served under this domain and ask for the key or the purchase email;
+          support never asks for card details.
+        </li>
+      </ul>
+
+      <h2 id="site">8. This website</h2>
       <ul>
         <li>
           Static build, no database, no accounts, no cookies, no third-party
@@ -260,9 +305,6 @@ export default function SecurityPage() {
           pin after every deploy.
         </li>
       </ul>
-      <p className="note">App removal has no automatic undo: it requires confirmation,
-        cannot run through the unattended service, and needs manual reinstall.
-        Stored package inventories do not restore the original payload or data.</p>
     </LegalPage>
   );
 }

@@ -25,12 +25,15 @@
   --line-strong: rgba(255, 255, 255, 0.16);
   --lit: rgba(255, 255, 255, 0.07);
 
-  /* Against --ground: --text 17.9:1, --text-2 9.6:1, --muted 5.8:1. --faint is
-     decorative and never carries a word that has to be read. */
+  /* Against --ground: --text 18.6:1, --text-2 12.0:1, --muted 6.8:1,
+     --faint 5.1:1 (4.8:1 on --slate-2, its worst surface). --faint used to sit
+     at 3.4:1 and was documented as decorative, but the card bylines, table
+     headers and footer headings are set in it, so it is read. Every text step
+     now passes AA on every surface it appears on. */
   --text: #f4f5f7;
-  --text-2: #bfc3cb;
-  --muted: #8f939d;
-  --faint: #63666f;
+  --text-2: #c3c7cf;
+  --muted: #9195a0;
+  --faint: #7d808a;
 
   --accent: #7ba0ff;
   --cyan: #63cbdc;
@@ -211,16 +214,18 @@ code {
 
 /* ---- type ---------------------------------------------------------------- */
 
+/* Small labels are set in the mono face at reading size, in sentence case,
+   with no tracking. The tracked-caps eyebrow over every heading said nothing
+   the heading did not, so where a heading carries the section it stands alone;
+   an eyebrow is kept only where it names something the heading cannot. */
 .eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
   margin: 0 0 1rem;
   font-family: var(--mono);
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
   color: var(--accent);
 }
 
@@ -239,11 +244,6 @@ code {
   letter-spacing: -0.03em;
   line-height: 1.05;
   text-wrap: balance;
-}
-
-.display--xl {
-  font-size: clamp(2.6rem, 6.2vw, 4.75rem);
-  letter-spacing: -0.035em;
 }
 
 .display--lg {
@@ -278,10 +278,8 @@ code {
 
 .label {
   font-family: var(--mono);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
 }
 
 .muted {
@@ -419,10 +417,8 @@ main:focus {
   background: color-mix(in srgb, var(--bc, var(--muted)) 10%, transparent);
   color: color-mix(in srgb, var(--bc, var(--muted)) 75%, #fff);
   font-family: var(--mono);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
   white-space: nowrap;
 }
 
@@ -458,10 +454,29 @@ main:focus {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(5, 7, 10, 0.72);
+  /* 0.86 at rest: at 0.72 a headline scrolling under it still read through
+     the blur. Where the browser has scroll timelines it deepens further. */
+  background: rgba(5, 7, 10, 0.86);
   backdrop-filter: blur(18px) saturate(130%);
   -webkit-backdrop-filter: blur(18px) saturate(130%);
   border-bottom: 1px solid var(--line);
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .header {
+      animation: header-settle linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0 6rem;
+    }
+  }
+}
+
+@keyframes header-settle {
+  to {
+    background: rgba(5, 7, 10, 0.94);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  }
 }
 
 .header__row {
@@ -688,6 +703,15 @@ main:focus {
   background: rgba(255, 255, 255, 0.05);
 }
 
+/* Desktop proportions are 36px; a finger needs 44. */
+@media (pointer: coarse) {
+  .icon-btn,
+  .btn--sm {
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+  }
+}
+
 .icon-btn svg {
   width: 1.1rem;
   height: 1.1rem;
@@ -779,16 +803,6 @@ main:focus {
   margin-bottom: 3rem;
 }
 
-.section__head--center {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-
-.section__head--center .eyebrow {
-  justify-content: center;
-}
-
 .section__head p {
   margin: 1rem 0 0;
   color: var(--muted);
@@ -796,10 +810,14 @@ main:focus {
   text-wrap: pretty;
 }
 
-.section__head--center p {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 36rem;
+.section__head p a {
+  color: var(--text-2);
+}
+
+/* The landing page's sections are told apart by shape, and a hairline says
+   where one ends. */
+.section--ruled {
+  border-top: 1px solid var(--line);
 }
 
 .rule {
@@ -812,23 +830,53 @@ main:focus {
 
 .hero {
   position: relative;
-  padding: clamp(4rem, 9vw, 7.5rem) 0 clamp(3rem, 6vw, 5rem);
-  text-align: center;
+  padding: clamp(3.5rem, 7vw, 6rem) 0 clamp(3rem, 6vw, 5rem);
 }
 
-.hero .eyebrow {
-  justify-content: center;
+/* Text beside the figure, the figure the wider of the two: the question the
+   agent is holding is what the page is about, so it gets the room. Below the
+   breakpoint the text comes first and the figure follows it. */
+.hero__grid {
+  display: grid;
+  /* minmax(0, …) so the transcript's 64-column pre cannot set the column's
+     minimum: with a plain 1fr the grid grew to the pre's width on a phone and
+     the headline and lede overflowed the viewport with it. */
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(2.25rem, 5vw, 3.5rem);
+  align-items: center;
+}
+
+/* The figure column is exactly as wide as the transcript at its split size,
+   and the text takes the rest. Sized from the strings rather than a ratio, so
+   the headline's two-line break holds from the breakpoint up. */
+@media (min-width: 66rem) {
+  .hero__grid {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: clamp(2.5rem, 4.5vw, 4.5rem);
+  }
+}
+
+/* Two lines, always: "Developer tools that" over the gradient phrase. The
+   measure is sized so the longer second line fits the text column, which is
+   what the vw term tracks; wider than that and the type stops growing. */
+.hero h1 {
+  font-size: clamp(1.9rem, 7.5vw, 3.1rem);
+  letter-spacing: -0.035em;
+}
+
+@media (min-width: 66rem) {
+  .hero h1 {
+    font-size: clamp(2.4rem, 3.3vw, 3.1rem);
+  }
 }
 
 .hero .lede {
-  margin-left: auto;
-  margin-right: auto;
+  margin-top: 1.4rem;
 }
 
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 0.75rem;
   margin-top: 2.25rem;
 }
@@ -837,7 +885,7 @@ main:focus {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  margin: 2rem auto 0;
+  margin: 1.75rem 0 0;
   padding: 0.55rem 0.6rem 0.55rem 1rem;
   border: 1px solid var(--line);
   border-radius: var(--r-2);
@@ -861,51 +909,74 @@ main:focus {
   }
 }
 
-/* The four facts under the hero, set the way a status bar sets them: the
-   value is the fact, the noun is the caption. */
-.stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  margin-top: clamp(3rem, 6vw, 4.5rem);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+/* The transcript. Its lines are as wide as the prompt row the agent prints,
+   so on a phone the pre scrolls sideways rather than the row being cut; the
+   question's first words are what sits at the left edge. A faint halo in the
+   site's accent behind it is the one place the hero spends any colour. */
+.hero__figure {
+  position: relative;
+  box-shadow: var(--shadow-3);
 }
 
-.stats div {
-  padding: 1.35rem 1rem;
-  text-align: center;
+.hero__figure::before {
+  content: "";
+  position: absolute;
+  inset: -12% -8%;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    60% 60% at 50% 50%,
+    color-mix(in srgb, var(--accent) 14%, transparent),
+    transparent 70%
+  );
 }
 
-.stats div + div {
-  border-left: 1px solid var(--line);
+.hero__figure pre {
+  padding: 1.25rem 1.5rem 1.1rem;
 }
 
-.stats dt {
-  font-family: var(--sans);
-  font-size: 1.4rem;
+@media (min-width: 66rem) {
+  .hero__figure pre {
+    font-size: 0.75rem;
+  }
+}
+
+.hero__figure .ok {
+  color: var(--ok);
+}
+
+.hero__figure .warn {
+  color: var(--warn);
+  font-weight: 500;
+}
+
+.hero__figure b.warn {
   font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--text);
 }
 
-.stats dd {
-  margin: 0.15rem 0 0;
-  font-family: var(--mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+.hero__figure .diff-hunk {
+  color: color-mix(in srgb, var(--accent) 75%, var(--text));
+}
+
+.hero__figure .diff-add {
+  color: var(--ok);
+}
+
+.hero__figure .diff-del {
+  color: var(--danger);
+}
+
+.hero__figure .diff-ctx {
   color: var(--muted);
 }
 
 @media (max-width: 40rem) {
-  .stats {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .stats div:nth-child(3) {
-    border-left: 0;
-  }
-  .stats div:nth-child(n + 3) {
-    border-top: 1px solid var(--line);
+  .hero__figure pre {
+    padding: 1rem 1rem 0.9rem;
+    font-size: 0.6875rem;
+    /* Wider than a phone even at this size, so the pre scrolls and its last
+       column fades rather than cutting a glyph in half. */
+    mask-image: linear-gradient(90deg, #000 86%, transparent);
   }
 }
 
@@ -929,14 +1000,6 @@ main:focus {
   .grid--products {
     grid-template-columns: repeat(2, 1fr);
   }
-}
-
-.grid--3 {
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
-}
-
-.grid--4 {
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
 }
 
 /* A card is a slab with a lit top edge and a pointer-tracked spotlight. The
@@ -1071,9 +1134,7 @@ main:focus {
 .pcard__by {
   margin: 0;
   font-family: var(--mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  font-size: 0.75rem;
   color: var(--faint);
 }
 
@@ -1141,19 +1202,223 @@ main:focus {
   color: var(--pc);
 }
 
-.pcard__foot svg {
-  width: 1rem;
-  height: 1rem;
-  color: var(--pc);
-  transition: transform var(--fast) var(--ease);
-}
-
-.pcard:hover .pcard__foot svg {
-  transform: translate(2px, -2px);
-}
-
 .pcard--wide {
   grid-column: 1 / -1;
+}
+
+/* ---- product rail -------------------------------------------------------- */
+
+/* The six tools as rows: icon, name and one line, where it runs, status. */
+.rail {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+.rail li {
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.rail__row {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 1rem 1.25rem;
+  padding: 1rem 0.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color var(--fast) var(--ease);
+}
+
+.rail__row:hover {
+  background: color-mix(in srgb, var(--pc) 6%, transparent);
+}
+
+.rail__row .card__icon {
+  margin: 0;
+}
+
+.rail__name {
+  display: grid;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.rail__name strong {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.rail__name span {
+  font-size: 0.9375rem;
+  color: var(--muted);
+}
+
+.rail__where {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--pc);
+  text-align: right;
+}
+
+@media (max-width: 48rem) {
+  .rail__row {
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    gap: 0.6rem 1rem;
+  }
+  .rail__where,
+  .rail__row .badge {
+    grid-column: 2;
+    justify-self: start;
+    text-align: left;
+  }
+}
+
+/* ---- network table ------------------------------------------------------- */
+
+.net {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+  text-align: left;
+}
+
+.net th,
+.net td {
+  padding: 0.95rem 1.25rem 0.95rem 0;
+  border-bottom: 1px solid var(--line-soft);
+  vertical-align: baseline;
+}
+
+.net thead th {
+  padding-top: 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--faint);
+}
+
+.net tbody th {
+  width: 11rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.net tbody th a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.net tbody th a:hover {
+  color: var(--pc);
+}
+
+.net tbody th i {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--pc);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--pc) 60%, transparent);
+}
+
+.net td {
+  color: var(--text-2);
+}
+
+.net td:last-child {
+  padding-right: 0;
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  color: var(--muted);
+  white-space: nowrap;
+  text-align: right;
+}
+
+@media (max-width: 48rem) {
+  .net thead {
+    display: none;
+  }
+  .net,
+  .net tbody,
+  .net tr,
+  .net th,
+  .net td {
+    display: block;
+    width: auto;
+  }
+  .net tr {
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .net th,
+  .net td {
+    padding: 0 0 0.35rem;
+    border: 0;
+  }
+  .net td:last-child {
+    text-align: left;
+  }
+}
+
+/* ---- rules ledger -------------------------------------------------------- */
+
+/* Each rule keyed by the string a product prints. Rows with hairlines, not
+   cards: nothing here is a link, and a card kit on a list of commitments made
+   it read as six more features. */
+.rules {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+@media (min-width: 60rem) {
+  .rules {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 3rem;
+  }
+}
+
+.rules li {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.rules .artifact {
+  margin-bottom: 0.75rem;
+}
+
+.rules h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.rules p {
+  margin: 0;
+  max-width: 36rem;
+  font-size: 0.9375rem;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+/* A film in a split, framed like the drawn surfaces beside the other text. */
+.film {
+  border: 1px solid var(--line);
+  border-radius: var(--r-4);
+  background: var(--slate-deep);
+  box-shadow: var(--shadow-3);
+  overflow: hidden;
 }
 
 /* ---- feature rows -------------------------------------------------------- */
@@ -1166,6 +1431,11 @@ main:focus {
   border-radius: var(--r-4);
   background: var(--line);
   overflow: hidden;
+}
+
+/* Four items in a grid that fits three per row leaves an empty cell. */
+.features--4 {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
 }
 
 .feature {
@@ -1348,9 +1618,7 @@ main:focus {
   background: var(--slate);
   box-shadow: inset 0 1px 0 var(--lit);
   font-family: var(--mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-size: 0.75rem;
   color: var(--muted);
 }
 
@@ -1555,7 +1823,7 @@ main:focus {
   margin-top: 0.5rem;
 }
 
-.project h3 {
+.project__name {
   display: flex;
   align-items: center;
   gap: 0.4rem;
@@ -1567,7 +1835,7 @@ main:focus {
   color: var(--text-2);
 }
 
-.project h3 svg {
+.project__name svg {
   flex: none;
   color: var(--faint);
 }
@@ -1672,6 +1940,10 @@ main:focus {
 .surface__pane {
   display: grid;
   grid-template-rows: 2rem minmax(0, 1fr);
+  /* One explicit column at minmax(0, 1fr): the implicit auto column sized
+     itself to the diff's longest line and the crumbs' nowrap text, so on a
+     phone the pane's children ran past the frame instead of clipping. */
+  grid-template-columns: minmax(0, 1fr);
   min-width: 0;
   background: rgba(7, 9, 12, 0.84);
 }
@@ -1680,6 +1952,9 @@ main:focus {
   display: flex;
   align-items: center;
   gap: 0.4rem;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
   padding: 0 0.9rem;
   border-bottom: 1px solid var(--line);
   background: rgba(13, 15, 20, 0.62);
@@ -1720,7 +1995,9 @@ main:focus {
 }
 
 .surface__approval {
-  max-width: 26rem;
+  /* Bounded by the pane as well as by its own measure, or a phone clips the
+     question's right edge. */
+  max-width: min(26rem, calc(100% - 1.8rem));
   margin: 0.4rem 0.9rem 0.9rem;
   padding: 0.6rem 0.7rem;
   border: 1px solid color-mix(in srgb, var(--warn) 34%, transparent);
@@ -1815,14 +2092,6 @@ main:focus {
 .mock__bar .right {
   margin-left: auto;
   color: var(--muted);
-}
-
-.mock-caption {
-  margin: 0.65rem 0 0;
-  color: var(--faint);
-  font-family: var(--mono);
-  font-size: 0.6875rem;
-  text-align: center;
 }
 
 /* Capture: a toolbar, a canvas holding a "screenshot", and annotations on it. */
@@ -2233,7 +2502,8 @@ main:focus {
   background: rgba(7, 9, 12, 0.84);
 }
 
-.deck__pane h4 {
+.deck__title {
+  display: block;
   margin: 0 0 0.75rem;
   font-family: var(--sans);
   font-size: 0.8125rem;
@@ -2298,141 +2568,6 @@ main:focus {
 }
 
 /* Polaris: a quiet Mac desktop with its notch, launcher and shelf. */
-.polaris__desktop {
-  position: relative;
-  min-height: 23rem;
-  padding: 3.2rem 1.4rem 1.4rem;
-  background:
-    radial-gradient(22rem 14rem at 70% 25%, color-mix(in srgb, var(--pc) 12%, transparent), transparent 72%),
-    linear-gradient(155deg, #0d1520, #070a10 72%);
-}
-
-.polaris__notch {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  display: grid;
-  grid-template-columns: auto auto 0.5rem;
-  align-items: center;
-  gap: 0.55rem;
-  width: 12rem;
-  padding: 0.45rem 0.75rem;
-  border-radius: 0 0 1rem 1rem;
-  background: #020305;
-  transform: translateX(-50%);
-  color: var(--muted);
-}
-
-.polaris__notch b {
-  color: var(--text);
-  font-weight: 500;
-}
-
-.polaris__notch i {
-  width: 0.45rem;
-  height: 0.45rem;
-  border-radius: 50%;
-  background: var(--pc);
-  box-shadow: 0 0 8px color-mix(in srgb, var(--pc) 70%, transparent);
-}
-
-.polaris__launcher {
-  max-width: 25rem;
-  margin: 1rem auto 0;
-  padding: 0.65rem;
-  border: 1px solid var(--line-strong);
-  border-radius: 1rem;
-  background: rgba(8, 11, 17, 0.9);
-  box-shadow: var(--shadow-3), inset 0 1px 0 var(--lit);
-}
-
-.polaris__search {
-  padding: 0.65rem 0.75rem;
-  border: 1px solid color-mix(in srgb, var(--pc) 32%, var(--line));
-  border-radius: var(--r-2);
-  background: var(--slate-deep);
-  color: var(--muted);
-}
-
-.polaris__session {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-top: 0.65rem;
-  padding: 0.8rem;
-  border-radius: var(--r-2);
-  background: color-mix(in srgb, var(--pc) 8%, var(--slate));
-}
-
-.polaris__session div {
-  display: grid;
-  gap: 0.2rem;
-}
-
-.polaris__session .artifact {
-  width: fit-content;
-  margin: 0 0 0.2rem;
-  font-size: 0.5625rem;
-}
-
-.polaris__session strong {
-  color: var(--text);
-  font-family: var(--sans);
-  font-size: 0.875rem;
-}
-
-.polaris__session small {
-  color: var(--muted);
-}
-
-.polaris__clock {
-  color: var(--pc);
-  font-size: 1.15rem;
-}
-
-.polaris__actions {
-  display: flex;
-  gap: 0.4rem;
-  margin-top: 0.65rem;
-}
-
-.polaris__actions span {
-  padding: 0.35rem 0.55rem;
-  border: 1px solid var(--line);
-  border-radius: var(--r-1);
-  color: var(--muted);
-}
-
-.polaris__actions span:first-child {
-  border-color: color-mix(in srgb, var(--pc) 35%, transparent);
-  color: var(--pc);
-}
-
-.polaris__shelf {
-  position: absolute;
-  left: 50%;
-  bottom: 1.25rem;
-  display: flex;
-  gap: 0.35rem;
-  padding: 0.4rem;
-  border: 1px solid var(--line);
-  border-radius: 0.85rem;
-  background: rgba(8, 11, 17, 0.88);
-  transform: translateX(-50%);
-  box-shadow: var(--shadow-2);
-}
-
-.polaris__shelf span {
-  display: grid;
-  place-items: center;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 0.55rem;
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--text-2);
-}
-
 @media (max-width: 40rem) {
   .ana {
     grid-template-columns: minmax(0, 1fr);
@@ -2448,408 +2583,6 @@ main:focus {
   }
   .deck__bar .mods {
     display: none;
-  }
-  .polaris__desktop {
-    min-height: 21rem;
-    padding-inline: 0.75rem;
-  }
-  .polaris__actions span:last-child {
-    display: none;
-  }
-}
-
-/* Polaris product walkthrough: real development-build media and long-form detail. */
-.section--polaris-media {
-  border-block: 1px solid var(--line-soft);
-  background:
-    radial-gradient(48rem 28rem at 75% 15%, color-mix(in srgb, var(--pc) 8%, transparent), transparent 72%),
-    var(--slate-deep);
-}
-
-.polaris-demo-note {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin: -1.25rem 0 1.5rem;
-  padding: 0.8rem 1rem;
-  border: 1px solid var(--line);
-  border-radius: var(--r-2);
-  background: rgba(255, 255, 255, 0.02);
-}
-
-.polaris-demo-note .artifact {
-  flex: none;
-  margin: 0;
-}
-
-.polaris-demo-note p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.8125rem;
-}
-
-.polaris-gallery {
-  display: grid;
-  gap: 1rem;
-}
-
-@media (min-width: 54rem) {
-  .polaris-gallery {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .polaris-gallery > :last-child:nth-child(odd) {
-    grid-column: 1 / -1;
-  }
-}
-
-.polaris-media {
-  margin: 0;
-  border: 1px solid var(--line);
-  border-radius: var(--r-4);
-  background: var(--slate);
-  box-shadow: var(--shadow-2);
-  overflow: hidden;
-}
-
-.polaris-media__viewport {
-  position: relative;
-  aspect-ratio: 1182 / 768;
-  overflow: hidden;
-  background: #070a0f;
-}
-
-.polaris-media__asset {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.polaris-media__image-link {
-  position: absolute;
-  inset: 0;
-  display: block;
-}
-
-.polaris-media__image-link:focus-visible {
-  outline: 2px solid var(--pc);
-  outline-offset: -3px;
-}
-
-.polaris-media figcaption {
-  display: grid;
-  gap: 0.35rem;
-  padding: 1rem 1.1rem 1.15rem;
-  border-top: 1px solid var(--line-soft);
-}
-
-.polaris-media figcaption .artifact {
-  width: fit-content;
-  margin: 0 0 0.15rem;
-}
-
-.polaris-media figcaption strong {
-  font-size: 0.9375rem;
-  font-weight: 600;
-}
-
-.polaris-media figcaption p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.8125rem;
-}
-
-.polaris-media--hero figcaption {
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: center;
-  column-gap: 0.75rem;
-  padding: 0.75rem 0.9rem;
-}
-
-.polaris-media--hero figcaption .artifact {
-  grid-row: 1 / 3;
-}
-
-.polaris-media--hero figcaption strong {
-  font-size: 0.8125rem;
-}
-
-.polaris-media--hero figcaption p {
-  font-size: 0.6875rem;
-}
-
-.polaris-chapter {
-  display: grid;
-  gap: 2.5rem;
-}
-
-@media (min-width: 64rem) {
-  .polaris-chapter {
-    grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
-    gap: 5rem;
-  }
-}
-
-.polaris-chapter__intro .lede {
-  font-size: 1.0625rem;
-}
-
-.polaris-detail-grid {
-  display: grid;
-  border-top: 1px solid var(--line);
-}
-
-.polaris-detail-grid article {
-  display: grid;
-  grid-template-columns: 2.5rem minmax(0, 1fr);
-  padding: 1.5rem 0;
-  border-bottom: 1px solid var(--line);
-}
-
-.polaris-detail-grid__index {
-  grid-row: 1 / 3;
-  padding-top: 0.15rem;
-  color: var(--pc);
-  font-family: var(--mono);
-  font-size: 0.6875rem;
-}
-
-.polaris-detail-grid h3,
-.polaris-workflows h3,
-.polaris-focus-flow h3,
-.polaris-boundary-card h3 {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.polaris-detail-grid p {
-  margin: 0.5rem 0 0;
-  color: var(--muted);
-  font-size: 0.9375rem;
-}
-
-.polaris-list-mark {
-  flex: none;
-  color: var(--pc);
-  font-family: var(--mono);
-  font-size: 0.6875rem;
-  line-height: 1.8;
-}
-
-.polaris-module-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1px;
-  padding: 1px;
-  border: 1px solid var(--line);
-  border-radius: var(--r-4);
-  background: var(--line);
-  box-shadow: var(--shadow-2);
-  overflow: hidden;
-}
-
-.polaris-module-list span {
-  display: flex;
-  align-items: flex-end;
-  min-height: 5rem;
-  padding: 1rem;
-  background:
-    radial-gradient(8rem 6rem at 100% 0, color-mix(in srgb, var(--pc) 9%, transparent), transparent 75%),
-    var(--slate);
-  color: var(--text-2);
-  font-size: 0.875rem;
-  font-weight: 550;
-}
-
-.polaris-workflows {
-  display: grid;
-  gap: 1rem;
-}
-
-@media (min-width: 54rem) {
-  .polaris-workflows {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-.polaris-workflows article {
-  display: flex;
-  flex-direction: column;
-  min-height: 19rem;
-  padding: 1.5rem;
-  border: 1px solid var(--line);
-  border-radius: var(--r-3);
-  background: var(--slate);
-}
-
-.polaris-workflows .artifact {
-  width: fit-content;
-  margin-bottom: 2.5rem;
-}
-
-.polaris-workflows p {
-  margin: 0.65rem 0 1.5rem;
-  color: var(--muted);
-  font-size: 0.9375rem;
-}
-
-.polaris-workflows small {
-  margin-top: auto;
-  padding-top: 1rem;
-  border-top: 1px solid var(--line-soft);
-  color: var(--faint);
-  font-size: 0.75rem;
-}
-
-.polaris-focus-flow {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 1px;
-  margin: 0;
-  padding: 1px;
-  border: 1px solid var(--line);
-  border-radius: var(--r-4);
-  background: var(--line);
-  list-style: none;
-  overflow: hidden;
-}
-
-@media (min-width: 60rem) {
-  .polaris-focus-flow {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-.polaris-focus-flow li {
-  display: grid;
-  grid-template-columns: 2.25rem minmax(0, 1fr);
-  gap: 0.75rem;
-  padding: 1.5rem;
-  background: var(--slate);
-}
-
-.polaris-focus-flow li > span {
-  display: grid;
-  place-items: center;
-  width: 2rem;
-  height: 2rem;
-  border: 1px solid color-mix(in srgb, var(--pc) 35%, var(--line));
-  border-radius: 50%;
-  color: var(--pc);
-  font-family: var(--mono);
-  font-size: 0.6875rem;
-}
-
-.polaris-focus-flow p {
-  margin: 0.55rem 0 0;
-  color: var(--muted);
-  font-size: 0.9375rem;
-}
-
-.polaris-boundary-card {
-  padding: clamp(1.5rem, 4vw, 2.5rem);
-  border: 1px solid var(--line);
-  border-radius: var(--r-4);
-  background:
-    radial-gradient(20rem 14rem at 100% 0, color-mix(in srgb, var(--pc) 10%, transparent), transparent 75%),
-    var(--slate);
-  box-shadow: var(--shadow-2);
-}
-
-.polaris-boundary-card .artifact {
-  margin-bottom: 1.5rem;
-}
-
-.polaris-boundary-card p {
-  margin: 0.6rem 0 0;
-  color: var(--muted);
-  font-size: 0.9375rem;
-}
-
-.polaris-boundary-card hr {
-  border: 0;
-  border-top: 1px solid var(--line);
-  margin: 1.5rem 0;
-}
-
-.polaris-boundary-card small {
-  display: block;
-  margin-top: 1.5rem;
-  color: var(--faint);
-  font-size: 0.75rem;
-}
-
-.polaris-faq {
-  border-top: 1px solid var(--line);
-}
-
-.polaris-faq details {
-  border-bottom: 1px solid var(--line);
-}
-
-.polaris-faq summary {
-  position: relative;
-  padding: 1.35rem 3rem 1.35rem 0;
-  cursor: pointer;
-  list-style: none;
-  color: var(--text);
-  font-size: 1rem;
-  font-weight: 550;
-}
-
-.polaris-faq summary::-webkit-details-marker {
-  display: none;
-}
-
-.polaris-faq summary::after {
-  content: "+";
-  position: absolute;
-  top: 1.2rem;
-  right: 0;
-  color: var(--pc);
-  font-family: var(--mono);
-  font-size: 1.25rem;
-  font-weight: 400;
-}
-
-.polaris-faq details[open] summary::after {
-  content: "−";
-}
-
-.polaris-faq details p {
-  max-width: 46rem;
-  margin: -0.35rem 0 1.35rem;
-  color: var(--muted);
-  font-size: 0.9375rem;
-}
-
-@media (max-width: 40rem) {
-  .polaris-demo-note {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .polaris-media--hero figcaption {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .polaris-media--hero figcaption .artifact {
-    grid-row: auto;
-  }
-
-  .polaris-module-list {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .polaris-module-list span {
-    min-height: 3.75rem;
-  }
-
-  .polaris-workflows article {
-    min-height: 0;
   }
 }
 
@@ -3266,30 +2999,26 @@ main:focus {
 /* ---- CTA band ------------------------------------------------------------ */
 
 .cta {
-  position: relative;
-  padding: clamp(3rem, 6vw, 4.5rem) 1.5rem;
-  border: 1px solid var(--line);
-  border-radius: var(--r-5);
-  background:
-    radial-gradient(
-      30rem 14rem at 50% 0%,
-      color-mix(in srgb, var(--accent) 14%, transparent),
-      transparent 70%
-    ),
-    var(--slate);
-  box-shadow: inset 0 1px 0 var(--lit);
-  text-align: center;
-  overflow: hidden;
+  display: grid;
+  gap: 1.75rem;
+  align-items: center;
+}
+
+@media (min-width: 56rem) {
+  .cta {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 3rem;
+  }
 }
 
 .cta .lede {
-  margin-left: auto;
-  margin-right: auto;
   max-width: 34rem;
 }
 
-.cta .hero__actions {
-  margin-top: 1.75rem;
+.cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
 /* ---- footer -------------------------------------------------------------- */
@@ -3332,13 +3061,13 @@ main:focus {
   border-color: var(--line);
 }
 
-.footer h3 {
+/* h2, not h3: on a page with no h2 of its own (the 404) an h3 here jumped
+   the outline from h1 to h3. Styled as the small labels they are. */
+.footer h2 {
   margin: 0 0 1rem;
   font-family: var(--mono);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
   color: var(--faint);
 }
 
@@ -3382,32 +3111,6 @@ main:focus {
   color: var(--text);
 }
 
-/* ---- reveal -------------------------------------------------------------- */
-
-/* Sections rise in as they enter the viewport. Scroll-driven, so it costs no
-   script; where the browser lacks animation-timeline the content simply sits
-   where it is, which is the correct fallback. Off under reduced motion. */
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .reveal {
-      animation: reveal linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 28%;
-    }
-  }
-}
-
-@keyframes reveal {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
 /* ---- not found ----------------------------------------------------------- */
 
 .nf {
@@ -3419,141 +3122,293 @@ main:focus {
   color: var(--faint);
 }
 
-/* Polaris customer page */
-.polaris-page .phero {
-  background: radial-gradient(ellipse at 80% 35%, #7fb9f512, transparent 60%);
-}
-.polaris-page .phero .display { font-size: clamp(2.8rem, 4.6vw, 4.5rem); line-height: 1.08; letter-spacing: -.045em; }
-.polaris-page .phero .lede { max-width: 31rem; font-size: 1.125rem; }
-.polaris-page .section__head { max-width: 48rem; }
-.polaris-page .features .feature { border-radius: 1rem; }
-.polaris-page .polaris-demo-note { margin-top: 0; border: 0; padding-left: 0; background: none; }
-.polaris-pricing { display: grid; gap: 2.5rem; padding: clamp(1.5rem, 4vw, 3rem); border: 1px solid #7fb9f54d; border-radius: 1.5rem; background: linear-gradient(125deg, #7fb9f512, transparent); }
-.polaris-pricing__price { margin: .5rem 0; font-size: clamp(3rem, 6vw, 4.5rem); line-height: 1.1; letter-spacing: -.05em; color: var(--text); }
-.polaris-pricing__price span { font-size: 1rem; letter-spacing: 0; color: var(--muted); }
-.polaris-pricing p:not(.polaris-pricing__price):not(.eyebrow) { color: var(--muted); max-width: 30rem; }
-.polaris-pricing .btn { margin-top: 1rem; }
-.polaris-pricing__trial small { display: block; margin-top: 1rem; color: var(--muted); }
-@media (min-width: 54rem) {
-  .polaris-pricing { grid-template-columns: 1fr 1fr; align-items: center; }
-  .polaris-pricing__trial { border-left: 1px solid var(--line); padding-left: 2.5rem; }
-}
-@media (max-width: 40rem) {
-  .polaris-page .polaris-demo-note { align-items: flex-start; flex-direction: column; gap: .5rem; }
-  .polaris-page .phero__actions .btn { flex: 1 1 auto; justify-content: center; }
+/* ---- centred product hero (Polaris) -------------------------------------- */
+
+/* The one paid product's page opens on its film. Same tokens, type and
+   buttons as every other product page; only the alignment differs. */
+.phero--center .container {
+  text-align: center;
 }
 
-/* Polaris: a quiet, film-led product page. */
-.polaris-release { --polaris-blue: #a9c8ff; --polaris-muted: #a3a8b4; color: #f2f3f6; background: #0b0d12; }
-.polaris-release .container { max-width: 1200px; }
-.polaris-release a:focus-visible, .polaris-release button:focus-visible, .polaris-release summary:focus-visible { outline: 2px solid var(--polaris-blue); outline-offset: 6px; }
-.polaris-release section[id] { scroll-margin-top: 100px; }
-.polaris-subnav { display:flex; align-items:center; justify-content:space-between; padding-top:22px; padding-bottom:22px; border-bottom:1px solid #ffffff13; }
-.polaris-subnav>a { display:flex; align-items:center; gap:10px; font-size:19px; font-weight:600; }
-.polaris-subnav>div { display:flex; gap:28px; font-size:13px; color:var(--polaris-muted); }
-.polaris-subnav a:hover { color:white; }
-.polaris-intro { text-align:center; padding-top:92px; }
-.polaris-kicker { font-size:12px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--polaris-blue); margin-bottom:24px; }
-.polaris-intro h1 { font-size:clamp(60px, 7.6vw, 100px); line-height:1.01; letter-spacing:-.065em; font-weight:550; margin:0; }
-.polaris-release h1 span, .polaris-release h2 span { color:var(--polaris-muted); }
-.polaris-lede { color:#b5bac5; font-size:19px; line-height:1.65; margin:28px auto; max-width:600px; }
-.polaris-actions { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; }
-.polaris-button { display:inline-flex; align-items:center; justify-content:center; gap:28px; min-height:50px; border-radius:9px; padding:13px 23px; font-size:14px; font-weight:600; background:#dbe7ff; color:#101a30; border:1px solid #dbe7ff; transition:background .2s, transform .2s; }
-.polaris-button:hover { background:white; transform:translateY(-1px); }
-.polaris-button--quiet { background:#ffffff05; border-color:#ffffff29; color:#edf0f7; }
-.polaris-button--quiet:hover { background:#ffffff0d; }
-.polaris-fine { color:#969eae; font-size:12px; line-height:1.7; margin-top:18px; }
-.polaris-hero-film { margin-top:56px; }
-.polaris-film { background:#080a0d; border:1px solid #ffffff14; border-radius:16px; overflow:hidden; aspect-ratio:16/9; position:relative; }
-.polaris-film video, .polaris-film img { width:100%; height:100%; display:block; object-fit:contain; }
-.polaris-film__play { width:100%; height:100%; display:block; border:0; padding:0; background:transparent; color:white; cursor:pointer; position:relative; }
-.polaris-film__play picture { display:block; width:100%; height:100%; }
-.polaris-film__control { position:absolute; bottom:24px; right:24px; display:flex; align-items:center; gap:10px; padding:12px 17px; border-radius:100px; background:#dce8ff; color:#101a30; font-size:13px; font-weight:600; box-shadow:0 3px 20px #0008; transition:transform .2s; }
-.polaris-film__control svg { width:16px; height:16px; }
-.polaris-film__play:hover .polaris-film__control { transform:scale(1.04); }
-.polaris-film-note { font-size:12px; color:#767e8d; margin-top:15px; }
-.polaris-section { padding-top:120px; padding-bottom:20px; }
-.polaris-release h2 { font-size:clamp(36px, 4.5vw, 56px); line-height:1.09; letter-spacing:-.045em; font-weight:500; margin:0 0 25px; }
-.polaris-section-heading { margin-bottom:70px; }
-.polaris-section-heading>p:last-child { max-width:480px; color:var(--polaris-muted); font-size:17px; line-height:1.7; }
-.polaris-story { display:grid; grid-template-columns:.8fr 1.2fr; align-items:center; gap:65px; margin-bottom:70px; }
-.polaris-story--reverse { grid-template-columns:1.2fr .8fr; }
-.polaris-story--reverse .polaris-story__copy { grid-column:2; grid-row:1; }
-.polaris-story--reverse .polaris-film { grid-column:1; grid-row:1; }
-.polaris-index { font-size:11px; letter-spacing:.12em; color:#7893bd; }
-.polaris-story h3 { font-size:clamp(30px,3vw,40px); line-height:1.14; letter-spacing:-.04em; font-weight:500; margin:20px 0; }
-.polaris-story p { color:var(--polaris-muted); font-size:16px; line-height:1.75; max-width:370px; }
-.polaris-story p.polaris-detail { color:#ccd5e6; font-size:12px; margin-top:24px; }
-.polaris-story .polaris-film__control { bottom:14px; right:14px; font-size:11px; padding:9px 13px; }
-.polaris-toolkit { background:#10141c; border-block:1px solid #ffffff0c; margin-top:30px; }
-.polaris-toolkit__inner { padding-block:76px; display:grid; grid-template-columns:.85fr 1.15fr; gap:60px; }
-.polaris-toolkit h2 { font-size:40px; }
-.polaris-tools { display:grid; grid-template-columns:1fr 1fr; gap:34px; }
-.polaris-release article h3 { color:#eef0f5; }
-.polaris-tools h3, .polaris-principles h3 { font-size:17px; font-weight:500; margin:0 0 12px; letter-spacing:-.02em; }
-.polaris-tools p, .polaris-principles p:not(.polaris-kicker) { font-size:14px; line-height:1.75; color:var(--polaris-muted); }
-.polaris-principles { display:grid; grid-template-columns:1fr 1fr; gap:80px; }
-.polaris-principles article { border-bottom:1px solid #ffffff14; padding-bottom:24px; margin-bottom:24px; }
-.polaris-text-link { color:#c0d4f8; font-size:13px; text-underline-offset:5px; }
-.polaris-text-link:hover { text-decoration:underline; }
-.polaris-offer { border:1px solid #ffffff20; border-radius:20px; background:linear-gradient(130deg,#141d30,#11151e 65%); padding:60px; display:grid; grid-template-columns:1.15fr 1fr; gap:70px; }
-.polaris-offer img { margin:0 0 22px -5px; }
-.polaris-offer .polaris-kicker { margin-bottom:20px; }
-.polaris-offer h2 { font-size:43px; }
-.polaris-offer p:not(.polaris-kicker):not(.polaris-price):not(.polaris-fine) { font-size:15px; line-height:1.8; color:var(--polaris-muted); margin-bottom:25px; }
-.polaris-offer small { display:block; margin-top:15px; color:#8e98ab; font-size:11px; }
-.polaris-offer__purchase { align-self:center; border-left:1px solid #ffffff1b; padding-left:60px; }
-.polaris-price { font-size:66px; letter-spacing:-.05em; line-height:1; margin:0 0 30px; }
-.polaris-price span { font-size:16px; letter-spacing:0; color:var(--polaris-muted); margin-left:12px; }
-.polaris-offer ul { padding:0; list-style:none; display:grid; gap:14px; margin-bottom:32px; font-size:14px; color:#c1cadb; }
-.polaris-offer li::before { content:'✓'; margin-right:12px; color:#9fc2ff; }
-.polaris-offer__purchase .polaris-button { width:100%; }
-.polaris-offer__purchase .polaris-text-link { display:inline-block; margin-top:15px; }
-.polaris-questions { display:grid; grid-template-columns:.8fr 1.2fr; gap:65px; padding-bottom:120px; }
-.polaris-questions>div>p:not(.polaris-kicker) { color:var(--polaris-muted); font-size:14px; margin-bottom:12px; }
-.polaris-questions .polaris-faq { margin:0; }
-.polaris-questions .polaris-faq details { border-color:#ffffff1a; padding:21px 0; }
-.polaris-questions .polaris-faq summary { color:#dfe4ee; font-size:15px; }
-.polaris-questions .polaris-faq p { color:var(--polaris-muted); font-size:14px; line-height:1.8; }
-@media(max-width:900px) {
-  .polaris-intro { padding-top:65px; }
-  .polaris-story, .polaris-story--reverse { gap:30px; }
-  .polaris-toolkit__inner { grid-template-columns:1fr; gap:25px; }
-  .polaris-principles, .polaris-questions { gap:35px; }
-  .polaris-offer { padding:35px; gap:35px; }
-  .polaris-offer__purchase { padding-left:30px; }
+.phero--center .crumbs,
+.phero--center .phero__meta,
+.phero--center .phero__actions,
+.phero--center .phero__facts {
+  justify-content: center;
 }
-@media(max-width:600px) {
-  .polaris-subnav>div { gap:15px; font-size:11px; }
-  .polaris-subnav>a { font-size:16px; gap:6px; }
-  .polaris-subnav img { width:28px; height:28px; }
-  .polaris-intro { padding-top:52px; }
-  .polaris-intro h1 { font-size:58px; }
-  .polaris-kicker { font-size:10px; letter-spacing:.07em; }
-  .polaris-lede { font-size:16px; margin:24px auto; }
-  .polaris-desktop-break { display:none; }
-  .polaris-actions { gap:10px; }
-  .polaris-button { padding:13px 16px; font-size:13px; gap:15px; }
-  .polaris-fine { font-size:10px; }
-  .polaris-hero-film { margin-top:35px; max-width:350px; margin-inline:auto; }
-  .polaris-film { aspect-ratio:9/16; border-radius:13px; max-width:350px; width:100%; margin-inline:auto; }
-  .polaris-film__control { bottom:18px; right:18px; }
-  .polaris-section { padding-top:72px; }
-  .polaris-section-heading { margin-bottom:40px; }
-  .polaris-story, .polaris-story--reverse { grid-template-columns:1fr; gap:25px; margin-bottom:55px; }
-  .polaris-story--reverse .polaris-story__copy, .polaris-story--reverse .polaris-film { grid-column:auto; grid-row:auto; }
-  .polaris-story h3 br { display:none; }
-  .polaris-story h3 { font-size:32px; margin:14px 0; }
-  .polaris-story p { max-width:none; font-size:15px; }
-  .polaris-story p.polaris-detail { margin-top:14px; }
-  .polaris-toolkit { margin-top:0; }
-  .polaris-toolkit__inner { padding-block:48px; }
-  .polaris-tools { grid-template-columns:1fr; gap:24px; }
-  .polaris-principles, .polaris-questions { grid-template-columns:1fr; gap:20px; }
-  .polaris-offer { grid-template-columns:1fr; padding:28px; gap:35px; }
-  .polaris-offer h2 { font-size:35px; }
-  .polaris-offer__purchase { border-left:0; border-top:1px solid #ffffff1b; padding:30px 0 0; }
-  .polaris-questions { padding-bottom:70px; }
+
+.phero--center .lede {
+  margin-inline: auto;
+  max-width: 34rem;
 }
-@media(prefers-reduced-motion:reduce) { .polaris-release *, .polaris-release *::before { transition:none!important; scroll-behavior:auto; } }
-.polaris-release .polaris-subnav a, .polaris-release .polaris-button { text-decoration:none; }
+
+.phero--center .phero__facts {
+  justify-content: center;
+}
+
+/* Facts separated by a dot when they sit on one line. */
+.phero--center .phero__facts li + li::before {
+  content: "·";
+  margin-right: 1.5rem;
+  color: var(--faint);
+}
+
+.film-hero {
+  max-width: 64rem;
+  margin: clamp(2.5rem, 5vw, 3.5rem) auto 0;
+}
+
+.film-note {
+  margin: 0.9rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--faint);
+}
+
+/* ---- film ---------------------------------------------------------------- */
+
+.film {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: var(--r-4);
+  background: var(--slate-deep);
+  box-shadow: var(--shadow-3);
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+}
+
+.film video,
+.film img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.film__play {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.film__play picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Top corner, not bottom: the posters carry their own caption along the
+   bottom edge and a narrow frame put the control on top of it. */
+.film__control {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.95rem;
+  border-radius: 999px;
+  background: var(--pc, var(--accent));
+  color: #05070a;
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-2);
+  transition: transform var(--fast) var(--ease);
+}
+
+.film__control svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.film__play:hover .film__control {
+  transform: translateY(-1px);
+}
+
+@media (max-width: 600px) {
+  .film {
+    max-width: 22rem;
+    margin-inline: auto;
+    aspect-ratio: 9 / 16;
+  }
+}
+
+.stories {
+  display: grid;
+  gap: clamp(3rem, 6vw, 5rem);
+}
+
+.stories .split__text .note {
+  margin-top: 1rem;
+}
+
+/* ---- offer (Polaris pricing) --------------------------------------------- */
+
+.offer {
+  display: grid;
+  gap: 2.5rem;
+  padding: clamp(1.75rem, 4vw, 3.5rem);
+  border: 1px solid var(--line);
+  border-radius: var(--r-5);
+  background:
+    radial-gradient(
+      36rem 18rem at 20% 0%,
+      color-mix(in srgb, var(--pc, var(--accent)) 12%, transparent),
+      transparent 70%
+    ),
+    var(--slate);
+  box-shadow: inset 0 1px 0 var(--lit);
+}
+
+@media (min-width: 56rem) {
+  .offer {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+  }
+  .offer__price {
+    padding-left: clamp(2rem, 4vw, 3.5rem);
+    border-left: 1px solid var(--line);
+  }
+}
+
+.offer__pitch img {
+  margin-bottom: 1.25rem;
+}
+
+.offer__pitch .lede {
+  max-width: 28rem;
+}
+
+.offer__version {
+  margin: 1.25rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--faint);
+}
+
+.offer__amount {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin: 0 0 1.5rem;
+  font-size: clamp(2.75rem, 5vw, 3.75rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.offer__amount span {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+
+.offer__price ul {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0 0 1.75rem;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9375rem;
+  color: var(--text-2);
+}
+
+.offer__price li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.offer__price li::before {
+  content: "";
+  flex: none;
+  width: 0.4rem;
+  height: 0.4rem;
+  margin-top: 0.55rem;
+  border-radius: 50%;
+  background: var(--pc);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--pc) 60%, transparent);
+}
+
+.offer__price .note {
+  margin-top: 1.25rem;
+  font-size: 0.8125rem;
+}
+
+/* ---- questions (Polaris FAQ) --------------------------------------------- */
+
+.faq {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 60rem) {
+  .faq {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    gap: 4rem;
+  }
+  .faq .section__head {
+    margin-bottom: 0;
+  }
+}
+
+.faq__list {
+  border-top: 1px solid var(--line);
+}
+
+.faq details {
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  list-style: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::after {
+  content: "+";
+  flex: none;
+  font-family: var(--mono);
+  color: var(--muted);
+}
+
+.faq details[open] summary::after {
+  content: "−";
+}
+
+.faq details p {
+  margin: 0 0 1.25rem;
+  max-width: 40rem;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--text-2);
+}
+
+.faq details a {
+  color: var(--text);
+}
+
+.nf .hero__actions {
+  justify-content: center;
+}

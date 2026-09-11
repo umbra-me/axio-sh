@@ -50,7 +50,7 @@ export default function DeckPage() {
         <hr className="rule" />
       </div>
 
-      <section className="section reveal">
+      <section className="section">
         <div className="container">
           <div className="section__head">
             <p className="eyebrow">What it does</p>
@@ -127,7 +127,7 @@ export default function DeckPage() {
         </div>
       </section>
 
-      <section className="section reveal">
+      <section className="section">
         <div className="container">
           <div className="split">
             <div className="split__text">
@@ -158,7 +158,7 @@ export default function DeckPage() {
         </div>
       </section>
 
-      <section className="section reveal" id="status">
+      <section className="section" id="status">
         <div className="container">
           <div className="section__head">
             <p className="eyebrow">Status</p>
@@ -185,11 +185,14 @@ export default function DeckPage() {
               </p>
             </div>
           </div>
+          <p className="note">
+            App removal has no automatic undo: it requires confirmation, cannot
+            run through the unattended service, and needs manual reinstall.
+            Stored package inventories do not restore the original payload or
+            data.
+          </p>
         </div>
       </section>
-      <p className="note">App removal has no automatic undo: it requires confirmation,
-        cannot run through the unattended service, and needs manual reinstall.
-        Stored package inventories do not restore the original payload or data.</p>
     </div>
   );
 }

@@ -1,5 +1,10 @@
 # Polaris trial download — September 10, 2026
 
+> Historical September 10 record: the 0.2.0 (100) trial build. The product
+> page and the download page now offer the version named by `POLARIS_VERSION`
+> in `src/lib/products.ts` (0.2.5 at the time of
+> [the September 11 site redesign](site-redesign-2026-09-11.md)).
+
 The product page now links the signed and notarised Apple Silicon 0.2.0 (100)
 installer at `/downloads/polaris/Axio-Polaris-0.2.0.dmg`. Downloading requires no
 account. The 14-day trial starts only when explicitly selected in the app.

@@ -11,6 +11,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
       priority: 0.8,
     })),
+    {
+      url: `${SITE}/products/polaris/licence`,
+      changeFrequency: "monthly",
+      priority: 0.4,
+    },
     { url: `${SITE}/download`, changeFrequency: "weekly", priority: 0.8 },
     { url: `${SITE}/about`, changeFrequency: "monthly", priority: 0.5 },
     ...NAV.legal.map((item) => ({

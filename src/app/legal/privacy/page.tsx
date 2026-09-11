@@ -122,17 +122,6 @@ export default function PrivacyPage() {
         source is what runs; tell us and we will correct the page.
       </p>
 
-      <h3>Axio Local and capture attachments</h3>
-      <p>
-        Local contacts the HTTP model server you configure and writes isolated
-        agent configuration plus protected configuration backups on your machine.
-        Launched agents retain their own network behaviour and tool permissions.
-        Capture attachment exports stay on disk. Importing one into the desktop
-        copies it into app storage; sending the first Codex prompt supplies the
-        image to the configured provider. Optional Analyst transcripts and exports
-        include unverified findings with bounded context excerpts and provenance.
-      </p>
-
       <h3>Axio, the coding agent</h3>
       <table>
         <tbody>
@@ -185,11 +174,43 @@ export default function PrivacyPage() {
             </td>
           </tr>
           <tr>
+            <th scope="row">Attachments</th>
+            <td>
+              Importing a Capture export into the desktop app copies it into
+              the app’s storage. Sending the first prompt that carries it
+              supplies the image to the provider you configured, like any
+              other part of a turn.
+            </td>
+          </tr>
+          <tr>
             <th scope="row">Installer</th>
             <td>
               The install scripts and <code>cargo install</code>{" "}fetch source
               from GitHub and dependencies from crates.io. Those services see
               the requests under their own policies.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Axio Local</h3>
+      <table>
+        <tbody>
+          <tr>
+            <th scope="row">Model server</th>
+            <td>
+              Local contacts the HTTP model server you configure, on your
+              machine or its host, and nothing else of its own. The agents it
+              launches keep their own network behaviour and tool permissions;
+              configuration isolation is not a network sandbox.
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Configuration</th>
+            <td>
+              It writes an isolated configuration home for each launch and a
+              snapshot of the protected configuration files it relocates, on
+              your machine, and verifies their recovery when the agent exits.
             </td>
           </tr>
         </tbody>
@@ -263,7 +284,10 @@ export default function PrivacyPage() {
               Kept in memory by default. Restoring conversations for a binary is
               opt-in; when enabled, a bounded record is stored under Binary
               Ninja’s user directory, keyed by a content fingerprint rather
-              than a path, and can be deleted from the sidebar.
+              than a path, and can be deleted from the sidebar. A transcript,
+              and a Markdown export you choose to write, holds the provider’s
+              unverified findings with the bounded context excerpts and
+              provenance they were given.
             </td>
           </tr>
         </tbody>
@@ -353,12 +377,14 @@ export default function PrivacyPage() {
       </p>
       <h2 id="third">5. Third parties</h2>
       <p>
-        We do not sell, rent or trade personal data.
-        We do not run advertising. The third parties named above, model
-        providers, GitHub, crates.io, ollama.com, and any licensing or update
-        provider named by a product receive requests from software running on
-        your machine at your instruction, under their own privacy policies, and
-        we are not a party to those requests.
+        We do not sell, rent or trade personal data. We do not run
+        advertising. The third parties named above, model providers, GitHub,
+        crates.io, ollama.com, and any update provider named by a product,
+        receive requests from software running on your machine at your
+        instruction, under their own privacy policies, and we are not a party
+        to those requests. Stripe and Link process Polaris payments as
+        described in section 4; the licence service and the transactional mail
+        service that delivers keys are operated for {COMPANY.name}.
       </p>
       <p>
         If you email us, we keep the correspondence for as long as it is needed
@@ -367,12 +393,13 @@ export default function PrivacyPage() {
 
       <h2 id="rights">6. Your rights</h2>
       <p>
-        Because the site holds no personal data about visitors and the products
-        hold none on our behalf, there is ordinarily nothing for us to access,
-        correct or delete. If you believe we hold something about you, for
-        example an email you sent, you may ask what it is, ask for it to be
-        corrected, or ask for it to be deleted, and we will do so unless the law
-        requires otherwise.
+        The site holds no personal data about visitors, and the products hold
+        none on our behalf. What we do hold is what section 4 describes for a
+        Polaris purchase, and any email you send us. You may ask what we hold
+        about you, ask for it to be corrected, or ask for it to be deleted, and
+        we will do so unless the law requires otherwise; for a Polaris licence
+        we will say which records must be kept for it to keep working and how
+        deletion affects activation and recovery.
       </p>
       <p>
         {COMPANY.name} is based in Australia and handles any personal

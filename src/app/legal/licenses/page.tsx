@@ -30,7 +30,15 @@ export default function LicensesPage() {
           {PRODUCT_LIST.map((p) => (
             <tr key={p.id}>
               <th scope="row">{p.name}</th>
-              <td>{p.license ?? "Not distributed; no licence granted"}</td>
+              <td>
+                {p.license ?? "Not distributed; no licence granted"}
+                {p.id === "polaris" ? (
+                  <>
+                    {" "}
+                    (<a href="/products/polaris/licence">terms</a>)
+                  </>
+                ) : null}
+              </td>
               <td>
                 {p.repo ? (
                   <a href={p.repo} rel="noopener">

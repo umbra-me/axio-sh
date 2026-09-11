@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 import { productHref, type Product } from "@/lib/products";
-import { IconArrowUpRight, PRODUCT_ICONS } from "./Icons";
+import { PRODUCT_ICONS } from "./Icons";
 import StatusBadge from "./StatusBadge";
 
 export default function ProductCard({
@@ -24,7 +24,7 @@ export default function ProductCard({
         <StatusBadge product={product} />
       </div>
       <div className="pcard__body">
-        <p className="pcard__by">Axio · {product.stack}</p>
+        <p className="pcard__by">{product.stack}</p>
         <h3>{product.name}</h3>
         <p className="pcard__tag">{product.tagline}</p>
         <p className="pcard__desc">{product.description}</p>
@@ -35,7 +35,6 @@ export default function ProductCard({
         </ul>
         <div className="pcard__foot">
           <span className="mono">{product.platforms.join(" · ")}</span>
-          <IconArrowUpRight />
         </div>
       </div>
     </a>

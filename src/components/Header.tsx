@@ -2,12 +2,7 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import { PRODUCT_LIST, productHref } from "@/lib/products";
 import { NAV, ORG } from "@/lib/site";
-import {
-  IconArrowRight,
-  IconChevron,
-  IconGitHub,
-  PRODUCT_ICONS,
-} from "./Icons";
+import { IconChevron, IconGitHub, PRODUCT_ICONS } from "./Icons";
 import Mark from "./Mark";
 import MobileMenu from "./MobileMenu";
 
@@ -52,7 +47,6 @@ export default function Header() {
               })}
               <a className="nav__menu-foot" href="/products">
                 All products
-                <IconArrowRight />
               </a>
             </div>
           </div>

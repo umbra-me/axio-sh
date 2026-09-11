@@ -1,7 +1,8 @@
 # Polaris real demos — 9 September 2026
 
 > Historical September 9 record. The current public page and media are described
-> in [the September 10 redesign](polaris-page-redesign-2026-09-10.md).
+> in [the September 10 redesign](polaris-page-redesign-2026-09-10.md), itself
+> superseded by [the September 11 site redesign](site-redesign-2026-09-11.md).
 
 
 The product page now uses real app captures instead of the drawn Polaris mock.

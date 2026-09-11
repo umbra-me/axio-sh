@@ -1,5 +1,9 @@
 # September 5 change set
 
+> Superseded. The routes and registry it introduced remain; the landing page,
+> labels and Polaris page it describes were redesigned on 2026-09-11. See
+> [the September 11 site redesign](site-redesign-2026-09-11.md).
+
 ## Local product coverage — 2026-09-05
 
 The registry now lists five products: agent, Capture, Analyst, Deck and Local.

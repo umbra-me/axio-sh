@@ -1,7 +1,8 @@
 # Polaris product page — 2026-09-09
 
 > Historical September 9 record. The current public page and media are described
-> in [the September 10 redesign](polaris-page-redesign-2026-09-10.md).
+> in [the September 10 redesign](polaris-page-redesign-2026-09-10.md), itself
+> superseded by [the September 11 site redesign](site-redesign-2026-09-11.md).
 
 
 Axio Polaris is now the sixth product in the site registry. The registry marks

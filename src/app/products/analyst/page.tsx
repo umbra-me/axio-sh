@@ -46,7 +46,7 @@ export default function AnalystPage() {
         <hr className="rule" />
       </div>
 
-      <section className="section reveal">
+      <section className="section">
         <div className="container">
           <div className="section__head">
             <p className="eyebrow">What it does</p>
@@ -124,7 +124,7 @@ export default function AnalystPage() {
         </div>
       </section>
 
-      <section className="section reveal" id="sent">
+      <section className="section" id="sent">
         <div className="container">
           <div className="split">
             <div className="split__text">
@@ -182,7 +182,7 @@ export default function AnalystPage() {
         </div>
       </section>
 
-      <section className="section reveal" id="install">
+      <section className="section" id="install">
         <div className="container">
           <div className="section__head">
             <p className="eyebrow">Install</p>

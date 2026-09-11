@@ -119,10 +119,13 @@ export default function Surface({ className }: { className?: string }) {
 
             {PROJECTS.map((project) => (
               <div className="project" key={project.name}>
-                <h3>
+                {/* A span, not a heading: a label inside an aria-hidden
+                    illustration. As an h3 it made every product page's
+                    outline jump h1 to h3 for readers who never see it. */}
+                <span className="project__name">
                   <IconRepo />
                   {project.name}
-                </h3>
+                </span>
                 <ul className="sessions">
                   {project.sessions.map((s) => (
                     <li

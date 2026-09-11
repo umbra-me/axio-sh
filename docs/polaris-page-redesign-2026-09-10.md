@@ -1,5 +1,10 @@
 # Polaris page and identity refresh — September 10, 2026
 
+> Historical September 10 record. The page it describes was rebuilt on the
+> site's own design system on 2026-09-11; the `polaris-*` classes, sub-nav and
+> private palette it names no longer exist. See
+> [the September 11 site redesign](site-redesign-2026-09-11.md).
+
 The product page now leads with a real-app introduction, followed by timer,
 notes and launcher demos, a concise toolkit overview, local-data/permission
 principles, pricing and an accessible disclosure FAQ. It retains the A$59

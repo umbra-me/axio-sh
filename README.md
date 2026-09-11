@@ -1,6 +1,7 @@
 # axio-sh
 
-Current source changes and verification gates: [September 5 change set](docs/change-set-2026-09-05.md).
+Current source changes and verification gates: [September 11 site redesign](docs/site-redesign-2026-09-11.md).
+[September 5 change set](docs/change-set-2026-09-05.md) is historical.
 
 The axio.sh website, and the install scripts it serves. Next.js 16, App Router,
 plain CSS, no runtime dependencies beyond React and the Geist fonts.
@@ -33,9 +34,10 @@ The brand site for the Axio family, not the agent's page alone. Since the
 
 | Route | Is |
 | --- | --- |
-| `/` | The landing page: hero, the six products, the agent's drawn surface, the rules every product keeps, and the Umbra attribution |
+| `/` | The landing page: the hero with the agent's approval prompt, the network table, the six products as a rail, the agent's drawn surface, Polaris's film, the rules ledger, and the Umbra attribution |
 | `/products` | The product index and a status table |
 | `/products/agent`, `/products/capture`, `/products/analyst`, `/products/deck`, `/products/local`, `/products/polaris` | One page per product: drawn interface, behaviours, verification ledger, install, download or private-development status |
+| `/products/polaris/licence` | The paid product's licence, delivery and refund terms |
 | `/download` | Every product's install route on one page |
 | `/about` | What the brand is, the rules, licensing, how the site is operated, who builds it |
 | `/legal/privacy`, `/legal/terms`, `/legal/security`, `/legal/licenses` | The legal pages, written for what the products actually do |
@@ -51,11 +53,32 @@ navigation.
 
 Dark, one palette, no light variant. The ground is cold near-black (`#05070a`)
 rather than neutral, because the accents are blue-leaning and a neutral ground
-behind them reads as a colour cast. The layout language is the one the
-umbra.me landing pages use — centred section heads under a tracked mono
-eyebrow, a stats strip under the hero, product cards with a colour each and a
-status badge, a four-column footer — without being a copy of it: the site keeps
-its own palette, its own type and its own illustrations.
+behind them reads as a colour cast.
+
+**Each section of the landing page has its own shape**, and a hairline says
+where one ends: a network table, a rail of product rows, a split with a drawn
+surface, a split with a film, a ledger of rules, a band. The page used to be
+four centred heads over four card grids, one shape repeated; a visitor
+scrolling it could not tell where they were. Section heads are left-aligned
+and stand without an eyebrow: the heading carries the section.
+
+**Small labels are set in the mono face in sentence case, with no tracking.**
+The tracked-caps eyebrow over every heading, the `AXIO ·` byline and the arrow
+appended to every button were the commonest template tells on the site and
+carried nothing the heading did not. An eyebrow is kept only where it names
+something the heading cannot; the external-link glyph stays on links that
+leave the site.
+
+**The hero is the approval prompt.** `ApprovalTranscript` plays one turn of the
+agent and stops at the question: a read, the diff it proposes, then the frame
+turning into `approve  edit:…` over `allow?  y once   a this session   n no,
+and say why   esc no`, with `the change above is what runs` beneath. It never
+answers, because the page cannot answer for you. Every string is one the TUI
+paints (`crates/axio/src/tui/paint.rs`), and `tests/approval.test.mjs` pins
+them, so a change to the prompt in the agent is a change here. The text beside
+it says what the family is; the stats strip that used to sit under the hero is
+gone, because "0 telemetry" is a claim, not a measurement; the privacy policy
+and each product page say what actually leaves the machine.
 
 **Every product owns a colour**, declared once as `--p-agent`, `--p-capture`,
 `--p-analyst`, `--p-deck`, `--p-local` and `--p-polaris` in `globals.css` and threaded through as `--pc` on
@@ -72,29 +95,33 @@ earlier site set its headline in Geist Mono, and it paid for it in characters.
 
 **Product visuals.** The agent, Capture, Analyst and Deck use responsive drawn
 interfaces (`Surface.tsx` and their `*Mock.tsx` components). These illustrations
-are `aria-hidden`; their facts are stated in adjacent text. Polaris uses four real-app demos with separate landscape and portrait edits,
-click-to-play controls, static posters and adjacent descriptions. Its compass
-icon also appears in the native 0.2.4 release and video cards.
+are `aria-hidden`, their labels are spans rather than headings, and their facts
+are stated in adjacent text. Polaris uses four real-app demos in the site's
+`.film` frame (`PolarisVideo.tsx`): separate landscape and portrait edits,
+click-to-play, static posters, the control in the top corner so it never covers
+a poster's caption. Its page is the one centred, film-led product page
+(`.phero--center`), on the same tokens, type and buttons as the rest.
 The icons are
 drawn too, on a 24-unit grid at a 1.6 stroke, in `Icons.tsx`, and the product
 glyphs there are the same shapes the products' app icons carry; the
 Analyst glyph is the split diamond the plugin itself paints. No icon library
 and no stock imagery.
 
-**Cards** carry a lit top edge and a pointer-tracked spotlight. `SpotlightGrid`
-sets `--mx`/`--my` on each `.card` as the pointer moves and does nothing else;
+**Cards** carry a lit top edge and a pointer-tracked spotlight, and only links
+are cards: the product cards on the products index. Rules, features and the
+Umbra band are rows and ledgers with hairlines. `SpotlightGrid` sets
+`--mx`/`--my` on each `.card` as the pointer moves and does nothing else;
 without it, or without a fine pointer, the cards still hover. The background is
 a fixed engineering grid that fades out toward the edges under two cold glows —
 CSS only. The particle and matrix-rain canvases umbra.me runs were considered
 and left out: on a site whose argument is restraint they would have argued the
 other way.
 
-**Motion.** One curve, `cubic-bezier(0.16, 1, 0.3, 1)`. Sections rise in as
-they enter the viewport through `animation-timeline: view()`, which costs no
-script and falls back to static content where unsupported. The agent's surface
-keeps its two authored moments — the selected session's accent wipes down its
-edge, a running session's dot breathes — and the released badge breathes the
-same way. Everything honours `prefers-reduced-motion`, through the `--fast`,
+**Motion.** One curve, `cubic-bezier(0.16, 1, 0.3, 1)`. The hero transcript is
+the page's one orchestrated moment; there is no per-section reveal. The agent's
+surface keeps its two authored moments — the selected session's accent wipes
+down its edge, a running session's dot breathes — and the released badge
+breathes the same way. The header deepens through a scroll-driven timeline. Everything honours `prefers-reduced-motion`, through the `--fast`,
 `--base` and `--slow` custom properties collapsing to `1ms` plus explicit
 `animation: none` on the loops.
 

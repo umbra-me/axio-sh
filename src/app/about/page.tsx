@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { IconArrowRight } from "@/components/Icons";
 import { PRODUCT_LIST } from "@/lib/products";
 import { COMPANY, ORG, UMBRA } from "@/lib/site";
 
@@ -15,7 +14,6 @@ export default function AboutPage() {
     <>
       <section className="page-head">
         <div className="container container--narrow">
-          <p className="eyebrow">About</p>
           <h1 className="display display--lg">What Axio is, and how it is run.</h1>
           <p>
             Axio is the developer-tools family of {COMPANY.name},{" "}
@@ -31,11 +29,12 @@ export default function AboutPage() {
           <h2>One brand, separate tools</h2>
           <p>
             Each product has its own repository, its own toolchain and its own
-            release cadence. The coding agent is Rust across nine crates. Axio
-            Capture and Deck are Rust behind Tauri. Analyst is Python inside
-            Binary Ninja. Polaris is native Swift for macOS. Nothing is shared
-            at runtime; what is shared is
-            a set of rules about behaviour, and the name.
+            release cadence. The coding agent is Rust across nine crates, and
+            Axio Local is a Rust launcher for it and the other agents you
+            already run. Axio Capture and Deck are Rust behind Tauri. Analyst
+            is Python inside Binary Ninja. Polaris is native Swift for macOS.
+            Nothing is shared at runtime; what is shared is a set of rules
+            about behaviour, and the name.
           </p>
           <p>
             The name came from the agent, which is why the agent’s binary is
@@ -67,16 +66,20 @@ export default function AboutPage() {
               endpoint or on a real machine, and says so when it has not.
             </li>
             <li>
-              <strong>Open where it ships.</strong>{" "}A product that is offered for
-              download is open source. One that is not yet ready to be judged
-              stays private until it is.
+              <strong>Open where it ships.</strong>{" "}A product that is offered
+              for download states its licence: the agent, Capture, Analyst and
+              Local are open source, and Polaris is sold under a personal
+              licence with its terms published. One that is not yet ready to
+              be judged stays private until it is.
             </li>
           </ul>
 
           <h2>How it is licensed</h2>
           <p>
-            The agent and Axio Capture are Apache-2.0. Axio Analyst is MIT. Axio
-            Deck and Polaris are private and have no published licence yet. The{" "}
+            The agent, Axio Capture and Axio Local are Apache-2.0. Axio Analyst
+            is MIT. Axio Polaris is distributed under a{" "}
+            <a href="/products/polaris/licence">personal commercial licence</a>,
+            and Axio Deck is private with no published licence yet. The{" "}
             <a href="/legal/licenses">licences page</a>{" "}lists each one with the
             third-party attributions the products carry, and the trademark
             position: the open-source licences cover the code, not the Axio and
@@ -133,11 +136,12 @@ export default function AboutPage() {
       <section className="section">
         <div className="container container--narrow">
           <div className="cta">
-            <h2 className="display display--md">See the tools.</h2>
-            <div className="hero__actions">
+            <div className="cta__text">
+              <h2 className="display display--md">See the tools.</h2>
+            </div>
+            <div className="cta__actions">
               <a className="btn btn--primary" href="/products">
                 Products
-                <IconArrowRight />
               </a>
               <a className="btn btn--ghost" href="/download">
                 Download

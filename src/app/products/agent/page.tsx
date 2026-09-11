@@ -47,7 +47,7 @@ export default function AgentPage() {
         <hr className="rule" />
       </div>
 
-      <section className="section reveal">
+      <section className="section">
         <div className="container">
           <div className="section__head">
             <p className="eyebrow">One turn</p>
@@ -63,7 +63,7 @@ export default function AgentPage() {
         </div>
       </section>
 
-      <section className="section reveal">
+      <section className="section">
         <div className="container">
           <div className="section__head">
             <p className="eyebrow">How it behaves</p>
@@ -75,7 +75,7 @@ export default function AgentPage() {
           </div>
           <div className="features">
             <article className="feature">
-              <span className="artifact">allow? y a n</span>
+              <span className="artifact">allow?  y once</span>
               <h3>Reads don’t ask. Writes do.</h3>
               <p>
                 The diff or the command lands in scrollback first, then the
@@ -134,7 +134,7 @@ export default function AgentPage() {
         </div>
       </section>
 
-      <section className="section reveal" id="counts">
+      <section className="section" id="counts">
         <div className="container">
           <div className="section__head">
             <p className="eyebrow">Quota and cost</p>
@@ -185,7 +185,7 @@ $ axio cost --diagnose   «what each parser skipped»
         </div>
       </section>
 
-      <section className="section reveal" id="verification">
+      <section className="section" id="verification">
         <div className="container">
           <div className="section__head">
             <p className="eyebrow">Verification</p>
@@ -251,7 +251,7 @@ $ axio cost --diagnose   «what each parser skipped»
         </div>
       </section>
 
-      <section className="section reveal" id="install">
+      <section className="section" id="install">
         <div className="container">
           <div className="section__head">
             <p className="eyebrow">Install</p>
@@ -289,7 +289,7 @@ cargo install --git ${REPO} --locked axio
         </div>
       </section>
 
-      <section className="section--tight reveal">
+      <section className="section--tight">
         <div className="container">
           <div className="callout callout--warn">
             <strong>Read SECURITY.md before running it anywhere that matters.</strong>

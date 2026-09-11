@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { IconArrowRight } from "@/components/Icons";
 
 export default function NotFound() {
   return (
@@ -17,7 +16,6 @@ export default function NotFound() {
         <div className="hero__actions">
           <Link className="btn btn--primary" href="/">
             Home
-            <IconArrowRight />
           </Link>
           <a className="btn btn--ghost" href="/products">
             Products

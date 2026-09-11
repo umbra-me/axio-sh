@@ -51,7 +51,7 @@ export default function CapturePage() {
         <hr className="rule" />
       </div>
 
-      <section className="section reveal">
+      <section className="section">
         <div className="container">
           <div className="section__head">
             <p className="eyebrow">What it does</p>
@@ -126,7 +126,7 @@ export default function CapturePage() {
         </div>
       </section>
 
-      <section className="section reveal" id="status">
+      <section className="section" id="status">
         <div className="container">
           <div className="section__head">
             <p className="eyebrow">Verification</p>
@@ -203,7 +203,7 @@ export default function CapturePage() {
         </div>
       </section>
 
-      <section className="section reveal" id="download">
+      <section className="section" id="download">
         <div className="container">
           <div className="section__head">
             <p className="eyebrow">Download</p>

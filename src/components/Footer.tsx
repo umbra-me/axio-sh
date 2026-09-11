@@ -31,7 +31,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3>Products</h3>
+            <h2>Products</h2>
             <ul>
               {PRODUCT_LIST.map((p) => (
                 <li key={p.id}>
@@ -45,7 +45,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3>Resources</h3>
+            <h2>Resources</h2>
             <ul>
               <li>
                 <a href={AGENT} rel="noopener">
@@ -74,7 +74,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3>Company</h3>
+            <h2>Company</h2>
             <ul>
               <li>
                 <a href="/about">About Axio</a>

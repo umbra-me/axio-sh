@@ -9,11 +9,12 @@ export const metadata: Metadata = {
 
 export default function PolarisLicencePage() {
   return <LegalPage title="Polaris personal licence" current="/products/polaris/licence"
+    back={{ name: "Axio Polaris", href: "/products/polaris" }}
     summary="A one-time personal licence for two Macs, with an explicit no-card trial.">
     <h2>Try before buying</h2>
     <p>The Mac app offers 14 days of full trial access, starting only when you choose Start Trial. No payment card is required and the trial never charges you automatically.</p>
     <h2>Price and use</h2>
-    <p>The personal licence is A$59 once, inclusive of applicable tax, with no subscription. Stripe may present a converted local-currency price; review the final total before paying. Purchase grants you perpetual personal use of the supplied application on up to two activated Macs at a time. Deactivate an old Mac in Settings → Licence to move its activation. If you no longer have that Mac, <a href="https://axio.sh/polaris-license/seats">release its activation here</a> using your licence key.</p>
+    <p>The personal licence is A$59 once, inclusive of applicable tax, with no subscription. Stripe may present a converted local-currency price; review the final total before paying. Purchase grants you perpetual personal use of the supplied application on up to two activated Macs at a time. Deactivate an old Mac in Settings → Licence to move its activation. If you no longer have that Mac, <a href="/polaris-license/seats">release its activation here</a> using your licence key.</p>
     <p>The licence is for the distributed application, not ownership of its source. Third-party components and previously MIT-licensed code retain their original rights and notices. The Mac release does not include the separate Chromium browser companion.</p>
     <h2>Delivery and activation</h2>
     <p>Download the signed Mac installer from <a href="/products/polaris">the product page</a>. After payment completes, the licence service emails your key separately from your billing receipt. Paste it into Settings → Licence. Initial activation needs internet; an activated copy can use its cached licence for up to 30 days after a successful verification.</p>
