@@ -230,13 +230,46 @@ Deployed by the Umbra control plane as the `axio-site` stack:
 `umbra-axio-site`, host port 3311. It builds to `output: "standalone"` and runs
 `node server.js` on port 3000 inside the container.
 
+## Response headers
+
+`next.config.ts` sets a Content-Security-Policy, HSTS, `X-Content-Type-Options`,
+`X-Frame-Options`, `Referrer-Policy` and a `Permissions-Policy` on every route,
+matching the set the other Umbra surfaces carry. The site sells a paid product
+and links to Stripe checkout, so it is not a static brochure for this purpose.
+
+Three things the policy depends on, each of which fails silently if it changes:
+
+- `'unsafe-inline'` in `script-src` and `style-src` is load-bearing. The App
+  Router emits inline bootstrap and hydration scripts and Next injects inline
+  `<style>`; a nonce scheme would need middleware this site does not have.
+- The collector origin in `script-src` and `connect-src` is read from the same
+  `NEXT_PUBLIC_UMBRA_ANALYTICS_URL` the layout loads, so pointing the script at
+  a new host cannot leave the policy behind. `tests/headers.test.mjs` asserts the
+  two agree.
+- `connect-src` also allows `https://admin-api.umbra.me`. The collector posts
+  events to the analytics origin but reads this site's settings, its kill switch
+  included, from the admin API. Blocking that fetch does not stop collection;
+  the script falls back to empty settings, in which nothing is disabled. The
+  control plane's `check-site-client-coverage.py` fails on a policy missing
+  either origin, which is how the first draft of this policy was caught.
+- Cloudflare fronts this host. It rewrites `mailto:` links into a call to a
+  script it serves from `/cdn-cgi/` on this origin, which `'self'` covers. A
+  Cloudflare feature that injects a third-party origin, Web Analytics among
+  them, needs that host added or it is blocked with no visible error.
+
+Files nginx serves directly never reach this handler. The Polaris downloads set
+their own headers in the control plane's `infra/routing/polaris-locations.conf`.
+
 
 ## Test coverage
 
-`npm test` explicitly runs the product/download contract tests. They evaluate the
-real TypeScript registry and ensure product routes are unique and downloads use
-the advertised release asset URLs. They do not assert external assets exist or
-replace browser/runtime acceptance. A missing suite fails instead of reporting
+`npm test` explicitly runs the product/download and response-header contract
+tests. They evaluate the real TypeScript registry and config, ensure product
+routes are unique, check downloads use the advertised release asset URLs, and
+assert the security headers keep the directives worth setting and stay in step
+with the collector the layout loads. They do not assert external assets exist or
+replace browser/runtime acceptance; the headers were separately confirmed on the
+standalone build with no console violations on the Polaris page. A missing suite fails instead of reporting
 zero tests as success. The component owns its npm lockfile and needs no family
 pnpm root.
 
