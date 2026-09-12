@@ -44,7 +44,7 @@ export interface Product {
 
 export const CAPTURE_VERSION = "0.1.0";
 export const ANALYST_VERSION = "0.9.0";
-export const POLARIS_VERSION = "0.2.5";
+export const POLARIS_VERSION = "0.2.6";
 
 /** The notarised Mac build, served by the deployment (404 under `next dev`). */
 export const POLARIS_DOWNLOAD = `/downloads/polaris/Axio-Polaris-${POLARIS_VERSION}.dmg`;
