@@ -72,7 +72,10 @@ export const FOOTER_COLUMNS = [
     title: "Company",
     links: [
       { label: "About Axio", href: "/about" },
-      { label: "Umbra", href: UMBRA },
+      // data-umbra-link is what the shared collector watches for. The press is
+      // counted as an hourly total against this site and this link name, with
+      // no visitor identifier.
+      { label: "Umbra", href: UMBRA, attributes: { "data-umbra-link": "umbra-attribution" } as const },
       ...NAV.legal.map((item) => ({ label: item.name, href: item.href })),
     ],
   },

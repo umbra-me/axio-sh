@@ -410,14 +410,6 @@ main:focus {
   height: 16px;
 }
 
-/* Labels are sentence case everywhere on this site; Tessera sets footer
-   column titles in tracked capitals. */
-.ts-site-footer__title,
-.ts-site-nav-sheet__title {
-  text-transform: none;
-  letter-spacing: 0;
-}
-
 .ts-site-footer__meta a {
   color: inherit;
 }

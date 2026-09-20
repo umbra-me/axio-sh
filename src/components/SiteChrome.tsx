@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import type { CSSProperties, ReactNode } from "react";
-import { Button } from "@tessera/ui";
+import { Button, IconButton } from "@tessera/ui";
 import {
   SiteFooter,
   SiteHeader,
@@ -10,34 +10,24 @@ import {
   type SiteNavItem,
 } from "@tessera/marketing";
 import { PRODUCT_LIST, productHref } from "@/lib/products";
-import { COMPANY, FOOTER_COLUMNS, NAV, ORG, TAGLINE_LONG, UMBRA } from "@/lib/site";
+import { COMPANY, FOOTER_COLUMNS, NAV, ORG, TAGLINE_LONG } from "@/lib/site";
 import { IconGitHub, PRODUCT_ICONS } from "./Icons";
 import Mark from "./Mark";
 
 // Every link on this site is a plain anchor: the pages are static and the
-// install routes are scripts, not pages. data-umbra-link is what the shared
-// collector watches for. The press is counted as an hourly total against this
-// site and this link name, with no visitor identifier.
+// install routes are scripts, not pages.
 const renderLink: RenderLink = ({ href, children, ...rest }) => (
-  <a
-    href={href}
-    {...rest}
-    {...(href === UMBRA ? { "data-umbra-link": "umbra-attribution" } : {})}
-  >
+  <a href={href} {...rest}>
     {children}
   </a>
 );
 
-// IconButton wraps its children, so it cannot render as an anchor; this is the
-// same markup on a link.
 const GitHubLink = () => (
-  <Button asChild variant="ghost" data-icon-only="">
-    <a href={ORG} aria-label="Umbra on GitHub" title="Umbra on GitHub" rel="noopener">
-      <span className="ts-button__icon">
-        <IconGitHub />
-      </span>
+  <IconButton asChild label="Umbra on GitHub">
+    <a href={ORG} rel="noopener">
+      <IconGitHub />
     </a>
-  </Button>
+  </IconButton>
 );
 
 /** Tessera's header and footer around every page, on the site's own data. */
@@ -71,7 +61,7 @@ export default function SiteChrome({ children }: { children: ReactNode }) {
   return (
     <div className="ts-site">
       <SiteHeader
-        brand={{ name: "axio", mark: <Mark size={22} /> }}
+        brand={{ name: "axio", mark: <Mark size={22} />, byline: "by Umbra" }}
         items={items}
         renderLink={renderLink}
         actions={
