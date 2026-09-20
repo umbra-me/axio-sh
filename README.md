@@ -7,12 +7,22 @@ The axio.sh website, and the install scripts it serves. Next.js 16, App Router,
 plain CSS, no runtime dependencies beyond React and the Geist fonts.
 
 ```sh
-npm ci
-npm run dev        # http://localhost:3311
-npm run build      # production build
-npm run typecheck
-npm test
+# from the Umbra control plane root
+python3 scripts/workspace-pnpm.py --workspace axio -- install
+python3 scripts/workspace-pnpm.py --workspace axio -- --filter "@axio/site..." --filter "!@axio/site" run --if-present build
+python3 scripts/workspace-pnpm.py --workspace axio -- --filter @axio/site run dev   # http://localhost:3311
+# and likewise: build, typecheck, lint, test
 ```
+
+## Building
+
+This repository is public so the install scripts it serves can be read before
+they are run. It does not build on its own: the interface is Tessera, Umbra's
+private design system, and the site resolves `@tessera/*` through the Axio
+workspace's pnpm root. Inside the estate, install and build from the control
+plane with `python3 scripts/workspace-pnpm.py --workspace axio -- <command>`.
+The second command above builds the Tessera packages the site imports; run it
+after an install and whenever the workspace's Tessera pin moves.
 
 This was `apps/site` inside `umbra-me/axio` until ADR 0013 split it out. It is
 the `axio/site` component of the `axio` workspace; the agent is `axio/core`. The
@@ -254,7 +264,10 @@ and must move when their text does.
 
 Deployed by the Umbra control plane as the `axio-site` stack:
 `infra/deploy/axio-site.yaml`, compose project `site-axio-site`, container
-`umbra-axio-site`, host port 3311. It builds to `output: "standalone"` and runs
+`umbra-axio-site`, host port 3311. The image is built by the control plane's
+`infra/docker/workspace-next.Dockerfile` with the Axio workspace as the pnpm
+root; this repository carries no Dockerfile. It builds to
+`output: "standalone"`, traced from the workspace root, and runs
 `node server.js` on port 3000 inside the container.
 
 ## Response headers
@@ -290,15 +303,17 @@ their own headers in the control plane's `infra/routing/polaris-locations.conf`.
 
 ## Test coverage
 
-`npm test` explicitly runs the product/download and response-header contract
+`pnpm test` explicitly runs the product/download and response-header contract
 tests. They evaluate the real TypeScript registry and config, ensure product
 routes are unique, check downloads use the advertised release asset URLs, and
 assert the security headers keep the directives worth setting and stay in step
 with the collector the layout loads. They do not assert external assets exist or
 replace browser/runtime acceptance; the headers were separately confirmed on the
 standalone build with no console violations on the Polaris page. A missing suite fails instead of reporting
-zero tests as success. The component owns its npm lockfile and needs no family
-pnpm root.
+zero tests as success. The lockfile is the Axio workspace's `pnpm-lock.yaml`.
+`tests/visual/capture.mjs <outDir> [baseUrl]` takes full-page screenshots of
+every route at 390, 768 and 1440 px against a running build, with off-origin
+requests blocked so two runs of one build are byte-identical.
 
 Frontend lint and standalone typecheck commands: [September 5 verification](docs/lint-verification-2026-09-05.md).
 
@@ -316,7 +331,8 @@ the edit cards use the new 104 compass icon. `PolarisVideo.tsx` requests media
 only after Play and selects portrait edits on phones. The social preview and
 vector icon are alongside the demo directory. No synthetic app UI is used.
 
-The Docker image must copy `public/` alongside Next.js standalone output.
+The image must carry `public/` alongside Next.js standalone output; the
+workspace Dockerfile copies it.
 Verify the page and media separately after deployment. See
 [the redesign record](docs/polaris-page-redesign-2026-09-10.md) for current checks;
 [September 9 capture evidence](docs/polaris-real-demos-2026-09-09.md) is historical.
