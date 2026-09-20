@@ -1,14 +1,28 @@
 import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { accentOptions, brands } from "@tessera/themes";
+import { ThemeScript, createSiteRegistry } from "@tessera/next";
+import { TesseraProvider } from "@tessera/next/client";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { DESCRIPTION, SITE, SITE_NAME, TAGLINE } from "@/lib/site";
 import { BG } from "./brand";
 import "./globals.css";
 
+/** axio.sh on the Axio brand theme. One palette: dark, with no switch rendered. */
+const registry = createSiteRegistry({
+  presets: brands.filter((b) => b.id === "axio"),
+  accentOptions: accentOptions.filter((o) => o.presets?.includes("axio")),
+  defaultPreset: "axio",
+});
+const theme = { namespace: "axio-site", defaults: { preset: "axio", mode: "dark" } } as const;
+
 // Geist is the Umbra house face. next/font self-hosts it, so the page still
-// makes no external request.
+// makes no external request. The Axio theme bundles Geist too, but only the
+// latin subsets: it has no arrows or keyboard symbols and no box drawing in
+// the mono, all of which this site prints. globals.css points Tessera's font
+// tokens at these complete faces, so the theme's files are never fetched.
 //
 // metadataBase is what makes the og:image absolute. Without it Next emits the
 // generated card as a relative path, every scraper that reads it resolves the
@@ -56,20 +70,32 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
-      <body>
-        {/* Hidden until focused, first in the tab order. */}
-        <a className="skip-link" href="#content">
-          Skip to content
-        </a>
-        <div className="bg" aria-hidden="true" />
-        <Header />
-        {/* tabIndex -1 so the skip link actually moves focus here rather than
-            only scrolling. */}
-        <main id="content" tabIndex={-1}>
-          {children}
-        </main>
-        <Footer />
+    // The preset and mode are also written here, not only by ThemeScript: the
+    // theme's tokens are scoped to [data-preset], and a visitor without
+    // JavaScript must still get a styled page.
+    <html
+      lang="en"
+      data-preset="axio"
+      data-mode="dark"
+      className={`${GeistSans.variable} ${GeistMono.variable}`}
+      suppressHydrationWarning
+    >
+      <body className="ts-root">
+        <ThemeScript registry={registry} {...theme} />
+        <TesseraProvider registry={registry} {...theme}>
+          {/* Hidden until focused, first in the tab order. */}
+          <a className="skip-link" href="#content">
+            Skip to content
+          </a>
+          <div className="bg" aria-hidden="true" />
+          <Header />
+          {/* tabIndex -1 so the skip link actually moves focus here rather than
+              only scrolling. */}
+          <main id="content" tabIndex={-1}>
+            {children}
+          </main>
+          <Footer />
+        </TesseraProvider>
         {/* Umbra's own collector: page loads and presses on marked links as
             hourly totals, no cookie, no identifier, honours Do Not Track. The
             privacy policy describes it; keep the two in step. */}

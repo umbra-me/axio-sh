@@ -1,3 +1,7 @@
+/* Tessera: tokens, recipes and the Axio brand theme. */
+@import '@tessera/ui/styles.css';
+@import '@tessera/themes/axio.css';
+
 /* axio.sh — site styles.
  *
  * One dark palette, no light variant. The page is cold near-black rather than
@@ -12,13 +16,19 @@
  * Geist Sans carries the display type, Geist Mono carries labels, artifacts
  * and anything the products themselves print. Both are self-hosted through
  * next/font; the page makes no external request.
+ *
+ * The names below are an alias layer over Tessera's Axio theme, so the
+ * sections written against them keep working unchanged. A name points at a
+ * Tessera token only where the theme resolves to exactly the value the site
+ * used; everything else keeps its literal. The layer goes when the sections
+ * move onto Tessera components.
  */
 
 :root {
-  --ground: #05070a;
-  --slate: #0a0d13;
-  --slate-2: #0d1017;
-  --slate-deep: #04060a;
+  --ground: var(--ts-surface-canvas);
+  --slate: var(--ts-surface-panel);
+  --slate-2: var(--ts-surface-raised);
+  --slate-deep: var(--ts-surface-sunken);
 
   --line: rgba(255, 255, 255, 0.08);
   --line-soft: rgba(255, 255, 255, 0.05);
@@ -30,10 +40,10 @@
      at 3.4:1 and was documented as decorative, but the card bylines, table
      headers and footer headings are set in it, so it is read. Every text step
      now passes AA on every surface it appears on. */
-  --text: #f4f5f7;
-  --text-2: #c3c7cf;
-  --muted: #9195a0;
-  --faint: #7d808a;
+  --text: var(--ts-text-primary);
+  --text-2: var(--ts-text-secondary);
+  --muted: var(--ts-text-muted);
+  --faint: var(--ts-text-disabled);
 
   --accent: #7ba0ff;
   --cyan: #63cbdc;
@@ -46,17 +56,17 @@
   --warn: var(--amber);
   --danger: var(--rose);
 
-  --p-agent: var(--accent);
-  --p-capture: var(--mint);
-  --p-analyst: var(--violet);
-  --p-local: #7ed7b5;
-  --p-deck: var(--amber);
-  --p-polaris: #7fb9f5;
+  --p-agent: var(--ts-product-agent);
+  --p-capture: var(--ts-product-capture);
+  --p-analyst: var(--ts-product-analyst);
+  --p-local: var(--ts-product-local);
+  --p-deck: var(--ts-product-deck);
+  --p-polaris: var(--ts-product-polaris);
 
   /* The hosted agents the coding agent can run, for its drawn surface. */
-  --agent-claude: #b492fd;
-  --agent-codex: #55dcb0;
-  --agent-pi: #63cbdc;
+  --agent-claude: var(--ts-hosted-agent-claude);
+  --agent-codex: var(--ts-hosted-agent-codex);
+  --agent-pi: var(--ts-hosted-agent-pi);
 
   --r-1: 4px;
   --r-2: 8px;
@@ -66,6 +76,10 @@
 
   --sans: var(--font-geist-sans), system-ui, sans-serif;
   --mono: var(--font-geist-mono), ui-monospace, monospace;
+  /* Tessera's components take the same complete faces; see layout.tsx. */
+  --ts-font-family-sans: var(--sans);
+  --ts-font-family-display: var(--sans);
+  --ts-font-family-mono: var(--mono);
 
   --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
   --shadow-2: 0 8px 24px rgba(0, 0, 0, 0.45);
@@ -112,8 +126,14 @@ html {
   }
 }
 
-body {
+/* body.ts-root, not body: Tessera's .ts-root sets its own type base (size,
+   leading, alternate glyph features) and a class beats an element selector.
+   The sections below were set against this base, so it has to keep winning
+   until they move onto Tessera components. */
+body.ts-root {
   margin: 0;
+  font-weight: 400;
+  font-feature-settings: normal;
   background: var(--ground);
   color: var(--text);
   font-family: var(--sans);
@@ -300,9 +320,10 @@ code {
 
 /* ---- focus and skip ------------------------------------------------------ */
 
-a:focus-visible,
-button:focus-visible,
-summary:focus-visible {
+/* Prefixed for the same reason: .ts-root :focus-visible would otherwise win. */
+.ts-root a:focus-visible,
+.ts-root button:focus-visible,
+.ts-root summary:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 4px;
