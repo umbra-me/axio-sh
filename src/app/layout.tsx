@@ -4,8 +4,7 @@ import { GeistMono } from "geist/font/mono";
 import { accentOptions, brands } from "@tessera/themes";
 import { ThemeScript, createSiteRegistry } from "@tessera/next";
 import { TesseraProvider } from "@tessera/next/client";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
+import SiteChrome from "@/components/SiteChrome";
 import { DESCRIPTION, SITE, SITE_NAME, TAGLINE } from "@/lib/site";
 import { BG } from "./brand";
 import "./globals.css";
@@ -88,13 +87,7 @@ export default function RootLayout({
             Skip to content
           </a>
           <div className="bg" aria-hidden="true" />
-          <Header />
-          {/* tabIndex -1 so the skip link actually moves focus here rather than
-              only scrolling. */}
-          <main id="content" tabIndex={-1}>
-            {children}
-          </main>
-          <Footer />
+          <SiteChrome>{children}</SiteChrome>
         </TesseraProvider>
         {/* Umbra's own collector: page loads and presses on marked links as
             hourly totals, no cookie, no identifier, honours Do Not Track. The

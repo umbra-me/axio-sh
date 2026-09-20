@@ -1,5 +1,7 @@
 // Site-wide facts. Everything a page or the metadata repeats lives here once.
 
+import { PRODUCT_LIST, productHref } from "./products";
+
 export const SITE = "https://axio.sh";
 export const SITE_NAME = "Axio";
 export const TAGLINE = "Developer tools that stay on your machine.";
@@ -40,3 +42,39 @@ export const NAV = {
     { name: "Licences", href: "/legal/licenses" },
   ],
 };
+
+/** The footer's one-line description of the family. */
+export const TAGLINE_LONG =
+  "Local-first coding, capture, analysis and workstation tools for macOS, Windows and Linux, built by Umbra.";
+
+const AGENT_REPO = "https://github.com/umbra-me/axio";
+
+/** Footer columns, in the shape Tessera's SiteFooter takes. */
+export const FOOTER_COLUMNS = [
+  {
+    title: "Products",
+    links: [
+      ...PRODUCT_LIST.map((p) => ({ label: p.name, href: productHref(p.id) })),
+      { label: "Download", href: "/download" },
+    ],
+  },
+  {
+    title: "Resources",
+    links: [
+      { label: "Agent repository", href: AGENT_REPO, external: true },
+      { label: "Architecture", href: `${AGENT_REPO}/blob/main/docs/architecture.md`, external: true },
+      { label: "Roadmap", href: `${AGENT_REPO}/blob/main/docs/roadmap.md`, external: true },
+      { label: "Changelog", href: `${AGENT_REPO}/blob/main/CHANGELOG.md`, external: true },
+      { label: "Install script", href: "/install" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { label: "About Axio", href: "/about" },
+      { label: "Umbra", href: UMBRA },
+      ...NAV.legal.map((item) => ({ label: item.name, href: item.href })),
+    ],
+  },
+];
+

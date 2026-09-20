@@ -3,8 +3,12 @@ import { join } from "node:path";
 import { chromium } from "@playwright/test";
 import { ROUTES, WIDTHS, slug } from "./routes.mjs";
 
-const [outDir, base = "http://localhost:3311"] = process.argv.slice(2);
-if (!outDir) throw new Error("usage: capture.mjs <outDir> [baseUrl]");
+// --main captures only <main>: the way to compare page content across a change
+// to the header or footer, whose heights would otherwise shift everything.
+const args = process.argv.slice(2);
+const mainOnly = args.includes("--main");
+const [outDir, base = "http://localhost:3311"] = args.filter((a) => !a.startsWith("--"));
+if (!outDir) throw new Error("usage: capture.mjs <outDir> [baseUrl] [--main]");
 
 const browser = await chromium.launch();
 for (const width of WIDTHS) {
@@ -25,7 +29,9 @@ for (const width of WIDTHS) {
     // Videos decode asynchronously and would differ between runs.
     await page.addStyleTag({ content: "video { visibility: hidden !important; }" });
     await page.evaluate(() => document.fonts.ready);
-    await page.screenshot({ path: join(outDir, String(width), `${slug(route)}.png`), fullPage: true });
+    const path = join(outDir, String(width), `${slug(route)}.png`);
+    if (mainOnly) await page.locator("main#content").screenshot({ path });
+    else await page.screenshot({ path, fullPage: true });
   }
   await context.close();
 }
