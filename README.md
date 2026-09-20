@@ -1,10 +1,12 @@
 # axio-sh
 
-Current source changes and verification gates: [September 11 site redesign](docs/site-redesign-2026-09-11.md).
+Current source changes and verification gates: [September 20 move onto Tessera](docs/tessera-slice-a-2026-09-20.md).
+[September 11 site redesign](docs/site-redesign-2026-09-11.md) is the design that move preserves.
 [September 5 change set](docs/change-set-2026-09-05.md) is historical.
 
 The axio.sh website, and the install scripts it serves. Next.js 16, App Router,
-plain CSS, no runtime dependencies beyond React and the Geist fonts.
+Tessera (Umbra's design system) for the theme, header, footer, buttons and
+edge pages, and plain CSS for the sections that are the site's own.
 
 ```sh
 # from the Umbra control plane root
