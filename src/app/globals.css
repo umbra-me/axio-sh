@@ -317,7 +317,7 @@ code {
   border: 0;
 }
 
-/* ---- focus and skip ------------------------------------------------------ */
+/* ---- focus ---------------------------------------------------------------- */
 
 /* Prefixed for the same reason: .ts-root :focus-visible would otherwise win. */
 .ts-root a:focus-visible,
@@ -328,101 +328,20 @@ code {
   border-radius: 4px;
 }
 
-.skip-link {
-  position: absolute;
-  left: 50%;
-  top: 0.75rem;
-  transform: translate(-50%, -200%);
-  z-index: 100;
-  padding: 0.6rem 1rem;
-  border-radius: var(--r-2);
-  background: var(--slate-2);
-  border: 1px solid var(--line);
-  color: var(--text);
-  font-size: 0.875rem;
-  text-decoration: none;
-}
-
-.skip-link:focus {
-  transform: translate(-50%, 0);
-}
-
 main:focus {
   outline: none;
 }
 
 /* ---- buttons ------------------------------------------------------------- */
+/* Buttons are Tessera's (components/ButtonLink.tsx). The one look it has no
+   variant for is a product page's primary in that product's colour; --pc is
+   set by the section around it. */
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  min-height: 2.75rem;
-  padding: 0.65rem 1.25rem;
-  border-radius: var(--r-2);
-  border: 1px solid transparent;
-  font-family: var(--sans);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  text-decoration: none;
-  white-space: nowrap;
-  cursor: pointer;
-  transition:
-    color var(--fast) var(--ease),
-    border-color var(--fast) var(--ease),
-    background-color var(--fast) var(--ease),
-    transform var(--fast) var(--ease),
-    box-shadow var(--fast) var(--ease);
-}
-
-.btn svg {
-  width: 1rem;
-  height: 1rem;
-}
-
-.btn--primary {
-  background: var(--accent);
-  color: #05070a;
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 60%, transparent);
-}
-
-.btn--primary:hover {
-  background: color-mix(in srgb, var(--accent) 88%, #fff);
-  transform: translateY(-1px);
-  box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--accent) 70%, transparent),
-    0 8px 24px color-mix(in srgb, var(--accent) 30%, transparent);
-}
-
-.btn--ghost {
-  border-color: var(--line-strong);
-  background: rgba(255, 255, 255, 0.02);
-  color: var(--text-2);
-}
-
-.btn--ghost:hover {
-  border-color: rgba(255, 255, 255, 0.28);
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--text);
-}
-
-.btn--sm {
-  min-height: 2.25rem;
-  padding: 0.4rem 0.9rem;
-  font-size: 0.875rem;
-}
-
-/* A product-coloured primary, for the product pages. */
-.btn--product {
-  background: var(--pc, var(--accent));
-  color: #05070a;
-}
-
-.btn--product:hover {
-  background: color-mix(in srgb, var(--pc, var(--accent)) 88%, #fff);
-  transform: translateY(-1px);
-  box-shadow: 0 8px 24px color-mix(in srgb, var(--pc, var(--accent)) 30%, transparent);
+.ts-button.btn-product {
+  --_bg: var(--pc, var(--accent));
+  --_bg-hover: color-mix(in srgb, var(--pc, var(--accent)) 88%, #fff);
+  --_bg-active: color-mix(in srgb, var(--pc, var(--accent)) 80%, #fff);
+  --_border: transparent;
 }
 
 /* ---- badges -------------------------------------------------------------- */
@@ -2736,15 +2655,11 @@ main:focus {
   gap: 0.75rem;
 }
 
-/* ---- not found ----------------------------------------------------------- */
+/* ---- edge pages (not found, error) --------------------------------------- */
+/* The page is Tessera's EdgePage; this is the room around it. */
 
-.nf {
-  padding: clamp(5rem, 12vw, 9rem) 0;
-  text-align: center;
-}
-
-.nf .label {
-  color: var(--faint);
+.edge {
+  padding: calc(var(--section-y) * 1.2) 1.5rem;
 }
 
 /* ---- centred product hero (Polaris) -------------------------------------- */

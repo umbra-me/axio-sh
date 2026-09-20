@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import DeckMock from "@/components/DeckMock";
 import ProductHero from "@/components/ProductHero";
 import { PRODUCTS } from "@/lib/products";
+import ButtonLink from "@/components/ButtonLink";
 
 const P = PRODUCTS.deck;
 
@@ -38,9 +39,9 @@ export default function DeckPage() {
         lede={P.description}
         actions={
           <>
-            <a className="btn btn--ghost" href="#status">
+            <ButtonLink variant="secondary" href="#status">
               Why it is private
-            </a>
+            </ButtonLink>
           </>
         }
         visual={<DeckMock />}

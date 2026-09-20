@@ -7,6 +7,11 @@ import { ROUTES, WIDTHS, slug } from "./routes.mjs";
 // to the header or footer, whose heights would otherwise shift everything.
 const args = process.argv.slice(2);
 const mainOnly = args.includes("--main");
+// --button-height=<px> pins Tessera's large button to a given height for the
+// capture only. The site's own buttons computed to 46.8px and Tessera's are
+// 44px, so every row below a button moved; pinning the height lets the rest
+// of a page be compared exactly with a capture from before the change.
+const buttonHeight = args.find((a) => a.startsWith("--button-height="))?.split("=")[1];
 const [outDir, base = "http://localhost:3311"] = args.filter((a) => !a.startsWith("--"));
 if (!outDir) throw new Error("usage: capture.mjs <outDir> [baseUrl] [--main]");
 
@@ -28,6 +33,7 @@ for (const width of WIDTHS) {
     await page.goto(base + route, { waitUntil: "load" });
     // Videos decode asynchronously and would differ between runs.
     await page.addStyleTag({ content: "video { visibility: hidden !important; }" });
+    if (buttonHeight) await page.addStyleTag({ content: `.ts-button[data-size="lg"] { height: ${buttonHeight}px !important; }` });
     await page.evaluate(() => document.fonts.ready);
     const path = join(outDir, String(width), `${slug(route)}.png`);
     if (mainOnly) await page.locator("main#content").screenshot({ path });

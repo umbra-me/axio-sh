@@ -31,7 +31,7 @@ const renderLink: RenderLink = ({ href, children, ...rest }) => (
 // IconButton wraps its children, so it cannot render as an anchor; this is the
 // same markup on a link.
 const GitHubLink = () => (
-  <Button asChild variant="ghost" size="sm" data-icon-only="">
+  <Button asChild variant="ghost" data-icon-only="">
     <a href={ORG} aria-label="Umbra on GitHub" title="Umbra on GitHub" rel="noopener">
       <span className="ts-button__icon">
         <IconGitHub />
@@ -77,7 +77,7 @@ export default function SiteChrome({ children }: { children: ReactNode }) {
         actions={
           <>
             <GitHubLink />
-            <Button asChild variant="primary" size="sm">
+            <Button asChild variant="primary">
               <a href="/download">Download</a>
             </Button>
           </>

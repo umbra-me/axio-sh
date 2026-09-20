@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PRODUCT_LIST } from "@/lib/products";
 import { COMPANY, ORG, UMBRA } from "@/lib/site";
+import ButtonLink from "@/components/ButtonLink";
 
 export const metadata: Metadata = {
   title: "About",
@@ -140,12 +141,12 @@ export default function AboutPage() {
               <h2 className="display display--md">See the tools.</h2>
             </div>
             <div className="cta__actions">
-              <a className="btn btn--primary" href="/products">
+              <ButtonLink variant="primary" href="/products">
                 Products
-              </a>
-              <a className="btn btn--ghost" href="/download">
+              </ButtonLink>
+              <ButtonLink variant="secondary" href="/download">
                 Download
-              </a>
+              </ButtonLink>
             </div>
           </div>
         </div>

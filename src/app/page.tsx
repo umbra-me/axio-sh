@@ -6,6 +6,7 @@ import ProductRail from "@/components/ProductRail";
 import Surface from "@/components/Surface";
 import { PRODUCTS } from "@/lib/products";
 import { UMBRA } from "@/lib/site";
+import ButtonLink from "@/components/ButtonLink";
 
 // The rules every product keeps, each keyed by something a product actually
 // prints or writes. The string is the marker: a rule you can check from the
@@ -68,12 +69,12 @@ export default function Page() {
               product telemetry.
             </p>
             <div className="hero__actions">
-              <a className="btn btn--primary" href="/download">
+              <ButtonLink variant="primary" href="/download">
                 Download
-              </a>
-              <a className="btn btn--ghost" href="/products">
+              </ButtonLink>
+              <ButtonLink variant="secondary" href="/products">
                 See all six products
-              </a>
+              </ButtonLink>
             </div>
             <p className="hero__cmd">
               <span className="dim">$</span>
@@ -143,12 +144,12 @@ export default function Page() {
                 </li>
               </ul>
               <div className="phero__actions">
-                <a className="btn btn--product" href="/products/agent">
+                <ButtonLink variant="product" href="/products/agent">
                   About the agent
-                </a>
-                <a className="btn btn--ghost" href="/products/agent#install">
+                </ButtonLink>
+                <ButtonLink variant="secondary" href="/products/agent#install">
                   Install
-                </a>
+                </ButtonLink>
               </div>
             </div>
             <Surface />
@@ -178,12 +179,12 @@ export default function Page() {
                 <li>A$59 once, for two Macs. No subscription.</li>
               </ul>
               <div className="phero__actions">
-                <a className="btn btn--product" href="/products/polaris">
+                <ButtonLink variant="product" href="/products/polaris">
                   About Polaris
-                </a>
-                <a className="btn btn--ghost" href="/products/polaris#pricing">
+                </ButtonLink>
+                <ButtonLink variant="secondary" href="/products/polaris#pricing">
                   Pricing
-                </a>
+                </ButtonLink>
               </div>
             </div>
             <PolarisVideo
@@ -230,16 +231,12 @@ export default function Page() {
               </p>
             </div>
             <div className="cta__actions">
-              <a className="btn btn--primary" href="/about">
+              <ButtonLink variant="primary" href="/about">
                 About Axio
-              </a>
-              <a
-                className="btn btn--ghost"
-                href={UMBRA}
-                data-umbra-link="umbra-attribution"
-              >
+              </ButtonLink>
+              <ButtonLink variant="secondary" href={UMBRA} data-umbra-link="umbra-attribution">
                 Visit umbra.me
-              </a>
+              </ButtonLink>
             </div>
           </div>
         </div>

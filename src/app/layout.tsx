@@ -83,7 +83,7 @@ export default function RootLayout({
         <ThemeScript registry={registry} {...theme} />
         <TesseraProvider registry={registry} {...theme}>
           {/* Hidden until focused, first in the tab order. */}
-          <a className="skip-link" href="#content">
+          <a className="ts-button ts-skip-link" data-variant="primary" href="#content">
             Skip to content
           </a>
           <div className="bg" aria-hidden="true" />

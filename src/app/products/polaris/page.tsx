@@ -11,6 +11,7 @@ import {
   POLARIS_VERSION,
   PRODUCTS,
 } from "@/lib/products";
+import ButtonLink from "@/components/ButtonLink";
 
 const P = PRODUCTS.polaris;
 const Icon = PRODUCT_ICONS.polaris;
@@ -222,14 +223,14 @@ export default function PolarisPage() {
             together in one native Mac app.
           </p>
           <div className="phero__actions">
-            <a className="btn btn--product" href={POLARIS_DOWNLOAD}>
+            <ButtonLink variant="product" href={POLARIS_DOWNLOAD}>
               Download free trial
               <IconDownload />
-            </a>
-            <a className="btn btn--ghost" href={POLARIS_BUY} rel="noopener">
+            </ButtonLink>
+            <ButtonLink variant="secondary" href={POLARIS_BUY} rel="noopener">
               Buy once · {POLARIS_PRICE}
               <IconArrowUpRight />
-            </a>
+            </ButtonLink>
           </div>
           <ul className="phero__facts">
             <li>14 days free</li>
@@ -330,10 +331,10 @@ export default function PolarisPage() {
                 ready.
               </p>
               <div className="phero__actions">
-                <a className="btn btn--ghost" href={POLARIS_DOWNLOAD}>
+                <ButtonLink variant="secondary" href={POLARIS_DOWNLOAD}>
                   Download free trial
                   <IconDownload />
-                </a>
+                </ButtonLink>
               </div>
               <p className="offer__version">
                 Version {POLARIS_VERSION} · Apple Silicon · macOS 15+
@@ -351,10 +352,10 @@ export default function PolarisPage() {
                 <li>Licence delivered by email</li>
                 <li>No recurring payments</li>
               </ul>
-              <a className="btn btn--product" href={POLARIS_BUY} rel="noopener">
+              <ButtonLink variant="product" href={POLARIS_BUY} rel="noopener">
                 Buy Polaris
                 <IconArrowUpRight />
-              </a>
+              </ButtonLink>
               <p className="note">
                 Your free trial never automatically charges you. Your statement
                 shows this purchase as Link.com* Axio.sh, because Stripe handles

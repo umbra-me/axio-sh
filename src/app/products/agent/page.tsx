@@ -6,6 +6,7 @@ import ProductHero from "@/components/ProductHero";
 import Surface from "@/components/Surface";
 import Term from "@/components/Term";
 import { PRODUCTS } from "@/lib/products";
+import ButtonLink from "@/components/ButtonLink";
 
 const P = PRODUCTS.agent;
 const REPO = P.repo!;
@@ -31,13 +32,13 @@ export default function AgentPage() {
         lede={P.description}
         actions={
           <>
-            <a className="btn btn--product" href="#install">
+            <ButtonLink variant="product" href="#install">
               Install from main
-            </a>
-            <a className="btn btn--ghost" href={REPO} rel="noopener">
+            </ButtonLink>
+            <ButtonLink variant="secondary" href={REPO} rel="noopener">
               Repository
               <IconArrowUpRight />
-            </a>
+            </ButtonLink>
           </>
         }
         visual={<Surface />}

@@ -3,12 +3,13 @@ import type { CSSProperties } from "react";
 import ProductHero from "@/components/ProductHero";
 import Term from "@/components/Term";
 import { PRODUCTS } from "@/lib/products";
+import ButtonLink from "@/components/ButtonLink";
 const P = PRODUCTS.local;
 export const metadata: Metadata = { title: P.name, description: P.description, alternates: { canonical: "/products/local" } };
 export default function LocalPage() {
   return <div style={{ "--pc": P.color } as CSSProperties}>
     <ProductHero product={P} headline={<>Your agent.<br /><em>Your local models.</em></>} lede={P.description}
-      actions={<><a className="btn btn--product" href="#install">Install Axio Local</a><a className="btn btn--ghost" href={P.repo!}>Source and documentation</a></>}
+      actions={<><ButtonLink variant="product" href="#install">Install Axio Local</ButtonLink><ButtonLink variant="secondary" href={P.repo!}>Source and documentation</ButtonLink></>}
       visual={<Term label="A local session" wrap>{`axio-local status
 axio-local -o YOUR_MODEL -w YOUR_MODEL axio`}</Term>} />
     <section className="section" id="install"><div className="container">

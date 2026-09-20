@@ -5,6 +5,7 @@ import { IconArrowUpRight } from "@/components/Icons";
 import ProductHero from "@/components/ProductHero";
 import Term from "@/components/Term";
 import { ANALYST_VERSION, PRODUCTS } from "@/lib/products";
+import ButtonLink from "@/components/ButtonLink";
 
 const P = PRODUCTS.analyst;
 const REPO = P.repo!;
@@ -30,13 +31,13 @@ export default function AnalystPage() {
         lede={P.description}
         actions={
           <>
-            <a className="btn btn--product" href="#install">
+            <ButtonLink variant="product" href="#install">
               Install the plugin
-            </a>
-            <a className="btn btn--ghost" href={REPO} rel="noopener">
+            </ButtonLink>
+            <ButtonLink variant="secondary" href={REPO} rel="noopener">
               Repository
               <IconArrowUpRight />
-            </a>
+            </ButtonLink>
           </>
         }
         visual={<AnalystMock />}
