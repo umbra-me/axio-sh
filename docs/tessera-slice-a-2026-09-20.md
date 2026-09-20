@@ -102,3 +102,31 @@ The alias layer; `body.ts-root` and the focus prefix; `ButtonLink` and the
 `ProductRail`, `ProductCard`, `SpotlightGrid`, the Polaris gallery and video,
 `CopyButton`, `Mark`, `Icons` and `.bg`. Tessera's handoff lists the gaps this
 port found.
+
+
+## Addendum, later on 2026-09-20: Tessera closed the gaps this port found
+
+Tessera decision 37 removed most of what this record calls a workaround, and
+the site dropped each one. Nothing here records a deployment.
+
+- `ButtonLink` is a server component again: Tessera marks its own client
+  components, and `Button` no longer creates a click handler when idle (the
+  site's build is what found that).
+- The header says "by Umbra" again, through `SiteHeader`'s `byline`.
+- The GitHub link is `IconButton asChild`; the footer's Umbra link carries
+  `data-umbra-link` as data, and `renderLink` no longer matches its URL.
+- Sentence-case footer and sheet titles come from the Axio theme's
+  `label.transform` and `label.tracking`; the site override is gone.
+- `next/font` is gone from the layout and the `--ts-font-family-*` overrides
+  from `globals.css`. The theme's Geist now carries the complete face for
+  U+2190-21FF, U+2300-23FF, U+2500-259F and U+25A0-25FF. Checked in a browser:
+  `/about` and `/legal/terms` fetch the two Latin subsets only, the licence
+  page also fetches `geist-full` for its arrow, and the home and agent pages
+  fetch `geist-mono-full` for the terminals' box drawing.
+
+Evidence: `<main>` on all 16 routes at three widths matches production, both
+before and after the font change; `dark-only.mjs` passes; `axe.mjs` reports
+only the terminal `<pre>` finding this record already lists. Still the next
+slice's: the status badge, the legal and about prose, `body.ts-root` and the
+focus prefix, `.btn-product`, and the alias layer.
+

@@ -1,6 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
 import { accentOptions, brands } from "@tessera/themes";
 import { ThemeScript, createSiteRegistry } from "@tessera/next";
 import { TesseraProvider } from "@tessera/next/client";
@@ -17,11 +15,11 @@ const registry = createSiteRegistry({
 });
 const theme = { namespace: "axio-site", defaults: { preset: "axio", mode: "dark" } } as const;
 
-// Geist is the Umbra house face. next/font self-hosts it, so the page still
-// makes no external request. The Axio theme bundles Geist too, but only the
-// latin subsets: it has no arrows or keyboard symbols and no box drawing in
-// the mono, all of which this site prints. globals.css points Tessera's font
-// tokens at these complete faces, so the theme's files are never fetched.
+// Geist is the Umbra house face. The Axio theme bundles it as local files:
+// the Latin subsets, plus the complete face declared only for arrows, symbols
+// and box drawing, so the page still makes no external request. The geist
+// package stays a dependency for the generated social card alone, which is
+// drawn outside the browser and reads the font files from disk.
 //
 // metadataBase is what makes the og:image absolute. Without it Next emits the
 // generated card as a relative path, every scraper that reads it resolves the
@@ -76,7 +74,6 @@ export default function RootLayout({
       lang="en"
       data-preset="axio"
       data-mode="dark"
-      className={`${GeistSans.variable} ${GeistMono.variable}`}
       suppressHydrationWarning
     >
       <body className="ts-root">

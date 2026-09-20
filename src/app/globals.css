@@ -14,8 +14,8 @@
  * accent for everything that belongs to the site rather than to a product.
  *
  * Geist Sans carries the display type, Geist Mono carries labels, artifacts
- * and anything the products themselves print. Both are self-hosted through
- * next/font; the page makes no external request.
+ * and anything the products themselves print. Both are bundled by the Axio
+ * theme as local files; the page makes no external request.
  *
  * The names below are an alias layer over Tessera's Axio theme, so the
  * sections written against them keep working unchanged. A name points at a
@@ -74,12 +74,8 @@
   --r-4: 16px;
   --r-5: 22px;
 
-  --sans: var(--font-geist-sans), system-ui, sans-serif;
-  --mono: var(--font-geist-mono), ui-monospace, monospace;
-  /* Tessera's components take the same complete faces; see layout.tsx. */
-  --ts-font-family-sans: var(--sans);
-  --ts-font-family-display: var(--sans);
-  --ts-font-family-mono: var(--mono);
+  --sans: var(--ts-font-family-sans);
+  --mono: var(--ts-font-family-mono);
 
   --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
   --shadow-2: 0 8px 24px rgba(0, 0, 0, 0.45);
