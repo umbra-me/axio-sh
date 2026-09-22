@@ -1,5 +1,7 @@
 "use client";
 
+import "./PolarisVideo.css";
+
 import { useState } from "react";
 
 /**

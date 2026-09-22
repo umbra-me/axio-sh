@@ -292,6 +292,14 @@ main:focus {
   color: inherit;
 }
 
+/* ---- section heads with a status row ------------------------------------- */
+/* A head whose title sits beside a status badge, which SectionHeader cannot
+   express: the download page's per-product heads and the product pages'. */
+.site-head { max-width: 40rem; margin-bottom: 3rem; }
+.site-head > p { margin: 1rem 0 0; color: var(--muted); font-size: 1.0625rem; text-wrap: pretty; }
+.site-head > p a { color: var(--text-2); }
+.site-head__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
+
 /* ---- sections ------------------------------------------------------------ */
 
 .section {

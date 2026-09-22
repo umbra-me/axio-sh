@@ -203,28 +203,28 @@ export default function PolarisPage() {
       {/* Film-led and centred, unlike the other product pages: this is the one
           paid product, its page is a sales page, and the footage of the real
           app is the argument. It is still the site's type, tokens and buttons. */}
-      <section className="phero phero--center" id="polaris">
+      <section className="ts-split-hero" data-center="" id="polaris">
         <div className="ts-container">
-          <ol className="crumbs">
+          <ol className="ts-crumbs">
             <li>
               <a href="/products">Products</a>
             </li>
             <li aria-current="page">{P.name}</li>
           </ol>
-          <div className="site-head__meta">
-            <span className="card__icon">
+          <div className="ts-split-hero__meta">
+            <span className="ts-product-card__mark">
               <Icon />
             </span>
             <StatusBadge product={P} />
           </div>
-          <h1 className="ts-display" data-size="page">
+          <h1 className="ts-split-hero__title">
             Your Mac, <em>a little calmer.</em>
           </h1>
-          <p className="ts-lede">
+          <p className="ts-split-hero__lede">
             Start a timer. Catch a thought. Get back to it. Your everyday tools,
             together in one native Mac app.
           </p>
-          <div className="phero__actions">
+          <div className="ts-split-hero__actions">
             <Button asChild size="lg" variant="primary" tone="product">
 <a href={POLARIS_DOWNLOAD}>
               Download free trial
@@ -238,7 +238,7 @@ export default function PolarisPage() {
             </a>
 </Button>
           </div>
-          <ul className="phero__facts">
+          <ul className="ts-split-hero__facts">
             <li>14 days free</li>
             <li>No card needed</li>
             <li>Apple Silicon</li>
@@ -308,7 +308,7 @@ export default function PolarisPage() {
                 Try Polaris in your own routine for 14 days. Buy when you’re
                 ready.
               </p>
-              <div className="phero__actions">
+              <div className="ts-split-hero__actions">
                 <Button asChild size="lg" variant="secondary">
 <a href={POLARIS_DOWNLOAD}>
                   Download free trial

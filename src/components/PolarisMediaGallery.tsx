@@ -1,3 +1,4 @@
+import "./PolarisVideo.css";
 import Image from "next/image";
 
 export type PolarisMediaItem = {
