@@ -1,8 +1,7 @@
-import { FeatureGrid, SectionHeader } from "@tessera/marketing";
+import { Faq, FeatureGrid, Plan, PricingGrid, SectionHeader } from "@tessera/marketing";
 import { Button } from "@tessera/ui";
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
-import Image from "next/image";
 import { IconArrowUpRight, IconDownload, PRODUCT_ICONS } from "@/components/Icons";
 import PolarisVideo from "@/components/PolarisVideo";
 import StatusBadge from "@/components/StatusBadge";
@@ -295,14 +294,11 @@ export default function PolarisPage() {
 
       <section className="ts-section" data-ruled="" id="pricing">
         <div className="ts-container">
-          <div className="offer">
-            <div className="offer__pitch">
-              <Image
-                src="/demos/polaris/icon.svg"
-                width={72}
-                height={72}
-                alt="Polaris compass icon"
-              />
+          <div className="ts-split" data-offer="">
+            <div className="ts-split__text">
+              <span className="ts-product-card__mark" aria-hidden="true">
+                <Icon />
+              </span>
               <h2 className="ts-display" data-size="section">A calmer Mac. No subscription.</h2>
               <p className="ts-lede">
                 Try Polaris in your own routine for 14 days. Buy when you’re
@@ -316,51 +312,44 @@ export default function PolarisPage() {
                 </a>
 </Button>
               </div>
-              <p className="offer__version">
+              <p className="ts-text" data-mono="" data-size="xs" data-tone="muted">
                 Version {POLARIS_VERSION} · Apple Silicon · macOS 15+
               </p>
             </div>
-            <div className="offer__price">
-              <p className="ts-eyebrow" data-mono="">Personal licence</p>
-              <p className="offer__amount">
-                {POLARIS_PRICE}
-                <span>once</span>
-              </p>
-              <ul>
-                <li>Use on two Macs</li>
-                <li>Tax included</li>
-                <li>Licence delivered by email</li>
-                <li>No recurring payments</li>
-              </ul>
-              <Button asChild size="lg" variant="primary" tone="product">
-<a href={POLARIS_BUY} rel="noopener">
-                Buy Polaris
-                <IconArrowUpRight />
-              </a>
-</Button>
-              <p className="ts-text ts-note" data-tone="muted">
-                Your free trial never automatically charges you. Your statement
-                shows this purchase as Link.com* Axio.sh, because Stripe handles
-                payment and tax for Axio.{" "}
-                <a href="/products/polaris/licence">Licence and refund details</a>.
-              </p>
-            </div>
+            <PricingGrid>
+              <Plan
+                name="Personal licence"
+                amount={POLARIS_PRICE}
+                period="once"
+                highlighted
+                features={["Use on two Macs", "Tax included", "Licence delivered by email", "No recurring payments"]}
+                cta={
+                  <>
+                    <Button asChild size="lg" variant="primary" tone="product">
+                      <a href={POLARIS_BUY} rel="noopener">
+                        Buy Polaris
+                        <IconArrowUpRight />
+                      </a>
+                    </Button>
+                    <p className="ts-text ts-note" data-tone="muted">
+                      Your free trial never automatically charges you. Your statement
+                      shows this purchase as Link.com* Axio.sh, because Stripe handles
+                      payment and tax for Axio.{" "}
+                      <a href="/products/polaris/licence">Licence and refund details</a>.
+                    </p>
+                  </>
+                }
+              />
+            </PricingGrid>
           </div>
         </div>
       </section>
 
       <section className="ts-section" data-ruled="" id="questions">
         <div className="ts-container">
-          <div className="faq">
+          <div className="ts-split" data-align="start">
             <SectionHeader size="page" scramble={false} reveal={false} title={<>Before you settle in.</>} description={<>Something else on your mind?{" "} <a href="mailto:support@umbra.me">support@umbra.me</a></>} />
-            <div className="faq__list">
-              {FAQ.map((item) => (
-                <details key={item.q}>
-                  <summary>{item.q}</summary>
-                  {item.a}
-                </details>
-              ))}
-            </div>
+            <Faq items={FAQ.map((item) => ({ question: item.q, answer: item.a }))} />
           </div>
         </div>
       </section>
