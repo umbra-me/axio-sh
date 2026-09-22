@@ -1,4 +1,4 @@
-import { ProductGrid } from "@tessera/marketing";
+import { ProductGrid, SectionHeader } from "@tessera/marketing";
 import type { Metadata } from "next";
 import ProductCard from "@/components/ProductCard";
 import { AVAILABLE, PRIVATE, PRODUCT_LIST, listNames } from "@/lib/products";
@@ -14,8 +14,8 @@ export default function ProductsPage() {
   return (
     <>
       <section className="page-head">
-        <div className="container">
-          <h1 className="display display--lg">Everything Axio makes.</h1>
+        <div className="ts-container">
+          <h1 className="ts-display" data-size="page">Everything Axio makes.</h1>
           <p>
             Six tools, each with its own repository and release path.{" "}
             {AVAILABLE.length} can be installed today;{" "}
@@ -23,9 +23,9 @@ export default function ProductsPage() {
           </p>
         </div>
       </section>
-      <section className="section--tight">
-        <div className="container">
-          <h2 className="visually-hidden">The six tools</h2>
+      <section className="ts-section" data-tight="">
+        <div className="ts-container">
+          <h2 className="ts-sr-only">The six tools</h2>
           <ProductGrid columns={3}>
             {PRODUCT_LIST.map((p) => (
               <ProductCard key={p.id} product={p} />
@@ -33,32 +33,23 @@ export default function ProductsPage() {
           </ProductGrid>
         </div>
       </section>
-      <section className="section">
-        <div className="container">
-          <div className="section__head">
-            <h2 className="display display--md">
-              Where each one runs, and what it costs you.
-            </h2>
-            <p>
-              Licence and platform support are per product, because they are
-              separate tools rather than one program with modules. Everything
-              open source is free; Polaris is a paid personal licence.
-            </p>
-          </div>
+      <section className="ts-section">
+        <div className="ts-container">
+          <SectionHeader size="section" scramble={false} reveal={false} title={<>Where each one runs, and what it costs you.</>} description={<>Licence and platform support are per product, because they are separate tools rather than one program with modules. Everything open source is free; Polaris is a paid personal licence.</>} />
           <div className="ledger-card">
             <table className="ledger">
               <thead>
                 <tr>
-                  <th scope="col" className="label">
+                  <th scope="col" className="ts-text" data-mono="" data-size="xs">
                     Product
                   </th>
-                  <th scope="col" className="label">
+                  <th scope="col" className="ts-text" data-mono="" data-size="xs">
                     Status
                   </th>
-                  <th scope="col" className="label">
+                  <th scope="col" className="ts-text" data-mono="" data-size="xs">
                     Licence
                   </th>
-                  <th scope="col" className="label">
+                  <th scope="col" className="ts-text" data-mono="" data-size="xs">
                     Runs on
                   </th>
                 </tr>
@@ -87,7 +78,7 @@ export default function ProductsPage() {
               </tbody>
             </table>
           </div>
-          <p className="note">
+          <p className="ts-text ts-note" data-tone="muted">
             The agent is the only tool that compiles from source today: no
             binary is published yet, so{" "}
             <a href="/install">the install script</a> builds the current{" "}

@@ -1,4 +1,4 @@
-import { Ledger } from "@tessera/marketing";
+import { CtaBand, Ledger, SectionHeader } from "@tessera/marketing";
 import { Button } from "@tessera/ui";
 import type { CSSProperties } from "react";
 import ApprovalTranscript from "@/components/ApprovalTranscript";
@@ -55,15 +55,13 @@ export default function Page() {
       <section className="hero">
         <div className="container hero__grid">
           <div>
-            <p className="eyebrow">
-              <i aria-hidden="true" />
-              Developer tools by Umbra
+            <p className="ts-eyebrow" data-mono="" data-dot="">Developer tools by Umbra
             </p>
             <h1 className="display">
               Developer tools that{" "}
               <span className="grad">stay on your machine.</span>
             </h1>
-            <p className="lede">
+            <p className="ts-lede">
               Axio is a family of six: coding agents, capture and analysis tools,
               a Windows control surface, and Polaris, a native Mac utility for
               the rest of your day. Local work stays local, and there is no
@@ -92,44 +90,30 @@ export default function Page() {
 
       {/* The proof of the headline comes first: what each tool sends, from the
           same registry field the privacy policy is written from. */}
-      <section className="section" id="network">
-        <div className="container">
-          <div className="section__head">
-            <h2 className="display display--lg">What leaves your machine.</h2>
-            <p>
-              Nothing reports usage, so it is worth stating exactly what each
-              tool does talk to. The{" "}
-              <a href="/legal/privacy#software">privacy policy</a> has the same
-              list with the endpoints named.
-            </p>
-          </div>
+      <section className="ts-section" id="network">
+        <div className="ts-container">
+          <SectionHeader size="page" scramble={false} reveal={false} title={<>What leaves your machine.</>} description={<>Nothing reports usage, so it is worth stating exactly what each tool does talk to. The{" "} <a href="/legal/privacy#software">privacy policy</a> has the same list with the endpoints named.</>} />
           <NetworkTable />
         </div>
       </section>
 
-      <section className="section section--ruled" id="products">
-        <div className="container">
-          <div className="section__head">
-            <h2 className="display display--lg">Six tools. One set of rules.</h2>
-            <p>
-              Each one has its own repository, its own release and its own
-              colour. What they share is how they behave.
-            </p>
-          </div>
+      <section className="ts-section" data-ruled="" id="products">
+        <div className="ts-container">
+          <SectionHeader size="page" scramble={false} reveal={false} title={<>Six tools. One set of rules.</>} description={<>Each one has its own repository, its own release and its own colour. What they share is how they behave.</>} />
           <ProductRail />
         </div>
       </section>
 
       <section
-        className="section section--ruled"
+        className="ts-section" data-ruled=""
         id="agent"
         style={{ "--pc": PRODUCTS.agent.color } as CSSProperties}
       >
-        <div className="container">
+        <div className="ts-container">
           <div className="ts-split">
             <div className="ts-split__text">
-              <h2 className="display display--md">Many agents. One queue.</h2>
-              <p className="lede">
+              <h2 className="ts-display" data-size="section">Many agents. One queue.</h2>
+              <p className="ts-lede">
                 Every supervised session gets its own git worktree and branch,
                 so an agent edits an isolated checkout rather than the one you
                 are working in. Every approval they need arrives in one place.
@@ -167,17 +151,17 @@ export default function Page() {
       </section>
 
       <section
-        className="section section--ruled"
+        className="ts-section" data-ruled=""
         id="polaris"
         style={{ "--pc": PRODUCTS.polaris.color } as CSSProperties}
       >
-        <div className="container">
+        <div className="ts-container">
           <div className="ts-split" data-reverse="">
             <div className="ts-split__text">
-              <h2 className="display display--md">
+              <h2 className="ts-display" data-size="section">
                 A native Mac utility for the rest of your day.
               </h2>
-              <p className="lede">
+              <p className="ts-lede">
                 Polaris puts a launcher, timers, notes and a place to focus at
                 the notch, in one native app. Your notes, tasks and clipboard
                 stay on the Mac; there is no Polaris cloud.
@@ -209,34 +193,16 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="section section--ruled" id="rules">
-        <div className="container">
-          <div className="section__head">
-            <h2 className="display display--lg">The rules every product keeps.</h2>
-            <p>
-              These are not aspirations. Each one is checkable from the outside,
-              and the string beside it is where to look.
-            </p>
-          </div>
+      <section className="ts-section" data-ruled="" id="rules">
+        <div className="ts-container">
+          <SectionHeader size="page" scramble={false} reveal={false} title={<>The rules every product keeps.</>} description={<>These are not aspirations. Each one is checkable from the outside, and the string beside it is where to look.</>} />
           <Ledger layout="grid" entries={RULES} />
         </div>
       </section>
 
-      <section className="section section--ruled">
-        <div className="container">
-          <div className="cta">
-            <div className="cta__text">
-              <h2 className="display display--md">
-                Built independently, operated carefully.
-              </h2>
-              <p className="lede">
-                Axio is one of Umbra’s product families. Umbra runs the website
-                and the product record centrally; the tools themselves never
-                phone home to it.
-              </p>
-            </div>
-            <div className="cta__actions">
-              <Button asChild size="lg" variant="primary">
+      <section className="ts-section" data-ruled="">
+        <div className="ts-container">
+          <CtaBand title={<>Built independently, operated carefully.</>} body={<>Axio is one of Umbra’s product families. Umbra runs the website and the product record centrally; the tools themselves never phone home to it.</>} actions={<><Button asChild size="lg" variant="primary">
 <a href="/about">
                 About Axio
               </a>
@@ -245,9 +211,7 @@ export default function Page() {
 <a href={UMBRA} data-umbra-link="umbra-attribution">
                 Visit umbra.me
               </a>
-</Button>
-            </div>
-          </div>
+</Button></>} />
         </div>
       </section>
     </>

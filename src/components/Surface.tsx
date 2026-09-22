@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import "./Surface.css";
 
 /**
  * The desktop surface, drawn rather than screenshotted.

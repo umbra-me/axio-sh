@@ -1,0 +1,291 @@
+/* Moved from globals.css in slice B1, unchanged; reads the alias layer in app/site.css. */
+/* ---- centred product hero (Polaris) -------------------------------------- */
+
+/* The one paid product's page opens on its film. Same tokens, type and
+   buttons as every other product page; only the alignment differs. */
+.phero--center .container {
+  text-align: center;
+}
+
+.phero--center .crumbs,
+.phero--center .phero__meta,
+.phero--center .phero__actions,
+.phero--center .phero__facts {
+  justify-content: center;
+}
+
+.phero--center .lede {
+  margin-inline: auto;
+  max-width: 34rem;
+}
+
+.phero--center .phero__facts {
+  justify-content: center;
+}
+
+/* Facts separated by a dot when they sit on one line. */
+.phero--center .phero__facts li + li::before {
+  content: "·";
+  margin-right: 1.5rem;
+  color: var(--faint);
+}
+
+.film-hero {
+  max-width: 64rem;
+  margin: clamp(2.5rem, 5vw, 3.5rem) auto 0;
+}
+
+.film-note {
+  margin: 0.9rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--faint);
+}
+
+/* ---- film ---------------------------------------------------------------- */
+
+.film {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: var(--r-4);
+  background: var(--slate-deep);
+  box-shadow: var(--shadow-3);
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+}
+
+.film video,
+.film img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.film__play {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.film__play picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Top corner, not bottom: the posters carry their own caption along the
+   bottom edge and a narrow frame put the control on top of it. */
+.film__control {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.95rem;
+  border-radius: 999px;
+  background: var(--pc, var(--accent));
+  color: #05070a;
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-2);
+  transition: transform var(--fast) var(--ease);
+}
+
+.film__control svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.film__play:hover .film__control {
+  transform: translateY(-1px);
+}
+
+@media (max-width: 600px) {
+  .film {
+    max-width: 22rem;
+    margin-inline: auto;
+    aspect-ratio: 9 / 16;
+  }
+}
+
+.stories {
+  display: grid;
+  gap: clamp(3rem, 6vw, 5rem);
+}
+
+.stories .split__text .note {
+  margin-top: 1rem;
+}
+
+/* ---- offer (Polaris pricing) --------------------------------------------- */
+
+.offer {
+  display: grid;
+  gap: 2.5rem;
+  padding: clamp(1.75rem, 4vw, 3.5rem);
+  border: 1px solid var(--line);
+  border-radius: var(--r-5);
+  background:
+    radial-gradient(
+      36rem 18rem at 20% 0%,
+      color-mix(in srgb, var(--pc, var(--accent)) 12%, transparent),
+      transparent 70%
+    ),
+    var(--slate);
+  box-shadow: inset 0 1px 0 var(--lit);
+}
+
+@media (min-width: 56rem) {
+  .offer {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+  }
+  .offer__price {
+    padding-left: clamp(2rem, 4vw, 3.5rem);
+    border-left: 1px solid var(--line);
+  }
+}
+
+.offer__pitch img {
+  margin-bottom: 1.25rem;
+}
+
+.offer__pitch .lede {
+  max-width: 28rem;
+}
+
+.offer__version {
+  margin: 1.25rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--faint);
+}
+
+.offer__amount {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin: 0 0 1.5rem;
+  font-size: clamp(2.75rem, 5vw, 3.75rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.offer__amount span {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+
+.offer__price ul {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0 0 1.75rem;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9375rem;
+  color: var(--text-2);
+}
+
+.offer__price li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.offer__price li::before {
+  content: "";
+  flex: none;
+  width: 0.4rem;
+  height: 0.4rem;
+  margin-top: 0.55rem;
+  border-radius: 50%;
+  background: var(--pc);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--pc) 60%, transparent);
+}
+
+.offer__price .note {
+  margin-top: 1.25rem;
+  font-size: 0.8125rem;
+}
+
+/* ---- questions (Polaris FAQ) --------------------------------------------- */
+
+.faq {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 60rem) {
+  .faq {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    gap: 4rem;
+  }
+  .faq .section__head {
+    margin-bottom: 0;
+  }
+}
+
+.faq__list {
+  border-top: 1px solid var(--line);
+}
+
+.faq details {
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  list-style: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::after {
+  content: "+";
+  flex: none;
+  font-family: var(--mono);
+  color: var(--muted);
+}
+
+.faq details[open] summary::after {
+  content: "−";
+}
+
+.faq details p {
+  margin: 0 0 1.25rem;
+  max-width: 40rem;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--text-2);
+}
+
+.faq details a {
+  color: var(--text);
+}
+
+.nf .hero__actions {
+  justify-content: center;
+}

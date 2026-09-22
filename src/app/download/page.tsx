@@ -33,8 +33,8 @@ export default function DownloadPage() {
   return (
     <>
       <section className="page-head">
-        <div className="container">
-          <h1 className="display display--lg">Every Axio tool, one page.</h1>
+        <div className="ts-container">
+          <h1 className="ts-display" data-size="page">Every Axio tool, one page.</h1>
           <p>
             {AVAILABLE.length} of the six can be installed today;{" "}
             {listNames(PRIVATE)} has no installer while it is built. Read an
@@ -45,14 +45,14 @@ export default function DownloadPage() {
       </section>
 
       <section
-        className="section--tight"
+        className="ts-section" data-tight=""
         id="agent"
         style={{ "--pc": agent.color } as CSSProperties}
       >
-        <div className="container">
-          <div className="section__head">
-            <div className="phero__meta">
-              <h2 className="display display--md">{agent.name}, the agent</h2>
+        <div className="ts-container">
+          <div className="site-head">
+            <div className="site-head__meta">
+              <h2 className="ts-display" data-size="section">{agent.name}, the agent</h2>
               <StatusBadge product={agent} />
             </div>
             <p>
@@ -71,7 +71,7 @@ irm https://axio.sh/install.ps1 | iex
 cargo install --git ${agent.repo} --locked axio
 `}</Terminal>
           </div>
-          <p className="note">
+          <p className="ts-text ts-note" data-tone="muted">
             <a href="/install">install.sh</a> · <a href="/install.ps1">install.ps1</a>{" "}
             · <a href="/products/agent">about the agent</a>
           </p>
@@ -79,14 +79,14 @@ cargo install --git ${agent.repo} --locked axio
       </section>
 
       <section
-        className="section--tight"
+        className="ts-section" data-tight=""
         id="capture"
         style={{ "--pc": capture.color } as CSSProperties}
       >
-        <div className="container">
-          <div className="section__head">
-            <div className="phero__meta">
-              <h2 className="display display--md">
+        <div className="ts-container">
+          <div className="site-head">
+            <div className="site-head__meta">
+              <h2 className="ts-display" data-size="section">
                 {capture.name} {CAPTURE_VERSION}
               </h2>
               <StatusBadge product={capture} />
@@ -112,21 +112,21 @@ cargo install --git ${agent.repo} --locked axio
               </a>
             ))}
           </div>
-          <p className="note">
+          <p className="ts-text ts-note" data-tone="muted">
             <a href="/products/capture">about Axio Capture</a>
           </p>
         </div>
       </section>
 
       <section
-        className="section--tight"
+        className="ts-section" data-tight=""
         id="analyst"
         style={{ "--pc": analyst.color } as CSSProperties}
       >
-        <div className="container">
-          <div className="section__head">
-            <div className="phero__meta">
-              <h2 className="display display--md">{analyst.name}</h2>
+        <div className="ts-container">
+          <div className="site-head">
+            <div className="site-head__meta">
+              <h2 className="ts-display" data-size="section">{analyst.name}</h2>
               <StatusBadge product={analyst} />
             </div>
             <p>
@@ -145,21 +145,21 @@ git clone ${analyst.repo}.git "$HOME/.binaryninja/plugins/axio_analyst"
 git clone ${analyst.repo}.git "$env:APPDATA\\Binary Ninja\\plugins\\axio_analyst"
 `}</Terminal>
           </div>
-          <p className="note">
+          <p className="ts-text ts-note" data-tone="muted">
             <a href="/products/analyst">about Axio Analyst</a>
           </p>
         </div>
       </section>
 
       <section
-        className="section--tight"
+        className="ts-section" data-tight=""
         id="local"
         style={{ "--pc": local.color } as CSSProperties}
       >
-        <div className="container">
-          <div className="section__head">
-            <div className="phero__meta">
-              <h2 className="display display--md">{local.name}</h2>
+        <div className="ts-container">
+          <div className="site-head">
+            <div className="site-head__meta">
+              <h2 className="ts-display" data-size="section">{local.name}</h2>
               <StatusBadge product={local} />
             </div>
             <p>
@@ -170,21 +170,21 @@ git clone ${analyst.repo}.git "$env:APPDATA\\Binary Ninja\\plugins\\axio_analyst
           <Terminal title="macOS · Linux · WSL" wrap copy="Axio Local install">{`
 cargo install --git ${local.repo} --locked
 `}</Terminal>
-          <p className="note">
+          <p className="ts-text ts-note" data-tone="muted">
             <a href="/products/local">setup and model selection</a>
           </p>
         </div>
       </section>
 
       <section
-        className="section--tight"
+        className="ts-section" data-tight=""
         id="polaris"
         style={{ "--pc": polaris.color } as CSSProperties}
       >
-        <div className="container">
-          <div className="section__head">
-            <div className="phero__meta">
-              <h2 className="display display--md">
+        <div className="ts-container">
+          <div className="site-head">
+            <div className="site-head__meta">
+              <h2 className="ts-display" data-size="section">
                 {polaris.name} {POLARIS_VERSION}
               </h2>
               <StatusBadge product={polaris} />
@@ -205,7 +205,7 @@ cargo install --git ${local.repo} --locked
               <IconDownload />
             </a>
           </div>
-          <p className="note">
+          <p className="ts-text ts-note" data-tone="muted">
             <a href="/products/polaris">about Axio Polaris</a> ·{" "}
             <a href="/products/polaris#pricing">buy a licence</a> ·{" "}
             <a href="/products/polaris/licence">licence and refund details</a>
@@ -214,14 +214,14 @@ cargo install --git ${local.repo} --locked
       </section>
 
       <section
-        className="section--tight"
+        className="ts-section" data-tight=""
         id="deck"
         style={{ "--pc": deck.color } as CSSProperties}
       >
-        <div className="container">
-          <div className="section__head">
-            <div className="phero__meta">
-              <h2 className="display display--md">{deck.name}</h2>
+        <div className="ts-container">
+          <div className="site-head">
+            <div className="site-head__meta">
+              <h2 className="ts-display" data-size="section">{deck.name}</h2>
               <StatusBadge product={deck} />
             </div>
             <p>

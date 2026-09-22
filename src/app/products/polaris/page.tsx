@@ -1,3 +1,4 @@
+import { FeatureGrid, SectionHeader } from "@tessera/marketing";
 import { Button } from "@tessera/ui";
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
@@ -12,6 +13,7 @@ import {
   POLARIS_VERSION,
   PRODUCTS,
 } from "@/lib/products";
+import "@/components/PolarisPage.css";
 
 const P = PRODUCTS.polaris;
 const Icon = PRODUCT_ICONS.polaris;
@@ -202,23 +204,23 @@ export default function PolarisPage() {
           paid product, its page is a sales page, and the footage of the real
           app is the argument. It is still the site's type, tokens and buttons. */}
       <section className="phero phero--center" id="polaris">
-        <div className="container">
+        <div className="ts-container">
           <ol className="crumbs">
             <li>
               <a href="/products">Products</a>
             </li>
             <li aria-current="page">{P.name}</li>
           </ol>
-          <div className="phero__meta">
+          <div className="site-head__meta">
             <span className="card__icon">
               <Icon />
             </span>
             <StatusBadge product={P} />
           </div>
-          <h1 className="display display--lg">
+          <h1 className="ts-display" data-size="page">
             Your Mac, <em>a little calmer.</em>
           </h1>
-          <p className="lede">
+          <p className="ts-lede">
             Start a timer. Catch a thought. Get back to it. Your everyday tools,
             together in one native Mac app.
           </p>
@@ -255,15 +257,9 @@ export default function PolarisPage() {
         </div>
       </section>
 
-      <section className="section section--ruled" id="in-action">
-        <div className="container">
-          <div className="section__head">
-            <h2 className="display display--lg">Small moments. Less switching.</h2>
-            <p>
-              Keep the task in front of you. Let Polaris take care of the little
-              things around it.
-            </p>
-          </div>
+      <section className="ts-section" data-ruled="" id="in-action">
+        <div className="ts-container">
+          <SectionHeader size="page" scramble={false} reveal={false} title={<>Small moments. Less switching.</>} description={<>Keep the task in front of you. Let Polaris take care of the little things around it.</>} />
           <div className="stories">
             {STORIES.map((story, i) => (
               <article
@@ -271,10 +267,10 @@ export default function PolarisPage() {
                 key={story.name}
               >
                 <div className="split__text">
-                  <p className="eyebrow">{story.label}</p>
-                  <h3 className="display display--md">{story.title}</h3>
-                  <p className="lede">{story.body}</p>
-                  <p className="note">{story.detail}</p>
+                  <p className="ts-eyebrow" data-mono="">{story.label}</p>
+                  <h3 className="ts-display" data-size="section">{story.title}</h3>
+                  <p className="ts-lede">{story.body}</p>
+                  <p className="ts-text ts-note" data-tone="muted">{story.detail}</p>
                 </div>
                 <PolarisVideo name={story.name} label={story.film} duration={story.duration} />
               </article>
@@ -283,44 +279,22 @@ export default function PolarisPage() {
         </div>
       </section>
 
-      <section className="section section--ruled">
-        <div className="container">
-          <div className="section__head">
-            <h2 className="display display--lg">Less to juggle. More within reach.</h2>
-          </div>
-          <div className="features features--4">
-            {TOOLS.map((tool) => (
-              <article className="feature" key={tool.title}>
-                <h3>{tool.title}</h3>
-                <p>{tool.body}</p>
-              </article>
-            ))}
-          </div>
+      <section className="ts-section" data-ruled="">
+        <div className="ts-container">
+          <SectionHeader size="page" scramble={false} reveal={false} title={<>Less to juggle. More within reach.</>} />
+          <FeatureGrid variant="bordered" minWidth="14rem" items={TOOLS} />
         </div>
       </section>
 
-      <section className="section section--ruled">
-        <div className="container">
-          <div className="section__head">
-            <h2 className="display display--lg">Your tools. Your say.</h2>
-            <p>
-              <a href="/legal/privacy#polaris">Read the privacy details</a>: what
-              Polaris stores, what it sends, and for which action.
-            </p>
-          </div>
-          <div className="features">
-            {PRINCIPLES.map((item) => (
-              <article className="feature" key={item.title}>
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
-              </article>
-            ))}
-          </div>
+      <section className="ts-section" data-ruled="">
+        <div className="ts-container">
+          <SectionHeader size="page" scramble={false} reveal={false} title={<>Your tools. Your say.</>} description={<><a href="/legal/privacy#polaris">Read the privacy details</a>: what Polaris stores, what it sends, and for which action.</>} />
+          <FeatureGrid variant="bordered" items={PRINCIPLES} />
         </div>
       </section>
 
-      <section className="section section--ruled" id="pricing">
-        <div className="container">
+      <section className="ts-section" data-ruled="" id="pricing">
+        <div className="ts-container">
           <div className="offer">
             <div className="offer__pitch">
               <Image
@@ -329,8 +303,8 @@ export default function PolarisPage() {
                 height={72}
                 alt="Polaris compass icon"
               />
-              <h2 className="display display--md">A calmer Mac. No subscription.</h2>
-              <p className="lede">
+              <h2 className="ts-display" data-size="section">A calmer Mac. No subscription.</h2>
+              <p className="ts-lede">
                 Try Polaris in your own routine for 14 days. Buy when you’re
                 ready.
               </p>
@@ -347,7 +321,7 @@ export default function PolarisPage() {
               </p>
             </div>
             <div className="offer__price">
-              <p className="eyebrow">Personal licence</p>
+              <p className="ts-eyebrow" data-mono="">Personal licence</p>
               <p className="offer__amount">
                 {POLARIS_PRICE}
                 <span>once</span>
@@ -364,7 +338,7 @@ export default function PolarisPage() {
                 <IconArrowUpRight />
               </a>
 </Button>
-              <p className="note">
+              <p className="ts-text ts-note" data-tone="muted">
                 Your free trial never automatically charges you. Your statement
                 shows this purchase as Link.com* Axio.sh, because Stripe handles
                 payment and tax for Axio.{" "}
@@ -375,16 +349,10 @@ export default function PolarisPage() {
         </div>
       </section>
 
-      <section className="section section--ruled" id="questions">
-        <div className="container">
+      <section className="ts-section" data-ruled="" id="questions">
+        <div className="ts-container">
           <div className="faq">
-            <div className="section__head">
-              <h2 className="display display--lg">Before you settle in.</h2>
-              <p>
-                Something else on your mind?{" "}
-                <a href="mailto:support@umbra.me">support@umbra.me</a>
-              </p>
-            </div>
+            <SectionHeader size="page" scramble={false} reveal={false} title={<>Before you settle in.</>} description={<>Something else on your mind?{" "} <a href="mailto:support@umbra.me">support@umbra.me</a></>} />
             <div className="faq__list">
               {FAQ.map((item) => (
                 <details key={item.q}>

@@ -1,3 +1,5 @@
+import "./ProductMocks.css";
+
 // Axio Capture's editor, drawn. A capture on the canvas with an arrow, a
 // numbered step, a text label and a pixelated block over the part that should
 // not be shared; the tool rail on the left with the pen selected; the HUD the

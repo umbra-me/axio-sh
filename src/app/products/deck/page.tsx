@@ -1,3 +1,4 @@
+import { FeatureGrid } from "@tessera/marketing";
 import { Button } from "@tessera/ui";
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
@@ -49,15 +50,15 @@ export default function DeckPage() {
         visual={<DeckMock />}
       />
 
-      <div className="container">
-        <hr className="rule" />
+      <div className="ts-container">
+        <hr className="ts-separator" />
       </div>
 
-      <section className="section">
-        <div className="container">
-          <div className="section__head">
-            <p className="eyebrow">What it does</p>
-            <h2 className="display display--md">Not a Linux port.</h2>
+      <section className="ts-section">
+        <div className="ts-container">
+          <div className="site-head">
+            <p className="ts-eyebrow" data-mono="">What it does</p>
+            <h2 className="ts-display" data-size="section">Not a Linux port.</h2>
             <p>
               Hyprland, Waybar and sway are Linux-only and always will be. The
               Windows counterparts are real, and they are what Deck targets:
@@ -65,80 +66,18 @@ export default function DeckPage() {
               keybind daemon it draws and owns itself.
             </p>
           </div>
-          <div className="features">
-            <article className="feature">
-              <span className="artifact">SHAppBarMessage</span>
-              <h3>A bar that is one, not one that looks like one.</h3>
-              <p>
-                One borderless, always-on-top window per monitor, registered
-                with the shell so the strip comes out of the desktop work area
-                and maximised windows stop underneath it. Verified across three
-                monitors including a portrait panel at a negative origin.
-              </p>
-            </article>
-            <article className="feature">
-              <span className="artifact">WH_KEYBOARD_LL</span>
-              <h3>Chords the shell cannot keep.</h3>
-              <p>
-                A low-level hook, because the ordinary API cannot take
-                Super-plus-anything off the shell. Every chord is configurable
-                in the Keys section, saved and swapped live. Super+1 to 9 are
-                claimed only while komorebi is running.
-              </p>
-            </article>
-            <article className="feature">
-              <span className="artifact">state.json</span>
-              <h3>Undo that restores, not guesses.</h3>
-              <p>
-                Before the first change to an item, the exact current state is
-                recorded, including a registry value that did not exist. Revert
-                replays it. With no snapshot it falls back to a declared inverse
-                and says so in the result.
-              </p>
-            </article>
-            <article className="feature">
-              <span className="artifact">guard.rs</span>
-              <h3>Refuses the things that break machines.</h3>
-              <p>
-                Edge, Defender, the Windows Update stack and WinSxS are not in
-                the catalogue and are refused at apply time. Codecs are not
-                bloat. It also ships no memory booster, because every one of
-                them is a placebo.
-              </p>
-            </article>
-            <article className="feature">
-              <span className="artifact">--</span>
-              <h3>Measured, never invented.</h3>
-              <p>
-                CPU reads <code>--</code>{" "}until two samples exist rather than
-                printing a confident zero. Values cross into amber at 70 percent
-                and rose at 90. A bar that renders 96 percent like 4 percent is
-                displaying a number, not reporting status.
-              </p>
-            </article>
-            <article className="feature">
-              <span className="artifact">one UAC prompt</span>
-              <h3>The dashboard never elevates.</h3>
-              <p>
-                A short-lived elevated helper runs one batch and exits, so the
-                dashboard’s browser engine never runs as admin. An opt-in
-                background service can skip the prompt for low and medium risk
-                only, and nothing can lift that cap.
-              </p>
-            </article>
-          </div>
-        </div>
+          <FeatureGrid variant="bordered" items={[{ kicker: "SHAppBarMessage", title: <>A bar that is one, not one that looks like one.</>, body: <>One borderless, always-on-top window per monitor, registered with the shell so the strip comes out of the desktop work area and maximised windows stop underneath it. Verified across three monitors including a portrait panel at a negative origin.</> }, { kicker: "WH_KEYBOARD_LL", title: <>Chords the shell cannot keep.</>, body: <>A low-level hook, because the ordinary API cannot take Super-plus-anything off the shell. Every chord is configurable in the Keys section, saved and swapped live. Super+1 to 9 are claimed only while komorebi is running.</> }, { kicker: "state.json", title: <>Undo that restores, not guesses.</>, body: <>Before the first change to an item, the exact current state is recorded, including a registry value that did not exist. Revert replays it. With no snapshot it falls back to a declared inverse and says so in the result.</> }, { kicker: "guard.rs", title: <>Refuses the things that break machines.</>, body: <>Edge, Defender, the Windows Update stack and WinSxS are not in the catalogue and are refused at apply time. Codecs are not bloat. It also ships no memory booster, because every one of them is a placebo.</> }, { kicker: "--", title: <>Measured, never invented.</>, body: <>CPU reads <code>--</code>{" "}until two samples exist rather than printing a confident zero. Values cross into amber at 70 percent and rose at 90. A bar that renders 96 percent like 4 percent is displaying a number, not reporting status.</> }, { kicker: "one UAC prompt", title: <>The dashboard never elevates.</>, body: <>A short-lived elevated helper runs one batch and exits, so the dashboard’s browser engine never runs as admin. An opt-in background service can skip the prompt for low and medium risk only, and nothing can lift that cap.</> }]} />        </div>
       </section>
 
-      <section className="section">
-        <div className="container">
+      <section className="ts-section">
+        <div className="ts-container">
           <div className="split">
             <div className="split__text">
-              <p className="eyebrow">Keys</p>
-              <h2 className="display display--md">
+              <p className="ts-eyebrow" data-mono="">Keys</p>
+              <h2 className="ts-display" data-size="section">
                 Everything is Super plus something.
               </h2>
-              <p className="lede">
+              <p className="ts-lede">
                 Anything else belongs to the application with focus. A launch
                 binding names a launcher rather than a path, so changing which
                 terminal a chord opens is one edit rather than a hunt through
@@ -161,13 +100,13 @@ export default function DeckPage() {
         </div>
       </section>
 
-      <section className="section" id="status">
-        <div className="container">
-          <div className="section__head">
-            <p className="eyebrow">Status</p>
-            <h2 className="display display--md">Private, on purpose.</h2>
+      <section className="ts-section" id="status">
+        <div className="ts-container">
+          <div className="site-head">
+            <p className="ts-eyebrow" data-mono="">Status</p>
+            <h2 className="ts-display" data-size="section">Private, on purpose.</h2>
           </div>
-          <div className="grid grid--2">
+          <div className="ts-grid-2">
             <div className="card card--static">
               <h3>Not yet distributed</h3>
               <p>
@@ -188,7 +127,7 @@ export default function DeckPage() {
               </p>
             </div>
           </div>
-          <p className="note">
+          <p className="ts-text ts-note" data-tone="muted">
             App removal has no automatic undo: it requires confirmation, cannot
             run through the unattended service, and needs manual reinstall.
             Stored package inventories do not restore the original payload or

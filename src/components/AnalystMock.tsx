@@ -1,3 +1,5 @@
+import "./ProductMocks.css";
+
 // Axio Analyst's sidebar, drawn beside the IL it is looking at. The resting
 // layout is what the plugin actually shows: one header row naming the function,
 // the empty state with the facts that will be sent and four suggested

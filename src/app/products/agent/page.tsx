@@ -1,4 +1,4 @@
-import { Callout, Terminal } from "@tessera/marketing";
+import { Callout, FeatureGrid, Terminal } from "@tessera/marketing";
 import { Button } from "@tessera/ui";
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
@@ -48,15 +48,15 @@ export default function AgentPage() {
         visual={<Surface />}
       />
 
-      <div className="container">
-        <hr className="rule" />
+      <div className="ts-container">
+        <hr className="ts-separator" />
       </div>
 
-      <section className="section">
-        <div className="container">
-          <div className="section__head">
-            <p className="eyebrow">One turn</p>
-            <h2 className="display display--md">Watch one run.</h2>
+      <section className="ts-section">
+        <div className="ts-container">
+          <div className="site-head">
+            <p className="ts-eyebrow" data-mono="">One turn</p>
+            <h2 className="ts-display" data-size="section">Watch one run.</h2>
             <p>
               The transcript is printed into your terminal’s own scrollback,
               so it survives the process, scrolls with the scrollbar and copies
@@ -68,82 +68,24 @@ export default function AgentPage() {
         </div>
       </section>
 
-      <section className="section">
-        <div className="container">
-          <div className="section__head">
-            <p className="eyebrow">How it behaves</p>
-            <h2 className="display display--md">Predictable where it matters.</h2>
+      <section className="ts-section">
+        <div className="ts-container">
+          <div className="site-head">
+            <p className="ts-eyebrow" data-mono="">How it behaves</p>
+            <h2 className="ts-display" data-size="section">Predictable where it matters.</h2>
             <p>
               Six behaviours you can check from the outside, each named by the
               string the product actually prints.
             </p>
           </div>
-          <div className="features">
-            <article className="feature">
-              <span className="artifact">allow?  y once</span>
-              <h3>Reads don’t ask. Writes do.</h3>
-              <p>
-                The diff or the command lands in scrollback first, then the
-                viewport asks. A shell command is shown as the string the shell
-                actually receives, never a word-split of it.
-              </p>
-            </article>
-            <article className="feature">
-              <span className="artifact">exit 5</span>
-              <h3>Refusals have an exit code.</h3>
-              <p>
-                In a one-shot run there is nobody to ask, so those actions are
-                refused unless <code>--yes</code>{" "}was given. A turn that
-                completed with something refused exits <code>5</code>, so{" "}
-                <code>&amp;&amp;</code>{" "}sees it.
-              </p>
-            </article>
-            <article className="feature">
-              <span className="artifact">.axio/config.toml</span>
-              <h3>A project adds rules. It never removes them.</h3>
-              <p>
-                That covers <code>[permissions] allow</code>, and it covers{" "}
-                <code>[worktree] enabled = false</code>. A repository that could
-                switch worktrees off would be deciding, for everyone who cloned
-                it, that its agents may write to your working tree.
-              </p>
-            </article>
-            <article className="feature">
-              <span className="artifact">--probe</span>
-              <h3>Ask the model, not the config.</h3>
-              <p>
-                It sends two short requests, one carrying a tool. A model can
-                serve chat perfectly and reject every request that offers it a
-                tool; only asking finds that out.
-              </p>
-            </article>
-            <article className="feature">
-              <span className="artifact">~/.axio</span>
-              <h3>One config path, everywhere.</h3>
-              <p>
-                The same on Windows, WSL, Linux and macOS rather than each
-                platform’s own directory. One path to document, to sync
-                between machines, and to name in a bug report.
-              </p>
-            </article>
-            <article className="feature">
-              <span className="artifact">--sandbox</span>
-              <h3>A second wall on Linux.</h3>
-              <p>
-                Landlock, inherited by every command axio spawns. It says
-                nothing about the network, and it stands behind the permission
-                engine rather than replacing it.
-              </p>
-            </article>
-          </div>
-        </div>
+          <FeatureGrid variant="bordered" items={[{ kicker: "allow?  y once", title: <>Reads don’t ask. Writes do.</>, body: <>The diff or the command lands in scrollback first, then the viewport asks. A shell command is shown as the string the shell actually receives, never a word-split of it.</> }, { kicker: "exit 5", title: <>Refusals have an exit code.</>, body: <>In a one-shot run there is nobody to ask, so those actions are refused unless <code>--yes</code>{" "}was given. A turn that completed with something refused exits <code>5</code>, so{" "} <code>&amp;&amp;</code>{" "}sees it.</> }, { kicker: ".axio/config.toml", title: <>A project adds rules. It never removes them.</>, body: <>That covers <code>[permissions] allow</code>, and it covers{" "} <code>[worktree] enabled = false</code>. A repository that could switch worktrees off would be deciding, for everyone who cloned it, that its agents may write to your working tree.</> }, { kicker: "--probe", title: <>Ask the model, not the config.</>, body: <>It sends two short requests, one carrying a tool. A model can serve chat perfectly and reject every request that offers it a tool; only asking finds that out.</> }, { kicker: "~/.axio", title: <>One config path, everywhere.</>, body: <>The same on Windows, WSL, Linux and macOS rather than each platform’s own directory. One path to document, to sync between machines, and to name in a bug report.</> }, { kicker: "--sandbox", title: <>A second wall on Linux.</>, body: <>Landlock, inherited by every command axio spawns. It says nothing about the network, and it stands behind the permission engine rather than replacing it.</> }]} />        </div>
       </section>
 
-      <section className="section" id="counts">
-        <div className="container">
-          <div className="section__head">
-            <p className="eyebrow">Quota and cost</p>
-            <h2 className="display display--md">
+      <section className="ts-section" id="counts">
+        <div className="ts-container">
+          <div className="site-head">
+            <p className="ts-eyebrow" data-mono="">Quota and cost</p>
+            <h2 className="ts-display" data-size="section">
               What you have left. What you already spent.
             </h2>
             <p>
@@ -153,10 +95,10 @@ export default function AgentPage() {
               the sentence.
             </p>
           </div>
-          <div className="grid grid--2">
+          <div className="ts-grid-2">
             <div className="col">
-              <h3 className="display display--sm">axio quota</h3>
-              <p className="note" style={{ marginTop: "0.5rem" }}>
+              <h3 className="ts-display" data-size="section">axio quota</h3>
+              <p className="ts-text ts-note" data-tone="muted" style={{ marginTop: "0.5rem" }}>
                 How much of each provider’s limit is left and when it
                 resets, across ten providers. Six are read from a credential
                 another tool already wrote, so they need no configuration at
@@ -173,8 +115,8 @@ Claude (max)
 `}</Terminal>
             </div>
             <div className="col">
-              <h3 className="display display--sm">axio cost</h3>
-              <p className="note" style={{ marginTop: "0.5rem" }}>
+              <h3 className="ts-display" data-size="section">axio cost</h3>
+              <p className="ts-text ts-note" data-tone="muted" style={{ marginTop: "0.5rem" }}>
                 What every coding agent on this machine has spent, read from
                 the transcripts they already write. No network, no credentials.
                 A model with no known rate is reported unpriced, never as zero.
@@ -190,11 +132,11 @@ $ axio cost --diagnose   «what each parser skipped»
         </div>
       </section>
 
-      <section className="section" id="verification">
-        <div className="container">
-          <div className="section__head">
-            <p className="eyebrow">Verification</p>
-            <h2 className="display display--md">What has actually been run.</h2>
+      <section className="ts-section" id="verification">
+        <div className="ts-container">
+          <div className="site-head">
+            <p className="ts-eyebrow" data-mono="">Verification</p>
+            <h2 className="ts-display" data-size="section">What has actually been run.</h2>
             <p>
               A path is marked met only when it has been exercised against a
               live endpoint. The table records that, not what exists in the
@@ -205,13 +147,13 @@ $ axio cost --diagnose   «what each parser skipped»
             <table className="ledger">
               <thead>
                 <tr>
-                  <th scope="col" className="label">
+                  <th scope="col" className="ts-text" data-mono="" data-size="xs">
                     Path
                   </th>
-                  <th scope="col" className="label">
+                  <th scope="col" className="ts-text" data-mono="" data-size="xs">
                     State
                   </th>
-                  <th scope="col" className="label">
+                  <th scope="col" className="ts-text" data-mono="" data-size="xs">
                     Basis
                   </th>
                 </tr>
@@ -256,11 +198,11 @@ $ axio cost --diagnose   «what each parser skipped»
         </div>
       </section>
 
-      <section className="section" id="install">
-        <div className="container">
-          <div className="section__head">
-            <p className="eyebrow">Install</p>
-            <h2 className="display display--md">Build it from main.</h2>
+      <section className="ts-section" id="install">
+        <div className="ts-container">
+          <div className="site-head">
+            <p className="ts-eyebrow" data-mono="">Install</p>
+            <h2 className="ts-display" data-size="section">Build it from main.</h2>
             <p>
               There is no published binary yet. Releases are built by tag and
               none has been cut, so every route below compiles the current{" "}
@@ -279,7 +221,7 @@ irm https://axio.sh/install.ps1 | iex
 cargo install --git ${REPO} --locked axio
 `}</Terminal>
           </div>
-          <p className="note">
+          <p className="ts-text ts-note" data-tone="muted">
             The installer checks for a toolchain, refuses politely if it is
             missing or older than 1.88, and installs into your cargo bin as your
             own user: no sudo, nothing written outside <code>CARGO_HOME</code>,
@@ -287,15 +229,15 @@ cargo install --git ${REPO} --locked axio
             <a href="/install">Read it first</a>. That advice applies to every
             script anyone asks you to pipe into a shell, including this one.
           </p>
-          <p className="note">
+          <p className="ts-text ts-note" data-tone="muted">
             <code>cargo install axio</code>{" "}from crates.io does <strong>not</strong>{" "}
             work. That name belongs to an unrelated crate.
           </p>
         </div>
       </section>
 
-      <section className="section--tight">
-        <div className="container">
+      <section className="ts-section" data-tight="">
+        <div className="ts-container">
           <Callout tone="warning" title={<>Read SECURITY.md before running it anywhere that matters.</>}>
             <p>
               axio executes code written by a language model against your

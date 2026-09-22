@@ -1,4 +1,4 @@
-import { Callout } from "@tessera/marketing";
+import { Callout, FeatureGrid } from "@tessera/marketing";
 import { Button } from "@tessera/ui";
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
@@ -53,15 +53,15 @@ export default function CapturePage() {
         visual={<CaptureMock />}
       />
 
-      <div className="container">
-        <hr className="rule" />
+      <div className="ts-container">
+        <hr className="ts-separator" />
       </div>
 
-      <section className="section">
-        <div className="container">
-          <div className="section__head">
-            <p className="eyebrow">What it does</p>
-            <h2 className="display display--md">The ShareX basics, done properly.</h2>
+      <section className="ts-section">
+        <div className="ts-container">
+          <div className="site-head">
+            <p className="ts-eyebrow" data-mono="">What it does</p>
+            <h2 className="ts-display" data-size="section">The ShareX basics, done properly.</h2>
             <p>
               The first cut captures a region, lets you annotate it, and keeps
               itself updated. Window and full-screen capture, recording,
@@ -69,74 +69,14 @@ export default function CapturePage() {
               missing pieces of this one.
             </p>
           </div>
-          <div className="features">
-            <article className="feature">
-              <span className="artifact">Ctrl+Shift+2 · ⌘⇧2</span>
-              <h3>One hotkey, one drag.</h3>
-              <p>
-                The hotkey, the tray icon, or running <code>axio-capture</code>{" "}
-                again starts a capture. Escape or a right-click cancels it. The
-                chord is configurable in Tauri’s accelerator syntax and takes
-                effect as soon as you save.
-              </p>
-            </article>
-            <article className="feature">
-              <span className="artifact">A L R E P H T N B</span>
-              <h3>Nine tools, one key each.</h3>
-              <p>
-                Arrows, lines, rectangles, ellipses, freehand pen, highlighter,
-                text, numbered steps and blur. Hold Shift to constrain a shape;
-                undo with the usual key. The last tool, colour and stroke width
-                are remembered.
-              </p>
-            </article>
-            <article className="feature">
-              <span className="artifact">%year%/%month%/%day%</span>
-              <h3>File names that sort themselves.</h3>
-              <p>
-                A pattern relative to the save folder, where a slash creates a
-                subfolder. Twenty tokens, a live example in the settings panel,
-                and <code>%n%</code>{" "}for the smallest number that keeps the name
-                unused.
-              </p>
-            </article>
-            <article className="feature">
-              <span className="artifact">after a capture</span>
-              <h3>Skip the editor when you know what you want.</h3>
-              <p>
-                Open the editor, copy to the clipboard, save to the folder, or
-                both. The editor can close itself after a copy or a save, and a
-                desktop notification can say what happened.
-              </p>
-            </article>
-            <article className="feature">
-              <span className="artifact">latest.json · minisign</span>
-              <h3>Updates you can verify.</h3>
-              <p>
-                Installed copies check GitHub Releases shortly after launch and
-                every six hours. Every update artifact is signature-checked
-                against the public key shipped in the app before it is
-                installed. The check can be turned off.
-              </p>
-            </article>
-            <article className="feature">
-              <span className="artifact">LSUIElement</span>
-              <h3>A menu-bar app that stays out of the Dock.</h3>
-              <p>
-                On macOS it lives in the menu bar by default. The Dock icon can
-                be always, never, or only while the editor is open. Launch at
-                login is a Login Item, a Run key, or an autostart entry.
-              </p>
-            </article>
-          </div>
-        </div>
+          <FeatureGrid variant="bordered" items={[{ kicker: "Ctrl+Shift+2 · ⌘⇧2", title: <>One hotkey, one drag.</>, body: <>The hotkey, the tray icon, or running <code>axio-capture</code>{" "} again starts a capture. Escape or a right-click cancels it. The chord is configurable in Tauri’s accelerator syntax and takes effect as soon as you save.</> }, { kicker: "A L R E P H T N B", title: <>Nine tools, one key each.</>, body: <>Arrows, lines, rectangles, ellipses, freehand pen, highlighter, text, numbered steps and blur. Hold Shift to constrain a shape; undo with the usual key. The last tool, colour and stroke width are remembered.</> }, { kicker: "%year%/%month%/%day%", title: <>File names that sort themselves.</>, body: <>A pattern relative to the save folder, where a slash creates a subfolder. Twenty tokens, a live example in the settings panel, and <code>%n%</code>{" "}for the smallest number that keeps the name unused.</> }, { kicker: "after a capture", title: <>Skip the editor when you know what you want.</>, body: <>Open the editor, copy to the clipboard, save to the folder, or both. The editor can close itself after a copy or a save, and a desktop notification can say what happened.</> }, { kicker: "latest.json · minisign", title: <>Updates you can verify.</>, body: <>Installed copies check GitHub Releases shortly after launch and every six hours. Every update artifact is signature-checked against the public key shipped in the app before it is installed. The check can be turned off.</> }, { kicker: "LSUIElement", title: <>A menu-bar app that stays out of the Dock.</>, body: <>On macOS it lives in the menu bar by default. The Dock icon can be always, never, or only while the editor is open. Launch at login is a Login Item, a Run key, or an autostart entry.</> }]} />        </div>
       </section>
 
-      <section className="section" id="status">
-        <div className="container">
-          <div className="section__head">
-            <p className="eyebrow">Verification</p>
-            <h2 className="display display--md">
+      <section className="ts-section" id="status">
+        <div className="ts-container">
+          <div className="site-head">
+            <p className="ts-eyebrow" data-mono="">Verification</p>
+            <h2 className="ts-display" data-size="section">
               What {CAPTURE_VERSION} rests on.
             </h2>
             <p>
@@ -148,13 +88,13 @@ export default function CapturePage() {
             <table className="ledger">
               <thead>
                 <tr>
-                  <th scope="col" className="label">
+                  <th scope="col" className="ts-text" data-mono="" data-size="xs">
                     Platform
                   </th>
-                  <th scope="col" className="label">
+                  <th scope="col" className="ts-text" data-mono="" data-size="xs">
                     State
                   </th>
-                  <th scope="col" className="label">
+                  <th scope="col" className="ts-text" data-mono="" data-size="xs">
                     Basis
                   </th>
                 </tr>
@@ -208,11 +148,11 @@ export default function CapturePage() {
         </div>
       </section>
 
-      <section className="section" id="download">
-        <div className="container">
-          <div className="section__head">
-            <p className="eyebrow">Download</p>
-            <h2 className="display display--md">Axio Capture {CAPTURE_VERSION}</h2>
+      <section className="ts-section" id="download">
+        <div className="ts-container">
+          <div className="site-head">
+            <p className="ts-eyebrow" data-mono="">Download</p>
+            <h2 className="ts-display" data-size="section">Axio Capture {CAPTURE_VERSION}</h2>
             <p>
               Installers for every platform, from{" "}
               <a href={CAPTURE_RELEASE} rel="noopener">
@@ -233,7 +173,7 @@ export default function CapturePage() {
               </a>
             ))}
           </div>
-          <p className="note">
+          <p className="ts-text ts-note" data-tone="muted">
             Building it yourself needs Rust 1.85 or newer, Node 22, pnpm and
             the Tauri platform dependencies for your OS. The{" "}
             <a href={`${REPO}#build`} rel="noopener">

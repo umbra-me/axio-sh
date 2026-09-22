@@ -1,0 +1,541 @@
+/* Moved from globals.css in slice B1, unchanged; reads the alias layer in app/site.css. */
+/* ---- drawn product mocks ------------------------------------------------- */
+
+/* Each product page draws its own interface rather than screenshotting it,
+   for the same reason the agent's surface is drawn: a screenshot is one size,
+   one theme, one moment, and these have to reflow into a phone. They are
+   aria-hidden; every fact in them is stated in words beside them. */
+.mock {
+  border: 1px solid var(--line);
+  border-radius: var(--r-4);
+  background: var(--slate);
+  box-shadow: var(--shadow-3);
+  overflow: hidden;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  line-height: 1.5;
+  color: var(--text-2);
+  user-select: none;
+}
+
+.mock__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  height: 2.25rem;
+  padding: 0 0.85rem;
+  border-bottom: 1px solid var(--line);
+  background: rgba(13, 15, 20, 0.66);
+  box-shadow: inset 0 1px 0 var(--lit);
+  color: var(--text-2);
+}
+
+.mock__bar i {
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--pc);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--pc) 55%, transparent);
+}
+
+.mock__bar .sep {
+  color: var(--faint);
+}
+
+.mock__bar .right {
+  margin-left: auto;
+  color: var(--muted);
+}
+
+/* Capture: a toolbar, a canvas holding a "screenshot", and annotations on it. */
+.cap {
+  display: grid;
+  grid-template-columns: 2.75rem minmax(0, 1fr);
+  min-height: 22rem;
+}
+
+.cap__tools {
+  display: grid;
+  align-content: start;
+  gap: 0.3rem;
+  padding: 0.5rem 0.4rem;
+  border-right: 1px solid var(--line);
+  background: rgba(11, 13, 17, 0.56);
+}
+
+.cap__tools span {
+  display: grid;
+  place-items: center;
+  height: 1.9rem;
+  border-radius: var(--r-1);
+  color: var(--muted);
+  font-size: 0.6875rem;
+}
+
+.cap__tools span.on {
+  background: color-mix(in srgb, var(--pc) 16%, transparent);
+  color: var(--pc);
+}
+
+.cap__canvas {
+  position: relative;
+  padding: 1.25rem;
+  background-image:
+    linear-gradient(45deg, rgba(255, 255, 255, 0.025) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(255, 255, 255, 0.025) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.025) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.025) 75%);
+  background-size: 16px 16px;
+  background-position:
+    0 0,
+    0 8px,
+    8px -8px,
+    -8px 0;
+}
+
+.cap__shot {
+  position: relative;
+  height: 100%;
+  min-height: 17rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-2);
+  background: linear-gradient(160deg, #10141c, #0a0d13 60%);
+  box-shadow: var(--shadow-2);
+  overflow: hidden;
+}
+
+.cap__shot .win {
+  position: absolute;
+  inset: 1rem 1rem auto;
+  height: 1.5rem;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0 0.4rem;
+}
+
+.cap__shot .win i {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: #23262e;
+}
+
+.cap__shot .line {
+  position: absolute;
+  left: 1.5rem;
+  height: 0.5rem;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.cap__annot {
+  position: absolute;
+  border: 2px solid var(--pc);
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4);
+}
+
+.cap__step {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 50%;
+  background: var(--pc);
+  color: #05070a;
+  font-weight: 600;
+  font-size: 0.6875rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.cap__blur {
+  position: absolute;
+  background-image:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.12) 50%, rgba(255, 255, 255, 0.05) 50%),
+    linear-gradient(rgba(255, 255, 255, 0.1) 50%, transparent 50%);
+  background-size: 8px 8px;
+  border-radius: 2px;
+}
+
+.cap__arrow {
+  position: absolute;
+  color: var(--pc);
+  overflow: visible;
+}
+
+.cap__text {
+  position: absolute;
+  color: var(--pc);
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.cap__hud {
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  display: flex;
+  gap: 0.35rem;
+  padding: 0.35rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-2);
+  background: rgba(10, 13, 19, 0.95);
+  box-shadow: var(--shadow-2);
+}
+
+.cap__hud span {
+  padding: 0.25rem 0.55rem;
+  border-radius: var(--r-1);
+  font-size: 0.6875rem;
+  color: var(--muted);
+}
+
+.cap__hud span.primary {
+  background: var(--pc);
+  color: #05070a;
+  font-weight: 600;
+}
+
+/* Analyst: a sidebar, the way Binary Ninja docks it. */
+.ana {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 17rem;
+  min-height: 24rem;
+}
+
+.ana__il {
+  padding: 0.9rem 1rem;
+  border-right: 1px solid var(--line);
+  background: rgba(7, 9, 12, 0.84);
+  white-space: pre;
+  overflow: hidden;
+  color: var(--muted);
+}
+
+.ana__il .kw {
+  color: var(--violet);
+}
+
+.ana__il .fn {
+  color: var(--text);
+}
+
+.ana__il .addr {
+  color: var(--faint);
+}
+
+.ana__il .hot {
+  background: color-mix(in srgb, var(--pc) 14%, transparent);
+  color: var(--text-2);
+}
+
+.ana__side {
+  display: flex;
+  flex-direction: column;
+  background: rgba(11, 13, 17, 0.56);
+}
+
+.ana__head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 0.85rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.ana__head b {
+  font-weight: 500;
+  color: var(--text);
+}
+
+.ana__head .addr {
+  color: var(--faint);
+}
+
+.ana__head .more {
+  margin-left: auto;
+  color: var(--faint);
+}
+
+.ana__empty {
+  flex: 1;
+  padding: 0.85rem;
+}
+
+.ana__empty dl {
+  margin: 0 0 0.85rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.2rem 0.75rem;
+  font-size: 0.625rem;
+}
+
+.ana__empty dt {
+  color: var(--faint);
+}
+
+.ana__empty dd {
+  margin: 0;
+  color: var(--text-2);
+}
+
+.ana__empty ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.3rem;
+}
+
+.ana__empty li {
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-2);
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  color: var(--text-2);
+}
+
+.ana__empty li.on {
+  border-color: color-mix(in srgb, var(--pc) 40%, transparent);
+  background: color-mix(in srgb, var(--pc) 10%, transparent);
+  color: var(--text);
+}
+
+.ana__composer {
+  margin: 0.6rem 0.85rem 0.85rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-2);
+  background: var(--slate-deep);
+}
+
+.ana__composer .prompt {
+  padding: 0.6rem 0.7rem 0.4rem;
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  color: var(--text);
+}
+
+.ana__composer .row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.5rem 0.5rem;
+}
+
+.ana__composer .chip {
+  padding: 0.15rem 0.5rem;
+  border: 1px solid color-mix(in srgb, var(--pc) 35%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--pc) 10%, transparent);
+  color: var(--pc);
+  font-size: 0.625rem;
+}
+
+.ana__composer .hint {
+  margin-left: auto;
+  color: var(--faint);
+  font-size: 0.625rem;
+}
+
+.ana__composer .send {
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: var(--r-1);
+  background: var(--pc);
+  color: #05070a;
+}
+
+/* Deck: the bar on top, the dashboard's overview under it. */
+.deck {
+  min-height: 22rem;
+}
+
+.deck__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  height: 2.125rem;
+  padding: 0 0.6rem;
+  border-bottom: 1px solid var(--line);
+  background: rgba(13, 15, 20, 0.8);
+}
+
+.deck__bar .mark {
+  width: 8px;
+  height: 8px;
+  margin-right: 0.35rem;
+  border-radius: 2px;
+  background: var(--pc);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--pc) 55%, transparent);
+}
+
+.deck__bar .ws {
+  display: grid;
+  place-items: center;
+  min-width: 1.5rem;
+  height: 1.35rem;
+  padding: 0 0.4rem;
+  border-radius: var(--r-1);
+  color: var(--muted);
+}
+
+.deck__bar .ws.on {
+  background: color-mix(in srgb, var(--pc) 16%, transparent);
+  color: var(--pc);
+}
+
+.deck__bar .title {
+  margin-left: 0.6rem;
+  color: var(--text-2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.deck__bar .mods {
+  display: flex;
+  gap: 0.9rem;
+  margin-left: auto;
+  color: var(--muted);
+}
+
+.deck__bar .mods b {
+  font-weight: 500;
+  color: var(--text-2);
+}
+
+.deck__bar .mods .hot {
+  color: var(--warn);
+}
+
+.deck__body {
+  display: grid;
+  grid-template-columns: 9rem minmax(0, 1fr);
+}
+
+.deck__sections {
+  padding: 0.6rem 0.5rem;
+  border-right: 1px solid var(--line);
+  background: rgba(11, 13, 17, 0.56);
+}
+
+.deck__sections div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: var(--r-1);
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.deck__sections div.on {
+  background: color-mix(in srgb, var(--pc) 14%, transparent);
+  color: var(--text);
+}
+
+.deck__sections div small {
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: 0.5625rem;
+  color: var(--faint);
+}
+
+.deck__pane {
+  padding: 0.9rem;
+  background: rgba(7, 9, 12, 0.84);
+}
+
+.deck__title {
+  display: block;
+  margin: 0 0 0.75rem;
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.deck__items {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.deck__item {
+  display: grid;
+  grid-template-columns: 1rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-2);
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  color: var(--text-2);
+}
+
+.deck__item i {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 3px;
+  border: 1px solid var(--line-strong);
+}
+
+.deck__item i.on {
+  border-color: var(--pc);
+  background: var(--pc);
+}
+
+.deck__item .risk {
+  font-family: var(--mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.deck__item .risk.med {
+  color: var(--warn);
+}
+
+.deck__undo {
+  margin-top: 0.75rem;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid color-mix(in srgb, var(--ok) 30%, transparent);
+  border-radius: var(--r-2);
+  background: color-mix(in srgb, var(--ok) 6%, transparent);
+  color: var(--ok);
+  font-size: 0.625rem;
+}
+
+.deck__undo span {
+  color: var(--muted);
+}
+
+/* Polaris: a quiet Mac desktop with its notch, launcher and shelf. */
+@media (max-width: 40rem) {
+  .ana {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .ana__il {
+    display: none;
+  }
+  .deck__body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .deck__sections {
+    display: none;
+  }
+  .deck__bar .mods {
+    display: none;
+  }
+}
+

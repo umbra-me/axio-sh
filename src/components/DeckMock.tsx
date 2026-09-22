@@ -1,3 +1,5 @@
+import "./ProductMocks.css";
+
 // Axio Deck, drawn: the bar it draws along the top of a monitor, and the
 // dashboard's System section under it with the debloat catalogue and the
 // snapshot-first undo. The eight sections and their states are the README's.

@@ -1,3 +1,4 @@
+import { CtaBand } from "@tessera/marketing";
 import { LegalDocument } from "@tessera/patterns";
 import { Button } from "@tessera/ui";
 import type { Metadata } from "next";
@@ -133,14 +134,9 @@ export default function AboutPage() {
         </LegalDocument>
       </div>
 
-      <section className="section">
-        <div className="container container--narrow">
-          <div className="cta">
-            <div className="cta__text">
-              <h2 className="display display--md">See the tools.</h2>
-            </div>
-            <div className="cta__actions">
-              <Button asChild size="lg" variant="primary">
+      <section className="ts-section">
+        <div className="ts-container" data-width="narrow">
+          <CtaBand title={<>See the tools.</>} actions={<><Button asChild size="lg" variant="primary">
 <a href="/products">
                 Products
               </a>
@@ -149,9 +145,7 @@ export default function AboutPage() {
 <a href="/download">
                 Download
               </a>
-</Button>
-            </div>
-          </div>
+</Button></>} />
         </div>
       </section>
     </>
