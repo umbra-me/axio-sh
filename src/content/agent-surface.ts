@@ -8,7 +8,7 @@ import type { AgentSurfaceProps } from "@tessera/mocks";
  * Marked aria-hidden; every fact in it is stated in words elsewhere.
  */
 export const agentSurface: AgentSurfaceProps = {
-  color: "var(--p-agent)",
+  color: "var(--ts-product-agent)",
   program: "axio",
   summary: "4 sessions",
   projects: [

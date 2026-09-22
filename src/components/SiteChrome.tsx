@@ -48,7 +48,7 @@ export default function SiteChrome({ children }: { children: ReactNode }) {
               href: productHref(p.id),
               description: p.tagline,
               icon: (
-                <span className="product-tile" style={{ "--pc": p.color } as CSSProperties}>
+                <span className="product-tile" style={{ "--ts-product-color": p.color } as CSSProperties}>
                   <Icon />
                 </span>
               ),

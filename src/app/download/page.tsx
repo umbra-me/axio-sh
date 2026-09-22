@@ -47,7 +47,7 @@ export default function DownloadPage() {
       <section
         className="ts-section" data-tight=""
         id="agent"
-        style={{ "--pc": agent.color } as CSSProperties}
+        style={{ "--ts-product-color": agent.color } as CSSProperties}
       >
         <div className="ts-container">
           <div className="site-head">
@@ -81,7 +81,7 @@ cargo install --git ${agent.repo} --locked axio
       <section
         className="ts-section" data-tight=""
         id="capture"
-        style={{ "--pc": capture.color } as CSSProperties}
+        style={{ "--ts-product-color": capture.color } as CSSProperties}
       >
         <div className="ts-container">
           <div className="site-head">
@@ -121,7 +121,7 @@ cargo install --git ${agent.repo} --locked axio
       <section
         className="ts-section" data-tight=""
         id="analyst"
-        style={{ "--pc": analyst.color } as CSSProperties}
+        style={{ "--ts-product-color": analyst.color } as CSSProperties}
       >
         <div className="ts-container">
           <div className="site-head">
@@ -154,7 +154,7 @@ git clone ${analyst.repo}.git "$env:APPDATA\\Binary Ninja\\plugins\\axio_analyst
       <section
         className="ts-section" data-tight=""
         id="local"
-        style={{ "--pc": local.color } as CSSProperties}
+        style={{ "--ts-product-color": local.color } as CSSProperties}
       >
         <div className="ts-container">
           <div className="site-head">
@@ -179,7 +179,7 @@ cargo install --git ${local.repo} --locked
       <section
         className="ts-section" data-tight=""
         id="polaris"
-        style={{ "--pc": polaris.color } as CSSProperties}
+        style={{ "--ts-product-color": polaris.color } as CSSProperties}
       >
         <div className="ts-container">
           <div className="site-head">
@@ -216,7 +216,7 @@ cargo install --git ${local.repo} --locked
       <section
         className="ts-section" data-tight=""
         id="deck"
-        style={{ "--pc": deck.color } as CSSProperties}
+        style={{ "--ts-product-color": deck.color } as CSSProperties}
       >
         <div className="ts-container">
           <div className="site-head">

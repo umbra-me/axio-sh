@@ -72,7 +72,7 @@ export const PRODUCTS: Record<ProductId, Product> = {
       "Four providers over three wire dialects",
       "Quota and cost across the agents you already run",
     ],
-    color: "var(--p-agent)",
+    color: "var(--ts-product-agent)",
     network:
       "Talks directly to the model provider you configure, and to nothing else during a turn.",
   },
@@ -95,7 +95,7 @@ export const PRODUCTS: Record<ProductId, Product> = {
       "File-name patterns that sort by day",
       "Signature-checked updates from GitHub Releases",
     ],
-    color: "var(--p-capture)",
+    color: "var(--ts-product-capture)",
     network:
       "Captures stay on your machine. Its only outbound request is the update check against GitHub Releases.",
   },
@@ -118,7 +118,7 @@ export const PRODUCTS: Record<ProductId, Product> = {
       "Never reads a provider credential file",
       "Never writes to the database",
     ],
-    color: "var(--p-analyst)",
+    color: "var(--ts-product-analyst)",
     network:
       "Sends the snapshot you previewed through the provider CLI you selected. Never reads that CLI's credentials.",
   },
@@ -130,7 +130,7 @@ export const PRODUCTS: Record<ProductId, Product> = {
     repo: "https://github.com/umbra-me/axio-local", license: "Apache-2.0",
     platforms: ["macOS", "Linux", "WSL"], stack: "Rust",
     features: ["Five supported coding agents", "Separate orchestrator and worker models", "Isolated agent configuration", "Configuration snapshots and verified recovery"],
-    color: "var(--p-local)",
+    color: "var(--ts-product-local)",
     network: "Connects to the model server you configure. Launched agents retain their own network behaviour and tool permissions; configuration isolation is not a network sandbox.",
   },
   deck: {
@@ -152,7 +152,7 @@ export const PRODUCTS: Record<ProductId, Product> = {
       "Snapshot-first undo for system changes",
       "Refuses to touch Defender, Edge or Windows Update",
     ],
-    color: "var(--p-deck)",
+    color: "var(--ts-product-deck)",
     network: "Makes no network requests of its own.",
   },
   polaris: {
@@ -174,7 +174,7 @@ export const PRODUCTS: Record<ProductId, Product> = {
       "Clipboard history and screen capture",
       "Local focus sessions, blocklists and breaks",
     ],
-    color: "var(--p-polaris)",
+    color: "var(--ts-product-polaris)",
     network:
       "Core utility and focus state stays local. Requested online features, licensing and update checks use the network; the current Chromium companion stores its rules and usage only in the browser.",
   },

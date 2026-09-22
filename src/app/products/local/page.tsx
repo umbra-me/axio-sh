@@ -7,7 +7,7 @@ import { PRODUCTS } from "@/lib/products";
 const P = PRODUCTS.local;
 export const metadata: Metadata = { title: P.name, description: P.description, alternates: { canonical: "/products/local" } };
 export default function LocalPage() {
-  return <div style={{ "--pc": P.color } as CSSProperties}>
+  return <div style={{ "--ts-product-color": P.color } as CSSProperties}>
     <ProductHero product={P} headline={<>Your agent.<br /><em>Your local models.</em></>} lede={P.description}
       actions={<><Button asChild size="lg" variant="primary" tone="product">
 <a href="#install">Install Axio Local</a>

@@ -1,8 +1,8 @@
 /* Tessera: tokens, recipes and the Axio brand theme. */
 @import '@tessera/ui/styles.css';
 @import '@tessera/themes/axio.css';
-/* What the site still draws itself; see site.css for what and why. */
-@import './site.css';
+/* What the site still draws itself; see home.css for what and why. */
+@import './home.css';
 
 /* ---- background ---------------------------------------------------------- */
 

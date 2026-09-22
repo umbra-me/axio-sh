@@ -12,7 +12,6 @@ import {
   POLARIS_VERSION,
   PRODUCTS,
 } from "@/lib/products";
-import "@/components/PolarisPage.css";
 
 const P = PRODUCTS.polaris;
 const Icon = PRODUCT_ICONS.polaris;
@@ -198,7 +197,7 @@ const FAQ: { q: string; a: React.ReactNode }[] = [
 
 export default function PolarisPage() {
   return (
-    <div style={{ "--pc": P.color } as CSSProperties}>
+    <div style={{ "--ts-product-color": P.color } as CSSProperties}>
       {/* Film-led and centred, unlike the other product pages: this is the one
           paid product, its page is a sales page, and the footage of the real
           app is the argument. It is still the site's type, tokens and buttons. */}

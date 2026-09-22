@@ -1,186 +1,76 @@
-/* axio.sh: what the site still draws itself after slice B1.
- *
- * The chrome, badges, tables, ledgers, terminals, callouts, product cards and
- * heroes, and the legal pages are Tessera's. What is left is the alias layer
- * the drawings still read (the agent's surface, the product mocks and the
- * Polaris page, each in a CSS module beside its component), the home hero,
- * and a few shapes only this site has: the boxed verification ledger, the
- * download rows, the transcript players' phases. Slice B2 lifts the drawings'
- * shapes into Tessera and deletes the alias layer with them.
- */
+/* axio.sh: what the site still draws itself after slice B2, on Tessera's
+ * tokens. The home hero, the transcript players' phases, the boxed
+ * verification ledger, the download rows, the section heads with a status
+ * row, and a few base rules. Everything else is Tessera's. */
 
-:root {
-  --ground: var(--ts-surface-canvas);
-  --slate: var(--ts-surface-panel);
-  --slate-2: var(--ts-surface-raised);
-  --slate-deep: var(--ts-surface-sunken);
+/* axio.sh: what the site still draws itself after slice B2, on Tessera's
+ * tokens. The home hero, the transcript players' phases, the boxed
+ * verification ledger, the download rows, the section heads with a status
+ * row, and a few base rules. Everything else is Tessera's. */
 
-  --line: rgba(255, 255, 255, 0.08);
-  --line-soft: rgba(255, 255, 255, 0.05);
-  --line-strong: rgba(255, 255, 255, 0.16);
-  --lit: rgba(255, 255, 255, 0.07);
-
-  /* Against --ground: --text 18.6:1, --text-2 12.0:1, --muted 6.8:1,
-     --faint 5.1:1 (4.8:1 on --slate-2, its worst surface). --faint used to sit
-     at 3.4:1 and was documented as decorative, but the card bylines, table
-     headers and footer headings are set in it, so it is read. Every text step
-     now passes AA on every surface it appears on. */
-  --text: var(--ts-text-primary);
-  --text-2: var(--ts-text-secondary);
-  --muted: var(--ts-text-muted);
-  --faint: var(--ts-text-disabled);
-
-  --accent: #7ba0ff;
-  --cyan: #63cbdc;
-  --violet: #b492fd;
-  --mint: #55dcb0;
-  --amber: #e2c67e;
-  --rose: #f4808a;
-
-  --ok: var(--mint);
-  --warn: var(--amber);
-  --danger: var(--rose);
-
-  --p-agent: var(--ts-product-agent);
-  --p-capture: var(--ts-product-capture);
-  --p-analyst: var(--ts-product-analyst);
-  --p-local: var(--ts-product-local);
-  --p-deck: var(--ts-product-deck);
-  --p-polaris: var(--ts-product-polaris);
-
-  /* The hosted agents the coding agent can run, for its drawn surface. */
-  --agent-claude: var(--ts-hosted-agent-claude);
-  --agent-codex: var(--ts-hosted-agent-codex);
-  --agent-pi: var(--ts-hosted-agent-pi);
-
-  --r-1: 4px;
-  --r-2: 8px;
-  --r-3: 12px;
-  --r-4: 16px;
-  --r-5: 22px;
-
-  --sans: var(--ts-font-family-sans);
-  --mono: var(--ts-font-family-mono);
-
-  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-2: 0 8px 24px rgba(0, 0, 0, 0.45);
-  --shadow-3: 0 24px 60px rgba(0, 0, 0, 0.55);
-
-  --ease: cubic-bezier(0.16, 1, 0.3, 1);
-  --fast: 120ms;
-  --base: 220ms;
-  --slow: 480ms;
-
-  --wide: 72rem;
-  --narrow: 44rem;
-  --section-y: 6.5rem;
-  color-scheme: dark;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  :root {
-    --fast: 1ms;
-    --base: 1ms;
-    --slow: 1ms;
-  }
-}
-
-@media (max-width: 48rem) {
-  :root {
-    --section-y: 4.5rem;
-  }
-}
-
-* {
-  box-sizing: border-box;
-}
-
+/* ---- base ---------------------------------------------------------------- */
+/* The site's reading base. Tessera's .ts-root sets its own type base (size,
+   leading, alternate glyph features) with a class selector; this site's
+   remaining shapes were drawn against 16px and 1.6, so the body keeps them. */
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
 }
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 }
-
-/* body.ts-root, not body: Tessera's .ts-root sets its own type base (size,
-   leading, alternate glyph features) and a class beats an element selector.
-   The sections below were set against this base, so it has to keep winning
-   until they move onto Tessera components. */
 body.ts-root {
   margin: 0;
   font-weight: 400;
   font-feature-settings: normal;
-  background: var(--ground);
-  color: var(--text);
-  font-family: var(--sans);
   font-size: 1rem;
   line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
   overflow-x: hidden;
 }
-
 a {
   color: inherit;
 }
-
 img {
   display: block;
 }
-
-/* Inline by default so an icon inside a sentence stays on the sentence's
-   line; flex and grid parents lay their icons out regardless. */
 svg {
   vertical-align: -0.15em;
 }
-
 .card__icon svg {
   display: block;
 }
-
 p a svg {
   margin-left: 0.2rem;
 }
-
 code {
-  font-family: var(--mono);
+  font-family: var(--ts-font-family-mono);
   font-size: 0.9em;
-  color: var(--text-2);
+  color: var(--ts-text-secondary);
 }
-
-.container {
-  width: 100%;
-  max-width: var(--wide);
-  margin: 0 auto;
-  padding: 0 1.5rem;
+:root {
+  --section-y: 6.5rem;
+  --wide: 72rem;
+  --narrow: 44rem;
 }
-
-.container--narrow {
-  max-width: var(--narrow);
+@media (max-width: 48rem) {
+  :root {
+    --section-y: 4.5rem;
+  }
 }
-
-/* ---- type ---------------------------------------------------------------- */
-
-/* Small labels are set in the mono face at reading size, in sentence case,
-   with no tracking. The tracked-caps eyebrow over every heading said nothing
-   the heading did not, so where a heading carries the section it stands alone;
-   an eyebrow is kept only where it names something the heading cannot. */
+/* ---- type */
 .eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
   margin: 0 0 1rem;
-  font-family: var(--mono);
+  font-family: var(--ts-font-family-mono);
   font-size: 0.8125rem;
   font-weight: 500;
-  color: var(--accent);
+  color: var(--ts-text-link);
 }
-
 .eyebrow i {
   width: 0.4rem;
   height: 0.4rem;
@@ -188,163 +78,74 @@ code {
   background: currentColor;
   box-shadow: 0 0 10px currentColor;
 }
-
 .display {
   margin: 0;
-  font-family: var(--sans);
+  font-family: var(--ts-font-family-sans);
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.05;
   text-wrap: balance;
 }
-
-.display--lg {
-  font-size: clamp(2.1rem, 4.6vw, 3.4rem);
-}
-
-.display--md {
-  font-size: clamp(1.7rem, 3.2vw, 2.4rem);
-}
-
-.display--sm {
-  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
-  letter-spacing: -0.02em;
-}
-
-/* The one gradient on the site. One phrase per page, never chrome. */
 .grad {
-  background: linear-gradient(92deg, var(--accent) 0%, var(--cyan) 100%);
+  background: linear-gradient(92deg, var(--ts-text-link) 0%, #63cbdc 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
-
 .lede {
   margin: 1.5rem 0 0;
   max-width: 40rem;
   font-size: clamp(1.05rem, 1.5vw, 1.25rem);
   line-height: 1.6;
-  color: var(--text-2);
+  color: var(--ts-text-secondary);
   text-wrap: pretty;
 }
-
 .label {
-  font-family: var(--mono);
+  font-family: var(--ts-font-family-mono);
   font-size: 0.75rem;
   font-weight: 500;
 }
-
 .muted {
-  color: var(--muted);
+  color: var(--ts-text-muted);
 }
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-  border: 0;
-}
-
-/* ---- focus ---------------------------------------------------------------- */
-
-/* Prefixed for the same reason: .ts-root :focus-visible would otherwise win. */
+/* ---- focus */
 .ts-root a:focus-visible,
 .ts-root button:focus-visible,
 .ts-root summary:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--ts-text-link);
   outline-offset: 3px;
   border-radius: 4px;
 }
-
-main:focus {
-  outline: none;
-}
-
-/* ---- chrome (Tessera's header and footer) --------------------------------- */
-/* The header and footer are Tessera's SiteHeader and SiteFooter. What follows
-   is only what the site adds to them. */
-
-/* A product's tile in the products menu: its icon in its own colour, filling
-   the slot Tessera gives an entry's icon. */
+/* ---- chrome (Tessera's header and footer) */
 .product-tile {
   display: grid;
   place-items: center;
   width: 100%;
   height: 100%;
   border-radius: inherit;
-  border: 1px solid color-mix(in srgb, var(--pc) 24%, transparent);
-  background: color-mix(in srgb, var(--pc) 12%, transparent);
-  color: var(--pc);
+  border: 1px solid color-mix(in srgb, var(--ts-product-color) 24%, transparent);
+  background: color-mix(in srgb, var(--ts-product-color) 12%, transparent);
+  color: var(--ts-product-color);
 }
-
 .product-tile svg {
   display: block;
   width: 16px;
   height: 16px;
 }
 
-.ts-site-footer__meta a {
-  color: inherit;
-}
-
 /* ---- section heads with a status row ------------------------------------- */
 /* A head whose title sits beside a status badge, which SectionHeader cannot
    express: the download page's per-product heads and the product pages'. */
 .site-head { max-width: 40rem; margin-bottom: 3rem; }
-.site-head > p { margin: 1rem 0 0; color: var(--muted); font-size: 1.0625rem; text-wrap: pretty; }
-.site-head > p a { color: var(--text-2); }
+.site-head > p { margin: 1rem 0 0; color: var(--ts-text-muted); font-size: 1.0625rem; text-wrap: pretty; }
+.site-head > p a { color: var(--ts-text-secondary); }
 .site-head__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
-
-/* ---- sections ------------------------------------------------------------ */
-
-.section {
-  padding-block: var(--section-y);
-}
-
-.section--tight {
-  padding-block: calc(var(--section-y) * 0.6);
-}
-
-.section__head {
-  max-width: 40rem;
-  margin-bottom: 3rem;
-}
-
-.section__head p {
-  margin: 1rem 0 0;
-  color: var(--muted);
-  font-size: 1.0625rem;
-  text-wrap: pretty;
-}
-
-.section__head p a {
-  color: var(--text-2);
-}
-
-/* The landing page's sections are told apart by shape, and a hairline says
-   where one ends. */
-.section--ruled {
-  border-top: 1px solid var(--line);
-}
-
-.rule {
-  border: 0;
-  border-top: 1px solid var(--line);
-  margin: 0;
-}
-
 /* ---- hero ---------------------------------------------------------------- */
 
 .hero {
   position: relative;
   padding: clamp(3.5rem, 7vw, 6rem) 0 clamp(3rem, 6vw, 5rem);
 }
-
 /* Text beside the figure, the figure the wider of the two: the question the
    agent is holding is what the page is about, so it gets the room. Below the
    breakpoint the text comes first and the figure follows it. */
@@ -357,7 +158,6 @@ main:focus {
   gap: clamp(2.25rem, 5vw, 3.5rem);
   align-items: center;
 }
-
 /* The figure column is exactly as wide as the transcript at its split size,
    and the text takes the rest. Sized from the strings rather than a ratio, so
    the headline's two-line break holds from the breakpoint up. */
@@ -367,7 +167,6 @@ main:focus {
     gap: clamp(2.5rem, 4.5vw, 4.5rem);
   }
 }
-
 /* Two lines, always: "Developer tools that" over the gradient phrase. The
    measure is sized so the longer second line fits the text column, which is
    what the vw term tracks; wider than that and the type stops growing. */
@@ -375,43 +174,37 @@ main:focus {
   font-size: clamp(1.9rem, 7.5vw, 3.1rem);
   letter-spacing: -0.035em;
 }
-
 @media (min-width: 66rem) {
   .hero h1 {
     font-size: clamp(2.4rem, 3.3vw, 3.1rem);
   }
 }
-
 .hero .lede {
   margin-top: 1.4rem;
 }
-
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 2.25rem;
 }
-
 .hero__cmd {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
   margin: 1.75rem 0 0;
   padding: 0.55rem 0.6rem 0.55rem 1rem;
-  border: 1px solid var(--line);
-  border-radius: var(--r-2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
   background: rgba(10, 13, 19, 0.8);
-  font-family: var(--mono);
+  font-family: var(--ts-font-family-mono);
   font-size: 0.8125rem;
-  color: var(--text-2);
-  box-shadow: var(--shadow-1);
+  color: var(--ts-text-secondary);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
-
 .hero__cmd .dim {
-  color: var(--faint);
+  color: var(--ts-text-muted);
 }
-
 @media (max-width: 40rem) {
   .hero__cmd {
     max-width: 100%;
@@ -420,16 +213,14 @@ main:focus {
     overflow-x: auto;
   }
 }
-
 /* The transcript. Its lines are as wide as the prompt row the agent prints,
    so on a phone the pre scrolls sideways rather than the row being cut; the
    question's first words are what sits at the left edge. A faint halo in the
    site's accent behind it is the one place the hero spends any colour. */
 .hero__figure {
   position: relative;
-  box-shadow: var(--shadow-3);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
 }
-
 .hero__figure::before {
   content: "";
   position: absolute;
@@ -438,50 +229,40 @@ main:focus {
   pointer-events: none;
   background: radial-gradient(
     60% 60% at 50% 50%,
-    color-mix(in srgb, var(--accent) 14%, transparent),
+    color-mix(in srgb, var(--ts-text-link) 14%, transparent),
     transparent 70%
   );
 }
-
 .hero__figure pre {
   padding: 1.25rem 1.5rem 1.1rem;
 }
-
 @media (min-width: 66rem) {
   .hero__figure pre {
     font-size: 0.75rem;
   }
 }
-
 .hero__figure .ok {
-  color: var(--ok);
+  color: var(--ts-status-success-solid);
 }
-
 .hero__figure .warn {
-  color: var(--warn);
+  color: var(--ts-status-warning-solid);
   font-weight: 500;
 }
-
 .hero__figure b.warn {
   font-weight: 700;
 }
-
 .hero__figure .diff-hunk {
-  color: color-mix(in srgb, var(--accent) 75%, var(--text));
+  color: color-mix(in srgb, var(--ts-text-link) 75%, var(--ts-text-primary));
 }
-
 .hero__figure .diff-add {
-  color: var(--ok);
+  color: var(--ts-status-success-solid);
 }
-
 .hero__figure .diff-del {
-  color: var(--danger);
+  color: var(--ts-status-danger-solid);
 }
-
 .hero__figure .diff-ctx {
-  color: var(--muted);
+  color: var(--ts-text-muted);
 }
-
 @media (max-width: 40rem) {
   .hero__figure pre {
     padding: 1rem 1rem 0.9rem;
@@ -491,46 +272,40 @@ main:focus {
     mask-image: linear-gradient(90deg, #000 86%, transparent);
   }
 }
-
 /* ---- cards --------------------------------------------------------------- */
 
 .grid {
   display: grid;
   gap: 1.25rem;
 }
-
 .grid--2 {
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
 }
-
 /* Product cards settle into pairs on wider screens. */
 .grid--products {
   grid-template-columns: 1fr;
 }
-
 @media (min-width: 48rem) {
   .grid--products {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
 /* A card is a slab with a lit top edge and a pointer-tracked spotlight. The
    spotlight reads --mx/--my, set on the card by SpotlightGrid; without it the
    card still hovers, it just does not follow the pointer. */
 .card {
   position: relative;
   padding: 1.6rem 1.5rem;
-  border: 1px solid var(--line);
-  border-radius: var(--r-4);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent 40%), var(--slate);
-  box-shadow: inset 0 1px 0 var(--lit);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent 40%), var(--ts-surface-panel);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
   overflow: hidden;
   transition:
-    transform var(--base) var(--ease),
-    border-color var(--base) var(--ease),
-    box-shadow var(--base) var(--ease);
+    transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 220ms cubic-bezier(0.16, 1, 0.3, 1);
 }
-
 .card::before {
   content: "";
   position: absolute;
@@ -538,79 +313,70 @@ main:focus {
   pointer-events: none;
   background: radial-gradient(
     22rem circle at var(--mx, 50%) var(--my, 0%),
-    color-mix(in srgb, var(--pc, var(--accent)) 12%, transparent),
+    color-mix(in srgb, var(--ts-product-color, var(--ts-text-link)) 12%, transparent),
     transparent 60%
   );
   opacity: 0;
-  transition: opacity var(--base) var(--ease);
+  transition: opacity 220ms cubic-bezier(0.16, 1, 0.3, 1);
 }
-
 .card > * {
   position: relative;
 }
-
 @media (hover: hover) {
   .card:hover {
     transform: translateY(-3px);
-    border-color: color-mix(in srgb, var(--pc, var(--accent)) 35%, var(--line));
+    border-color: color-mix(in srgb, var(--ts-product-color, var(--ts-text-link)) 35%, rgba(255, 255, 255, 0.08));
     box-shadow:
-      inset 0 1px 0 var(--lit),
-      var(--shadow-2);
+      inset 0 1px 0 rgba(255, 255, 255, 0.07),
+      0 8px 24px rgba(0, 0, 0, 0.45);
   }
   .card:hover::before {
     opacity: 1;
   }
 }
-
 .card--static:hover {
   transform: none;
 }
-
 .card h3 {
   margin: 0 0 0.5rem;
   font-size: 1.0625rem;
   font-weight: 600;
   letter-spacing: -0.015em;
 }
-
 .card p {
   margin: 0;
   font-size: 0.9375rem;
-  color: var(--muted);
+  color: var(--ts-text-muted);
   text-wrap: pretty;
 }
-
 .card__icon {
   display: grid;
   place-items: center;
   width: 2.5rem;
   height: 2.5rem;
   margin-bottom: 1.1rem;
-  border-radius: var(--r-2);
-  border: 1px solid color-mix(in srgb, var(--pc, var(--accent)) 24%, transparent);
-  background: color-mix(in srgb, var(--pc, var(--accent)) 12%, transparent);
-  color: var(--pc, var(--accent));
+  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--ts-product-color, var(--ts-text-link)) 24%, transparent);
+  background: color-mix(in srgb, var(--ts-product-color, var(--ts-text-link)) 12%, transparent);
+  color: var(--ts-product-color, var(--ts-text-link));
 }
-
 .card__icon svg {
   width: 1.15rem;
   height: 1.15rem;
 }
-
 /* A string the product actually prints, used as a card's marker. */
 .artifact {
   display: inline-block;
   margin-bottom: 0.9rem;
   padding: 0.2rem 0.5rem;
-  border: 1px solid var(--line);
-  border-radius: var(--r-1);
-  background: var(--slate-deep);
-  color: color-mix(in srgb, var(--pc, var(--accent)) 60%, var(--text));
-  font-family: var(--mono);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  background: var(--ts-surface-sunken);
+  color: color-mix(in srgb, var(--ts-product-color, var(--ts-text-link)) 60%, var(--ts-text-primary));
+  font-family: var(--ts-font-family-mono);
   font-size: 0.75rem;
   white-space: nowrap;
 }
-
 /* ---- transcript players --------------------------------------------------- */
 /* The two animated transcripts draw their own body inside Tessera's
    TerminalFrame; these are only the phases and line kinds they paint. */
@@ -623,7 +389,7 @@ main:focus {
 @media (prefers-reduced-motion: no-preference) {
   .out,
   .in {
-    transition: opacity 220ms var(--ease);
+    transition: opacity 220ms cubic-bezier(0.16, 1, 0.3, 1);
   }
   .caret {
     animation: caret 1s steps(2, start) infinite;
@@ -655,88 +421,74 @@ main:focus {
 .note {
   margin: 1.5rem 0 0;
   max-width: 44rem;
-  color: var(--muted);
+  color: var(--ts-text-muted);
   font-size: 0.9375rem;
 }
 .note a {
-  color: var(--text);
+  color: var(--ts-text-primary);
 }
-
 /* ---- ledger -------------------------------------------------------------- */
 
 .ledger-card {
-  border: 1px solid var(--line);
-  border-radius: var(--r-3);
-  background: var(--slate);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: var(--ts-surface-panel);
   overflow-x: auto;
 }
-
 .ledger {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.9375rem;
 }
-
 .ledger th,
 .ledger td {
   text-align: left;
   padding: 1rem 1.25rem;
-  border-bottom: 1px solid var(--line-soft);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   vertical-align: top;
 }
-
 .ledger tbody tr:last-child th,
 .ledger tbody tr:last-child td {
   border-bottom: 0;
 }
-
 .ledger thead th {
-  border-bottom-color: var(--line);
-  color: var(--muted);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+  color: var(--ts-text-muted);
   font-weight: 500;
 }
-
 .ledger tbody th {
   width: 16rem;
-  font-family: var(--mono);
+  font-family: var(--ts-font-family-mono);
   font-size: 0.875rem;
   font-weight: 500;
-  color: var(--text);
+  color: var(--ts-text-primary);
 }
-
 .ledger tbody th a {
   color: inherit;
   text-decoration: none;
-  border-bottom: 1px solid var(--line-strong);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
 }
-
 .ledger tbody th a:hover {
-  border-bottom-color: var(--accent);
+  border-bottom-color: var(--ts-text-link);
 }
-
 .ledger td:last-child {
-  color: var(--muted);
+  color: var(--ts-text-muted);
 }
-
 .state {
   width: 8rem;
-  font-family: var(--mono);
+  font-family: var(--ts-font-family-mono);
   font-size: 0.8125rem;
   white-space: nowrap;
 }
-
 .state--met {
-  color: var(--ok);
+  color: var(--ts-status-success-solid);
 }
-
 .state--unmet {
-  color: var(--warn);
+  color: var(--ts-status-warning-solid);
 }
-
 .state--none {
-  color: var(--muted);
+  color: var(--ts-text-muted);
 }
-
 @media (max-width: 48rem) {
   .ledger,
   .ledger tbody,
@@ -751,7 +503,7 @@ main:focus {
   }
   .ledger tbody tr {
     padding: 1rem 1.25rem;
-    border-bottom: 1px solid var(--line-soft);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
   .ledger th,
   .ledger td {
@@ -759,60 +511,52 @@ main:focus {
     padding: 0 0 0.4rem;
   }
 }
-
 /* ---- download table ------------------------------------------------------ */
 
 .dl {
   display: grid;
   gap: 0.5rem;
 }
-
 .dl__row {
   display: grid;
   grid-template-columns: 11rem minmax(0, 1fr) auto;
   align-items: center;
   gap: 1rem;
   padding: 0.85rem 1.1rem;
-  border: 1px solid var(--line);
-  border-radius: var(--r-2);
-  background: var(--slate);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  background: var(--ts-surface-panel);
   text-decoration: none;
   color: inherit;
   transition:
-    border-color var(--fast) var(--ease),
-    background-color var(--fast) var(--ease);
+    border-color 120ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 120ms cubic-bezier(0.16, 1, 0.3, 1);
 }
-
 .dl__row:hover {
-  border-color: color-mix(in srgb, var(--pc, var(--accent)) 40%, var(--line));
-  background: var(--slate-2);
+  border-color: color-mix(in srgb, var(--ts-product-color, var(--ts-text-link)) 40%, rgba(255, 255, 255, 0.08));
+  background: var(--ts-surface-raised);
 }
-
 .dl__row b {
   font-size: 0.9375rem;
   font-weight: 600;
 }
-
 .dl__row b small {
   margin-left: 0.4rem;
   font-weight: 400;
-  color: var(--muted);
+  color: var(--ts-text-muted);
 }
-
 .dl__row code {
   font-size: 0.75rem;
-  color: var(--muted);
+  color: var(--ts-text-muted);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
 .dl__row svg {
   width: 1rem;
   height: 1rem;
-  color: var(--pc, var(--accent));
+  color: var(--ts-product-color, var(--ts-text-link));
 }
-
 @media (max-width: 40rem) {
   .dl__row {
     grid-template-columns: minmax(0, 1fr) auto;
@@ -821,7 +565,6 @@ main:focus {
     display: none;
   }
 }
-
 /* ---- edge pages (not found, error) --------------------------------------- */
 /* The page is Tessera's EdgePage; this is the room around it. */
 
@@ -829,3 +572,15 @@ main:focus {
   padding: calc(var(--section-y) * 1.2) 1.5rem;
 }
 
+/* The Polaris stories: one film beside its text, stacked with room between. */
+.stories { display: grid; gap: clamp(3rem, 6vw, 5rem); }
+.stories .ts-split__text .ts-note { margin-top: 1rem; }
+
+/* The Polaris hero: film-led and centred, on the split-hero classes. */
+.ts-split-hero[data-center] .ts-container { text-align: center; }
+.ts-split-hero[data-center] .ts-crumbs,
+.ts-split-hero[data-center] .ts-split-hero__meta,
+.ts-split-hero[data-center] .ts-split-hero__actions,
+.ts-split-hero[data-center] .ts-split-hero__facts { justify-content: center; }
+.ts-split-hero[data-center] .ts-split-hero__lede { margin-inline: auto; max-width: 34rem; }
+.ts-split-hero[data-center] .ts-split-hero__facts li + li::before { content: "·"; margin-right: 1.5rem; color: var(--ts-text-muted); }

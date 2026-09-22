@@ -53,7 +53,7 @@ export default function Page() {
           keeps ("ask before acting"), shown as the product's own interface
           rather than described. The text beside it says what the family is. */}
       <section className="hero">
-        <div className="container hero__grid">
+        <div className="ts-container hero__grid">
           <div>
             <p className="ts-eyebrow" data-mono="" data-dot="">Developer tools by Umbra
             </p>
@@ -107,7 +107,7 @@ export default function Page() {
       <section
         className="ts-section" data-ruled=""
         id="agent"
-        style={{ "--pc": PRODUCTS.agent.color } as CSSProperties}
+        style={{ "--ts-product-color": PRODUCTS.agent.color } as CSSProperties}
       >
         <div className="ts-container">
           <div className="ts-split">
@@ -153,7 +153,7 @@ export default function Page() {
       <section
         className="ts-section" data-ruled=""
         id="polaris"
-        style={{ "--pc": PRODUCTS.polaris.color } as CSSProperties}
+        style={{ "--ts-product-color": PRODUCTS.polaris.color } as CSSProperties}
       >
         <div className="ts-container">
           <div className="ts-split" data-reverse="">

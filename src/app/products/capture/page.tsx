@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 
 export default function CapturePage() {
   return (
-    <div style={{ "--pc": P.color } as CSSProperties}>
+    <div style={{ "--ts-product-color": P.color } as CSSProperties}>
       <ProductHero
         product={P}
         headline={
