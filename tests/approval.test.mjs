@@ -7,7 +7,7 @@ import { loadSource } from './load-source.mjs';
 // approval (crates/axio/src/tui/paint.rs: `title`, `prompt_row`,
 // `status_row`), so a change there is a change here.
 const { FRAME, TITLE, PROMPT, HINT } = loadSource(
-  new URL('../src/components/ApprovalTranscript.tsx', import.meta.url),
+  new URL('../src/content/transcripts.ts', import.meta.url),
 );
 
 test('the approval prompt is the one the agent prints', () => {
