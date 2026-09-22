@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import AnalystMock from "@/components/AnalystMock";
 import { IconArrowUpRight } from "@/components/Icons";
 import ProductHero from "@/components/ProductHero";
-import Term from "@/components/Term";
+import { Terminal } from "@tessera/marketing";
 import { ANALYST_VERSION, PRODUCTS } from "@/lib/products";
 import ButtonLink from "@/components/ButtonLink";
 
@@ -197,15 +197,15 @@ export default function AnalystPage() {
             </p>
           </div>
           <div className="install">
-            <Term label="macOS" wrap copy="macOS plugin install">{`
+            <Terminal title="macOS" wrap copy="macOS plugin install">{`
 git clone ${REPO}.git "$HOME/Library/Application Support/Binary Ninja/plugins/axio_analyst"
-`}</Term>
-            <Term label="Linux" wrap copy="Linux plugin install">{`
+`}</Terminal>
+            <Terminal title="Linux" wrap copy="Linux plugin install">{`
 git clone ${REPO}.git "$HOME/.binaryninja/plugins/axio_analyst"
-`}</Term>
-            <Term label="Windows · PowerShell" wrap copy="Windows plugin install">{`
+`}</Terminal>
+            <Terminal title="Windows · PowerShell" wrap copy="Windows plugin install">{`
 git clone ${REPO}.git "$env:APPDATA\\Binary Ninja\\plugins\\axio_analyst"
-`}</Term>
+`}</Terminal>
           </div>
           <p className="note">
             Needs Binary Ninja 5.x with its Qt6 UI, its embedded Python, and at

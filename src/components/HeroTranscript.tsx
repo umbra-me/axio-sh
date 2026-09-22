@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { TerminalFrame } from "@tessera/marketing";
 
 // A turn, played the way the real one runs: invoked, the prompt already sent,
 // the status line thinking, tool calls landing as they finish, the answer
@@ -87,25 +88,17 @@ export default function HeroTranscript() {
       : `  ${"· thinking".padEnd(32)}ctrl-c to interrupt`;
 
   return (
-    <figure className="terminal" aria-label="An example axio turn">
-      <figcaption className="terminal__bar">
-        <span className="terminal__dots" aria-hidden="true">
-          <i />
-          <i />
-          <i />
-        </span>
-        a turn, played once
-      </figcaption>
-      <pre>
-        <span className="dim">{"$ "}</span>
+    <TerminalFrame label="An example axio turn" title="a turn, played once">
+
+        <span className="ts-terminal__dim">{"$ "}</span>
         {"axio\n\n"}
         {TOOL_LINES.map((line, i) => (
           <span key={line.name} className={i < tools ? "in" : "out"}>
             {"  "}
-            <span className="acc">⏺</span>
+            <span className="ts-terminal__acc">⏺</span>
             {` ${line.name.padEnd(8)}${line.arg}`}
-            {line.delta ? <span className="dim">{`  ${line.delta}`}</span> : ""}
-            <span className="dim">
+            {line.delta ? <span className="ts-terminal__dim">{`  ${line.delta}`}</span> : ""}
+            <span className="ts-terminal__dim">
               {" ".repeat(
                 Math.max(
                   1,
@@ -125,17 +118,16 @@ export default function HeroTranscript() {
           {"\n"}
         </span>
         {"\n"}
-        <span className="dim">{TOP}</span>
+        <span className="ts-terminal__dim">{TOP}</span>
         {"\n"}
-        <span className="dim">│</span>
+        <span className="ts-terminal__dim">│</span>
         {` ${PROMPT}`}
         {MID_PAD}
-        <span className="dim">│</span>
+        <span className="ts-terminal__dim">│</span>
         {"\n"}
-        <span className="dim">{BOTTOM}</span>
+        <span className="ts-terminal__dim">{BOTTOM}</span>
         {"\n"}
-        <span className="dim">{status}</span>
-      </pre>
-    </figure>
+        <span className="ts-terminal__dim">{status}</span>
+    </TerminalFrame>
   );
 }

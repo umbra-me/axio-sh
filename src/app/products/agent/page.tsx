@@ -4,7 +4,7 @@ import HeroTranscript from "@/components/HeroTranscript";
 import { IconArrowUpRight } from "@/components/Icons";
 import ProductHero from "@/components/ProductHero";
 import Surface from "@/components/Surface";
-import Term from "@/components/Term";
+import { Terminal } from "@tessera/marketing";
 import { PRODUCTS } from "@/lib/products";
 import ButtonLink from "@/components/ButtonLink";
 
@@ -158,7 +158,7 @@ export default function AgentPage() {
                 another tool already wrote, so they need no configuration at
                 all.
               </p>
-              <Term label="provider limits">{`
+              <Terminal title="provider limits">{`
 > axio quota
 Codex (pro)
   Weekly                        «22% used  resets in 5d»
@@ -166,7 +166,7 @@ Claude (max)
   5h                             «8% used  resets in 2h»
   Weekly                         «2% used  resets in 6d»
   Weekly (Fable)                 «0% used»
-`}</Term>
+`}</Terminal>
             </div>
             <div className="col">
               <h3 className="display display--sm">axio cost</h3>
@@ -175,12 +175,12 @@ Claude (max)
                 the transcripts they already write. No network, no credentials.
                 A model with no known rate is reported unpriced, never as zero.
               </p>
-              <Term label="local spend" wrap>{`
+              <Terminal title="local spend" wrap>{`
 $ axio cost --by client
 $ axio cost --calendar   «the year, shaded»
 $ axio cost --wide       «cache share, $/M, share»
 $ axio cost --diagnose   «what each parser skipped»
-`}</Term>
+`}</Terminal>
             </div>
           </div>
         </div>
@@ -265,15 +265,15 @@ $ axio cost --diagnose   «what each parser skipped»
             </p>
           </div>
           <div className="install">
-            <Term label="macOS · Linux · WSL" wrap copy="macOS, Linux and WSL install">{`
+            <Terminal title="macOS · Linux · WSL" wrap copy="macOS, Linux and WSL install">{`
 curl -fsSL https://axio.sh/install | sh
-`}</Term>
-            <Term label="Windows · PowerShell" wrap copy="Windows PowerShell install">{`
+`}</Terminal>
+            <Terminal title="Windows · PowerShell" wrap copy="Windows PowerShell install">{`
 irm https://axio.sh/install.ps1 | iex
-`}</Term>
-            <Term label="or drive cargo yourself" wrap copy="cargo install">{`
+`}</Terminal>
+            <Terminal title="or drive cargo yourself" wrap copy="cargo install">{`
 cargo install --git ${REPO} --locked axio
-`}</Term>
+`}</Terminal>
           </div>
           <p className="note">
             The installer checks for a toolchain, refuses politely if it is

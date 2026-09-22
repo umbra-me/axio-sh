@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import { IconDownload } from "@/components/Icons";
 import StatusBadge from "@/components/StatusBadge";
-import Term from "@/components/Term";
+import { Terminal } from "@tessera/marketing";
 import {
   AVAILABLE,
   CAPTURE_DOWNLOADS,
@@ -61,15 +61,15 @@ export default function DownloadPage() {
             </p>
           </div>
           <div className="install">
-            <Term label="macOS · Linux · WSL" wrap copy="macOS, Linux and WSL install">{`
+            <Terminal title="macOS · Linux · WSL" wrap copy="macOS, Linux and WSL install">{`
 curl -fsSL https://axio.sh/install | sh
-`}</Term>
-            <Term label="Windows · PowerShell" wrap copy="Windows PowerShell install">{`
+`}</Terminal>
+            <Terminal title="Windows · PowerShell" wrap copy="Windows PowerShell install">{`
 irm https://axio.sh/install.ps1 | iex
-`}</Term>
-            <Term label="or drive cargo yourself" wrap copy="cargo install">{`
+`}</Terminal>
+            <Terminal title="or drive cargo yourself" wrap copy="cargo install">{`
 cargo install --git ${agent.repo} --locked axio
-`}</Term>
+`}</Terminal>
           </div>
           <p className="note">
             <a href="/install">install.sh</a> · <a href="/install.ps1">install.ps1</a>{" "}
@@ -135,15 +135,15 @@ cargo install --git ${agent.repo} --locked axio
             </p>
           </div>
           <div className="install">
-            <Term label="macOS" wrap copy="macOS plugin install">{`
+            <Terminal title="macOS" wrap copy="macOS plugin install">{`
 git clone ${analyst.repo}.git "$HOME/Library/Application Support/Binary Ninja/plugins/axio_analyst"
-`}</Term>
-            <Term label="Linux" wrap copy="Linux plugin install">{`
+`}</Terminal>
+            <Terminal title="Linux" wrap copy="Linux plugin install">{`
 git clone ${analyst.repo}.git "$HOME/.binaryninja/plugins/axio_analyst"
-`}</Term>
-            <Term label="Windows · PowerShell" wrap copy="Windows plugin install">{`
+`}</Terminal>
+            <Terminal title="Windows · PowerShell" wrap copy="Windows plugin install">{`
 git clone ${analyst.repo}.git "$env:APPDATA\\Binary Ninja\\plugins\\axio_analyst"
-`}</Term>
+`}</Terminal>
           </div>
           <p className="note">
             <a href="/products/analyst">about Axio Analyst</a>
@@ -167,9 +167,9 @@ git clone ${analyst.repo}.git "$env:APPDATA\\Binary Ninja\\plugins\\axio_analyst
               install for macOS, Linux and WSL; needs Rust 1.88 or newer.
             </p>
           </div>
-          <Term label="macOS · Linux · WSL" wrap copy="Axio Local install">{`
+          <Terminal title="macOS · Linux · WSL" wrap copy="Axio Local install">{`
 cargo install --git ${local.repo} --locked
-`}</Term>
+`}</Terminal>
           <p className="note">
             <a href="/products/local">setup and model selection</a>
           </p>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { TerminalFrame } from "@tessera/marketing";
 
 // The moment the whole site is about, played the way the real one runs: a
 // turn reads a file, proposes an edit, the diff lands in scrollback, and the
@@ -77,18 +78,18 @@ function PromptRow() {
   ];
   return (
     <>
-      <span className="dim">│</span>
+      <span className="ts-terminal__dim">│</span>
       {" "}
       <span className="warn">allow?</span>
       {"  "}
       {keys.map(([key, what], i) => (
         <span key={key}>
           <b className="warn">{key}</b>
-          <span className="dim">{` ${what}`}</span>
+          <span className="ts-terminal__dim">{` ${what}`}</span>
           {i < keys.length - 1 ? "   " : " "}
         </span>
       ))}
-      <span className="dim">│</span>
+      <span className="ts-terminal__dim">│</span>
     </>
   );
 }
@@ -118,23 +119,15 @@ export default function ApprovalTranscript() {
   const previewed = phase !== "reading";
 
   return (
-    <figure className="terminal hero__figure" aria-label="The agent asking before it edits a file">
-      <figcaption className="terminal__bar">
-        <span className="terminal__dots" aria-hidden="true">
-          <i />
-          <i />
-          <i />
-        </span>
-        a turn, stopped at the question
-      </figcaption>
-      <pre>
-        <span className="dim">{"$ "}</span>
+    <TerminalFrame label="The agent asking before it edits a file" className="hero__figure" title="a turn, stopped at the question">
+
+        <span className="ts-terminal__dim">{"$ "}</span>
         {"axio\n\n"}
         <span className={read ? "in" : "out"}>
           {"  "}
           <span className="ok">⏺</span>
           {` ${READ.name.padEnd(6)}  ${READ.detail}`}
-          <span className="dim">
+          <span className="ts-terminal__dim">
             {READ_GAP}
             {READ.ms}
           </span>
@@ -150,18 +143,17 @@ export default function ApprovalTranscript() {
           ))}
         </span>
         {"\n"}
-        <span className="dim">{asking ? TOP_APPROVE : TOP_RUNNING}</span>
+        <span className="ts-terminal__dim">{asking ? TOP_APPROVE : TOP_RUNNING}</span>
         {"\n"}
-        {asking ? <PromptRow /> : <span className="dim">{RUNNING_MID}</span>}
+        {asking ? <PromptRow /> : <span className="ts-terminal__dim">{RUNNING_MID}</span>}
         {"\n"}
-        <span className="dim">{BOTTOM}</span>
+        <span className="ts-terminal__dim">{BOTTOM}</span>
         {"\n"}
-        <span className="dim">
+        <span className="ts-terminal__dim">
           {asking
             ? HINT.padStart(WIDTH)
             : `  · working${RUNNING_HINT.padStart(WIDTH - chars("  · working"))}`}
         </span>
-      </pre>
-    </figure>
+    </TerminalFrame>
   );
 }
