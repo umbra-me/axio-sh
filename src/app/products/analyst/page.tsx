@@ -1,11 +1,11 @@
+import { Terminal } from "@tessera/marketing";
+import { Button } from "@tessera/ui";
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import AnalystMock from "@/components/AnalystMock";
 import { IconArrowUpRight } from "@/components/Icons";
 import ProductHero from "@/components/ProductHero";
-import { Terminal } from "@tessera/marketing";
 import { ANALYST_VERSION, PRODUCTS } from "@/lib/products";
-import ButtonLink from "@/components/ButtonLink";
 
 const P = PRODUCTS.analyst;
 const REPO = P.repo!;
@@ -31,13 +31,17 @@ export default function AnalystPage() {
         lede={P.description}
         actions={
           <>
-            <ButtonLink variant="product" href="#install">
+            <Button asChild size="lg" variant="primary" tone="product">
+<a href="#install">
               Install the plugin
-            </ButtonLink>
-            <ButtonLink variant="secondary" href={REPO} rel="noopener">
+            </a>
+</Button>
+            <Button asChild size="lg" variant="secondary">
+<a href={REPO} rel="noopener">
               Repository
               <IconArrowUpRight />
-            </ButtonLink>
+            </a>
+</Button>
           </>
         }
         visual={<AnalystMock />}

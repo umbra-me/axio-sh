@@ -1,12 +1,12 @@
+import { Callout, Terminal } from "@tessera/marketing";
+import { Button } from "@tessera/ui";
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import HeroTranscript from "@/components/HeroTranscript";
 import { IconArrowUpRight } from "@/components/Icons";
 import ProductHero from "@/components/ProductHero";
 import Surface from "@/components/Surface";
-import { Terminal } from "@tessera/marketing";
 import { PRODUCTS } from "@/lib/products";
-import ButtonLink from "@/components/ButtonLink";
 
 const P = PRODUCTS.agent;
 const REPO = P.repo!;
@@ -32,13 +32,17 @@ export default function AgentPage() {
         lede={P.description}
         actions={
           <>
-            <ButtonLink variant="product" href="#install">
+            <Button asChild size="lg" variant="primary" tone="product">
+<a href="#install">
               Install from main
-            </ButtonLink>
-            <ButtonLink variant="secondary" href={REPO} rel="noopener">
+            </a>
+</Button>
+            <Button asChild size="lg" variant="secondary">
+<a href={REPO} rel="noopener">
               Repository
               <IconArrowUpRight />
-            </ButtonLink>
+            </a>
+</Button>
           </>
         }
         visual={<Surface />}
@@ -292,8 +296,7 @@ cargo install --git ${REPO} --locked axio
 
       <section className="section--tight">
         <div className="container">
-          <div className="callout callout--warn">
-            <strong>Read SECURITY.md before running it anywhere that matters.</strong>
+          <Callout tone="warning" title={<>Read SECURITY.md before running it anywhere that matters.</>}>
             <p>
               axio executes code written by a language model against your
               working directory. By default there is no sandbox: confinement is
@@ -305,7 +308,7 @@ cargo install --git ${REPO} --locked axio
               </a>
               .
             </p>
-          </div>
+          </Callout>
         </div>
       </section>
     </div>

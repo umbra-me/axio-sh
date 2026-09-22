@@ -1,7 +1,8 @@
+import { LegalDocument } from "@tessera/patterns";
+import { Button } from "@tessera/ui";
 import type { Metadata } from "next";
 import { PRODUCT_LIST } from "@/lib/products";
 import { COMPANY, ORG, UMBRA } from "@/lib/site";
-import ButtonLink from "@/components/ButtonLink";
 
 export const metadata: Metadata = {
   title: "About",
@@ -13,20 +14,18 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <section className="page-head">
-        <div className="container container--narrow">
-          <h1 className="display display--lg">What Axio is, and how it is run.</h1>
-          <p>
-            Axio is the developer-tools family of {COMPANY.name},{" "}
+      <div className="ts-container" data-width="narrow">
+        <LegalDocument
+          title="What Axio is, and how it is run."
+          summary={
+            <>
+              Axio is the developer-tools family of {COMPANY.name},{" "}
             {COMPANY.description} based in {COMPANY.location}. It holds{" "}
             {PRODUCT_LIST.length} products today, and this page says how they
             are built, licensed and operated.
-          </p>
-        </div>
-      </section>
-
-      <section className="section--tight">
-        <div className="container container--narrow prose">
+            </>
+          }
+        >
           <h2>One brand, separate tools</h2>
           <p>
             Each product has its own repository, its own toolchain and its own
@@ -131,8 +130,8 @@ export default function AboutPage() {
             with some of them and are inspired by others. None of those
             companies sponsors, endorses or is affiliated with Axio or Umbra.
           </p>
-        </div>
-      </section>
+        </LegalDocument>
+      </div>
 
       <section className="section">
         <div className="container container--narrow">
@@ -141,12 +140,16 @@ export default function AboutPage() {
               <h2 className="display display--md">See the tools.</h2>
             </div>
             <div className="cta__actions">
-              <ButtonLink variant="primary" href="/products">
+              <Button asChild size="lg" variant="primary">
+<a href="/products">
                 Products
-              </ButtonLink>
-              <ButtonLink variant="secondary" href="/download">
+              </a>
+</Button>
+              <Button asChild size="lg" variant="secondary">
+<a href="/download">
                 Download
-              </ButtonLink>
+              </a>
+</Button>
             </div>
           </div>
         </div>

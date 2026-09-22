@@ -1,6 +1,6 @@
+import { ProductGrid } from "@tessera/marketing";
 import type { Metadata } from "next";
 import ProductCard from "@/components/ProductCard";
-import SpotlightGrid from "@/components/SpotlightGrid";
 import { AVAILABLE, PRIVATE, PRODUCT_LIST, listNames } from "@/lib/products";
 
 export const metadata: Metadata = {
@@ -26,11 +26,11 @@ export default function ProductsPage() {
       <section className="section--tight">
         <div className="container">
           <h2 className="visually-hidden">The six tools</h2>
-          <SpotlightGrid className="grid grid--products">
+          <ProductGrid columns={3}>
             {PRODUCT_LIST.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}
-          </SpotlightGrid>
+          </ProductGrid>
         </div>
       </section>
       <section className="section">

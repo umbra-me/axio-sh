@@ -1,15 +1,19 @@
+import { Terminal } from "@tessera/marketing";
+import { Button } from "@tessera/ui";
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import ProductHero from "@/components/ProductHero";
-import { Terminal } from "@tessera/marketing";
 import { PRODUCTS } from "@/lib/products";
-import ButtonLink from "@/components/ButtonLink";
 const P = PRODUCTS.local;
 export const metadata: Metadata = { title: P.name, description: P.description, alternates: { canonical: "/products/local" } };
 export default function LocalPage() {
   return <div style={{ "--pc": P.color } as CSSProperties}>
     <ProductHero product={P} headline={<>Your agent.<br /><em>Your local models.</em></>} lede={P.description}
-      actions={<><ButtonLink variant="product" href="#install">Install Axio Local</ButtonLink><ButtonLink variant="secondary" href={P.repo!}>Source and documentation</ButtonLink></>}
+      actions={<><Button asChild size="lg" variant="primary" tone="product">
+<a href="#install">Install Axio Local</a>
+</Button><Button asChild size="lg" variant="secondary">
+<a href={P.repo!}>Source and documentation</a>
+</Button></>}
       visual={<Terminal title="A local session" wrap>{`axio-local status
 axio-local -o YOUR_MODEL -w YOUR_MODEL axio`}</Terminal>} />
     <section className="section" id="install"><div className="container">

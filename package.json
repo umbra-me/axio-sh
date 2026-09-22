@@ -14,6 +14,7 @@
   "dependencies": {
     "@tessera/marketing": "workspace:*",
     "@tessera/next": "workspace:*",
+    "@tessera/patterns": "workspace:*",
     "@tessera/themes": "workspace:*",
     "@tessera/ui": "workspace:*",
     "geist": "^1.7.2",

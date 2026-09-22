@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import { Table, TableRow } from "@tessera/ui";
 import { PRODUCT_LIST, productHref } from "@/lib/products";
 
 /**
@@ -15,10 +15,8 @@ import { PRODUCT_LIST, productHref } from "@/lib/products";
  */
 export default function NetworkTable() {
   return (
-    <table className="net">
-      <caption className="visually-hidden">
-        What each Axio tool sends over the network, and its licence
-      </caption>
+    <Table density="ledger">
+      <caption className="ts-sr-only">What each Axio tool sends over the network, and its licence</caption>
       <thead>
         <tr>
           <th scope="col">Tool</th>
@@ -28,18 +26,15 @@ export default function NetworkTable() {
       </thead>
       <tbody>
         {PRODUCT_LIST.map((p) => (
-          <tr key={p.id} style={{ "--pc": p.color } as CSSProperties}>
+          <TableRow key={p.id} mark={p.color}>
             <th scope="row">
-              <a href={productHref(p.id)}>
-                <i aria-hidden="true" />
-                {p.name}
-              </a>
+              <a href={productHref(p.id)}>{p.name}</a>
             </th>
             <td>{p.network}</td>
-            <td>{p.license ?? "Not distributed"}</td>
-          </tr>
+            <td data-meta="">{p.license ?? "Not distributed"}</td>
+          </TableRow>
         ))}
       </tbody>
-    </table>
+    </Table>
   );
 }

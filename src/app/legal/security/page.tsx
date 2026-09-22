@@ -17,36 +17,8 @@ export default function SecurityPage() {
       title="Security"
       summary="How to report a vulnerability, what each product does to protect you, and what it deliberately does not do. The second half matters as much as the first."
       current="/legal/security"
+      contents={[{ id: "report", label: "Reporting a vulnerability" }, { id: "supported", label: "Supported versions" }, { id: "agent", label: "The coding agent" }, { id: "capture", label: "Axio Capture" }, { id: "analyst", label: "Axio Analyst" }, { id: "deck", label: "Axio Deck" }, { id: "polaris", label: "Axio Polaris" }, { id: "site", label: "This website" }]}
     >
-      <div className="toc">
-        <strong>Contents</strong>
-        <ol>
-          <li>
-            <a href="#report">Reporting a vulnerability</a>
-          </li>
-          <li>
-            <a href="#supported">Supported versions</a>
-          </li>
-          <li>
-            <a href="#agent">The coding agent</a>
-          </li>
-          <li>
-            <a href="#capture">Axio Capture</a>
-          </li>
-          <li>
-            <a href="#analyst">Axio Analyst</a>
-          </li>
-          <li>
-            <a href="#deck">Axio Deck</a>
-          </li>
-          <li>
-            <a href="#polaris">Axio Polaris</a>
-          </li>
-          <li>
-            <a href="#site">This website</a>
-          </li>
-        </ol>
-      </div>
 
       <h2 id="report">1. Reporting a vulnerability</h2>
       <p>

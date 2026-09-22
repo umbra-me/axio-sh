@@ -15,48 +15,8 @@ export default function TermsPage() {
       title="Terms of use"
       summary="These terms cover this website and the scripts it serves. Each product has its own software licence; Polaris uses a personal commercial licence."
       current="/legal/terms"
+      contents={[{ id: "agreement", label: "Agreement" }, { id: "software", label: "The software is licensed separately" }, { id: "scripts", label: "Install scripts" }, { id: "use", label: "Acceptable use of the site" }, { id: "ai", label: "Software that acts on your behalf" }, { id: "ip", label: "Intellectual property and trademarks" }, { id: "warranty", label: "No warranty" }, { id: "liability", label: "Limitation of liability" }, { id: "consumer", label: "Australian Consumer Law" }, { id: "law", label: "Governing law" }, { id: "changes", label: "Changes" }, { id: "contact", label: "Contact" }]}
     >
-      <div className="toc">
-        <strong>Contents</strong>
-        <ol>
-          <li>
-            <a href="#agreement">Agreement</a>
-          </li>
-          <li>
-            <a href="#software">The software is licensed separately</a>
-          </li>
-          <li>
-            <a href="#scripts">Install scripts</a>
-          </li>
-          <li>
-            <a href="#use">Acceptable use of the site</a>
-          </li>
-          <li>
-            <a href="#ai">Software that acts on your behalf</a>
-          </li>
-          <li>
-            <a href="#ip">Intellectual property and trademarks</a>
-          </li>
-          <li>
-            <a href="#warranty">No warranty</a>
-          </li>
-          <li>
-            <a href="#liability">Limitation of liability</a>
-          </li>
-          <li>
-            <a href="#consumer">Australian Consumer Law</a>
-          </li>
-          <li>
-            <a href="#law">Governing law</a>
-          </li>
-          <li>
-            <a href="#changes">Changes</a>
-          </li>
-          <li>
-            <a href="#contact">Contact</a>
-          </li>
-        </ol>
-      </div>
 
       <h2 id="agreement">1. Agreement</h2>
       <p>

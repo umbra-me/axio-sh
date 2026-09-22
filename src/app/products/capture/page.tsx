@@ -1,3 +1,5 @@
+import { Callout } from "@tessera/marketing";
+import { Button } from "@tessera/ui";
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import CaptureMock from "@/components/CaptureMock";
@@ -9,7 +11,6 @@ import {
   CAPTURE_VERSION,
   PRODUCTS,
 } from "@/lib/products";
-import ButtonLink from "@/components/ButtonLink";
 
 const P = PRODUCTS.capture;
 const REPO = P.repo!;
@@ -35,14 +36,18 @@ export default function CapturePage() {
         lede={P.description}
         actions={
           <>
-            <ButtonLink variant="product" href="#download">
+            <Button asChild size="lg" variant="primary" tone="product">
+<a href="#download">
               Download {CAPTURE_VERSION}
               <IconDownload />
-            </ButtonLink>
-            <ButtonLink variant="secondary" href={REPO} rel="noopener">
+            </a>
+</Button>
+            <Button asChild size="lg" variant="secondary">
+<a href={REPO} rel="noopener">
               Repository
               <IconArrowUpRight />
-            </ButtonLink>
+            </a>
+</Button>
           </>
         }
         visual={<CaptureMock />}
@@ -192,15 +197,14 @@ export default function CapturePage() {
               </tbody>
             </table>
           </div>
-          <div className="callout callout--warn" style={{ marginTop: "1.5rem" }}>
-            <strong>macOS bundles are signed but not notarised.</strong>
+          <Callout tone="warning" style={{ marginTop: "1.5rem" }} title={<>macOS bundles are signed but not notarised.</>}>
             <p>
               On another Mac, the first launch needs right-click, Open. The app
               then asks for Screen Recording permission, opens the right pane,
               and relaunches itself once you flip the toggle. That toggle is the
               one thing macOS reserves for you.
             </p>
-          </div>
+          </Callout>
         </div>
       </section>
 

@@ -1,3 +1,5 @@
+import { Ledger } from "@tessera/marketing";
+import { Button } from "@tessera/ui";
 import type { CSSProperties } from "react";
 import ApprovalTranscript from "@/components/ApprovalTranscript";
 import NetworkTable from "@/components/NetworkTable";
@@ -6,7 +8,6 @@ import ProductRail from "@/components/ProductRail";
 import Surface from "@/components/Surface";
 import { PRODUCTS } from "@/lib/products";
 import { UMBRA } from "@/lib/site";
-import ButtonLink from "@/components/ButtonLink";
 
 // The rules every product keeps, each keyed by something a product actually
 // prints or writes. The string is the marker: a rule you can check from the
@@ -69,12 +70,16 @@ export default function Page() {
               product telemetry.
             </p>
             <div className="hero__actions">
-              <ButtonLink variant="primary" href="/download">
+              <Button asChild size="lg" variant="primary">
+<a href="/download">
                 Download
-              </ButtonLink>
-              <ButtonLink variant="secondary" href="/products">
+              </a>
+</Button>
+              <Button asChild size="lg" variant="secondary">
+<a href="/products">
                 See all six products
-              </ButtonLink>
+              </a>
+</Button>
             </div>
             <p className="hero__cmd">
               <span className="dim">$</span>
@@ -121,8 +126,8 @@ export default function Page() {
         style={{ "--pc": PRODUCTS.agent.color } as CSSProperties}
       >
         <div className="container">
-          <div className="split">
-            <div className="split__text">
+          <div className="ts-split">
+            <div className="ts-split__text">
               <h2 className="display display--md">Many agents. One queue.</h2>
               <p className="lede">
                 Every supervised session gets its own git worktree and branch,
@@ -143,13 +148,17 @@ export default function Page() {
                   it.
                 </li>
               </ul>
-              <div className="phero__actions">
-                <ButtonLink variant="product" href="/products/agent">
+              <div className="ts-split-hero__actions">
+                <Button asChild size="lg" variant="primary" tone="product">
+<a href="/products/agent">
                   About the agent
-                </ButtonLink>
-                <ButtonLink variant="secondary" href="/products/agent#install">
+                </a>
+</Button>
+                <Button asChild size="lg" variant="secondary">
+<a href="/products/agent#install">
                   Install
-                </ButtonLink>
+                </a>
+</Button>
               </div>
             </div>
             <Surface />
@@ -163,8 +172,8 @@ export default function Page() {
         style={{ "--pc": PRODUCTS.polaris.color } as CSSProperties}
       >
         <div className="container">
-          <div className="split split--reverse">
-            <div className="split__text">
+          <div className="ts-split" data-reverse="">
+            <div className="ts-split__text">
               <h2 className="display display--md">
                 A native Mac utility for the rest of your day.
               </h2>
@@ -178,13 +187,17 @@ export default function Page() {
                 <li>A 14-day trial that starts when you ask it to. No card.</li>
                 <li>A$59 once, for two Macs. No subscription.</li>
               </ul>
-              <div className="phero__actions">
-                <ButtonLink variant="product" href="/products/polaris">
+              <div className="ts-split-hero__actions">
+                <Button asChild size="lg" variant="primary" tone="product">
+<a href="/products/polaris">
                   About Polaris
-                </ButtonLink>
-                <ButtonLink variant="secondary" href="/products/polaris#pricing">
+                </a>
+</Button>
+                <Button asChild size="lg" variant="secondary">
+<a href="/products/polaris#pricing">
                   Pricing
-                </ButtonLink>
+                </a>
+</Button>
               </div>
             </div>
             <PolarisVideo
@@ -205,15 +218,7 @@ export default function Page() {
               and the string beside it is where to look.
             </p>
           </div>
-          <ul className="rules">
-            {RULES.map((rule) => (
-              <li key={rule.title}>
-                <span className="artifact">{rule.key}</span>
-                <h3>{rule.title}</h3>
-                <p>{rule.body}</p>
-              </li>
-            ))}
-          </ul>
+          <Ledger layout="grid" entries={RULES} />
         </div>
       </section>
 
@@ -231,12 +236,16 @@ export default function Page() {
               </p>
             </div>
             <div className="cta__actions">
-              <ButtonLink variant="primary" href="/about">
+              <Button asChild size="lg" variant="primary">
+<a href="/about">
                 About Axio
-              </ButtonLink>
-              <ButtonLink variant="secondary" href={UMBRA} data-umbra-link="umbra-attribution">
+              </a>
+</Button>
+              <Button asChild size="lg" variant="secondary">
+<a href={UMBRA} data-umbra-link="umbra-attribution">
                 Visit umbra.me
-              </ButtonLink>
+              </a>
+</Button>
             </div>
           </div>
         </div>

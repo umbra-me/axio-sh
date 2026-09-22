@@ -1,42 +1,9 @@
-import type { CSSProperties } from "react";
+import { ProductCard as Card } from "@tessera/marketing";
 import { productHref, type Product } from "@/lib/products";
 import { PRODUCT_ICONS } from "./Icons";
 import StatusBadge from "./StatusBadge";
 
-export default function ProductCard({
-  product,
-  wide = false,
-}: {
-  product: Product;
-  wide?: boolean;
-}) {
+export default function ProductCard({ product }: { product: Product }) {
   const Icon = PRODUCT_ICONS[product.id];
-  return (
-    <a
-      className={`card pcard${wide ? " pcard--wide" : ""}`}
-      href={productHref(product.id)}
-      style={{ "--pc": product.color } as CSSProperties}
-    >
-      <div className="pcard__head">
-        <span className="card__icon">
-          <Icon />
-        </span>
-        <StatusBadge product={product} />
-      </div>
-      <div className="pcard__body">
-        <p className="pcard__by">{product.stack}</p>
-        <h3>{product.name}</h3>
-        <p className="pcard__tag">{product.tagline}</p>
-        <p className="pcard__desc">{product.description}</p>
-        <ul>
-          {product.features.map((f) => (
-            <li key={f}>{f}</li>
-          ))}
-        </ul>
-        <div className="pcard__foot">
-          <span className="mono">{product.platforms.join(" · ")}</span>
-        </div>
-      </div>
-    </a>
-  );
+  return <Card name={product.name} tagline={product.tagline} description={product.description} color={product.color} icon={<Icon />} kicker={product.stack} features={product.features} platforms={product.platforms} badge={<StatusBadge product={product} />} href={productHref(product.id)} cta="About the product" />;
 }

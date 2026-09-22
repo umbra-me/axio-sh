@@ -1,8 +1,8 @@
+import { Terminal } from "@tessera/marketing";
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import { IconDownload } from "@/components/Icons";
 import StatusBadge from "@/components/StatusBadge";
-import { Terminal } from "@tessera/marketing";
 import {
   AVAILABLE,
   CAPTURE_DOWNLOADS,

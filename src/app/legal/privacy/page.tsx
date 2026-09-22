@@ -15,39 +15,8 @@ export default function PrivacyPage() {
       title="Privacy policy"
       summary="The tools keep their core data on your machine. Purchases, licence activation and support use the limited personal information described below."
       current="/legal/privacy"
+      contents={[{ id: "who", label: "Who we are" }, { id: "scope", label: "What this policy covers" }, { id: "site", label: "This website" }, { id: "software", label: "The software" }, { id: "third", label: "Third parties" }, { id: "rights", label: "Your rights" }, { id: "children", label: "Children" }, { id: "changes", label: "Changes" }, { id: "contact", label: "Contact" }]}
     >
-      <div className="toc">
-        <strong>Contents</strong>
-        <ol>
-          <li>
-            <a href="#who">Who we are</a>
-          </li>
-          <li>
-            <a href="#scope">What this policy covers</a>
-          </li>
-          <li>
-            <a href="#site">This website</a>
-          </li>
-          <li>
-            <a href="#software">The software</a>
-          </li>
-          <li>
-            <a href="#third">Third parties</a>
-          </li>
-          <li>
-            <a href="#rights">Your rights</a>
-          </li>
-          <li>
-            <a href="#children">Children</a>
-          </li>
-          <li>
-            <a href="#changes">Changes</a>
-          </li>
-          <li>
-            <a href="#contact">Contact</a>
-          </li>
-        </ol>
-      </div>
 
       <h2 id="who">1. Who we are</h2>
       <p>

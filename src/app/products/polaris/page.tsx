@@ -1,3 +1,4 @@
+import { Button } from "@tessera/ui";
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -11,7 +12,6 @@ import {
   POLARIS_VERSION,
   PRODUCTS,
 } from "@/lib/products";
-import ButtonLink from "@/components/ButtonLink";
 
 const P = PRODUCTS.polaris;
 const Icon = PRODUCT_ICONS.polaris;
@@ -223,14 +223,18 @@ export default function PolarisPage() {
             together in one native Mac app.
           </p>
           <div className="phero__actions">
-            <ButtonLink variant="product" href={POLARIS_DOWNLOAD}>
+            <Button asChild size="lg" variant="primary" tone="product">
+<a href={POLARIS_DOWNLOAD}>
               Download free trial
               <IconDownload />
-            </ButtonLink>
-            <ButtonLink variant="secondary" href={POLARIS_BUY} rel="noopener">
+            </a>
+</Button>
+            <Button asChild size="lg" variant="secondary">
+<a href={POLARIS_BUY} rel="noopener">
               Buy once · {POLARIS_PRICE}
               <IconArrowUpRight />
-            </ButtonLink>
+            </a>
+</Button>
           </div>
           <ul className="phero__facts">
             <li>14 days free</li>
@@ -331,10 +335,12 @@ export default function PolarisPage() {
                 ready.
               </p>
               <div className="phero__actions">
-                <ButtonLink variant="secondary" href={POLARIS_DOWNLOAD}>
+                <Button asChild size="lg" variant="secondary">
+<a href={POLARIS_DOWNLOAD}>
                   Download free trial
                   <IconDownload />
-                </ButtonLink>
+                </a>
+</Button>
               </div>
               <p className="offer__version">
                 Version {POLARIS_VERSION} · Apple Silicon · macOS 15+
@@ -352,10 +358,12 @@ export default function PolarisPage() {
                 <li>Licence delivered by email</li>
                 <li>No recurring payments</li>
               </ul>
-              <ButtonLink variant="product" href={POLARIS_BUY} rel="noopener">
+              <Button asChild size="lg" variant="primary" tone="product">
+<a href={POLARIS_BUY} rel="noopener">
                 Buy Polaris
                 <IconArrowUpRight />
-              </ButtonLink>
+              </a>
+</Button>
               <p className="note">
                 Your free trial never automatically charges you. Your statement
                 shows this purchase as Link.com* Axio.sh, because Stripe handles

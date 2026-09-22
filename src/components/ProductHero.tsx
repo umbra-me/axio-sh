@@ -1,60 +1,29 @@
-import type { CSSProperties, ReactNode } from "react";
+import { SplitHero } from "@tessera/marketing";
+import type { ReactNode } from "react";
 import type { Product } from "@/lib/products";
 import { PRODUCT_ICONS } from "./Icons";
 import StatusBadge from "./StatusBadge";
 
-// The top of every product page: breadcrumb, mark, badge, headline, lede,
-// actions, and the facts a visitor asks first. The visual sits beside it on
-// wide screens and under it on narrow ones.
-export default function ProductHero({
-  product,
-  headline,
-  lede,
-  actions,
-  visual,
-  facts,
-}: {
-  product: Product;
-  headline: ReactNode;
-  lede: ReactNode;
-  actions: ReactNode;
-  visual: ReactNode;
-  facts?: string[];
-}) {
+/** A product page's hero: crumbs, mark and status, headline, lede, actions, facts, and the drawn product beside them. */
+export default function ProductHero({ product, headline, lede, actions, visual, facts }: { product: Product; headline: ReactNode; lede: ReactNode; actions: ReactNode; visual: ReactNode; facts?: string[] }) {
   const Icon = PRODUCT_ICONS[product.id];
   return (
-    <section className="phero" style={{ "--pc": product.color } as CSSProperties}>
-      <div className="container">
-        <ol className="crumbs">
-          <li>
-            <a href="/products">Products</a>
-          </li>
-          <li aria-current="page">{product.name}</li>
-        </ol>
-        <div className="split">
-          <div className="split__text">
-            <div className="phero__meta">
-              <span className="card__icon">
-                <Icon />
-              </span>
-              <StatusBadge product={product} />
-            </div>
-            <h1 className="display display--lg">{headline}</h1>
-            <p className="lede">{lede}</p>
-            <div className="phero__actions">{actions}</div>
-            <ul className="phero__facts">
-              {facts ? facts.map((fact) => <li key={fact}>{fact}</li>) : (
-                <>
-                  <li><b>{product.stack}</b></li>
-                  <li>{product.platforms.join(" · ")}</li>
-                  <li>{product.license ?? "not yet distributed"}</li>
-                </>
-              )}
-            </ul>
-          </div>
-          <div>{visual}</div>
-        </div>
-      </div>
-    </section>
+    <SplitHero
+      crumbs={[{ label: "Products", href: "/products" }, { label: product.name }]}
+      color={product.color}
+      meta={
+        <>
+          <span className="ts-product-card__mark" aria-hidden="true">
+            <Icon />
+          </span>
+          <StatusBadge product={product} />
+        </>
+      }
+      title={headline}
+      lede={lede}
+      actions={actions}
+      facts={facts ?? [<b key="stack">{product.stack}</b>, product.platforms.join(" · "), product.license ?? "not yet distributed"]}
+      visual={visual}
+    />
   );
 }
