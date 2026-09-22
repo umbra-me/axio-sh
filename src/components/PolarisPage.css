@@ -171,3 +171,7 @@
 .nf .hero__actions {
   justify-content: center;
 }
+
+/* The Polaris stories: one film beside its text, stacked with room between. */
+.stories { display: grid; gap: clamp(3rem, 6vw, 5rem); }
+.stories .ts-split__text .ts-note { margin-top: 1rem; }

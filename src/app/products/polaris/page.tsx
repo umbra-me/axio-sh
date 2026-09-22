@@ -244,13 +244,13 @@ export default function PolarisPage() {
             <li>Apple Silicon</li>
             <li>macOS 15+</li>
           </ul>
-          <div className="film-hero">
+          <div className="ts-media-frame-hero">
             <PolarisVideo
               name="introduction"
               label="Polaris introduction: start a timer, pause, save a note and return to it"
               duration="20 seconds"
             />
-            <p className="film-note">
+            <p className="ts-media-frame-note">
               The real app. Short, silent demos with sample data.
             </p>
           </div>
