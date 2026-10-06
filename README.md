@@ -323,7 +323,9 @@ Frontend lint and standalone typecheck commands: [September 5 verification](docs
 ## Polaris customer page and demos
 
 The [product page](https://axio.sh/products/polaris) advertises the notarized
-0.2.4 (104) Mac release, an explicit 14-day trial and A$59 once for two Macs.
+version selected by `POLARIS_VERSION` in `src/lib/products.ts` (0.3.5 / 215), an explicit 14-day trial and A$59 once for two Macs.
+The 0.3.5 release adds the Wallpaper Browser and thirteen QA repairs; native
+acceptance and remaining limits are recorded in the Polaris product repository.
 Stripe checkout is live. The page leads with the introduction, then timer,
 notes and launcher examples, local-data/permission details, pricing and FAQ.
 
