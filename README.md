@@ -1,5 +1,18 @@
 # axio-sh
 
+## Current independent development
+
+Run from this checkout using the toolchain in `umbra.dev.yaml` and pnpm@11.24.0. This install root owns its manifest and lockfile. First-party packages select exact private `0.1.2` versions; no parent install or sibling build is needed.
+
+```sh
+node scripts/private-registry.mjs -- pnpm install --frozen-lockfile
+node scripts/private-registry.mjs -- pnpm check
+node scripts/private-registry.mjs -- pnpm build
+node scripts/private-registry.mjs -- pnpm release:check
+```
+
+The runner loads dedicated reader auth and per-process trust from `~/.local/share/umbra-next/npm-registry` for the loopback-only `https://localhost:4874` registry. Keep credentials outside source; global npm configuration and system trust are unchanged. See the [migration receipt](../../../../docs/private-registry-migration-2026-10-14.md) for verified local checks. Native, browser/provider, hosted CI and production acceptance remain separate gates.
+
 Current source changes and verification gates: [September 20 move onto Tessera](docs/tessera-slice-a-2026-09-20.md).
 [September 11 site redesign](docs/site-redesign-2026-09-11.md) is the design that move preserves.
 [September 5 change set](docs/change-set-2026-09-05.md) is historical.
@@ -9,22 +22,16 @@ Tessera (Umbra's design system) for the theme, header, footer, buttons and
 edge pages, and plain CSS for the sections that are the site's own.
 
 ```sh
-# from the Umbra control plane root
-python3 scripts/workspace-pnpm.py --workspace axio -- install
-python3 scripts/workspace-pnpm.py --workspace axio -- --filter "@axio/site..." --filter "!@axio/site" run --if-present build
-python3 scripts/workspace-pnpm.py --workspace axio -- --filter @axio/site run dev   # http://localhost:3311
+# From this owning checkout.
+node scripts/private-registry.mjs -- pnpm install --frozen-lockfile
+node scripts/private-registry.mjs -- pnpm build
+node scripts/private-registry.mjs -- pnpm run dev   # http://localhost:3311
 # and likewise: build, typecheck, lint, test
 ```
 
 ## Building
 
-This repository is public so the install scripts it serves can be read before
-they are run. It does not build on its own: the interface is Tessera, Umbra's
-private design system, and the site resolves `@tessera/*` through the Axio
-workspace's pnpm root. Inside the estate, install and build from the control
-plane with `python3 scripts/workspace-pnpm.py --workspace axio -- <command>`.
-The second command above builds the Tessera packages the site imports; run it
-after an install and whenever the workspace's Tessera pin moves.
+The install scripts remain readable in this repository. The site builds independently with its own lockfile and exact private Tessera `0.1.2` packages. The reader runner supplies authenticated package access.
 
 This was `apps/site` inside `umbra-me/axio` until ADR 0013 split it out. It is
 the `axio/site` component of the `axio` workspace; the agent is `axio/core`. The
@@ -312,7 +319,7 @@ assert the security headers keep the directives worth setting and stay in step
 with the collector the layout loads. They do not assert external assets exist or
 replace browser/runtime acceptance; the headers were separately confirmed on the
 standalone build with no console violations on the Polaris page. A missing suite fails instead of reporting
-zero tests as success. The lockfile is the Axio workspace's `pnpm-lock.yaml`.
+zero tests as success. The lockfile is this repository's `pnpm-lock.yaml`.
 `tests/visual/capture.mjs <outDir> [baseUrl]` takes full-page screenshots of
 every route at 390, 768 and 1440 px against a running build, with off-origin
 requests blocked so two runs of one build are byte-identical.

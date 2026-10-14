@@ -11,15 +11,16 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint src",
     "check": "pnpm lint && pnpm test && pnpm typecheck",
-    "release:check": "node scripts/check-release-inputs.mjs"
+    "release:check": "node scripts/check-release-inputs.mjs",
+    "release:test": "node --test scripts/check-release-inputs.node-test.mjs"
   },
   "dependencies": {
-    "@tessera/marketing": "file:.umbra/artifacts/tessera-marketing-0.1.0.tgz",
-    "@tessera/mocks": "file:.umbra/artifacts/tessera-mocks-0.1.0.tgz",
-    "@tessera/next": "file:.umbra/artifacts/tessera-next-0.1.0.tgz",
-    "@tessera/patterns": "file:.umbra/artifacts/tessera-patterns-0.1.0.tgz",
-    "@tessera/themes": "file:.umbra/artifacts/tessera-themes-0.1.0.tgz",
-    "@tessera/ui": "file:.umbra/artifacts/tessera-ui-0.1.0.tgz",
+    "@tessera/marketing": "0.1.2",
+    "@tessera/mocks": "0.1.2",
+    "@tessera/next": "0.1.2",
+    "@tessera/patterns": "0.1.2",
+    "@tessera/themes": "0.1.2",
+    "@tessera/ui": "0.1.2",
     "geist": "^1.7.2",
     "next": "16.3.4",
     "react": "19.3.0",

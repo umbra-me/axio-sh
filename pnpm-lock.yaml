@@ -12,40 +12,40 @@ overrides:
   '@types/react-dom': 19.3.0
   sharp: 0.35.4
   next: 16.3.4
-  '@tessera/token-build': file:.umbra/artifacts/tessera-token-build-0.1.0.tgz
-  '@tessera/tokens': file:.umbra/artifacts/tessera-tokens-0.1.0.tgz
-  '@tessera/contracts': file:.umbra/artifacts/tessera-contracts-0.1.0.tgz
-  '@tessera/css': file:.umbra/artifacts/tessera-css-0.1.0.tgz
-  '@tessera/themes': file:.umbra/artifacts/tessera-themes-0.1.0.tgz
-  '@tessera/ui': file:.umbra/artifacts/tessera-ui-0.1.0.tgz
-  '@tessera/marketing': file:.umbra/artifacts/tessera-marketing-0.1.0.tgz
-  '@tessera/patterns': file:.umbra/artifacts/tessera-patterns-0.1.0.tgz
-  '@tessera/shells': file:.umbra/artifacts/tessera-shells-0.1.0.tgz
-  '@tessera/mocks': file:.umbra/artifacts/tessera-mocks-0.1.0.tgz
-  '@tessera/next': file:.umbra/artifacts/tessera-next-0.1.0.tgz
+  '@tessera/token-build': 0.1.2
+  '@tessera/tokens': 0.1.2
+  '@tessera/contracts': 0.1.2
+  '@tessera/css': 0.1.2
+  '@tessera/themes': 0.1.2
+  '@tessera/ui': 0.1.2
+  '@tessera/marketing': 0.1.2
+  '@tessera/patterns': 0.1.2
+  '@tessera/shells': 0.1.2
+  '@tessera/mocks': 0.1.2
+  '@tessera/next': 0.1.2
 
 importers:
 
   .:
     dependencies:
       '@tessera/marketing':
-        specifier: file:.umbra/artifacts/tessera-marketing-0.1.0.tgz
-        version: file:.umbra/artifacts/tessera-marketing-0.1.0.tgz(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: 0.1.2
+        version: 0.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@tessera/mocks':
-        specifier: file:.umbra/artifacts/tessera-mocks-0.1.0.tgz
-        version: file:.umbra/artifacts/tessera-mocks-0.1.0.tgz(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: 0.1.2
+        version: 0.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@tessera/next':
-        specifier: file:.umbra/artifacts/tessera-next-0.1.0.tgz
-        version: file:.umbra/artifacts/tessera-next-0.1.0.tgz(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(next@16.3.4(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.63.0)(@types/node@24.13.4)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: 0.1.2
+        version: 0.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(next@16.3.4(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.63.0)(@types/node@24.13.4)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@tessera/patterns':
-        specifier: file:.umbra/artifacts/tessera-patterns-0.1.0.tgz
-        version: file:.umbra/artifacts/tessera-patterns-0.1.0.tgz(@tanstack/react-query@5.104.2(react@19.3.0))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: 0.1.2
+        version: 0.1.2(@tanstack/react-query@5.104.2(react@19.3.0))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@tessera/themes':
-        specifier: file:.umbra/artifacts/tessera-themes-0.1.0.tgz
-        version: file:.umbra/artifacts/tessera-themes-0.1.0.tgz
+        specifier: 0.1.2
+        version: 0.1.2
       '@tessera/ui':
-        specifier: file:.umbra/artifacts/tessera-ui-0.1.0.tgz
-        version: file:.umbra/artifacts/tessera-ui-0.1.0.tgz(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: 0.1.2
+        version: 0.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       geist:
         specifier: ^1.7.2
         version: 1.7.2(next@16.3.4(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.63.0)(@types/node@24.13.4)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))
@@ -995,55 +995,46 @@ packages:
   '@tanstack/virtual-core@3.17.11':
     resolution: {integrity: sha512-+ILjvtHup6Y2hzQ6YzwMgX1Q+oQpxEGOXCEsCNaPoIP0VxMbizIBTmYTDtkerkIQS8/CbP1BRuyt8V/8BCsy1g==}
 
-  '@tessera/contracts@file:.umbra/artifacts/tessera-contracts-0.1.0.tgz':
-    resolution: {integrity: sha512-ts0QEqnvp2BQuYaew9tEbUJYItLUR4V7HDEcZySm0KaNoRURQhObew9/TryneCBJkeGonUer9Umx+YaDQz7kiw==, tarball: file:.umbra/artifacts/tessera-contracts-0.1.0.tgz}
-    version: 0.1.0
+  '@tessera/contracts@0.1.2':
+    resolution: {integrity: sha512-cDf0F6oe/Ap2n9p+HEhRl4n0AVW1+G5DvfzoAfXMr33hRZYQ0vVr3fXZclU1EgT0WAz3uGB2hyfJQAVTJ7GPiQ==}
 
-  '@tessera/css@file:.umbra/artifacts/tessera-css-0.1.0.tgz':
-    resolution: {integrity: sha512-snWtVQY5H2R5kfr0AMuhB2e0jJo0iXECeJ5VVvGB6DKgcTR58KyHJRAvqTOVJw36KH8R05LmEPOGy2O9zaAg4Q==, tarball: file:.umbra/artifacts/tessera-css-0.1.0.tgz}
-    version: 0.1.0
+  '@tessera/css@0.1.2':
+    resolution: {integrity: sha512-cQarlmzwlcIEBAH2jtzG4xA/5NJ1mN+B/HsVfUg47abUTs4JLiOk+S4ENpMAtC9VPMPhX4XNoaGB5adY4uzWlg==}
 
-  '@tessera/marketing@file:.umbra/artifacts/tessera-marketing-0.1.0.tgz':
-    resolution: {integrity: sha512-7ya6WAxyd3NDiZtu7I4F0oJwpXtfjckueNlsJvBuCEEOWOF/2InwW3RD9NBjGcUGjTUhEdCRM5FcxSe+N7lI/Q==, tarball: file:.umbra/artifacts/tessera-marketing-0.1.0.tgz}
-    version: 0.1.0
+  '@tessera/marketing@0.1.2':
+    resolution: {integrity: sha512-JbeZxsXss/hBVG/peWuTj+fftGEoU+/e9ngdC29ogLSO1YmbQR69irliZ21bK1lZ6KjfFhtpbuF3uJEk3AHCQw==}
     peerDependencies:
       react: ^19.0.0
       react-dom: ^19.0.0
 
-  '@tessera/mocks@file:.umbra/artifacts/tessera-mocks-0.1.0.tgz':
-    resolution: {integrity: sha512-CDEMzux/8C6n/G9z/IuEv578Yo6Eb2KWJmZV0dwwyxJXZytREG8zuhtpT2lq7Tug+6HCM1PNhGHhkLHMRigySQ==, tarball: file:.umbra/artifacts/tessera-mocks-0.1.0.tgz}
-    version: 0.1.0
+  '@tessera/mocks@0.1.2':
+    resolution: {integrity: sha512-brsHPpF41mzBicw0Kpxwwf2LJyxX9OgI0VMrIgUER0UIQdfrYkOJ04tGi54uz3QGjG4Yvt6deCySWqYAGS6NfA==}
     peerDependencies:
       react: ^19.0.0
       react-dom: ^19.0.0
 
-  '@tessera/next@file:.umbra/artifacts/tessera-next-0.1.0.tgz':
-    resolution: {integrity: sha512-Vlgz99YV7nbv9u+b8LWtowSNywnhG71pOyRS11FAApEfSyuqbAl317R4WJXPtb8tFn623bXNnQdrilYt9HIhHg==, tarball: file:.umbra/artifacts/tessera-next-0.1.0.tgz}
-    version: 0.1.0
+  '@tessera/next@0.1.2':
+    resolution: {integrity: sha512-mdYYvhbxoKiE194qJRebGrPMSOolrevqubqtvVipP8dNrJiKc7PeTH2qEDbUhmbmYESxd2+2NuBXAs6S3LbzVQ==}
     peerDependencies:
       next: 16.3.4
       react: ^19.0.0
       react-dom: ^19.0.0
 
-  '@tessera/patterns@file:.umbra/artifacts/tessera-patterns-0.1.0.tgz':
-    resolution: {integrity: sha512-mcwQ/XzUUoCC4tVLa7n91/YdXtoG9zia/d5+Z2XUN9Vwih3sFdlabjI4wxcztwVqJgFk1Ftl9tdTF243XeHBtw==, tarball: file:.umbra/artifacts/tessera-patterns-0.1.0.tgz}
-    version: 0.1.0
+  '@tessera/patterns@0.1.2':
+    resolution: {integrity: sha512-P2TJB4XntXcOFs8kOQMfZ6pPLC84Z9uWs3WcpCxKzyt4xtJvyg2WrlgeoU93YH7YziFLwCapzbmHrov28oYxqg==}
     peerDependencies:
       '@tanstack/react-query': ^5.0.0
       react: ^19.0.0
       react-dom: ^19.0.0
 
-  '@tessera/themes@file:.umbra/artifacts/tessera-themes-0.1.0.tgz':
-    resolution: {integrity: sha512-9mNWXmfGMCjdSqWW8dSKYdsTSN9+wryg5gRswCA8SCkVHKMUEUo/u5XXTAAYm8TCyTFJZxnVhmHxCxWA9MWLCQ==, tarball: file:.umbra/artifacts/tessera-themes-0.1.0.tgz}
-    version: 0.1.0
+  '@tessera/themes@0.1.2':
+    resolution: {integrity: sha512-nlyZF1dMHhnGoCGNGFys+SbQk93DrifFW1hK06OOS0K+oipzdwivuz4kdRzqoRgek4Wxhh226m8TIccOVH5jwg==}
 
-  '@tessera/tokens@file:.umbra/artifacts/tessera-tokens-0.1.0.tgz':
-    resolution: {integrity: sha512-XPMevzhp6qe4awYpF41NYUHNtl7IwbJd3Ecv6PYl5Buuxe1TYwDfHFdGdSnEBKTbDJbBh8PXQTnsK1ctmqYemA==, tarball: file:.umbra/artifacts/tessera-tokens-0.1.0.tgz}
-    version: 0.1.0
+  '@tessera/tokens@0.1.2':
+    resolution: {integrity: sha512-1DG4tHUTMaW84E0S6XsVuo2ayc3p8ZuiYG1jh/M0EgTSYBhxMIL+R/UwTaIBJhn0d/odax4AVEjan4NJVJjEFw==}
 
-  '@tessera/ui@file:.umbra/artifacts/tessera-ui-0.1.0.tgz':
-    resolution: {integrity: sha512-e3uILqURFoLGc1mdzzvBBT7vp1jxYUJfGT+EOMX5A9exULqB07XNH2S1jgkTQqGmxBwNr/hAd6vI8KSwUQ2tSA==, tarball: file:.umbra/artifacts/tessera-ui-0.1.0.tgz}
-    version: 0.1.0
+  '@tessera/ui@0.1.2':
+    resolution: {integrity: sha512-vYBjfry0PB09iphon/7VijBsq/CFm6wJO714X3wmWBx+g8DKRhXtVMdpAEnR3bH2g3za2r5qZmUDXpyt6Mn0gA==}
     peerDependencies:
       react: ^19.0.0
       react-dom: ^19.0.0
@@ -1075,7 +1066,7 @@ packages:
     resolution: {integrity: sha512-/v8HZt6RlyIZxB3ntehELOcUcfxKPVGWXnQdJuHRmzrqgF8nQypcC/oxGW+Ot4VGKDq81XugPKxx0n5PBtf9PA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
-      '@typescript-eslint/parser': 8.70.0
+      '@typescript-eslint/parser': ^8.70.0
       eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
       typescript: '>=4.8.4 <6.1.0'
 
@@ -1253,7 +1244,7 @@ packages:
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
-      acorn: 8.18.0
+      acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
 
   acorn@8.18.0:
     resolution: {integrity: sha512-lGq+9yr1/GuAWaVYIHRjvvySG5/4VfKIvC8EWxStPdcDh/Ka7FG3twP6v4d5BkravUilhIAsG4Qj83t02LWUPQ==}
@@ -2426,7 +2417,7 @@ packages:
     resolution: {integrity: sha512-pJ2sYawQS0R/WI928Gj5GlPhTGzbMelq0+4INtSYNDV9ErKJcX6xjGWkoG/VnB3dpUm00zALaqkrUD77pO5TDQ==}
     hasBin: true
     peerDependencies:
-      browserslist: 4.29.0
+      browserslist: '>= 4.21.0'
 
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
@@ -2492,7 +2483,7 @@ packages:
     resolution: {integrity: sha512-Q6/nZLe6jxuU80qb/4uJ4t5v2VEZ44lzQjPDhYJNztRQ4wyWc6VF3D3Kb/fAuPetZQnhS3hnajCf9CsWesghLQ==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
-      zod: 4.6.5
+      zod: ^3.25.0 || ^4.0.0
 
   zod@4.6.5:
     resolution: {integrity: sha512-v5l/aFXZQeai4awLbOpSoHecE9UiMrnfx75tEXLjNonXVARxQ5mOeipTjROUchszUNCqnE+hqAMujRsRHsut2Q==}
@@ -3386,38 +3377,38 @@ snapshots:
 
   '@tanstack/virtual-core@3.17.11': {}
 
-  '@tessera/contracts@file:.umbra/artifacts/tessera-contracts-0.1.0.tgz':
+  '@tessera/contracts@0.1.2':
     dependencies:
       zod: 4.6.5
 
-  '@tessera/css@file:.umbra/artifacts/tessera-css-0.1.0.tgz':
+  '@tessera/css@0.1.2':
     dependencies:
-      '@tessera/tokens': file:.umbra/artifacts/tessera-tokens-0.1.0.tgz
+      '@tessera/tokens': 0.1.2
 
-  '@tessera/marketing@file:.umbra/artifacts/tessera-marketing-0.1.0.tgz(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@tessera/marketing@0.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
-      '@tessera/ui': file:.umbra/artifacts/tessera-ui-0.1.0.tgz(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@tessera/ui': 0.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
     transitivePeerDependencies:
       - '@types/react'
       - '@types/react-dom'
 
-  '@tessera/mocks@file:.umbra/artifacts/tessera-mocks-0.1.0.tgz(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@tessera/mocks@0.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
-      '@tessera/marketing': file:.umbra/artifacts/tessera-marketing-0.1.0.tgz(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      '@tessera/ui': file:.umbra/artifacts/tessera-ui-0.1.0.tgz(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@tessera/marketing': 0.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@tessera/ui': 0.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
     transitivePeerDependencies:
       - '@types/react'
       - '@types/react-dom'
 
-  '@tessera/next@file:.umbra/artifacts/tessera-next-0.1.0.tgz(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(next@16.3.4(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.63.0)(@types/node@24.13.4)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@tessera/next@0.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(next@16.3.4(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.63.0)(@types/node@24.13.4)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
-      '@tessera/contracts': file:.umbra/artifacts/tessera-contracts-0.1.0.tgz
-      '@tessera/marketing': file:.umbra/artifacts/tessera-marketing-0.1.0.tgz(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      '@tessera/ui': file:.umbra/artifacts/tessera-ui-0.1.0.tgz(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@tessera/contracts': 0.1.2
+      '@tessera/marketing': 0.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@tessera/ui': 0.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       next: 16.3.4(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.63.0)(@types/node@24.13.4)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
@@ -3425,26 +3416,26 @@ snapshots:
       - '@types/react'
       - '@types/react-dom'
 
-  '@tessera/patterns@file:.umbra/artifacts/tessera-patterns-0.1.0.tgz(@tanstack/react-query@5.104.2(react@19.3.0))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@tessera/patterns@0.1.2(@tanstack/react-query@5.104.2(react@19.3.0))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
       '@tanstack/react-query': 5.104.2(react@19.3.0)
       '@tanstack/react-table': 9.2.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      '@tessera/contracts': file:.umbra/artifacts/tessera-contracts-0.1.0.tgz
-      '@tessera/marketing': file:.umbra/artifacts/tessera-marketing-0.1.0.tgz(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      '@tessera/ui': file:.umbra/artifacts/tessera-ui-0.1.0.tgz(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@tessera/contracts': 0.1.2
+      '@tessera/marketing': 0.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@tessera/ui': 0.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
     transitivePeerDependencies:
       - '@types/react'
       - '@types/react-dom'
 
-  '@tessera/themes@file:.umbra/artifacts/tessera-themes-0.1.0.tgz':
+  '@tessera/themes@0.1.2':
     dependencies:
-      '@tessera/tokens': file:.umbra/artifacts/tessera-tokens-0.1.0.tgz
+      '@tessera/tokens': 0.1.2
 
-  '@tessera/tokens@file:.umbra/artifacts/tessera-tokens-0.1.0.tgz': {}
+  '@tessera/tokens@0.1.2': {}
 
-  '@tessera/ui@file:.umbra/artifacts/tessera-ui-0.1.0.tgz(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@tessera/ui@0.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
       '@radix-ui/react-alert-dialog': 1.1.23(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@radix-ui/react-checkbox': 1.3.11(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -3460,9 +3451,9 @@ snapshots:
       '@radix-ui/react-toast': 1.2.23(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@radix-ui/react-tooltip': 1.2.16(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@tanstack/react-virtual': 3.14.13(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      '@tessera/contracts': file:.umbra/artifacts/tessera-contracts-0.1.0.tgz
-      '@tessera/css': file:.umbra/artifacts/tessera-css-0.1.0.tgz
-      '@tessera/tokens': file:.umbra/artifacts/tessera-tokens-0.1.0.tgz
+      '@tessera/contracts': 0.1.2
+      '@tessera/css': 0.1.2
+      '@tessera/tokens': 0.1.2
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
     transitivePeerDependencies:
