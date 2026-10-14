@@ -8,6 +8,7 @@ tools:
 - executable: pnpm
   version: 26.8.1
   arguments:
+  - --config.verify-deps-before-run=false
   - exec
   - node
   - --version
