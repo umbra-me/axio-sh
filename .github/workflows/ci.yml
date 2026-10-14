@@ -1,0 +1,16 @@
+name: standalone
+on: [push, pull_request]
+jobs:
+  source:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with: {version: 11.24.0}
+      - uses: actions/setup-node@v4
+        with: {node-version: 26.8.1, cache: pnpm}
+      - name: Verify artifact distribution prerequisite
+        run: pnpm release:check
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check
+      - run: pnpm build

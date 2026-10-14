@@ -1,0 +1,25 @@
+packages:
+- .
+overrides:
+  postcss: 8.5.25
+  react: ^19.0.0
+  react-dom: ^19.0.0
+  '@types/react': 19.3.0
+  '@types/react-dom': 19.3.0
+  sharp: 0.35.4
+  next: 16.3.4
+  '@tessera/token-build': file:.umbra/artifacts/tessera-token-build-0.1.0.tgz
+  '@tessera/tokens': file:.umbra/artifacts/tessera-tokens-0.1.0.tgz
+  '@tessera/contracts': file:.umbra/artifacts/tessera-contracts-0.1.0.tgz
+  '@tessera/css': file:.umbra/artifacts/tessera-css-0.1.0.tgz
+  '@tessera/themes': file:.umbra/artifacts/tessera-themes-0.1.0.tgz
+  '@tessera/ui': file:.umbra/artifacts/tessera-ui-0.1.0.tgz
+  '@tessera/marketing': file:.umbra/artifacts/tessera-marketing-0.1.0.tgz
+  '@tessera/patterns': file:.umbra/artifacts/tessera-patterns-0.1.0.tgz
+  '@tessera/shells': file:.umbra/artifacts/tessera-shells-0.1.0.tgz
+  '@tessera/mocks': file:.umbra/artifacts/tessera-mocks-0.1.0.tgz
+  '@tessera/next': file:.umbra/artifacts/tessera-next-0.1.0.tgz
+allowBuilds:
+  esbuild: true
+  sharp: true
+  unrs-resolver: true

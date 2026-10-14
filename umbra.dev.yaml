@@ -1,0 +1,67 @@
+schema_version: 1
+component: axio/site
+hosts:
+- macos
+- linux
+- windows
+tools:
+- executable: pnpm
+  version: 26.8.1
+  arguments:
+  - exec
+  - node
+  - --version
+- executable: pnpm
+  version: 11.24.0
+actions:
+  prepare:
+  - executable: pnpm
+    arguments:
+    - install
+    - --frozen-lockfile
+    cwd: .
+  check:
+  - executable: pnpm
+    arguments:
+    - check
+    cwd: .
+  build:
+  - executable: pnpm
+    arguments:
+    - build
+    cwd: .
+  release:
+  - executable: pnpm
+    arguments:
+    - release:check
+    cwd: .
+fixtures:
+  kind: synthetic
+  services: []
+manual_gates:
+- browser visual/accessibility acceptance
+- authenticated artifact distribution
+- production route acceptance
+artifacts:
+- path: .umbra/artifacts/tessera-contracts-0.1.0.tgz
+  git_blob: 3303cbe0ba066668d8c612013526070455697135
+- path: .umbra/artifacts/tessera-css-0.1.0.tgz
+  git_blob: fbfaa38dfdc380aa56da3078fc76f8eeb12127e0
+- path: .umbra/artifacts/tessera-marketing-0.1.0.tgz
+  git_blob: 72170eb13f8fcf5735d75c14539f48f25bb161d7
+- path: .umbra/artifacts/tessera-mocks-0.1.0.tgz
+  git_blob: 7d9430fb09c865075805a990524ff42623cf50d6
+- path: .umbra/artifacts/tessera-next-0.1.0.tgz
+  git_blob: 156179472b3f358be251dddac4f5cce6994f2522
+- path: .umbra/artifacts/tessera-patterns-0.1.0.tgz
+  git_blob: 6ea92184d3697c8b2032d0d191d24ace9e9c77a3
+- path: .umbra/artifacts/tessera-shells-0.1.0.tgz
+  git_blob: c6514f16f7f2bd5929e3d688845d6265a53deea6
+- path: .umbra/artifacts/tessera-themes-0.1.0.tgz
+  git_blob: 0d4377ffe1de57a8f998ce8b345363b6d651e80b
+- path: .umbra/artifacts/tessera-token-build-0.1.0.tgz
+  git_blob: 7f8041f37a1579d03efd0821a70f6f46955776c6
+- path: .umbra/artifacts/tessera-tokens-0.1.0.tgz
+  git_blob: d676ec4aba39fd47681d479df4725515962bdd18
+- path: .umbra/artifacts/tessera-ui-0.1.0.tgz
+  git_blob: 22a00cf7781b8ee16959307df5b2510d138bee32

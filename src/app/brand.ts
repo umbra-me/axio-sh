@@ -34,27 +34,12 @@ export const AMBER = "#e2c67e";
 // the faces next/font serves to the browser, so the generated images render in
 // the same typeface the page does rather than in a fallback.
 //
-// Found by walking up from the working directory rather than by resolving the
-// package: geist's `exports` map publishes only ./font/*, so neither the .ttf
-// files nor its own package.json can be resolved by specifier — and webpack
-// rewrites a `require.resolve` in this file into one of its own numeric module
-// ids, which fails at build with a type error rather than a missing file.
-// Walking up also survives a hoisted install, which a path anchored at
-// process.cwd() alone would not.
+// The product owns its Geist dependency and traces its fonts into the build.
 const SUFFIX = path.join("node_modules", "geist", "dist", "fonts");
-
 function fontDir(): string {
-  let dir = process.cwd();
-  for (;;) {
-    const candidate = path.join(dir, SUFFIX);
-    if (existsSync(candidate)) return candidate;
-    const parent = path.dirname(dir);
-    if (parent === dir) break;
-    dir = parent;
-  }
-  // Reached only if the dependency is absent, in which case failing here with
-  // the path that was searched beats emitting a card in a fallback face.
-  throw new Error(`geist fonts not found: no ${SUFFIX} above ${process.cwd()}`);
+  const candidate = path.join(process.cwd(), SUFFIX);
+  if (!existsSync(candidate)) throw new Error(`geist fonts not found: ${candidate}`);
+  return candidate;
 }
 
 function font(family: "geist-sans" | "geist-mono", file: string): ArrayBuffer {

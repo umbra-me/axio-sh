@@ -9,30 +9,37 @@
     "test": "node --test tests/*.test.mjs",
     "test:visual": "node tests/visual/capture.mjs",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "check": "pnpm lint && pnpm test && pnpm typecheck",
+    "release:check": "node scripts/check-release-inputs.mjs"
   },
   "dependencies": {
-    "@tessera/marketing": "workspace:*",
-    "@tessera/mocks": "workspace:*",
-    "@tessera/next": "workspace:*",
-    "@tessera/patterns": "workspace:*",
-    "@tessera/themes": "workspace:*",
-    "@tessera/ui": "workspace:*",
+    "@tessera/marketing": "file:.umbra/artifacts/tessera-marketing-0.1.0.tgz",
+    "@tessera/mocks": "file:.umbra/artifacts/tessera-mocks-0.1.0.tgz",
+    "@tessera/next": "file:.umbra/artifacts/tessera-next-0.1.0.tgz",
+    "@tessera/patterns": "file:.umbra/artifacts/tessera-patterns-0.1.0.tgz",
+    "@tessera/themes": "file:.umbra/artifacts/tessera-themes-0.1.0.tgz",
+    "@tessera/ui": "file:.umbra/artifacts/tessera-ui-0.1.0.tgz",
     "geist": "^1.7.2",
-    "next": "catalog:",
-    "react": "catalog:",
-    "react-dom": "catalog:"
+    "next": "16.3.4",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
   },
   "devDependencies": {
-    "@axe-core/playwright": "catalog:",
-    "@playwright/test": "catalog:",
-    "@types/node": "catalog:",
-    "@types/react": "catalog:",
-    "@types/react-dom": "catalog:",
+    "@axe-core/playwright": "4.13.0",
+    "@playwright/test": "1.63.0",
+    "@types/node": "24.13.4",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
     "eslint": "^9.39.5",
     "eslint-config-next": "^16.3.4",
     "pixelmatch": "7.1.0",
     "pngjs": "7.0.0",
     "typescript": "^5.7.0"
+  },
+  "packageManager": "pnpm@11.24.0",
+  "engines": {
+    "node": ">=24.0.0",
+    "pnpm": ">=11.0.0"
   }
 }

@@ -59,13 +59,12 @@ const nextConfig: NextConfig = {
   // The container runs `node server.js` rather than `next start`, so the build
   // has to emit its own dependency tree.
   output: "standalone",
-  // The Axio workspace (two levels up) is the pnpm root: next itself and
-  // @tessera/* resolve through it, and the standalone trace must start there
-  // or the image ships without its workspace dependencies.
-  outputFileTracingRoot: resolve(__dirname, "..", ".."),
-  turbopack: { root: resolve(__dirname, "..", "..") },
-  // The estate owns AGENTS.md and CLAUDE.md; a generated copy here is an
-  // untracked file that fails the clean-tree check before every image build.
+  // All dependencies and traces are rooted in this product checkout.
+  outputFileTracingRoot: resolve(__dirname),
+  turbopack: { root: resolve(__dirname) },
+  outputFileTracingIncludes: {
+    "/opengraph-image": ["./node_modules/geist/dist/fonts/**/*"],
+  },
   agentRules: false,
   // The site sells a paid product and links to checkout, so it carries the
   // same header set as the other Umbra surfaces. Files nginx serves itself,
