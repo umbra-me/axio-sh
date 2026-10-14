@@ -22,7 +22,7 @@
     "@tessera/themes": "0.1.2",
     "@tessera/ui": "0.1.2",
     "geist": "^1.7.2",
-    "next": "16.3.4",
+    "next": "16.3.8",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   },
@@ -33,7 +33,7 @@
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
     "eslint": "^9.39.5",
-    "eslint-config-next": "^16.3.4",
+    "eslint-config-next": "^16.3.8",
     "pixelmatch": "7.1.0",
     "pngjs": "7.0.0",
     "typescript": "^5.7.0"
