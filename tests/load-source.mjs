@@ -3,8 +3,8 @@ import { createRequire } from 'node:module';
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
-const require = createRequire(import.meta.url);
 export function loadSource(url) {
+  const require = createRequire(url);
   const source = readFileSync(url, 'utf8');
   const { outputText } = ts.transpileModule(source, { compilerOptions: {
     module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022,

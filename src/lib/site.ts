@@ -1,15 +1,16 @@
+import { environmentUrl } from "../../public-environment.mjs";
 // Site-wide facts. Everything a page or the metadata repeats lives here once.
 
 import { PRODUCT_LIST, productHref } from "./products";
 
-export const SITE = "https://axio.sh";
+export const SITE = environmentUrl("https://axio.sh");
 export const SITE_NAME = "Axio";
 export const TAGLINE = "Developer tools that stay on your machine.";
 export const DESCRIPTION =
   "Axio is Umbra's family of local-first coding, capture, analysis and workstation tools for macOS, Windows and Linux. No product telemetry.";
 
 export const ORG = "https://github.com/umbra-me";
-export const UMBRA = "https://umbra.me";
+export const UMBRA = environmentUrl("https://umbra.me");
 
 /** The company behind the brand, as the legal pages state it. */
 export const COMPANY = {

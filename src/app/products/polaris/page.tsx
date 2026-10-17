@@ -1,3 +1,4 @@
+import { environmentUrl } from "../../../../public-environment.mjs";
 import { Faq, FeatureGrid, Plan, PricingGrid, SectionHeader } from "@tessera/marketing";
 import { Button } from "@tessera/ui";
 import type { CSSProperties } from "react";
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Polaris — Your Mac, a little calmer",
     description,
-    url: "https://axio.sh/products/polaris",
+    url: environmentUrl("https://axio.sh/products/polaris"),
     images: [{ url: "/demos/polaris/social.png", width: 1200, height: 630 }],
   },
   twitter: {

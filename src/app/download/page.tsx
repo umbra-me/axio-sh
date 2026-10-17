@@ -1,3 +1,4 @@
+import { environmentText } from "../../../public-environment.mjs";
 import { Terminal } from "@tessera/marketing";
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
@@ -61,12 +62,12 @@ export default function DownloadPage() {
             </p>
           </div>
           <div className="install">
-            <Terminal title="macOS · Linux · WSL" wrap copy="macOS, Linux and WSL install">{`
+            <Terminal title="macOS · Linux · WSL" wrap copy="macOS, Linux and WSL install">{environmentText(`
 curl -fsSL https://axio.sh/install | sh
-`}</Terminal>
-            <Terminal title="Windows · PowerShell" wrap copy="Windows PowerShell install">{`
+`)}</Terminal>
+            <Terminal title="Windows · PowerShell" wrap copy="Windows PowerShell install">{environmentText(`
 irm https://axio.sh/install.ps1 | iex
-`}</Terminal>
+`)}</Terminal>
             <Terminal title="or drive cargo yourself" wrap copy="cargo install">{`
 cargo install --git ${agent.repo} --locked axio
 `}</Terminal>

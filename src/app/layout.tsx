@@ -1,3 +1,4 @@
+import { environmentUrl } from "../../public-environment.mjs";
 import type { Metadata, Viewport } from "next";
 import { accentOptions, brands } from "@tessera/themes";
 import { ThemeScript, createSiteRegistry } from "@tessera/next";
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
   },
   description: DESCRIPTION,
   applicationName: SITE_NAME,
-  authors: [{ name: "Umbra", url: "https://umbra.me" }],
+  authors: [{ name: "Umbra", url: environmentUrl("https://umbra.me") }],
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
@@ -93,7 +94,7 @@ export default function RootLayout({
           defer
           src={
             process.env.NEXT_PUBLIC_UMBRA_ANALYTICS_URL ??
-            "https://api.umbra.me/api/v1/analytics/script.js"
+            environmentUrl("https://api.umbra.me/api/v1/analytics/script.js")
           }
         />
       </body>

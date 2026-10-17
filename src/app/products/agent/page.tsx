@@ -1,3 +1,4 @@
+import { environmentText } from "../../../../public-environment.mjs";
 import { Callout, FeatureGrid, Terminal } from "@tessera/marketing";
 import { Button } from "@tessera/ui";
 import type { CSSProperties } from "react";
@@ -211,12 +212,12 @@ $ axio cost --diagnose   «what each parser skipped»
             </p>
           </div>
           <div className="install">
-            <Terminal title="macOS · Linux · WSL" wrap copy="macOS, Linux and WSL install">{`
+            <Terminal title="macOS · Linux · WSL" wrap copy="macOS, Linux and WSL install">{environmentText(`
 curl -fsSL https://axio.sh/install | sh
-`}</Terminal>
-            <Terminal title="Windows · PowerShell" wrap copy="Windows PowerShell install">{`
+`)}</Terminal>
+            <Terminal title="Windows · PowerShell" wrap copy="Windows PowerShell install">{environmentText(`
 irm https://axio.sh/install.ps1 | iex
-`}</Terminal>
+`)}</Terminal>
             <Terminal title="or drive cargo yourself" wrap copy="cargo install">{`
 cargo install --git ${REPO} --locked axio
 `}</Terminal>
