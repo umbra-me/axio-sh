@@ -1,3 +1,4 @@
+import { environmentUrl } from "./public-environment.mjs";
 import { resolve } from "node:path";
 import type { NextConfig } from "next";
 
@@ -5,7 +6,7 @@ import type { NextConfig } from "next";
 // the same value means a changed analytics host cannot silently end up blocked.
 const analytics = new URL(
   process.env.NEXT_PUBLIC_UMBRA_ANALYTICS_URL ??
-    "https://api.umbra.me/api/v1/analytics/script.js",
+    environmentUrl("https://api.umbra.me/api/v1/analytics/script.js"),
 ).origin;
 
 // The collector posts events to the origin above but reads its per-site
@@ -13,7 +14,7 @@ const analytics = new URL(
 // that fetch does not stop collection: the script falls back to empty settings,
 // in which nothing is disabled. Both origins belong in connect-src, and
 // check-site-client-coverage.py in the control plane enforces it.
-const collectorConfig = "https://admin-api.umbra.me";
+const collectorConfig = environmentUrl("https://admin-api.umbra.me");
 
 // 'unsafe-inline' is load-bearing: the App Router emits inline bootstrap and
 // hydration scripts, and Next injects inline <style>. Cloudflare fronts this
@@ -74,5 +75,17 @@ const nextConfig: NextConfig = {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
 };
+
+
+// Only the managed source runner opts into browser debugging headers. Release
+// builds and the operational .local/.staging environments retain their policy.
+if (process.env.NODE_ENV === 'development' && process.env.NEXT_PUBLIC_UMBRA_DEV_ROUTER_PORT) {
+  const originalHeaders = nextConfig.headers;
+  nextConfig.headers = async () => {
+    const { developmentHeaders } = await import('./public-environment.mjs');
+    const routes = originalHeaders ? await originalHeaders() : [];
+    return routes.map((route) => ({ ...route, headers: developmentHeaders(route.headers) }));
+  };
+}
 
 export default nextConfig;

@@ -61,3 +61,22 @@ fixtures:
 manual_gates:
 - browser visual/accessibility acceptance
 - production route acceptance
+previews:
+- id: web
+  executable: node
+  arguments:
+  - node_modules/next/dist/bin/next
+  - dev
+  - --hostname
+  - '{host}'
+  - --port
+  - '{port}'
+  cwd: .
+  port: 3311
+  routing:
+    hostnames:
+    - axio.sh.localhost
+    - www.axio.sh.localhost
+    readiness_path: /
+    timeout_seconds: 120
+  dependencies: []
