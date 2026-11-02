@@ -107,18 +107,18 @@ const FAQ: { q: string; a: React.ReactNode }[] = [
   {
     q: "Can I download Polaris today?",
     a: (
-      <p>
+      <>
         Yes. Download the signed and notarised Mac app above, open the disk
         image and drag Axio Polaris to Applications. The 14-day trial starts
         only when you choose Start Trial. You can buy a personal licence using
         the Buy once link above.
-      </p>
+      </>
     ),
   },
   {
     q: "How do licensing and support work?",
     a: (
-      <p>
+      <>
         The {POLARIS_PRICE} one-time personal licence covers two Macs. Initial
         activation needs internet; activated copies can work offline for up to
         30 days after verification. Purchase and licence recovery use your
@@ -126,13 +126,13 @@ const FAQ: { q: string; a: React.ReactNode }[] = [
         <a href="/polaris-license/seats">release its slot</a> without
         contacting us. For product help, email{" "}
         <a href="mailto:support@umbra.me">support@umbra.me</a>.
-      </p>
+      </>
     ),
   },
   {
     q: "Where are the licence and refund details?",
     a: (
-      <p>
+      <>
         Read the{" "}
         <a href="/products/polaris/licence">
           personal licence, delivery and refund information
@@ -140,58 +140,58 @@ const FAQ: { q: string; a: React.ReactNode }[] = [
         and <a href="/legal/privacy#polaris">Polaris privacy details</a>.
         Billing receipts and transaction support are provided through Stripe
         Managed Payments and Link.
-      </p>
+      </>
     ),
   },
   {
     q: "Does Polaris block websites across my Mac?",
     a: (
-      <p>
+      <>
         No. Focus works with Mac apps. Website blocking is not included in this
         release.
-      </p>
+      </>
     ),
   },
   {
     q: "Can I get out of a locked Focus session?",
     a: (
-      <p>
+      <>
         There is a one-minute correction window after starting. After that,
         optional recovery can allow one five-minute break per local day and one
         early exit every seven days. Locked controls prevent normal in-app
         exits, but they are not tamper-proof and cannot stop force quit,
         uninstall or administrative access.
-      </p>
+      </>
     ),
   },
   {
     q: "Does Polaris upload my notes, tasks or clipboard?",
     a: (
-      <p>
+      <>
         The core stores are local files. There is no Polaris cloud sync.
         Individual online features send only what their action requires;
         configured AI actions, for example, send the selected request to the
         provider you chose.
-      </p>
+      </>
     ),
   },
   {
     q: "Will it work on an Intel Mac or older macOS?",
     a: (
-      <p>
+      <>
         The Mac download requires Apple Silicon with macOS 15 or newer. Other
         Mac configurations are not currently offered.
-      </p>
+      </>
     ),
   },
   {
     q: "Is Focus the same as Pomodoro?",
     a: (
-      <p>
+      <>
         They are separate tools. Pomodoro alternates timed work and break phases
         and tracks daily minutes. Focus sessions apply selected app restrictions
         for a defined interval.
-      </p>
+      </>
     ),
   },
 ];

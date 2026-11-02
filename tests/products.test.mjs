@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { loadSource } from './load-source.mjs';
-const { PRODUCT_LIST, productHref, CAPTURE_DOWNLOADS, CAPTURE_VERSION } = loadSource(new URL('../src/lib/products.ts', import.meta.url));
+const { AGENT_INSTALL_REPO, PRODUCT_LIST, productHref, CAPTURE_DOWNLOADS, CAPTURE_VERSION } = loadSource(new URL('../src/lib/products.ts', import.meta.url));
 test('product navigation uses unique named product paths', () => {
   assert.ok(PRODUCT_LIST.length > 0);
   assert.equal(new Set(PRODUCT_LIST.map(product => product.id)).size, PRODUCT_LIST.length);
@@ -10,6 +10,17 @@ test('product navigation uses unique named product paths', () => {
     assert.ok(product.name && product.description && product.platforms.length);
     if (product.status === 'private') assert.equal(product.repo, null);
   }
+});
+test('public repositories stay linked and the private agent repository does not', () => {
+  const byId = Object.fromEntries(PRODUCT_LIST.map(product => [product.id, product]));
+  assert.equal(byId.agent.status, 'prerelease');
+  assert.equal(byId.agent.repo, null);
+  assert.equal(byId.capture.repo, 'https://github.com/umbra-me/axio-capture');
+  assert.equal(byId.analyst.repo, 'https://github.com/umbra-me/axio-analyst');
+  assert.equal(byId.local.repo, 'https://github.com/umbra-me/axio-local');
+  assert.equal(byId.deck.repo, null);
+  assert.equal(byId.polaris.repo, null);
+  assert.equal(AGENT_INSTALL_REPO, 'https://github.com/umbra-me/axio');
 });
 test('Polaris customer release is listed while source remains private', () => {
   const polaris = PRODUCT_LIST.find(product => product.id === 'polaris');
