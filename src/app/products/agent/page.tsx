@@ -7,10 +7,10 @@ import HeroTranscript from "@/components/HeroTranscript";
 import { IconArrowUpRight } from "@/components/Icons";
 import ProductHero from "@/components/ProductHero";
 import Surface from "@/components/Surface";
-import { PRODUCTS } from "@/lib/products";
+import { AGENT_INSTALL_REPO, PRODUCTS } from "@/lib/products";
 
 const P = PRODUCTS.agent;
-const REPO = P.repo!;
+const REPO = P.repo;
 
 export const metadata: Metadata = {
   title: "Axio, the coding agent",
@@ -38,12 +38,14 @@ export default function AgentPage() {
               Install from main
             </a>
 </Button>
+            {REPO ? (
             <Button asChild size="lg" variant="secondary">
 <a href={REPO} rel="noopener">
               Repository
               <IconArrowUpRight />
             </a>
 </Button>
+            ) : null}
           </>
         }
         visual={<Surface />}
@@ -219,7 +221,7 @@ curl -fsSL https://axio.sh/install | sh
 irm https://axio.sh/install.ps1 | iex
 `)}</Terminal>
             <Terminal title="or drive cargo yourself" wrap copy="cargo install">{`
-cargo install --git ${REPO} --locked axio
+cargo install --git ${AGENT_INSTALL_REPO} --locked axio
 `}</Terminal>
           </div>
           <p className="ts-text ts-note" data-tone="muted">
@@ -239,16 +241,29 @@ cargo install --git ${REPO} --locked axio
 
       <section className="ts-section" data-tight="">
         <div className="ts-container">
-          <Callout tone="warning" title={<>Read SECURITY.md before running it anywhere that matters.</>}>
+          <Callout
+            tone="warning"
+            title={
+              REPO ? (
+                <>Read SECURITY.md before running it anywhere that matters.</>
+              ) : (
+                <>Read the security notes before running it anywhere that matters.</>
+              )
+            }
+          >
             <p>
               axio executes code written by a language model against your
               working directory. By default there is no sandbox: confinement is
               the workspace root, the approval prompt and process-group
               containment. <code>--yes</code>{" "}answers every prompt and is not a
               mode to leave on.{" "}
-              <a href={`${REPO}/blob/main/SECURITY.md`} rel="noopener">
-                The full policy
-              </a>
+              {REPO ? (
+                <a href={`${REPO}/blob/main/SECURITY.md`} rel="noopener">
+                  The full policy
+                </a>
+              ) : (
+                <a href="/legal/security">The security notes</a>
+              )}
               .
             </p>
           </Callout>

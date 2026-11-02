@@ -26,7 +26,10 @@ export interface Product {
   status: ProductStatus;
   /** The status as a badge reads it. */
   statusLabel: string;
-  /** Repository on GitHub, or null while the product is private. */
+  /**
+   * Public GitHub repository, or null while anonymous visitors cannot open it.
+   * GitHub answers a private repository with 404, the same as a missing one.
+   */
   repo: string | null;
   /** The licence the software ships under, or null while it is not distributed. */
   license: string | null;
@@ -52,6 +55,12 @@ export const POLARIS_DOWNLOAD = `/downloads/polaris/Axio-Polaris-${POLARIS_VERSI
 export const POLARIS_BUY = "https://buy.stripe.com/dRm8wQ6GA7MWfcF4V73gk00";
 export const POLARIS_PRICE = "A$59";
 
+/**
+ * Git remote for `cargo install` of the coding agent. The repository is
+ * private, so this is an install command only and must not be used as a link.
+ */
+export const AGENT_INSTALL_REPO = "https://github.com/umbra-me/axio";
+
 export const PRODUCTS: Record<ProductId, Product> = {
   agent: {
     id: "agent",
@@ -62,7 +71,7 @@ export const PRODUCTS: Record<ProductId, Product> = {
       "Run many supervised coding sessions at once, each in its own git worktree, and answer every approval they raise from one queue. A one-shot CLI, an inline terminal interface and a desktop window drive the same supervisor.",
     status: "prerelease",
     statusLabel: "Pre-release",
-    repo: "https://github.com/umbra-me/axio",
+    repo: null,
     license: "Apache-2.0",
     platforms: ["macOS", "Linux", "WSL", "Windows"],
     stack: "Rust, nine crates",

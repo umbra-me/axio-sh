@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default function SecurityPage() {
-  const agent = PRODUCTS.agent.repo!;
+  const agentRepo = PRODUCTS.agent.repo;
   return (
     <LegalPage
       title="Security"
@@ -22,21 +22,19 @@ export default function SecurityPage() {
 
       <h2 id="report">1. Reporting a vulnerability</h2>
       <p>
-        Please report privately rather than in a public issue. Either route
-        reaches the same person:
+        Please report privately rather than in a public issue. Email{" "}
+        <a href={`mailto:${CONTACT.security}`}>{CONTACT.security}</a>.
+        {agentRepo ? (
+          <>
+            {" "}
+            For the coding agent, you can instead open a{" "}
+            <a href={`${agentRepo}/security/advisories/new`} rel="noopener">
+              GitHub security advisory
+            </a>{" "}
+            on its repository.
+          </>
+        ) : null}
       </p>
-      <ul>
-        <li>
-          Email <a href={`mailto:${CONTACT.security}`}>{CONTACT.security}</a>.
-        </li>
-        <li>
-          For the coding agent, open a{" "}
-          <a href={`${agent}/security/advisories/new`} rel="noopener">
-            GitHub security advisory
-          </a>{" "}
-          on its repository.
-        </li>
-      </ul>
       <p>
         Include the product and version, your platform, and a reproduction if
         you have one. Expect an acknowledgement within a few days. Do not
@@ -97,12 +95,21 @@ export default function SecurityPage() {
           The agent executes code written by a language model against your
           working directory.
         </strong>{" "}
-        Read that sentence again before running it anywhere that matters. The
-        full policy is{" "}
-        <a href={`${agent}/blob/main/SECURITY.md`} rel="noopener">
-          SECURITY.md
-        </a>{" "}
-        in the repository; this is the shape of it.
+        Read that sentence again before running it anywhere that matters.{" "}
+        {agentRepo ? (
+          <>
+            The full policy is{" "}
+            <a href={`${agentRepo}/blob/main/SECURITY.md`} rel="noopener">
+              SECURITY.md
+            </a>{" "}
+            in the repository; this is the shape of it.
+          </>
+        ) : (
+          <>
+            The repository copy of that policy is not publicly readable, so
+            this page states it.
+          </>
+        )}
       </p>
       <h3>What it does</h3>
       <ul>

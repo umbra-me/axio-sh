@@ -48,8 +48,6 @@ export const NAV = {
 export const TAGLINE_LONG =
   "Local-first coding, capture, analysis and workstation tools for macOS, Windows and Linux, built by Umbra.";
 
-const AGENT_REPO = "https://github.com/umbra-me/axio";
-
 /** Footer columns, in the shape Tessera's SiteFooter takes. */
 export const FOOTER_COLUMNS = [
   {
@@ -61,11 +59,9 @@ export const FOOTER_COLUMNS = [
   },
   {
     title: "Resources",
+    // The agent repository is private, so its docs, changelog and security
+    // files 404 for anonymous visitors. Do not link them until it is public.
     links: [
-      { label: "Agent repository", href: AGENT_REPO, external: true },
-      { label: "Architecture", href: `${AGENT_REPO}/blob/main/docs/architecture.md`, external: true },
-      { label: "Roadmap", href: `${AGENT_REPO}/blob/main/docs/roadmap.md`, external: true },
-      { label: "Changelog", href: `${AGENT_REPO}/blob/main/CHANGELOG.md`, external: true },
       { label: "Install script", href: "/install" },
     ],
   },

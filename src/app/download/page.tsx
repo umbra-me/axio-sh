@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { IconDownload } from "@/components/Icons";
 import StatusBadge from "@/components/StatusBadge";
 import {
+  AGENT_INSTALL_REPO,
   AVAILABLE,
   CAPTURE_DOWNLOADS,
   CAPTURE_RELEASE,
@@ -69,7 +70,7 @@ curl -fsSL https://axio.sh/install | sh
 irm https://axio.sh/install.ps1 | iex
 `)}</Terminal>
             <Terminal title="or drive cargo yourself" wrap copy="cargo install">{`
-cargo install --git ${agent.repo} --locked axio
+cargo install --git ${AGENT_INSTALL_REPO} --locked axio
 `}</Terminal>
           </div>
           <p className="ts-text ts-note" data-tone="muted">
