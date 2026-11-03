@@ -13,40 +13,40 @@ overrides:
   sharp: 0.35.5
   source-map-js: 1.2.2
   next: 16.4.3
-  '@tessera/token-build': 0.1.2
-  '@tessera/tokens': 0.1.2
-  '@tessera/contracts': 0.1.2
-  '@tessera/css': 0.1.2
-  '@tessera/themes': 0.1.2
-  '@tessera/ui': 0.1.2
-  '@tessera/marketing': 0.1.2
-  '@tessera/patterns': 0.1.2
-  '@tessera/shells': 0.1.2
-  '@tessera/mocks': 0.1.2
-  '@tessera/next': 0.1.2
+  '@tessera/token-build': 0.1.3
+  '@tessera/tokens': 0.1.3
+  '@tessera/contracts': 0.1.3
+  '@tessera/css': 0.1.3
+  '@tessera/themes': 0.1.3
+  '@tessera/ui': 0.1.3
+  '@tessera/marketing': 0.1.3
+  '@tessera/patterns': 0.1.3
+  '@tessera/shells': 0.1.3
+  '@tessera/mocks': 0.1.3
+  '@tessera/next': 0.1.3
 
 importers:
 
   .:
     dependencies:
       '@tessera/marketing':
-        specifier: 0.1.2
-        version: 0.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: 0.1.3
+        version: 0.1.3(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@tessera/mocks':
-        specifier: 0.1.2
-        version: 0.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: 0.1.3
+        version: 0.1.3(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@tessera/next':
-        specifier: 0.1.2
-        version: 0.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(next@16.4.3(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.63.0)(@types/node@24.13.4)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: 0.1.3
+        version: 0.1.3(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(next@16.4.3(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.63.0)(@types/node@24.13.4)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@tessera/patterns':
-        specifier: 0.1.2
-        version: 0.1.2(@tanstack/react-query@5.104.2(react@19.3.0))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: 0.1.3
+        version: 0.1.3(@tanstack/react-query@5.104.2(react@19.3.0))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@tessera/themes':
-        specifier: 0.1.2
-        version: 0.1.2
+        specifier: 0.1.3
+        version: 0.1.3
       '@tessera/ui':
-        specifier: 0.1.2
-        version: 0.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: 0.1.3
+        version: 0.1.3(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       geist:
         specifier: ^1.7.2
         version: 1.7.2(next@16.4.3(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.63.0)(@types/node@24.13.4)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))
@@ -996,46 +996,46 @@ packages:
   '@tanstack/virtual-core@3.17.11':
     resolution: {integrity: sha512-+ILjvtHup6Y2hzQ6YzwMgX1Q+oQpxEGOXCEsCNaPoIP0VxMbizIBTmYTDtkerkIQS8/CbP1BRuyt8V/8BCsy1g==}
 
-  '@tessera/contracts@0.1.2':
-    resolution: {integrity: sha512-cDf0F6oe/Ap2n9p+HEhRl4n0AVW1+G5DvfzoAfXMr33hRZYQ0vVr3fXZclU1EgT0WAz3uGB2hyfJQAVTJ7GPiQ==}
+  '@tessera/contracts@0.1.3':
+    resolution: {integrity: sha512-hYdpDnO8PlNSQwFlqEZcgA5aukez9YAFgRZYAudDr8RpGbkCcl4dA7Fxv1jjNsfDzrH23noAO71Dg15bov/yuA==}
 
-  '@tessera/css@0.1.2':
-    resolution: {integrity: sha512-cQarlmzwlcIEBAH2jtzG4xA/5NJ1mN+B/HsVfUg47abUTs4JLiOk+S4ENpMAtC9VPMPhX4XNoaGB5adY4uzWlg==}
+  '@tessera/css@0.1.3':
+    resolution: {integrity: sha512-UX0NtFGxHDGGa6LSNg/O5z8eUHGbr5GEw59wh9klaVp/Iyd7sBTjt3iBW34+2q+x/vTEju1Se3ceXhb3Qax+9w==}
 
-  '@tessera/marketing@0.1.2':
-    resolution: {integrity: sha512-JbeZxsXss/hBVG/peWuTj+fftGEoU+/e9ngdC29ogLSO1YmbQR69irliZ21bK1lZ6KjfFhtpbuF3uJEk3AHCQw==}
+  '@tessera/marketing@0.1.3':
+    resolution: {integrity: sha512-9n1+3ZB9xMI/LHmqEDo7hL/Tf0M5x4I+jWlLQvo38/EmzSEZZDJwt60rQpr2bepMH1Phlol9YCgYb0QGGoIzAw==}
     peerDependencies:
       react: ^19.0.0
       react-dom: ^19.0.0
 
-  '@tessera/mocks@0.1.2':
-    resolution: {integrity: sha512-brsHPpF41mzBicw0Kpxwwf2LJyxX9OgI0VMrIgUER0UIQdfrYkOJ04tGi54uz3QGjG4Yvt6deCySWqYAGS6NfA==}
+  '@tessera/mocks@0.1.3':
+    resolution: {integrity: sha512-CCTaFpe9mgVOEO1GvzoFGU462mqgiQgp1fAYAueNurEZhAgk/jPpXndr+45JYtXCAmvPtUKBq0YQkBozrtn6wA==}
     peerDependencies:
       react: ^19.0.0
       react-dom: ^19.0.0
 
-  '@tessera/next@0.1.2':
-    resolution: {integrity: sha512-mdYYvhbxoKiE194qJRebGrPMSOolrevqubqtvVipP8dNrJiKc7PeTH2qEDbUhmbmYESxd2+2NuBXAs6S3LbzVQ==}
+  '@tessera/next@0.1.3':
+    resolution: {integrity: sha512-ZIuIiNqp2zywFakUeKVxk706/fdiDKQ3sYIiUMIGPwn8PZPUX79Cuvt+rGACFkHvsqlydgkvGz9mPhv93EJ4EA==}
     peerDependencies:
       next: 16.4.3
       react: ^19.0.0
       react-dom: ^19.0.0
 
-  '@tessera/patterns@0.1.2':
-    resolution: {integrity: sha512-P2TJB4XntXcOFs8kOQMfZ6pPLC84Z9uWs3WcpCxKzyt4xtJvyg2WrlgeoU93YH7YziFLwCapzbmHrov28oYxqg==}
+  '@tessera/patterns@0.1.3':
+    resolution: {integrity: sha512-caAasWmKKbgtOpAWrhcBJCQDytlXBrn82sSuau1p/UtKj5SXjvtzbipyMEijyZGtg9+HlEXdNjlSk2OruM/MkA==}
     peerDependencies:
       '@tanstack/react-query': ^5.0.0
       react: ^19.0.0
       react-dom: ^19.0.0
 
-  '@tessera/themes@0.1.2':
-    resolution: {integrity: sha512-nlyZF1dMHhnGoCGNGFys+SbQk93DrifFW1hK06OOS0K+oipzdwivuz4kdRzqoRgek4Wxhh226m8TIccOVH5jwg==}
+  '@tessera/themes@0.1.3':
+    resolution: {integrity: sha512-mwdyVtFD4Cest4omL9U0vXhM2fCzK5PccSEiotHBVd9xXJ29UP+yIk7PO5/rasqFTnK5l888jrwT2zSSy8IhtA==}
 
-  '@tessera/tokens@0.1.2':
-    resolution: {integrity: sha512-1DG4tHUTMaW84E0S6XsVuo2ayc3p8ZuiYG1jh/M0EgTSYBhxMIL+R/UwTaIBJhn0d/odax4AVEjan4NJVJjEFw==}
+  '@tessera/tokens@0.1.3':
+    resolution: {integrity: sha512-T/CnRAEgwxDTgDmZVikz3m8qaCQzYhjxglFc2Rf3M/deI58uLOz9GP7cIeSk8GJIGIKMWKTqj80p6QXrAa75XA==}
 
-  '@tessera/ui@0.1.2':
-    resolution: {integrity: sha512-vYBjfry0PB09iphon/7VijBsq/CFm6wJO714X3wmWBx+g8DKRhXtVMdpAEnR3bH2g3za2r5qZmUDXpyt6Mn0gA==}
+  '@tessera/ui@0.1.3':
+    resolution: {integrity: sha512-sN+ao9ca5pZMMLG6/qZa7Az46DQe9FAV+SZ5VrNhoUc1alLWKkBzTNJ+CE1cFtGn9NiJ+NBd+huZMKwYnPdXDQ==}
     peerDependencies:
       react: ^19.0.0
       react-dom: ^19.0.0
@@ -3378,38 +3378,38 @@ snapshots:
 
   '@tanstack/virtual-core@3.17.11': {}
 
-  '@tessera/contracts@0.1.2':
+  '@tessera/contracts@0.1.3':
     dependencies:
       zod: 4.6.5
 
-  '@tessera/css@0.1.2':
+  '@tessera/css@0.1.3':
     dependencies:
-      '@tessera/tokens': 0.1.2
+      '@tessera/tokens': 0.1.3
 
-  '@tessera/marketing@0.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@tessera/marketing@0.1.3(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
-      '@tessera/ui': 0.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@tessera/ui': 0.1.3(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
     transitivePeerDependencies:
       - '@types/react'
       - '@types/react-dom'
 
-  '@tessera/mocks@0.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@tessera/mocks@0.1.3(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
-      '@tessera/marketing': 0.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      '@tessera/ui': 0.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@tessera/marketing': 0.1.3(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@tessera/ui': 0.1.3(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
     transitivePeerDependencies:
       - '@types/react'
       - '@types/react-dom'
 
-  '@tessera/next@0.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(next@16.4.3(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.63.0)(@types/node@24.13.4)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@tessera/next@0.1.3(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(next@16.4.3(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.63.0)(@types/node@24.13.4)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
-      '@tessera/contracts': 0.1.2
-      '@tessera/marketing': 0.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      '@tessera/ui': 0.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@tessera/contracts': 0.1.3
+      '@tessera/marketing': 0.1.3(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@tessera/ui': 0.1.3(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       next: 16.4.3(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.63.0)(@types/node@24.13.4)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
@@ -3417,26 +3417,26 @@ snapshots:
       - '@types/react'
       - '@types/react-dom'
 
-  '@tessera/patterns@0.1.2(@tanstack/react-query@5.104.2(react@19.3.0))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@tessera/patterns@0.1.3(@tanstack/react-query@5.104.2(react@19.3.0))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
       '@tanstack/react-query': 5.104.2(react@19.3.0)
       '@tanstack/react-table': 9.2.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      '@tessera/contracts': 0.1.2
-      '@tessera/marketing': 0.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      '@tessera/ui': 0.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@tessera/contracts': 0.1.3
+      '@tessera/marketing': 0.1.3(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@tessera/ui': 0.1.3(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
     transitivePeerDependencies:
       - '@types/react'
       - '@types/react-dom'
 
-  '@tessera/themes@0.1.2':
+  '@tessera/themes@0.1.3':
     dependencies:
-      '@tessera/tokens': 0.1.2
+      '@tessera/tokens': 0.1.3
 
-  '@tessera/tokens@0.1.2': {}
+  '@tessera/tokens@0.1.3': {}
 
-  '@tessera/ui@0.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@tessera/ui@0.1.3(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
       '@radix-ui/react-alert-dialog': 1.1.23(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@radix-ui/react-checkbox': 1.3.11(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -3452,9 +3452,9 @@ snapshots:
       '@radix-ui/react-toast': 1.2.23(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@radix-ui/react-tooltip': 1.2.16(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@tanstack/react-virtual': 3.14.13(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      '@tessera/contracts': 0.1.2
-      '@tessera/css': 0.1.2
-      '@tessera/tokens': 0.1.2
+      '@tessera/contracts': 0.1.3
+      '@tessera/css': 0.1.3
+      '@tessera/tokens': 0.1.3
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
     transitivePeerDependencies:
