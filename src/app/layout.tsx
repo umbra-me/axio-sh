@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    url: SITE,
+    url: "./",
     siteName: SITE_NAME,
     title: `${SITE_NAME} — ${TAGLINE}`,
     description: DESCRIPTION,
