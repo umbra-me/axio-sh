@@ -50,3 +50,13 @@ test('the policy keeps the defaults that make it worth setting', async () => {
   assert.ok(csp.get('img-src').includes('data:'));
   assert.ok(csp.get('media-src').includes("'self'"));
 });
+
+test('Cloudflare is allowed only in script-src and connect-src', async () => {
+  const csp = directives((await headerMap()).get('Content-Security-Policy'));
+  const sources = [...csp].flatMap(([name, values]) => values
+    .filter(value => value.includes('cloudflareinsights')).map(value => [name, value]));
+  assert.deepEqual(sources, [
+    ['script-src', 'https://static.cloudflareinsights.com'],
+    ['connect-src', 'https://cloudflareinsights.com'],
+  ]);
+});

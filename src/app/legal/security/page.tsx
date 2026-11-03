@@ -16,6 +16,7 @@ export default function SecurityPage() {
     <LegalPage
       title="Security"
       summary="How to report a vulnerability, what each product does to protect you, and what it deliberately does not do. The second half matters as much as the first."
+      updated="3 November 2026"
       current="/legal/security"
       contents={[{ id: "report", label: "Reporting a vulnerability" }, { id: "supported", label: "Supported versions" }, { id: "agent", label: "The coding agent" }, { id: "capture", label: "Axio Capture" }, { id: "analyst", label: "Axio Analyst" }, { id: "deck", label: "Axio Deck" }, { id: "polaris", label: "Axio Polaris" }, { id: "site", label: "This website" }]}
     >
@@ -269,8 +270,10 @@ export default function SecurityPage() {
       <h2 id="site">8. This website</h2>
       <ul>
         <li>
-          Static build, no database, no accounts, no cookies, no third-party
-          scripts. The only script is the first-party page counter.
+          Static build, no database, no accounts, no cookies or local storage,
+          and no ads. Besides the first-party page counter, Cloudflare’s
+          cookieless Web Analytics script loads from Cloudflare and reports
+          page views and performance timing, including the page URL.
         </li>
         <li>
           Install scripts are served as <code>text/plain</code>{" "}with{" "}

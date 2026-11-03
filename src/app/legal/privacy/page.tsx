@@ -14,6 +14,7 @@ export default function PrivacyPage() {
     <LegalPage
       title="Privacy policy"
       summary="The tools keep their core data on your machine. Purchases, licence activation and support use the limited personal information described below."
+      updated="3 November 2026"
       current="/legal/privacy"
       contents={[{ id: "who", label: "Who we are" }, { id: "scope", label: "What this policy covers" }, { id: "site", label: "This website" }, { id: "software", label: "The software" }, { id: "third", label: "Third parties" }, { id: "rights", label: "Your rights" }, { id: "children", label: "Children" }, { id: "changes", label: "Changes" }, { id: "contact", label: "Contact" }]}
     >
@@ -59,15 +60,15 @@ export default function PrivacyPage() {
       </p>
       <h3>Cookies</h3>
       <p>
-        The site sets no cookies and uses no local storage. There is nothing to
-        consent to and no banner asking you to.
+        The site sets no cookies and uses no local storage. There is no cookie banner.
       </p>
       <h3>Third-party content</h3>
       <p>
-        The site loads no third-party scripts, fonts, embeds, pixels or
-        advertising. Its typefaces are served from this domain. The only script
-        it loads is the page counter described above, from{" "}
-        {COMPANY.name}’s own API domain.
+        Besides the first-party page counter from {COMPANY.name}’s own API
+        domain, Cloudflare’s cookieless Web Analytics script loads from Cloudflare
+        and reports page views and performance timing, including the page URL.
+        It uses no cookies or local storage. The site loads no third-party
+        fonts, embeds or advertising. Its typefaces are served from this domain.
       </p>
       <h3>Install scripts</h3>
       <p>
@@ -79,8 +80,7 @@ export default function PrivacyPage() {
       <h3>Administration</h3>
       <p>
         {COMPANY.name} manages this static site from its central control plane.
-        The site exposes no administrative endpoint and stores no operator or
-        visitor records.
+        The site exposes no administrative endpoint and stores no operator records. Website analytics are described above.
       </p>
 
       <h2 id="software">4. The software</h2>
@@ -362,9 +362,9 @@ export default function PrivacyPage() {
 
       <h2 id="rights">6. Your rights</h2>
       <p>
-        The site holds no personal data about visitors, and the products hold
-        none on our behalf. What we do hold is what section 4 describes for a
-        Polaris purchase, and any email you send us. You may ask what we hold
+        Website page counts, Cloudflare analytics and connection logs are
+        described in section 3. We also hold the records section 4 describes
+        for a Polaris purchase, and any email you send us. You may ask what we hold
         about you, ask for it to be corrected, or ask for it to be deleted, and
         we will do so unless the law requires otherwise; for a Polaris licence
         we will say which records must be kept for it to keep working and how
@@ -382,7 +382,7 @@ export default function PrivacyPage() {
       <h2 id="children">7. Children</h2>
       <p>
         The site and the products are developer tools and are not directed at
-        children. We knowingly collect nothing from anyone, of any age.
+        children. We do not knowingly collect personal information from children.
       </p>
 
       <h2 id="changes">8. Changes</h2>

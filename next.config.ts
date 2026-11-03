@@ -24,11 +24,11 @@ const collectorConfig = environmentUrl("https://admin-api.umbra.me");
 // added here or it will be blocked with no visible error.
 const csp = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline' ${analytics}`,
+  `script-src 'self' 'unsafe-inline' ${analytics} https://static.cloudflareinsights.com`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
   "font-src 'self' data:",
-  `connect-src 'self' ${analytics} ${collectorConfig}`,
+  `connect-src 'self' ${analytics} ${collectorConfig} https://cloudflareinsights.com`,
   "media-src 'self'",
   "worker-src 'self' blob:",
   "manifest-src 'self'",
