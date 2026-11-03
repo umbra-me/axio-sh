@@ -9,6 +9,7 @@ import { LEGAL_UPDATED, NAV } from "@/lib/site";
 export default function LegalPage({
   title,
   summary,
+  updated = LEGAL_UPDATED,
   current,
   back,
   contents,
@@ -16,6 +17,7 @@ export default function LegalPage({
 }: {
   title: string;
   summary: string;
+  updated?: string;
   current: string;
   back?: { name: string; href: string };
   contents?: { id: string; label: string }[];
@@ -26,7 +28,7 @@ export default function LegalPage({
       <LegalDocument
         title={title}
         summary={summary}
-        updated={LEGAL_UPDATED}
+        updated={updated}
         back={back ? { label: back.name, href: back.href, parent: { label: "Products", href: "/products" } } : undefined}
         nav={back ? undefined : NAV.legal.map((item) => ({ label: item.name, href: item.href, current: item.href === current }))}
         contents={contents}
