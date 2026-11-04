@@ -1,13 +1,25 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/LegalPage";
 import { PRODUCTS } from "@/lib/products";
-import { CONTACT } from "@/lib/site";
+import { CONTACT, SOCIAL_IMAGE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Security",
   description:
     "How to report a vulnerability in an Axio product, what each product does to protect you, and what it does not.",
   alternates: { canonical: "/legal/security" },
+  openGraph: {
+    title: "Security",
+    description: "How to report a vulnerability in an Axio product, what each product does to protect you, and what it does not.",
+    url: "./",
+    images: [SOCIAL_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Security",
+    description: "How to report a vulnerability in an Axio product, what each product does to protect you, and what it does not.",
+    images: [SOCIAL_IMAGE],
+  },
 };
 
 export default function SecurityPage() {

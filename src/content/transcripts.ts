@@ -13,7 +13,7 @@ export const HINT = "the change above is what runs";
 export const PROMPT_KEYS: [string, string][] = [["y", "once"], ["a", "this session"], ["n", "no, and say why"], ["esc", "no"]];
 
 export const APPROVAL_FRAME: TranscriptFrame = { title: TITLE, row: PROMPT };
-export const RUNNING_FRAME: TranscriptFrame = { title: "claude-opus-5", meter: "6s · 2.1k in / 180 out", row: "…", width: measureTranscriptFrame(APPROVAL_FRAME).width };
+export const RUNNING_FRAME: TranscriptFrame = { title: "configured model", meter: "6s · 2.1k in / 180 out", row: "…", width: measureTranscriptFrame(APPROVAL_FRAME).width };
 export const RUNNING_HINT = "ctrl-c or esc to interrupt";
 
 // The frame is as wide as the prompt row needs, and every rule is built to
@@ -35,7 +35,7 @@ export const DIFF: { kind: "hunk" | "ctx" | "del" | "add"; text: string }[] = [
 
 /** The hero's shorter turn: two tool calls, a typed answer, a resting prompt. */
 export const HERO = {
-  model: "claude-opus-5",
+  model: "configured model",
   meter: "4s · 1.2k in / 340 out",
   prompt: "› explain the change",
   boxWidth: 54,

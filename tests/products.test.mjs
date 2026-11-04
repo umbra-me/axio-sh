@@ -1,7 +1,20 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import ts from 'typescript';
 import { loadSource } from './load-source.mjs';
 const { AGENT_INSTALL_REPO, PRODUCT_LIST, productHref, CAPTURE_DOWNLOADS, CAPTURE_VERSION } = loadSource(new URL('../src/lib/products.ts', import.meta.url));
+test('the generated share card lists every registered product', () => {
+  const file = new URL('../src/app/opengraph-image.tsx', import.meta.url);
+  const source = ts.createSourceFile(file.pathname, readFileSync(file, 'utf8'), ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
+  const declaration = source.statements.filter(ts.isVariableStatement)
+    .flatMap(statement => [...statement.declarationList.declarations])
+    .find(item => item.name.getText() === 'PRODUCTS');
+  const array = declaration.initializer.expression;
+  const names = array.elements.map(item => item.elements[0].text);
+  assert.equal(names.length, PRODUCT_LIST.length);
+  assert.deepEqual(names.toSorted(), PRODUCT_LIST.map(product => product.short).toSorted());
+});
 test('product navigation uses unique named product paths', () => {
   assert.ok(PRODUCT_LIST.length > 0);
   assert.equal(new Set(PRODUCT_LIST.map(product => product.id)).size, PRODUCT_LIST.length);

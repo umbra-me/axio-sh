@@ -8,6 +8,7 @@ import { IconArrowUpRight } from "@/components/Icons";
 import ProductHero from "@/components/ProductHero";
 import Surface from "@/components/Surface";
 import { AGENT_INSTALL_REPO, PRODUCTS } from "@/lib/products";
+import { SOCIAL_IMAGE } from "@/lib/site";
 
 const P = PRODUCTS.agent;
 const REPO = P.repo;
@@ -16,6 +17,18 @@ export const metadata: Metadata = {
   title: "Axio, the coding agent",
   description: `${P.tagline}. ${P.description}`,
   alternates: { canonical: "/products/agent" },
+  openGraph: {
+    title: "Axio, the coding agent",
+    description: `${P.tagline}. ${P.description}`,
+    url: "./",
+    images: [SOCIAL_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Axio, the coding agent",
+    description: `${P.tagline}. ${P.description}`,
+    images: [SOCIAL_IMAGE],
+  },
 };
 
 export default function AgentPage() {

@@ -6,6 +6,7 @@ import AnalystMock from "@/components/AnalystMock";
 import { IconArrowUpRight } from "@/components/Icons";
 import ProductHero from "@/components/ProductHero";
 import { ANALYST_VERSION, PRODUCTS } from "@/lib/products";
+import { SOCIAL_IMAGE } from "@/lib/site";
 
 const P = PRODUCTS.analyst;
 const REPO = P.repo!;
@@ -14,6 +15,18 @@ export const metadata: Metadata = {
   title: "Axio Analyst",
   description: `${P.tagline}. ${P.description}`,
   alternates: { canonical: "/products/analyst" },
+  openGraph: {
+    title: "Axio Analyst",
+    description: `${P.tagline}. ${P.description}`,
+    url: "./",
+    images: [SOCIAL_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Axio Analyst",
+    description: `${P.tagline}. ${P.description}`,
+    images: [SOCIAL_IMAGE],
+  },
 };
 
 export default function AnalystPage() {

@@ -1,6 +1,7 @@
 "use client";
 
 import { TranscriptPlayer } from "@tessera/mocks";
+import ReadableMock from "./ReadableMock";
 import { HERO } from "@/content/transcripts";
 
 /** A turn, played once: two tool calls, an answer typed out, the prompt resting. */
@@ -8,7 +9,8 @@ export default function HeroTranscript() {
   const typedAt = 1080;
   const doneAt = typedAt + HERO.answer.length * 16 + 260;
   return (
-    <TranscriptPlayer
+    <ReadableMock>
+      <TranscriptPlayer
       label="An example axio turn"
       title="a turn, played once"
       head={<><span className="ts-terminal__dim">{"$ "}</span>{"axio\n\n"}</>}
@@ -18,6 +20,7 @@ export default function HeroTranscript() {
         { at: typedAt, kind: "typed", key: "answer", text: HERO.answer, indent: "\n  " },
         { at: doneAt, kind: "frame", key: "done", frame: { title: HERO.model, meter: HERO.meter, row: HERO.prompt, width: HERO.boxWidth }, hint: `  ${"".padEnd(32)}/ for commands` },
       ]}
-    />
+      />
+    </ReadableMock>
   );
 }

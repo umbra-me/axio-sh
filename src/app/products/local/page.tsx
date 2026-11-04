@@ -4,8 +4,25 @@ import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import ProductHero from "@/components/ProductHero";
 import { PRODUCTS } from "@/lib/products";
+import { SOCIAL_IMAGE } from "@/lib/site";
 const P = PRODUCTS.local;
-export const metadata: Metadata = { title: P.name, description: P.description, alternates: { canonical: "/products/local" } };
+export const metadata: Metadata = {
+  title: P.name,
+  description: P.description,
+  alternates: { canonical: "/products/local" },
+  openGraph: {
+    title: P.name,
+    description: P.description,
+    url: "./",
+    images: [SOCIAL_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: P.name,
+    description: P.description,
+    images: [SOCIAL_IMAGE],
+  },
+};
 export default function LocalPage() {
   return <div style={{ "--ts-product-color": P.color } as CSSProperties}>
     <ProductHero product={P} headline={<>Your agent.<br /><em>Your local models.</em></>} lede={P.description}

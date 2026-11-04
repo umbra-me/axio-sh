@@ -1,13 +1,25 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/LegalPage";
 import { PRODUCT_LIST } from "@/lib/products";
-import { COMPANY } from "@/lib/site";
+import { COMPANY, SOCIAL_IMAGE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Licences and attributions",
   description:
     "The licence each Axio product ships under, the third-party work it acknowledges, and what the licences do not cover.",
   alternates: { canonical: "/legal/licenses" },
+  openGraph: {
+    title: "Licences and attributions",
+    description: "The licence each Axio product ships under, the third-party work it acknowledges, and what the licences do not cover.",
+    url: "./",
+    images: [SOCIAL_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Licences and attributions",
+    description: "The licence each Axio product ships under, the third-party work it acknowledges, and what the licences do not cover.",
+    images: [SOCIAL_IMAGE],
+  },
 };
 
 export default function LicensesPage() {

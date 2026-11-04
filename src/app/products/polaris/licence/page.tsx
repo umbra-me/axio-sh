@@ -1,10 +1,23 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/LegalPage";
+import { SOCIAL_IMAGE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Polaris personal licence and refunds",
   description: "Price, personal-use licence, digital delivery, support and refunds for Axio Polaris.",
   alternates: { canonical: "/products/polaris/licence" },
+  openGraph: {
+    title: "Polaris personal licence and refunds",
+    description: "Price, personal-use licence, digital delivery, support and refunds for Axio Polaris.",
+    url: "./",
+    images: [SOCIAL_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Polaris personal licence and refunds",
+    description: "Price, personal-use licence, digital delivery, support and refunds for Axio Polaris.",
+    images: [SOCIAL_IMAGE],
+  },
 };
 
 export default function PolarisLicencePage() {

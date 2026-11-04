@@ -9,6 +9,15 @@ export const TAGLINE = "Developer tools that stay on your machine.";
 export const DESCRIPTION =
   "Axio is Umbra's family of local-first coding, capture, analysis and workstation tools for macOS, Windows and Linux. No product telemetry.";
 
+// A subpage's Open Graph object replaces the layout's object, including its
+// file-generated image. Keep that image explicit when giving a page its title.
+export const SOCIAL_IMAGE = {
+  url: "/opengraph-image",
+  width: 1200,
+  height: 630,
+  alt: "Axio — developer tools that stay on your machine",
+};
+
 export const ORG = "https://github.com/umbra-me";
 export const UMBRA = environmentUrl("https://umbra.me");
 

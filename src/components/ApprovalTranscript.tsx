@@ -1,6 +1,7 @@
 "use client";
 
 import { TranscriptPlayer } from "@tessera/mocks";
+import ReadableMock from "./ReadableMock";
 import { APPROVAL_FRAME, DIFF, HINT, PROMPT_KEYS, READ, RUNNING_FRAME, RUNNING_HINT, WIDTH } from "@/content/transcripts";
 
 const chars = (s: string) => [...s].length;
@@ -31,7 +32,8 @@ const promptRow = (
  */
 export default function ApprovalTranscript() {
   return (
-    <TranscriptPlayer
+    <ReadableMock>
+      <TranscriptPlayer
       label="The agent asking before it edits a file"
       title="a turn, stopped at the question"
       className="hero__figure"
@@ -42,6 +44,7 @@ export default function ApprovalTranscript() {
         { at: 1000, kind: "line", key: "diff", node: DIFF.map((line) => <span key={line.text} className={`diff-${line.kind}`}>{"  "}{line.text}{"\n"}</span>) },
         { at: 1700, kind: "frame", key: "ask", frame: { ...APPROVAL_FRAME, rowNode: promptRow }, hint: HINT },
       ]}
-    />
+      />
+    </ReadableMock>
   );
 }

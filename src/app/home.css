@@ -267,10 +267,49 @@ code {
   .hero__figure pre {
     padding: 1rem 1rem 0.9rem;
     font-size: 0.6875rem;
-    /* Wider than a phone even at this size, so the pre scrolls and its last
-       column fades rather than cutting a glyph in half. */
-    mask-image: linear-gradient(90deg, #000 86%, transparent);
   }
+}
+/* ---- readable product drawings ------------------------------------------ */
+/* Site adapters for the shared drawings: preserve code columns, expose the
+   scrollers, and remove each fade once that end of the line is reached. */
+.readable-mock { min-width: 0; max-width: 100%; }
+.readable-mock :is(.ts-terminal pre, .ts-app-frame__diff, .ts-app-frame__prompt, .ts-mock-analyst__il) {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ts-text-muted) var(--ts-surface-sunken);
+}
+.readable-mock [data-scroll-edge="right"] {
+  mask-image: linear-gradient(to right, #000 calc(100% - 1rem), transparent);
+}
+.readable-mock [data-scroll-edge="left"] {
+  mask-image: linear-gradient(to right, transparent, #000 1rem);
+}
+.readable-mock [data-scroll-edge="both"] {
+  mask-image: linear-gradient(to right, transparent, #000 1rem, #000 calc(100% - 1rem), transparent);
+}
+.readable-mock [tabindex="0"]:focus-visible {
+  outline: 2px solid var(--ts-text-link);
+  outline-offset: -2px;
+}
+@media (max-width: 40rem) {
+  .readable-mock .ts-mock-analyst__il {
+    display: block;
+    min-width: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--ts-border-subtle);
+  }
+}
+/* The prose column wraps; the product and licence retain their own columns.
+   Tessera's ledger stacks on phones, where all three cells may wrap. */
+.network-table.ts-table[data-density="ledger"] { table-layout: fixed; }
+.network-table.ts-table[data-density="ledger"] :is(th, td) {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.network-table th:first-child { width: 10rem; }
+.network-table th:last-child { width: 14rem; }
+@media (max-width: 47.99rem) {
+  .network-table.ts-table[data-density="ledger"] :is(th, td) { width: auto; height: auto; }
 }
 /* ---- cards --------------------------------------------------------------- */
 
