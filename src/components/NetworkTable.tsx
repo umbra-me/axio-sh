@@ -15,7 +15,7 @@ import { PRODUCT_LIST, productHref } from "@/lib/products";
  */
 export default function NetworkTable() {
   return (
-    <Table density="ledger">
+    <Table density="ledger" className="network-table">
       <caption className="ts-sr-only">What each Axio tool sends over the network, and its licence</caption>
       <thead>
         <tr>

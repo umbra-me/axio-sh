@@ -16,12 +16,25 @@ import {
   PRODUCTS,
   listNames,
 } from "@/lib/products";
+import { SOCIAL_IMAGE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Download",
   description:
     "Install the Axio tools: the agent, Capture, Analyst, Local and Polaris, and where Deck stands.",
   alternates: { canonical: "/download" },
+  openGraph: {
+    title: "Download",
+    description: "Install the Axio tools: the agent, Capture, Analyst, Local and Polaris, and where Deck stands.",
+    url: "./",
+    images: [SOCIAL_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Download",
+    description: "Install the Axio tools: the agent, Capture, Analyst, Local and Polaris, and where Deck stands.",
+    images: [SOCIAL_IMAGE],
+  },
 };
 
 export default function DownloadPage() {
@@ -63,12 +76,27 @@ export default function DownloadPage() {
             </p>
           </div>
           <div className="install">
-            <Terminal title="macOS · Linux · WSL" wrap copy="macOS, Linux and WSL install">{environmentText(`
+            <Terminal title="macOS · Linux · WSL — download and inspect" wrap copy="download and inspect the shell installer">{environmentText(`
+curl -fsSL https://axio.sh/install -o axio-install.sh
+less ./axio-install.sh
+`)}</Terminal>
+            <p className="ts-text" data-tone="muted">After reviewing, run <code>sh ./axio-install.sh</code>.</p>
+            <Terminal title="Windows · PowerShell — download and inspect" wrap copy="download and inspect the PowerShell installer">{environmentText(`
+Invoke-WebRequest https://axio.sh/install.ps1 -OutFile axio-install.ps1
+Get-Content .\\axio-install.ps1
+`)}</Terminal>
+            <p className="ts-text" data-tone="muted">After reviewing, run <code>&amp; .\axio-install.ps1</code>.</p>
+            <details>
+              <summary>One-line alternatives, after inspecting the script</summary>
+              <div className="install">
+                <Terminal title="macOS · Linux · WSL" wrap copy="one-line shell install">{environmentText(`
 curl -fsSL https://axio.sh/install | sh
 `)}</Terminal>
-            <Terminal title="Windows · PowerShell" wrap copy="Windows PowerShell install">{environmentText(`
+                <Terminal title="Windows · PowerShell" wrap copy="one-line PowerShell install">{environmentText(`
 irm https://axio.sh/install.ps1 | iex
 `)}</Terminal>
+              </div>
+            </details>
             <Terminal title="or drive cargo yourself" wrap copy="cargo install">{`
 cargo install --git ${AGENT_INSTALL_REPO} --locked axio
 `}</Terminal>

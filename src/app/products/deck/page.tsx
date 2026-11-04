@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import DeckMock from "@/components/DeckMock";
 import ProductHero from "@/components/ProductHero";
 import { PRODUCTS } from "@/lib/products";
+import { SOCIAL_IMAGE } from "@/lib/site";
 
 const P = PRODUCTS.deck;
 
@@ -12,6 +13,18 @@ export const metadata: Metadata = {
   title: "Axio Deck",
   description: `${P.tagline}. ${P.description}`,
   alternates: { canonical: "/products/deck" },
+  openGraph: {
+    title: "Axio Deck",
+    description: `${P.tagline}. ${P.description}`,
+    url: "./",
+    images: [SOCIAL_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Axio Deck",
+    description: `${P.tagline}. ${P.description}`,
+    images: [SOCIAL_IMAGE],
+  },
 };
 
 const CHORDS: [string, string][] = [

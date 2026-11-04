@@ -1,12 +1,24 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/LegalPage";
-import { COMPANY, CONTACT } from "@/lib/site";
+import { COMPANY, CONTACT, SOCIAL_IMAGE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Privacy policy",
   description:
     "What axio.sh and the Axio products collect, what leaves your machine, and who it goes to.",
   alternates: { canonical: "/legal/privacy" },
+  openGraph: {
+    title: "Privacy policy",
+    description: "What axio.sh and the Axio products collect, what leaves your machine, and who it goes to.",
+    url: "./",
+    images: [SOCIAL_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy policy",
+    description: "What axio.sh and the Axio products collect, what leaves your machine, and who it goes to.",
+    images: [SOCIAL_IMAGE],
+  },
 };
 
 export default function PrivacyPage() {

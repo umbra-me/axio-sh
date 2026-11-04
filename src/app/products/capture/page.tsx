@@ -11,6 +11,7 @@ import {
   CAPTURE_VERSION,
   PRODUCTS,
 } from "@/lib/products";
+import { SOCIAL_IMAGE } from "@/lib/site";
 
 const P = PRODUCTS.capture;
 const REPO = P.repo!;
@@ -19,6 +20,18 @@ export const metadata: Metadata = {
   title: "Axio Capture",
   description: `${P.tagline}. ${P.description}`,
   alternates: { canonical: "/products/capture" },
+  openGraph: {
+    title: "Axio Capture",
+    description: `${P.tagline}. ${P.description}`,
+    url: "./",
+    images: [SOCIAL_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Axio Capture",
+    description: `${P.tagline}. ${P.description}`,
+    images: [SOCIAL_IMAGE],
+  },
 };
 
 export default function CapturePage() {

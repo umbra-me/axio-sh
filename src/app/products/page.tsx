@@ -2,12 +2,25 @@ import { ProductGrid, SectionHeader } from "@tessera/marketing";
 import type { Metadata } from "next";
 import ProductCard from "@/components/ProductCard";
 import { AVAILABLE, PRIVATE, PRODUCT_LIST, listNames } from "@/lib/products";
+import { SOCIAL_IMAGE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Products",
   description:
     "The six Axio tools: a coding agent, Capture, Analyst, Deck, Local and the native Mac utility Axio Polaris.",
   alternates: { canonical: "/products" },
+  openGraph: {
+    title: "Products",
+    description: "The six Axio tools: a coding agent, Capture, Analyst, Deck, Local and the native Mac utility Axio Polaris.",
+    url: "./",
+    images: [SOCIAL_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Products",
+    description: "The six Axio tools: a coding agent, Capture, Analyst, Deck, Local and the native Mac utility Axio Polaris.",
+    images: [SOCIAL_IMAGE],
+  },
 };
 
 export default function ProductsPage() {

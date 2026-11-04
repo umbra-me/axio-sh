@@ -1,12 +1,24 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/LegalPage";
-import { COMPANY, CONTACT } from "@/lib/site";
+import { COMPANY, CONTACT, SOCIAL_IMAGE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Terms of use",
   description:
     "The terms for using axio.sh and the install scripts it serves, and how they relate to each product's software licence.",
   alternates: { canonical: "/legal/terms" },
+  openGraph: {
+    title: "Terms of use",
+    description: "The terms for using axio.sh and the install scripts it serves, and how they relate to each product's software licence.",
+    url: "./",
+    images: [SOCIAL_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms of use",
+    description: "The terms for using axio.sh and the install scripts it serves, and how they relate to each product's software licence.",
+    images: [SOCIAL_IMAGE],
+  },
 };
 
 export default function TermsPage() {

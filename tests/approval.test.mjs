@@ -6,9 +6,14 @@ import { loadSource } from './load-source.mjs';
 // agent's own strings. These are the strings the TUI paints during an
 // approval (crates/axio/src/tui/paint.rs: `title`, `prompt_row`,
 // `status_row`), so a change there is a change here.
-const { FRAME, TITLE, PROMPT, HINT } = loadSource(
+const { FRAME, TITLE, PROMPT, HINT, RUNNING_FRAME, HERO } = loadSource(
   new URL('../src/content/transcripts.ts', import.meta.url),
 );
+
+test('example transcripts use a generic model label', () => {
+  assert.equal(RUNNING_FRAME.title, 'configured model');
+  assert.equal(HERO.model, 'configured model');
+});
 
 test('the approval prompt is the one the agent prints', () => {
   assert.equal(TITLE, 'approve  edit:crates/axio-pty/src/session.rs');

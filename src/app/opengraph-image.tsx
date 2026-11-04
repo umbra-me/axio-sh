@@ -27,6 +27,8 @@ const PRODUCTS = [
   ["Capture", MINT],
   ["Analyst", VIOLET],
   ["Deck", AMBER],
+  ["Local", "#7ed7b5"],
+  ["Polaris", "#7fb9f5"],
 ] as const;
 
 export default function OpengraphImage() {
@@ -62,7 +64,7 @@ export default function OpengraphImage() {
             </div>
             <div style={{ marginLeft: 18, fontSize: 22, color: MUTED }}>by Umbra</div>
           </div>
-          <div style={{ display: "flex", gap: 10 }}>
+          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "flex-end", width: 480, gap: 8 }}>
             {PRODUCTS.map(([name, color]) => (
               <div
                 key={name}
@@ -72,8 +74,8 @@ export default function OpengraphImage() {
                   border: `1px solid ${color}55`,
                   background: `${color}1a`,
                   borderRadius: 999,
-                  padding: "8px 16px",
-                  fontSize: 18,
+                  padding: "6px 12px",
+                  fontSize: 16,
                   color: FG,
                 }}
               >

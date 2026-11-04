@@ -17,7 +17,8 @@ function fields(file) {
   }
 }
 function property(object, name) {
-  return object?.properties.find((item) => ts.isPropertyAssignment(item) && item.name.getText() === name)?.initializer;
+  const item = object?.properties.find((item) => (ts.isPropertyAssignment(item) || ts.isShorthandPropertyAssignment(item)) && item.name.getText() === name);
+  return item && (ts.isShorthandPropertyAssignment(item) ? item.name : item.initializer);
 }
 function evaluate(expression) {
   assert.ok(expression, 'metadata URL must be present');
@@ -27,6 +28,28 @@ function evaluate(expression) {
 const app = new URL('../src/app/', import.meta.url);
 const root = fields(new URL('layout.tsx', app));
 const pages = readdirSync(app, { recursive: true }).filter((file) => file.endsWith('page.tsx'));
+
+test('every subpage shares its own title and description on social cards', () => {
+  const titles = new Set();
+  for (const file of pages.filter((file) => file !== 'page.tsx')) {
+    const page = fields(new URL(file, app));
+    const title = property(page, 'title').getText();
+    const description = property(page, 'description').getText();
+    assert.ok(!titles.has(title), `reused title: ${file}`);
+    titles.add(title);
+    for (const kind of ['openGraph', 'twitter']) {
+      const social = property(page, kind);
+      assert.equal(property(social, 'title')?.getText(), title, `${file}: ${kind} title`);
+      assert.equal(property(social, 'description')?.getText(), description, `${file}: ${kind} description`);
+      assert.ok(property(social, 'images'), `${file}: ${kind} must retain a share image`);
+    }
+  }
+});
+
+test('the not-found page has a distinct absolute document title', () => {
+  const page = fields(new URL('not-found.tsx', app));
+  assert.equal(evaluate(property(property(page, 'title'), 'absolute')), 'Page not found | Axio');
+});
 
 test('every public page and Open Graph override keeps its existing canonical URL', async () => {
   for (const suffix of ['', '.staging']) {

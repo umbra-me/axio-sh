@@ -3,13 +3,25 @@ import { LegalDocument } from "@tessera/patterns";
 import { Button } from "@tessera/ui";
 import type { Metadata } from "next";
 import { PRODUCT_LIST } from "@/lib/products";
-import { COMPANY, ORG, UMBRA } from "@/lib/site";
+import { COMPANY, ORG, SOCIAL_IMAGE, UMBRA } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
   description:
     "Axio is Umbra's developer-tools family. What it is, how it is built, and how it is run.",
   alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About",
+    description: "Axio is Umbra's developer-tools family. What it is, how it is built, and how it is run.",
+    url: "./",
+    images: [SOCIAL_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About",
+    description: "Axio is Umbra's developer-tools family. What it is, how it is built, and how it is run.",
+    images: [SOCIAL_IMAGE],
+  },
 };
 
 export default function AboutPage() {

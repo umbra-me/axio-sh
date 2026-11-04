@@ -1,6 +1,9 @@
-"use client";
-
 import { EdgePage } from "@tessera/ui";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: { absolute: "Page not found | Axio" },
+};
 
 export default function NotFound() {
   return (
