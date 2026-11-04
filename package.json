@@ -15,12 +15,12 @@
     "release:test": "node --test scripts/check-release-inputs.node-test.mjs"
   },
   "dependencies": {
-    "@tessera/marketing": "0.1.4",
-    "@tessera/mocks": "0.1.4",
-    "@tessera/next": "0.1.4",
-    "@tessera/patterns": "0.1.4",
-    "@tessera/themes": "0.1.4",
-    "@tessera/ui": "0.1.4",
+    "@tessera/marketing": "0.1.5",
+    "@tessera/mocks": "0.1.5",
+    "@tessera/next": "0.1.5",
+    "@tessera/patterns": "0.1.5",
+    "@tessera/themes": "0.1.5",
+    "@tessera/ui": "0.1.5",
     "geist": "^1.7.2",
     "next": "16.4.3",
     "react": "19.3.0",
