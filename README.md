@@ -2,7 +2,7 @@
 
 ## Current independent development
 
-Run from this checkout using the toolchain in `umbra.dev.yaml` and pnpm@11.24.0. This install root owns its manifest and lockfile. First-party packages select exact private `0.1.2` versions; no parent install or sibling build is needed.
+Run from this checkout using the toolchain in `umbra.dev.yaml` and pnpm@11.24.0. This install root owns its manifest and lockfile. First-party packages select the exact private versions pinned in `package.json`; no parent install or sibling build is needed.
 
 ```sh
 node scripts/private-registry.mjs -- pnpm install --frozen-lockfile
@@ -31,7 +31,7 @@ node scripts/private-registry.mjs -- pnpm run dev   # http://localhost:3311
 
 ## Building
 
-The install scripts remain readable in this repository. The site builds independently with its own lockfile and exact private Tessera `0.1.2` packages. The reader runner supplies authenticated package access.
+The install scripts remain readable in this repository. The site builds independently with its own lockfile and exact private Tessera packages. The reader runner supplies authenticated package access.
 
 This was `apps/site` inside `umbra-me/axio` until ADR 0013 split it out. It is
 the `axio/site` component of the `axio` workspace; the agent is `axio/core`. The

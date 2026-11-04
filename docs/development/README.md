@@ -2,7 +2,7 @@
 
 ## Current independent development
 
-Run from this checkout using the toolchain in `umbra.dev.yaml` and pnpm@11.24.0. This install root owns its manifest and lockfile. First-party packages select exact private `0.1.2` versions; no parent install or sibling build is needed.
+Run from this checkout using the toolchain in `umbra.dev.yaml` and pnpm@11.24.0. This install root owns its manifest and lockfile. First-party packages select the exact private versions pinned in `package.json`; no parent install or sibling build is needed.
 
 ```sh
 node scripts/private-registry.mjs -- pnpm install --frozen-lockfile
