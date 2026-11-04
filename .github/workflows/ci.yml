@@ -2,7 +2,7 @@ name: standalone
 on: [push, pull_request]
 jobs:
   source:
-    runs-on: ubuntu-24.04
+    runs-on: [self-hosted, umbra-ci]
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
