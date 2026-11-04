@@ -36,8 +36,8 @@ export const CONTACT = {
   security: "security@umbra.me",
 };
 
-/** Shown on every legal page. Change it when the policy text changes. */
-export const LEGAL_UPDATED = "2026-09-10";
+/** Default visible legal date; pages with newer policy text override it. */
+export const LEGAL_UPDATED = "10 September 2026";
 
 export const NAV = {
   main: [
