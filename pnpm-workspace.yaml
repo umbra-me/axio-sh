@@ -10,17 +10,17 @@ overrides:
   sharp: 0.35.5
   source-map-js: 1.2.2
   next: 16.4.3
-  '@tessera/token-build': 0.1.4
-  '@tessera/tokens': 0.1.4
-  '@tessera/contracts': 0.1.4
-  '@tessera/css': 0.1.4
-  '@tessera/themes': 0.1.4
-  '@tessera/ui': 0.1.4
-  '@tessera/marketing': 0.1.4
-  '@tessera/patterns': 0.1.4
-  '@tessera/shells': 0.1.4
-  '@tessera/mocks': 0.1.4
-  '@tessera/next': 0.1.4
+  '@tessera/token-build': 0.1.5
+  '@tessera/tokens': 0.1.5
+  '@tessera/contracts': 0.1.5
+  '@tessera/css': 0.1.5
+  '@tessera/themes': 0.1.5
+  '@tessera/ui': 0.1.5
+  '@tessera/marketing': 0.1.5
+  '@tessera/patterns': 0.1.5
+  '@tessera/shells': 0.1.5
+  '@tessera/mocks': 0.1.5
+  '@tessera/next': 0.1.5
 allowBuilds:
   esbuild: true
   sharp: true
@@ -36,17 +36,17 @@ minimumReleaseAgeExclude:
 - '@kian/db@0.1.2'
 - '@kian/ui@0.1.2'
 - '@kian/utils@0.1.2'
-- '@tessera/contracts@0.1.4'
-- '@tessera/css@0.1.4'
-- '@tessera/marketing@0.1.4'
-- '@tessera/mocks@0.1.4'
-- '@tessera/next@0.1.4'
-- '@tessera/patterns@0.1.4'
-- '@tessera/shells@0.1.4'
-- '@tessera/themes@0.1.4'
-- '@tessera/token-build@0.1.4'
-- '@tessera/tokens@0.1.4'
-- '@tessera/ui@0.1.4'
+- '@tessera/contracts@0.1.5'
+- '@tessera/css@0.1.5'
+- '@tessera/marketing@0.1.5'
+- '@tessera/mocks@0.1.5'
+- '@tessera/next@0.1.5'
+- '@tessera/patterns@0.1.5'
+- '@tessera/shells@0.1.5'
+- '@tessera/themes@0.1.5'
+- '@tessera/token-build@0.1.5'
+- '@tessera/tokens@0.1.5'
+- '@tessera/ui@0.1.5'
 - '@umbra/admin-client@0.1.2'
 - '@umbra/api-client@0.1.2'
 - '@umbra/auth-client@0.1.2'
