@@ -12,7 +12,7 @@ Preserve product behavior, package namespaces, analytics security headers and Po
 
 ## Private package access
 
-Tessera dependencies select authenticated immutable `0.1.3` packages; other first-party dependencies retain their existing pins from `https://localhost:4874/`. The recipe uses the owning install root's `scripts/private-registry.mjs` runner to load dedicated reader configuration outside source, including when the CLI clears ambient environment variables. Preserve synthetic-data and native/production gates. No public fallback, credentials in source, parent installation or sibling dist is allowed.
+Tessera dependencies select authenticated immutable `0.1.4` packages; other first-party dependencies retain their existing pins from `https://localhost:4874/`. The recipe uses the owning install root's `scripts/private-registry.mjs` runner to load dedicated reader configuration outside source, including when the CLI clears ambient environment variables. Preserve synthetic-data and native/production gates. No public fallback, credentials in source, parent installation or sibling dist is allowed.
 
 ## Managed local source development
 
