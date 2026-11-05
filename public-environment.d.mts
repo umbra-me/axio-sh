@@ -1,4 +1,6 @@
 export function environmentSuffix(hostname: string): string;
+export function environmentZone(hostname: string): string;
+export function stagingLabel(hostname: string): string;
 export function productionHostname(hostname: string): string;
 export function publicHost(hostname: string, from?: string): string;
 export function publicUrl(hostname: string, from?: string): string;
