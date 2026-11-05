@@ -3,8 +3,14 @@
  * Build local release bundles with NEXT_PUBLIC_UMBRA_PUBLIC_SUFFIX=.local and
  * UMBRA_PUBLIC_SUFFIX=.local. Production builds default to the real domains.
  * Browser/request hostnames take precedence over the build/server setting.
+ * Staging maps each host to one dashed label under a public zone
+ * (account.umbra.me -> account-umbra-me.umbr.dev); build it with
+ * NEXT_PUBLIC_UMBRA_PUBLIC_ZONE=umbr.dev and UMBRA_PUBLIC_ZONE=umbr.dev.
+ * A zone wins over a suffix when both are configured.
  */
 const suffixes = ['.localhost', '.staging', '.local'];
+const publicZones = ['umbr.dev'];
+const zoneLabel = /^[a-z0-9-]+$/;
 const zones = ['umbra.me', 'umbra.nexus', 'umbra.ninja', 'axio.sh', 'vexel.sh', 'evade.fail', 'exploit.ac', 'kian.pw', 'zenco.cc'];
 
 /** @param {string} hostname */
@@ -13,11 +19,73 @@ export function environmentSuffix(hostname) {
   return suffixes.find((suffix) => name.length > suffix.length && name.endsWith(suffix)) ?? '';
 }
 
+/** The public zone a staging host lives in ('umbr.dev'), or '' for anything else:
+ * only one DNS label directly under an allow-listed zone counts.
+ * @param {string} hostname
+ */
+export function environmentZone(hostname) {
+  const name = hostname.toLowerCase();
+  for (const zone of publicZones) {
+    if (name.length > zone.length + 1 && name.endsWith(`.${zone}`) && zoneLabel.test(name.slice(0, -zone.length - 1))) return zone;
+  }
+  return '';
+}
+
+/** The label of a staging zone host (account-umbra-me.umbr.dev -> account-umbra-me), or ''.
+ * @param {string} hostname
+ */
+export function stagingLabel(hostname) {
+  const zone = environmentZone(hostname);
+  return zone ? hostname.toLowerCase().slice(0, -zone.length - 1) : '';
+}
+
+// Dashed portfolio zones, longest first, so the longest suffix wins.
+const dashedZones = zones.map((zone) => zone.replaceAll('.', '-')).sort((a, b) => b.length - a.length);
+
+/** account-evade-fail.umbr.dev -> account.evade.fail; labels without a portfolio zone stay as they are.
+ * @param {string} name
+ */
+function zoneProductionHostname(name) {
+  const label = stagingLabel(name);
+  if (label === '') return name;
+  const dashed = dashedZones.find((zone) => label === zone || label.endsWith(`-${zone}`));
+  if (dashed === undefined) return name;
+  const domain = dashed.replaceAll('-', '.');
+  if (label === dashed) return domain;
+  return `${label.slice(0, -dashed.length - 1)}.${domain}`;
+}
+
 /** @param {string} hostname */
 export function productionHostname(hostname) {
   const name = hostname.toLowerCase();
+  if (environmentZone(name) !== '') return zoneProductionHostname(name);
   const suffix = environmentSuffix(name);
   return suffix ? name.slice(0, -suffix.length) : name;
+}
+
+/** The zone for the current request or build, or '' (suffix or production routing).
+ * @param {string | undefined} from
+ */
+function activeZone(from) {
+  if (from !== undefined) return environmentZone(from);
+  if (typeof window !== 'undefined') return environmentZone(window.location.hostname);
+  const configured = process.env.NEXT_PUBLIC_UMBRA_PUBLIC_ZONE ?? process.env.UMBRA_PUBLIC_ZONE;
+  if (configured !== undefined) {
+    if (configured !== '' && !publicZones.includes(configured)) throw new Error('Unsupported Umbra public zone');
+    return configured;
+  }
+  return '';
+}
+
+/** Production host -> staging label host. Only portfolio hosts map; anything
+ * that would not fit one DNS label is left alone rather than guessed.
+ * @param {string} host @param {string} zone
+ */
+function zoneHostname(host, zone) {
+  if (environmentZone(host) === zone) return host;
+  const label = host.replaceAll('.', '-');
+  if (!zones.some((domain) => host === domain || host.endsWith(`.${domain}`)) || label.length > 63) return host;
+  return `${label}.${zone}`;
 }
 
 /** @param {string | undefined} from */
@@ -34,13 +102,15 @@ function activeSuffix(from) {
 
 /** @param {string} hostname @param {string | undefined} [from] */
 export function publicHost(hostname, from) {
+  const zone = activeZone(from);
+  if (zone !== '') return zoneHostname(productionHostname(hostname), zone);
   return `${productionHostname(hostname)}${activeSuffix(from)}`;
 }
 
 /** @param {string} hostname @param {string | undefined} [from] */
 function developmentOrigin(hostname, from) {
   const configured = process.env.NEXT_PUBLIC_UMBRA_DEV_ROUTER_PORT;
-  if (process.env.NODE_ENV !== 'development' || configured === undefined || activeSuffix(from) !== '.localhost') return null;
+  if (process.env.NODE_ENV !== 'development' || configured === undefined || activeZone(from) !== '' || activeSuffix(from) !== '.localhost') return null;
   const port = Number(configured);
   if (!/^\d+$/.test(configured) || !Number.isInteger(port) || port < 1024 || port > 65535) throw new Error('Unsupported Umbra development router port');
   return `http://${publicHost(hostname, from)}`;
@@ -54,7 +124,8 @@ export function publicUrl(hostname, from) {
  * @param {string} value @param {string | undefined} [from]
  */
 export function environmentUrl(value, from) {
-  const suffix = activeSuffix(from);
+  const zone = activeZone(from);
+  const suffix = zone === '' ? activeSuffix(from) : '';
   if (!/^(https?:)?\/\//i.test(value)) return value;
   let url;
   try { url = new URL(value, 'https://environment.invalid'); } catch { return value; }
@@ -62,7 +133,7 @@ export function environmentUrl(value, from) {
   if (!zones.some((zone) => host === zone || host.endsWith(`.${zone}`))) return value;
   if (url.username || url.password) return value;
   // Keep stable identity issuers separate from navigable public origins.
-  url.hostname = `${host}${suffix}`;
+  url.hostname = zone === '' ? `${host}${suffix}` : zoneHostname(host, zone);
   if (suffix === ".local" || suffix === ".localhost") url.port = "";
   const development = developmentOrigin(host, from);
   if (development !== null) {
