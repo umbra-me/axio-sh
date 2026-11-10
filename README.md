@@ -13,9 +13,9 @@ node scripts/private-registry.mjs -- pnpm release:check
 
 The runner loads dedicated reader auth and per-process trust from `~/.local/share/umbra-next/npm-registry` for the loopback-only `https://localhost:4874` registry. Keep credentials outside source; global npm configuration and system trust are unchanged. See the [migration receipt](../../../../docs/private-registry-migration-2026-10-14.md) for verified local checks. Native, browser/provider, hosted CI and production acceptance remain separate gates.
 
-Current source changes and verification gates: [September 20 move onto Tessera](docs/tessera-slice-a-2026-09-20.md).
-[September 11 site redesign](docs/site-redesign-2026-09-11.md) is the design that move preserves.
-[September 5 change set](docs/change-set-2026-09-05.md) is historical.
+Current source changes and verification gates: [September 20 move onto Tessera](docs/receipts/2026-09/tessera-slice-a-2026-09-20.md).
+[September 11 site redesign](docs/receipts/2026-09/site-redesign-2026-09-11.md) is the design that move preserves.
+[September 5 change set](docs/receipts/2026-09/change-set-2026-09-05.md) is historical.
 
 The axio.sh website, and the install scripts it serves. Next.js 16, App Router,
 Tessera (Umbra's design system) for the theme, header, footer, buttons and
@@ -324,7 +324,7 @@ zero tests as success. The lockfile is this repository's `pnpm-lock.yaml`.
 every route at 390, 768 and 1440 px against a running build, with off-origin
 requests blocked so two runs of one build are byte-identical.
 
-Frontend lint and standalone typecheck commands: [September 5 verification](docs/lint-verification-2026-09-05.md).
+Frontend lint and standalone typecheck commands: [September 5 verification](docs/receipts/2026-09/lint-verification-2026-09-05.md).
 
 
 ## Polaris customer page and demos
@@ -345,5 +345,5 @@ vector icon are alongside the demo directory. No synthetic app UI is used.
 The image must carry `public/` alongside Next.js standalone output; the
 workspace Dockerfile copies it.
 Verify the page and media separately after deployment. See
-[the redesign record](docs/polaris-page-redesign-2026-09-10.md) for current checks;
-[September 9 capture evidence](docs/polaris-real-demos-2026-09-09.md) is historical.
+[the redesign record](docs/receipts/2026-09/polaris-page-redesign-2026-09-10.md) for current checks;
+[September 9 capture evidence](docs/receipts/2026-09/polaris-real-demos-2026-09-09.md) is historical.
