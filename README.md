@@ -11,7 +11,7 @@ node scripts/private-registry.mjs -- pnpm build
 node scripts/private-registry.mjs -- pnpm release:check
 ```
 
-The runner loads dedicated reader auth and per-process trust from `~/.local/share/umbra-next/npm-registry` for the loopback-only `https://localhost:4874` registry. Keep credentials outside source; global npm configuration and system trust are unchanged. See the [migration receipt](../../../../docs/private-registry-migration-2026-10-14.md) for verified local checks. Native, browser/provider, hosted CI and production acceptance remain separate gates.
+The runner loads dedicated reader auth and per-process trust from `~/.local/share/umbra-next/npm-registry` for the loopback-only `https://localhost:4874` registry. Keep credentials outside source; global npm configuration and system trust are unchanged. See the [migration receipt](../../../../docs/receipts/2026-10/private-registry-migration-2026-10-14.md) for verified local checks. Native, browser/provider, hosted CI and production acceptance remain separate gates.
 
 Current source changes and verification gates: [September 20 move onto Tessera](docs/receipts/2026-09/tessera-slice-a-2026-09-20.md).
 [September 11 site redesign](docs/receipts/2026-09/site-redesign-2026-09-11.md) is the design that move preserves.
